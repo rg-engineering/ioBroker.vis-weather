@@ -1,0 +1,35 @@
+{
+    "common": {
+        "name":                     "vis-weather",
+        "version": "0.0.1",
+        "title":                    "ioBroker Visualisation - weather Widgets",
+        "desc": {
+            "en":                   "weather Widgets for ioBroker.vis",
+            "de":                   "weather Widgets für ioBroker.vis",
+            "ru":                   "weather Widgets для ioBroker.vis"
+        },
+        "platform":                 "Javascript/Node.js",
+        "icon":                     "weather.png",
+        "enabled":                  true,
+        "mode":                     "once",
+        "extIcon":                  "https://github.com/ioBroker/ioBroker.js-controller/raw/master/adapter/example/admin/example.png",
+        "keywords":                 ["weather", "vis", "GUI", "graphical", "scada"],
+        "readme":                   "https://github.com/ioBroker/ioBroker.vis-weather/blob/master/README.md",
+        "authors": [
+            "René G. <info@rg-engineering.eu>"
+        ],
+        "localLink":                "%web_protocol%://%ip%:%web_port%/vis/edit.html",
+        "license":                  "GPL-3.0",
+        "dependencies":             ["vis"],
+        "onlyWWW":                  true,
+        "noConfig":                 true,
+        "singleton":                true,
+        "type":                     "vis",
+        "restartAdapters":          ["vis"]
+    },
+    "native": {
+        "dependencies":          []
+    },
+    "instanceObjects": [
+    ]
+}

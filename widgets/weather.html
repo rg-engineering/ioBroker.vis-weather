@@ -1,0 +1,406 @@
+<!--
+    ioBroker.vis weather Widget-Set
+
+    version: "0.0.1"
+
+    Copyright 10.2015-2016 René G. <info@rg-engineering.eu>
+-->
+<!-- here you can include so many css as you want -->
+<!--<link rel="stylesheet" href="widgets/weather/css/style.css" />-->
+
+<script type="text/javascript" src="widgets/weather/lib/js/jquery.sparkline.min.js"></script>
+
+<script type="text/javascript">
+    'use strict';
+if (vis.editMode) {
+        // Add words for basic widgets
+        $.extend(true, systemDictionary, {
+            "format_date": { "en": "Dateformat", "de": "Datumformat", "ru": "?????? ????" },
+            "format_date_tooltip": {
+                "en": "Dateformat",
+                "de": "Datumformat",
+                "ru": "?????? ????"
+            },
+            "1 second": { "en": "1 second", "de": "1 Sekunde", "ru": "1 ???????" },
+            "10 seconds": { "en": "10 seconds", "de": "10 Sekunden", "ru": "10 ??????" },
+            "30 seconds": { "en": "30 seconds", "de": "30 Sekunden", "ru": "30 ??????" },
+            "1 minute": { "en": "1 minute", "de": "1 Minute", "ru": "1 ??????" },
+            "2 minutes": { "en": "2 minutes", "de": "2 Minuten", "ru": "2 ??????" },
+            "5 minutes": { "en": "5 minutes", "de": "5 Minuten", "ru": "5 ?????" },
+            "10 minutes": { "en": "10 minutes", "de": "10 Minuten", "ru": "10 ?????" },
+            "30 minutes": { "en": "30 minutes", "de": "30 Minuten", "ru": "30 ?????" },
+            "1 hour": { "en": "1 hour", "de": "1 Stunde", "ru": "1 ???" },
+            "2 hours": { "en": "2 hours", "de": "2 Stunden", "ru": "2 ????" },
+            "4 hours": { "en": "4 hours", "de": "4 Stunden", "ru": "4 ????" },
+            "8 hours": { "en": "8 hours", "de": "8 Stunden", "ru": "8 ?????" },
+            "12 hours": { "en": "12 hours", "de": "12 Stunden", "ru": "12 ?????" },
+            "24 hours": { "en": "24 hours", "de": "24 Stunden", "ru": "24 ????" },
+            "instance": { "en": "history instance", "de": "Historyinstanz", "ru": "?????????" },
+            "group_advanced": { "en": "Advanced", "de": "Erweitert", "ru": "?????????????" },
+            "max_lines": { "en": "Max. event amount", "de": "max. Ereignisse", "ru": "????. ???-?? ???????" },
+            "time_interval_min": { "en": "Not older than", "de": "Nicht älter als", "ru": "?? ????? ???" },
+            "timeAsInterval": { "en": "Time as interval", "de": "Zeit als Intervall", "ru": "?????, ??? ????????" },
+            "inverseOrder": { "en": "Inverse order", "de": "Reihenfolge invertieren", "ru": "???????? ???????" },
+            "group_columns": { "en": "Columns", "de": "Spalten", "ru": "???????" },
+            "table_attr": { "en": "Table CSS style", "de": "CSS Stil - Tabelle", "ru": "??????? - CSS ?????" },
+            "header_attr": { "en": "Header CSS style", "de": "CSS Stil - Beschriftung", "ru": "????????? - CSS ?????" },
+            "time_name": { "en": "Time - name", "de": "Zeit - Name", "ru": "????? - ???" },
+            "time_hide": { "en": "Time - hide", "de": "Zeit - nicht zeigen", "ru": "????? - ??????" },
+            "time_width": { "en": "Time - width", "de": "Zeit - Breite", "ru": "????? - ??????" },
+            "time_attr": { "en": "Time - CSS style", "de": "Zeit - CSS Stil", "ru": "????? - CSS ?????" },
+            "time_unit": { "en": "Time - suffix", "de": "Zeit - Suffix", "ru": "????? - ???????" },
+            "val_name": { "en": "Val- name", "de": "Wert - Name", "ru": "???????? - ???" },
+            "val_hide": { "en": "Val - hide", "de": "Wert - nicht zeigen", "ru": "???????? - ??????" },
+            "val_width": { "en": "Val - width", "de": "Wert - Breite", "ru": "???????? - ??????" },
+            "val_attr": { "en": "Val - CSS style", "de": "Wert - CSS Stil", "ru": "???????? - CSS ?????" },
+            "val_unit": { "en": "Val - units", "de": "Wert - Einheit", "ru": "???????? - ???????" },
+            "from_name": { "en": "From - name", "de": "Von - Name", "ru": "?? - ???" },
+            "from_hide": { "en": "From - hide", "de": "Von - nicht zeigen", "ru": "?? - ??????" },
+            "from_width": { "en": "From - width", "de": "Von - Breite", "ru": "?? - ??????" },
+            "from_attr": { "en": "From - CSS style", "de": "Von - CSS Stil", "ru": "?? - CSS ?????" },
+            "from_unit": { "en": "From - suffix", "de": "Von - Suffix", "ru": "?? - ???????" },
+            "average": { "en": "average", "de": "Mittelwert", "ru": "???????" },
+            "total": { "en": "total", "de": "Summe", "ru": "?????" },
+            "line": { "en": "line", "de": "Linie", "ru": "?????" },
+            "aggregate": { "en": "Aggregation", "de": "Aggregation", "ru": "??????????????" },
+            "chartType": { "en": "chartType", "de": "Charttyp", "ru": "??? ???????" },
+            "points": { "en": "points", "de": "Anzahl Werten", "ru": "???-?? ?????" },
+            "time_interval": { "en": "Time interval", "de": "Zeitintervall", "ru": "????????" },
+            "group_line": { "en": "Line", "de": "Linie-Chart", "ru": "?????" },
+            "lineColor": { "en": "Line color", "de": "Linie-Farbe", "ru": "???? ?????" },
+            "fillColor": { "en": "Fill color", "de": "Füllfarbe", "ru": "???? ???????" },
+            "lineWidth": { "en": "Line width", "de": "Liniendicke", "ru": "?????? ?????" },
+            "group_bar": { "en": "Bar", "de": "Bar-Chart", "ru": "???????" },
+            "barColor": { "en": "Positive color", "de": "Positivfarbe", "ru": "???? ????????????? ????????" },
+            "negBarColor": { "en": "negative color", "de": "Negativfarbe", "ru": "???? ????????????? ????????" },
+            "zeroColor": { "en": "Zero color", "de": "0-Farbe", "ru": "???? ??????? ????????" },
+            "barSpacing": { "en": "Bar's spacing", "de": "Abstand", "ru": "?????????? ????? ?????????" },
+            "disableTooltips": { "en": "Hide tooltips", "de": "Kein Tooltips", "ru": "??? ?????????" },
+            "history": { "en": "history", "de": "history", "ru": "history" }
+        });
+    }
+
+    vis.binds.weather = {
+        version: "0.2.6",
+        showVersion: function () {
+            if (vis.binds.weather.version) {
+                console.log('Version vis-weather: ' + vis.binds.weather.version);
+                vis.binds.weather.version = null;
+            }
+        },
+        updateWidgets: [],
+        updateIntervalTimer: null,
+        startIntervalUpdate: function () {
+            if (vis.editMode) return;
+            if (vis.binds.weather.updateWidgets.length && !vis.binds.weather.updateIntervalTimer) {
+                vis.binds.weather.updateIntervalTimer = setInterval(vis.binds.weather.updateInterval, 30000);
+            } else if (!vis.binds.weather.updateWidgets.length && vis.binds.weather.updateIntervalTimer) {
+                clearInterval(vis.binds.weather.updateIntervalTimer);
+                vis.binds.weather.updateIntervalTimer = null;
+            }
+        },
+        updateInterval: function () {
+            for (var wid = 0; wid < vis.binds.weather.updateWidgets.length; wid++) {
+                vis.binds.weather.eventList.update($('#' + vis.binds.weather.updateWidgets[wid]).find('.vis-widget-body'));
+            }
+        },
+        eventList: {
+            intervals: {
+                '1 second': 1000,
+                '10 seconds': 10000,
+                '30 seconds': 30000,
+                '1 minute': 60000,
+                '2 minutes': 120000,
+                '5 minutes': 300000,
+                '10 minutes': 600000,
+                '30 minutes': 1800000,
+                '1 hour': 3600000,
+                '2 hours': 7200000,
+                '4 hours': 14400000,
+                '8 hours': 28800000,
+                '12 hours': 43200000,
+                '24 hours': 86400000
+
+            },
+            header: function (data) {
+                var text = data.title ? '<div style="text-align: center; width: 100%;' + (data.title_attr || '') + '">' + data.title + '</div>' : '';
+                text += '<table class="vis-no-spaces">\n';
+                var table_attr = (data.table_attr || '');
+                var attrTime = (data.time_width ? 'width: ' + data.time_width + 'px;' : '');
+                var attrVal = (data.val_width ? 'width: ' + data.val_width + 'px;' : '');
+                var attrFrom = (data.from_width ? 'width: ' + data.from_width + 'px;' : '');
+
+                if ((!data.time_hide && data.time_name) ||
+                    (!data.val_hide && data.val_name) ||
+                    (!data.from_hide && data.from_name)) {
+                    text += '<tr style="' + (data.header_attr || '') + ';' + table_attr + '">';
+                    if (!data.time_hide) text += '<th style="' + attrTime + table_attr + '">' + (data.time_name || '') + '</th>';
+                    if (!data.val_hide) text += '<th style="' + attrVal + table_attr + '">' + (data.val_name || '') + '</th>';
+                    if (!data.from_hide) text += '<th style="' + attrFrom + table_attr + '">' + (data.time_name || '') + '</th>';
+                    attrTime = '';
+                    attrVal = '';
+                    attrFrom = '';
+                }
+                return { text: text, attrTime: attrTime, attrVal: attrVal, attrFrom: attrFrom, table_attr: table_attr };
+            },
+            renderLine: function (header, data, result, line) {
+                var resLine = result[line] || { val: '&nbsp;', from: '&nbsp;' };
+                var text = '<tr style="' + header.table_attr + '">';
+                var time;
+                if (resLine.ts) {
+                    time = data.timeAsInterval ? vis.binds.basic.getTimeInterval(resLine.ts) : vis.binds.basic.formatDate(resLine.ts, data.format_date);
+                } else {
+                    time = '&nbsp;';
+                }
+
+                if (time !== '&nbsp;' && data.time_unit) time += data.time_unit;
+                if (data.val_unit && resLine.val !== '&nbsp;' && resLine.val !== null && resLine.val !== undefined && resLine.val !== '') resLine.val += data.val_unit;
+                if (data.from_unit && resLine.from !== '&nbsp;' && resLine.from !== null && resLine.from !== undefined && resLine.from !== '') resLine.from += data.from_unit;
+
+                if (!data.time_hide) text += '<td style="' + header.attrTime + (data.time_attr || '') + ';' + header.table_attr + '">' + time + '</td>';
+                if (!data.val_hide) {
+                    if (resLine.val && typeof resLine.val === 'string' && resLine.val.match(/https?:\/\//)) resLine.val = '<a href="' + resLine.val + '" target="eventList">' + resLine.val.split('/').pop() + '</a>';
+                    text += '<td style="' + header.attrVal + (data.val_attr || '') + ';' + header.table_attr + '">' + resLine.val + '</td>';
+                }
+                if (!data.from_hide) text += '<td style="' + header.attrFrom + (data.from_attr || '') + ';' + header.table_attr + '">' + (resLine.from || '') + '</td>';
+
+                text += '</tr>\n';
+                return text;
+            },
+            update: function ($div) {
+                var data = $div.data('options');
+                if (!data.oid || !data.instance) {
+                    var header = vis.binds.weather.eventList.header(data);
+                    if (data.max_lines) {
+                        for (var e = 0; e < data.max_lines; e++) {
+                            header.text += vis.binds.weather.eventList.renderLine(header, data, [], e);
+                        }
+                    }
+                    header.text += '</table>';
+                    $div.html(header.text);
+                } else {
+                    vis.getHistory(data.oid, {
+                        instance: data.instance,
+                        count: data.max_lines || 10,
+                        aggregate: 'none',
+                        from: !data.from_hide,
+                        start: vis.binds.weather.eventList.intervals[data.time_interval_min] ? new Date().getTime() - vis.binds.weather.eventList.intervals[data.time_interval_min] : undefined,
+                        timeout: 2000
+                    }, function (err, result) {
+                        var e;
+                        if (err) console.log(err);
+                        if (result && result.length) {
+                            var header = vis.binds.weather.eventList.header(data);
+                            var cnt = 0;
+                            if (data.inverseOrder) {
+                                for (e = 0; e < result.length; e++) {
+                                    header.text += vis.binds.weather.eventList.renderLine(header, data, result, e);
+                                    if (data.max_lines && ++cnt >= data.max_lines) break;
+                                }
+                            } else {
+                                for (e = result.length - 1; e >= 0; e--) {
+                                    header.text += vis.binds.weather.eventList.renderLine(header, data, result, e);
+                                    if (data.max_lines && ++cnt >= data.max_lines) break;
+                                }
+                            }
+
+                            if (data.max_lines) {
+                                for (e = result.length; e < data.max_lines; e++) {
+                                    header.text += vis.binds.weather.eventList.renderLine(header, data, result, e);
+                                }
+                            }
+                            header.text += '</table>';
+                            $div.html(header.text);
+                        } else {
+                            var header = vis.binds.weather.eventList.header(data);
+                            header.text += '<tr><td colspan="3">' + (err || _('no data')) + '</td></tr>';
+                            if (data.max_lines) {
+                                for (e = 1; e < data.max_lines; e++) {
+                                    header.text += vis.binds.weather.eventList.renderLine(header, data, [], e);
+                                }
+                            }
+                            header.text += '</table>';
+                            $div.html(header.text);
+                        }
+                    });
+                }
+            },
+            init: function (el, view, data) {
+                var $div = $(el);
+
+                var _data = {};
+                for (var s in data) {
+                    if (s[0] !== '_' && data.hasOwnProperty(s) && typeof data[s] !== 'object' && typeof data[s] !== 'function') {
+                        _data[s] = data[s];
+                    }
+                }
+                data = null;
+                $div.data('options', _data);
+
+                if (_data.oid && _data.instance) {
+                    if (_data.timeAsInterval && vis.binds.weather.updateWidgets.indexOf(_data.wid) === -1) {
+                        vis.binds.weather.updateWidgets.push(_data.wid);
+                        vis.binds.weather.startIntervalUpdate();
+                    }
+
+                    vis.states.bind(_data.oid + '.val', function () {
+                        vis.binds.weather.eventList.update($div);
+                    });
+                }
+                vis.binds.weather.eventList.update($div);
+            }
+        },
+        sparkLine: {
+            update: function ($div) {
+                var data = $div.data('options');
+                if (!data.oid || !data.instance) {
+                    $div.sparkline([0, 0], {
+                        width: $div.width(),
+                        height: $div.height(),
+                        lineColor: data.lineColor,
+                        fillColor: data.fillColor,
+                        chartRangeMin: data.min === '' || data.min === null || data.min === 'undefined' ? undefined : parseFloat(data.min),
+                        chartRangeMax: data.max === '' || data.max === null || data.max === 'undefined' ? undefined : parseFloat(data.max),
+                        lineWidth: parseInt(data.lineWidth, 10) || 1
+                    });
+                } else {
+                    vis.getHistory(data.oid, {
+                        instance: data.instance,
+                        count: parseInt(data.points, 10) || 10,
+                        aggregate: data.aggregate || 'average',
+                        start: vis.binds.weather.eventList.intervals[data.time_interval] ? new Date().getTime() - vis.binds.weather.eventList.intervals[data.time_interval] : undefined,
+                        end: new Date().getTime() + 5000,
+                        timeout: 2000
+                    }, function (err, result) {
+                        var data = $div.data('options');
+                        if (err) console.log(err);
+                        if (result && result.length) {
+                            var values = [];
+                            for (var i = 0; i < result.length; i++) {
+
+                                console.log(result[i].val);
+
+                                values.push(result[i].val)
+                            }
+
+                            for (var i = 0; i < 10; i++) {
+                                console.log("bb " + i);
+
+                                values.push(i)
+                            }
+
+                            var barWidth = $div.width() / (result.length+10) - (parseFloat(data.barSpacing) || 1);
+
+                            $div.sparkline(values, {
+                                type: data.chartType || 'line',
+                                width: $div.width(),
+                                height: $div.height(),
+                                lineColor: data.lineColor || undefined,
+                                barColor: data.barColor || undefined,
+                                negBarColor: data.negBarColor || undefined,
+                                zeroColor: data.zeroColor || undefined,
+                                fillColor: data.fillColor || undefined,
+                                barWidth: barWidth,
+                                disableTooltips: data.disableTooltips || undefined,
+                                barSpacing: parseFloat(data.barSpacing) || 1,
+                                chartRangeMin: data.min === '' || data.min === null || data.min === 'undefined' ? undefined : parseFloat(data.min),
+                                chartRangeMax: data.max === '' || data.max === null || data.max === 'undefined' ? undefined : parseFloat(data.max),
+                                lineWidth: parseInt(data.lineWidth, 10) || 1
+                            });
+                        } else {
+                            $div.sparkline([0, 0], {
+                                width: $div.width(),
+                                height: $div.height(),
+                                lineColor: data.lineColor || undefined,
+                                fillColor: data.fillColor || undefined,
+                                chartRangeMin: data.min === '' || data.min === null || data.min === 'undefined' ? undefined : parseFloat(data.min),
+                                chartRangeMax: data.max === '' || data.max === null || data.max === 'undefined' ? undefined : parseFloat(data.max),
+                                lineWidth: parseInt(data.lineWidth, 10) || 1
+                            });
+                        }
+                    });
+                }
+
+            },
+            init: function (el, view, data) {
+                var $div = $(el);
+
+                var _data = {};
+                for (var s in data) {
+                   
+                    if (s[0] !== '_' && data.hasOwnProperty(s) && typeof data[s] !== 'object' && typeof data[s] !== 'function') {
+                        _data[s] = data[s];
+                        
+                    }
+                }
+                data = null;
+                $div.data('options', _data);
+
+                if (_data.oid && _data.instance) {
+                    vis.states.bind(_data.oid + '.val', function () {
+                        vis.binds.weather.sparkLine.update($div);
+                    });
+                    // update every x seconds
+                    if (!vis.editMode) {
+                        $div.data('timer', setInterval(function () {
+                            vis.binds.weather.sparkLine.update($div);
+                        }, parseInt(vis.binds.weather.eventList.intervals[_data.time_interval] / (parseInt(_data.points, 10) || 10), 10)));
+                    }
+                }
+                vis.binds.weather.sparkLine.update($div);
+            }
+        }
+    };
+
+    if (vis.editMode) {
+        vis.binds.weather.onHidChanged = function (widgetID, view, newId, fields) {
+            var obj = vis.objects[newId];
+            if (!obj || !obj.common) return null;
+            var changed = [];
+            var actualInstance = vis.views[view].widgets[widgetID].data.instance;
+            // Check if actual instance still in options
+            var firstInstance = '';
+            var found = false;
+            var custom = obj.common.custom || obj.common.history;
+            for (var h in custom) {
+                if (!custom.hasOwnProperty(h)) continue;
+                if (custom[h].enabled) {
+                    if (firstInstance === '') firstInstance = h;
+                    if (h === actualInstance) {
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            if (!found) {
+                changed.push('instance');
+                vis.views[view].widgets[widgetID].data.instance = firstInstance;
+            }
+            return changed.length ? changed : null;
+        };
+    }
+
+    vis.binds.weather.showVersion();
+
+</script>
+
+
+
+<script id="tplWeatherShowInstance"
+        type="text/ejs"
+        class="vis-tpl"
+        data-vis-set="history"
+        data-vis-name="Weather_Sparkline"
+        data-vis-type="history"
+        data-vis-update-style="true"
+        data-vis-prev='<img src="widgets/weather/img/Prev_tplHistorySparkLine.png"></img>'
+        data-vis-attrs="oid/hid/onHidChanged;instance/history;aggregate[min]/select,average,min,max,total;chartType[line]/select,line,bar;"
+        data-vis-attrs0="points[20]/slider,1,100,1;time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;;min;max;disableTooltips/checkbox;"
+        data-vis-attrs1="group.line;lineColor/color;fillColor/color;lineWidth/slider,1,10,1;"
+        data-vis-attrs2="group.bar;barColor/color;negBarColor/color;zeroColor/color;min;max;barSpacing/slider,1,10,1;"
+>
+    <div class="vis-widget <%== this.data.attr('class') %>" style="overflow: hidden; width: 210px; height: 170px;" id="<%= this.data.attr('wid') %>">
+        <div class="vis-widget-body" <%= (el) -> vis.binds.weather.sparkLine.init(el, this.view, this.data) %>></div>
+    </div>
+</script>
+
