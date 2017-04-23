@@ -17,9 +17,12 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
-    <Compile Include="widgets\weather\js\chart.js" />
+    <Compile Include="test\testPackageFiles.js" />
+    <Compile Include="widgets\weather\lib\js\jquery.sparkline.js" />
+    <Compile Include="widgets\weather\lib\js\jquery.sparkline.min.js" />
     <Content Include=".gitignore" />
     <Content Include=".npmignore" />
+    <Content Include=".travis.yml" />
     <Content Include="admin\weather.png" />
     <Content Include="img\widgets.png" />
     <Content Include="LICENSE" />
@@ -32,17 +35,20 @@
     <Compile Include="tasks\jshint.js" />
     <Content Include="widgets\weather.html" />
     <Content Include="widgets\weather\css\style.css" />
+    <Content Include="widgets\weather\img\Prev_tplHistorySparkLine.png" />
     <Content Include="widgets\weather\img\test.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="admin" />
     <Folder Include="img\" />
     <Folder Include="tasks" />
+    <Folder Include="test\" />
     <Folder Include="widgets\" />
     <Folder Include="widgets\weather\" />
     <Folder Include="widgets\weather\css\" />
     <Folder Include="widgets\weather\img\" />
-    <Folder Include="widgets\weather\js\" />
+    <Folder Include="widgets\weather\lib\" />
+    <Folder Include="widgets\weather\lib\js\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <!--Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them.-->
