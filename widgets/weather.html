@@ -7,8 +7,12 @@
 -->
 <!-- here you can include so many css as you want -->
 <!--<link rel="stylesheet" href="widgets/weather/css/style.css" />-->
+<link href="widgets/weather/css/flot.css" rel="stylesheet" type="text/css">
 
-<script type="text/javascript" src="widgets/weather/lib/js/jquery.sparkline.js"></script>
+<!--<script type="text/javascript" src="widgets/weather/lib/js/jquery.sparkline.js"></script>-->
+<!--<script type="text/javascript" src="widgets/weather/lib/js/flot/jquery.js"></script>-->
+<script type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.js"></script>
+<script type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.time.js"></script>
 
 <script type="text/javascript">
     'use strict';
@@ -274,6 +278,9 @@ if (vis.editMode) {
 
                         console.log("ignore result from getHistorie");
                         console.log("instanz " + data.instance + " type " + data.Type);
+                        
+
+                     
 
                         var dp = "Temperature";
                         if (data.Type === "rain") {
@@ -282,6 +289,107 @@ if (vis.editMode) {
                         else if (data.Type === "temperature") {
                             dp = "Temperature";
                         }
+                        var dp1 = "hour";
+                        var values = [];
+                        var maxY = -99;
+                        var minY = 100;
+                        var cnt = 0;
+
+                        //get date
+                        var dateoid = "daswetter.0.NextDaysDetailed.0d.date";
+                        var sDate = vis.states[dateoid + '.val'];
+                        //console.log("date was " + sDate);
+                        var day = parseInt(sDate.substring(6, 8));
+                        var month = parseInt(sDate.substring(4, 6));
+                        var year = parseInt(sDate.substring(0, 4));
+
+                        //console.log("date is " + day +"."+month+"."+year);
+                        var lastHour = -1;
+                        for (var d = 0; d < 5; d++) {
+
+                            for (var p = 0; p < 8; p++) {
+                                var oid = "daswetter.0.NextDaysDetailed." + d + "d." + p + "h." + dp;
+                                var val = vis.states[oid + '.val'];
+                                if (val > maxY) maxY = val;
+                                if (val < minY) minY = val;
+                                var oid1 = "daswetter.0.NextDaysDetailed." + d + "d." + p + "h." + dp1;
+                                var sTime = vis.states[oid1 + '.val'];
+                                
+                                var hours = parseInt(sTime.substring(0, 2));
+                                var minutes = parseInt(sTime.substring(3, 5));
+
+                                //check next day
+                                if (hours < lastHour) {
+                                    day++;
+                                }
+                                lastHour = hours;
+                                console.log(oid + " : " + val + " " + hours + "::" + minutes + " " + day + "." + month + "." + year);
+
+                                //values.push([cnt, val]);
+                                //need time in UTC
+                                var oDate = new Date(year, month, day, hours, minutes, 0, 0);
+                                var date = oDate.getTime();
+                                console.log(date);
+                                values.push([date, val]);
+                                cnt++;
+                            }
+                        }
+
+                        //maxY += 0.1 * maxY;
+                        //minY -= 0.1 * minY;
+                        
+                        console.log("start " + maxY + " " + minY);
+                        var barWidth = $div.width() / (cnt) - (parseFloat(data.barSpacing) || 1);
+                        console.log("barwidth = " + barWidth);
+                        var showbar = (data.Type === "rain") ? true : false;
+                        var showlines = (data.Type === "temperature") ? true : false;
+                        $.plot($div,
+                            [{ label: data.Type, data: values }],
+                            {
+                                series:
+                                  {
+                                      lines: { show: showlines },
+                                      points: { show: false },
+                                      bars:
+                                       {
+                                           show: showbar,
+                                           //breite berechnen fehlt noch
+                                           barWidth: 1,
+                                           align: "center"
+                                       }
+                                  },
+                                xaxis:
+                                  {
+                                      //ticks: [],
+                                      mode: "time",
+                                      tickLength: 5
+                                  },
+                                yaxis:
+                                  {
+                                      max: maxY,
+                                      min: minY
+                                  },
+                                grid:
+                                  {
+                                      //Farben einstellen fehlt och
+                                      backgroundColor: { colors: ["#fff", "#eee"] },
+                                      borderWidth: {
+                                          top: 1,
+                                          right: 1,
+                                          bottom: 2,
+                                          left: 2
+                                      },
+                                      //fehlt noch
+                                      //markings: nextDay
+                                  }
+                            }
+                            );
+                        console.log("flot version " + $.plot.version);
+                        console.log("end");
+
+                        /*
+                        this is sparkline
+
                         var values = [];
                         var cnt = 0;
                         for (var d = 0; d < 5; d++) {
@@ -289,7 +397,7 @@ if (vis.editMode) {
                             for (var p = 0; p < 8; p++) {
                                 var oid = "daswetter.0.NextDaysDetailed." + d + "d." + p + "h." + dp;
                                 var val = vis.states[oid + '.val'];
-                                console.log(oid + " : " + val);
+                                //console.log(oid + " : " + val);
                                 values.push(val)
                                 cnt++;
                             }
@@ -313,6 +421,7 @@ if (vis.editMode) {
                             chartRangeMax: data.max === '' || data.max === null || data.max === 'undefined' ? undefined : parseFloat(data.max),
                             lineWidth: parseInt(data.lineWidth, 10) || 1
                         });
+                        */
 
                     });
                 }
