@@ -18,6 +18,42 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
     <Compile Include="test\testPackageFiles.js" />
+    <Compile Include="widgets\weather\lib\js\flot\excanvas.js" />
+    <Compile Include="widgets\weather\lib\js\flot\excanvas.min.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.colorhelpers.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.colorhelpers.min.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.canvas.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.canvas.min.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.categories.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.categories.min.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.crosshair.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.crosshair.min.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.errorbars.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.errorbars.min.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.fillbetween.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.fillbetween.min.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.image.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.image.min.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.min.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.navigate.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.navigate.min.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.pie.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.pie.min.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.resize.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.resize.min.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.selection.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.selection.min.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.stack.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.stack.min.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.symbol.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.symbol.min.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.threshold.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.threshold.min.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.time.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.time.min.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.js" />
+    <Compile Include="widgets\weather\lib\js\flot\jquery.min.js" />
     <Compile Include="widgets\weather\lib\js\jquery.sparkline.js" />
     <Compile Include="widgets\weather\lib\js\jquery.sparkline.min.js" />
     <Content Include=".gitignore" />
@@ -49,6 +85,7 @@
     <Folder Include="widgets\weather\img\" />
     <Folder Include="widgets\weather\lib\" />
     <Folder Include="widgets\weather\lib\js\" />
+    <Folder Include="widgets\weather\lib\js\flot\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <!--Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them.-->

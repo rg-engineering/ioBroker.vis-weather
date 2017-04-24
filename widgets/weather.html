@@ -16,7 +16,8 @@
 
 <script type="text/javascript">
     'use strict';
-if (vis.editMode) {
+
+    if (vis.editMode) {
         // Add words for basic widgets
         $.extend(true, systemDictionary, {
             "format_date": { "en": "Dateformat", "de": "Datumformat", "ru": "?????? ????" },
@@ -108,6 +109,8 @@ if (vis.editMode) {
                 vis.binds.weather.eventList.update($('#' + vis.binds.weather.updateWidgets[wid]).find('.vis-widget-body'));
             }
         },
+
+        //brauchen wir das noch?
         eventList: {
             intervals: {
                 '1 second': 1000,
@@ -147,112 +150,8 @@ if (vis.editMode) {
                 }
                 return { text: text, attrTime: attrTime, attrVal: attrVal, attrFrom: attrFrom, table_attr: table_attr };
             },
-            renderLine: function (header, data, result, line) {
-                var resLine = result[line] || { val: '&nbsp;', from: '&nbsp;' };
-                var text = '<tr style="' + header.table_attr + '">';
-                var time;
-                if (resLine.ts) {
-                    time = data.timeAsInterval ? vis.binds.basic.getTimeInterval(resLine.ts) : vis.binds.basic.formatDate(resLine.ts, data.format_date);
-                } else {
-                    time = '&nbsp;';
-                }
 
-                if (time !== '&nbsp;' && data.time_unit) time += data.time_unit;
-                if (data.val_unit && resLine.val !== '&nbsp;' && resLine.val !== null && resLine.val !== undefined && resLine.val !== '') resLine.val += data.val_unit;
-                if (data.from_unit && resLine.from !== '&nbsp;' && resLine.from !== null && resLine.from !== undefined && resLine.from !== '') resLine.from += data.from_unit;
-
-                if (!data.time_hide) text += '<td style="' + header.attrTime + (data.time_attr || '') + ';' + header.table_attr + '">' + time + '</td>';
-                if (!data.val_hide) {
-                    if (resLine.val && typeof resLine.val === 'string' && resLine.val.match(/https?:\/\//)) resLine.val = '<a href="' + resLine.val + '" target="eventList">' + resLine.val.split('/').pop() + '</a>';
-                    text += '<td style="' + header.attrVal + (data.val_attr || '') + ';' + header.table_attr + '">' + resLine.val + '</td>';
-                }
-                if (!data.from_hide) text += '<td style="' + header.attrFrom + (data.from_attr || '') + ';' + header.table_attr + '">' + (resLine.from || '') + '</td>';
-
-                text += '</tr>\n';
-                return text;
-            },
-            update: function ($div) {
-                var data = $div.data('options');
-                if (!data.oid || !data.instance) {
-                    var header = vis.binds.weather.eventList.header(data);
-                    if (data.max_lines) {
-                        for (var e = 0; e < data.max_lines; e++) {
-                            header.text += vis.binds.weather.eventList.renderLine(header, data, [], e);
-                        }
-                    }
-                    header.text += '</table>';
-                    $div.html(header.text);
-                } else {
-                    vis.getHistory(data.oid, {
-                        instance: data.instance,
-                        count: data.max_lines || 10,
-                        aggregate: 'none',
-                        from: !data.from_hide,
-                        start: vis.binds.weather.eventList.intervals[data.time_interval_min] ? new Date().getTime() - vis.binds.weather.eventList.intervals[data.time_interval_min] : undefined,
-                        timeout: 2000
-                    }, function (err, result) {
-                        var e;
-                        if (err) console.log(err);
-                        if (result && result.length) {
-                            var header = vis.binds.weather.eventList.header(data);
-                            var cnt = 0;
-                            if (data.inverseOrder) {
-                                for (e = 0; e < result.length; e++) {
-                                    header.text += vis.binds.weather.eventList.renderLine(header, data, result, e);
-                                    if (data.max_lines && ++cnt >= data.max_lines) break;
-                                }
-                            } else {
-                                for (e = result.length - 1; e >= 0; e--) {
-                                    header.text += vis.binds.weather.eventList.renderLine(header, data, result, e);
-                                    if (data.max_lines && ++cnt >= data.max_lines) break;
-                                }
-                            }
-
-                            if (data.max_lines) {
-                                for (e = result.length; e < data.max_lines; e++) {
-                                    header.text += vis.binds.weather.eventList.renderLine(header, data, result, e);
-                                }
-                            }
-                            header.text += '</table>';
-                            $div.html(header.text);
-                        } else {
-                            var header = vis.binds.weather.eventList.header(data);
-                            header.text += '<tr><td colspan="3">' + (err || _('no data')) + '</td></tr>';
-                            if (data.max_lines) {
-                                for (e = 1; e < data.max_lines; e++) {
-                                    header.text += vis.binds.weather.eventList.renderLine(header, data, [], e);
-                                }
-                            }
-                            header.text += '</table>';
-                            $div.html(header.text);
-                        }
-                    });
-                }
-            },
-            init: function (el, view, data) {
-                var $div = $(el);
-
-                var _data = {};
-                for (var s in data) {
-                    if (s[0] !== '_' && data.hasOwnProperty(s) && typeof data[s] !== 'object' && typeof data[s] !== 'function') {
-                        _data[s] = data[s];
-                    }
-                }
-                data = null;
-                $div.data('options', _data);
-
-                if (_data.oid && _data.instance) {
-                    if (_data.timeAsInterval && vis.binds.weather.updateWidgets.indexOf(_data.wid) === -1) {
-                        vis.binds.weather.updateWidgets.push(_data.wid);
-                        vis.binds.weather.startIntervalUpdate();
-                    }
-
-                    vis.states.bind(_data.oid + '.val', function () {
-                        vis.binds.weather.eventList.update($div);
-                    });
-                }
-                vis.binds.weather.eventList.update($div);
-            }
+           
         },
         sparkLine: {
             update: function ($div) {
@@ -275,28 +174,24 @@ if (vis.editMode) {
                     }, function (err, result) {
                         var data = $div.data('options');
                         if (err) console.log(err);
-
-                        console.log("ignore result from getHistorie");
-                        console.log("instanz " + data.instance + " type " + data.Type);
                         
+                        console.log("ShowChart begin");
 
-                     
-
-                        var dp = "Temperature";
-                        if (data.Type === "rain") {
-                            dp = "Rain";
-                        }
-                        else if (data.Type === "temperature") {
-                            dp = "Temperature";
-                        }
-                        var dp1 = "hour";
-                        var values = [];
-                        var maxY = -99;
-                        var minY = 100;
+                        var dp_temp = "Temperature";
+                        var dp_rain = "Rain";
+                        var dp_cloud = "???";
+        
+                        var dp = "hour";
+                        var values_rain = [];
+                        var maxY_rain = -99;
+                        var minY_rain = 100;
+                        var values_temp = [];
+                        var maxY_temp = -99;
+                        var minY_temp = 100;
                         var cnt = 0;
 
                         //get date
-                        var dateoid = "daswetter.0.NextDaysDetailed.0d.date";
+                        var dateoid = data.instance + ".NextDaysDetailed.0d.date";
                         var sDate = vis.states[dateoid + '.val'];
                         //console.log("date was " + sDate);
                         var day = parseInt(sDate.substring(6, 8));
@@ -308,13 +203,22 @@ if (vis.editMode) {
                         for (var d = 0; d < 5; d++) {
 
                             for (var p = 0; p < 8; p++) {
-                                var oid = "daswetter.0.NextDaysDetailed." + d + "d." + p + "h." + dp;
-                                var val = vis.states[oid + '.val'];
-                                if (val > maxY) maxY = val;
-                                if (val < minY) minY = val;
-                                var oid1 = "daswetter.0.NextDaysDetailed." + d + "d." + p + "h." + dp1;
-                                var sTime = vis.states[oid1 + '.val'];
-                                
+                                //get rain values
+                                var oid_rain = data.instance+".NextDaysDetailed." + d + "d." + p + "h." + dp_rain;
+                                var val_rain = vis.states[oid_rain + '.val'];
+                                if (val_rain > maxY_rain) maxY_rain = val_rain;
+                                if (val_rain < minY_rain) minY_rain = val_rain;
+
+                                //get temperature values
+                                var oid_temp = data.instance + ".NextDaysDetailed." + d + "d." + p + "h." + dp_temp;
+                                var val_temp = vis.states[oid_temp + '.val'];
+                                if (val_temp > maxY_temp) maxY_temp = val_temp;
+                                if (val_temp < minY_temp) minY_temp = val_temp;
+
+                                // get time
+                                var oid = data.instance+".NextDaysDetailed." + d + "d." + p + "h." + dp;
+                                var sTime = vis.states[oid + '.val'];
+
                                 var hours = parseInt(sTime.substring(0, 2));
                                 var minutes = parseInt(sTime.substring(3, 5));
 
@@ -323,55 +227,62 @@ if (vis.editMode) {
                                     day++;
                                 }
                                 lastHour = hours;
-                                console.log(oid + " : " + val + " " + hours + "::" + minutes + " " + day + "." + month + "." + year);
+                                //console.log(oid_rain + " : " + val_rain + " " + oid_temp +" : " + val_temp + " " + hours + "::" + minutes + " " + day + "." + month + "." + year);
 
                                 //values.push([cnt, val]);
                                 //need time in UTC
                                 var oDate = new Date(year, month, day, hours, minutes, 0, 0);
                                 var date = oDate.getTime();
-                                console.log(date);
-                                values.push([date, val]);
+                                //console.log(date);
+                                values_rain.push([date, val_rain]);
+                                values_temp.push([date, val_temp]);
                                 cnt++;
                             }
                         }
 
                         //maxY += 0.1 * maxY;
                         //minY -= 0.1 * minY;
-                        
-                        console.log("start " + maxY + " " + minY);
+
+                        console.log("start " + maxY_rain + " / " + minY_rain +" "+ maxY_temp + " / " + minY_temp);
                         var barWidth = $div.width() / (cnt) - (parseFloat(data.barSpacing) || 1);
                         console.log("barwidth = " + barWidth);
-                        var showbar = (data.Type === "rain") ? true : false;
-                        var showlines = (data.Type === "temperature") ? true : false;
+
                         $.plot($div,
-                            [{ label: data.Type, data: values }],
+                            [{
+                                data: data.tempvisible ? values_temp : {},
+                                yaxis: 1,
+                                lines: { show: data.tempchartType == "line" ? true : false, fill: false },
+                                bars: { show: data.tempchartType == "bar" ? true : false }
+                            },
                             {
-                                series:
-                                  {
-                                      lines: { show: showlines },
-                                      points: { show: false },
-                                      bars:
-                                       {
-                                           show: showbar,
-                                           //breite berechnen fehlt noch
-                                           barWidth: 1,
-                                           align: "center"
-                                       }
-                                  },
+                                data: data.rainvisible ? values_rain : {},
+                                yaxis: 2,
+                                lines: { show: data.rainchartType == "line" ? true : false, fill: false },
+                                bars: { show: data.rainchartType == "bar" ? true : false }
+                            }
+                            ],
+                            { 
                                 xaxis:
                                   {
-                                      //ticks: [],
                                       mode: "time",
                                       tickLength: 5
                                   },
                                 yaxis:
-                                  {
-                                      max: maxY,
-                                      min: minY
+                                  [{
+                                      max: maxY_temp,
+                                      min: minY_temp,
+                                      alignTicksWithAxis: 1,
+                                      position: "left" //warum geht das nicht??? ist immer rechts...
                                   },
+                                  {
+                                      max: maxY_rain,
+                                      min: minY_rain,
+                                      alignTicksWithAxis:  1,
+                                      position: "right"
+                                  }],
                                 grid:
                                   {
-                                      //Farben einstellen fehlt och
+                                      //Farben einstellen fehlt noch
                                       backgroundColor: { colors: ["#fff", "#eee"] },
                                       borderWidth: {
                                           top: 1,
@@ -385,43 +296,6 @@ if (vis.editMode) {
                             }
                             );
                         console.log("flot version " + $.plot.version);
-                        console.log("end");
-
-                        /*
-                        this is sparkline
-
-                        var values = [];
-                        var cnt = 0;
-                        for (var d = 0; d < 5; d++) {
-
-                            for (var p = 0; p < 8; p++) {
-                                var oid = "daswetter.0.NextDaysDetailed." + d + "d." + p + "h." + dp;
-                                var val = vis.states[oid + '.val'];
-                                //console.log(oid + " : " + val);
-                                values.push(val)
-                                cnt++;
-                            }
-                        }
-
-                        var barWidth = $div.width() / (cnt) - (parseFloat(data.barSpacing) || 1);
-
-                        $div.sparkline(values, {
-                            type: data.chartType || 'line',
-                            width: $div.width(),
-                            height: $div.height(),
-                            lineColor: data.lineColor || undefined,
-                            barColor: data.barColor || undefined,
-                            negBarColor: data.negBarColor || undefined,
-                            zeroColor: data.zeroColor || undefined,
-                            fillColor: data.fillColor || undefined,
-                            barWidth: barWidth,
-                            disableTooltips: data.disableTooltips || undefined,
-                            barSpacing: parseFloat(data.barSpacing) || 1,
-                            chartRangeMin: data.min === '' || data.min === null || data.min === 'undefined' ? undefined : parseFloat(data.min),
-                            chartRangeMax: data.max === '' || data.max === null || data.max === 'undefined' ? undefined : parseFloat(data.max),
-                            lineWidth: parseInt(data.lineWidth, 10) || 1
-                        });
-                        */
 
                     });
                 }
@@ -443,6 +317,7 @@ if (vis.editMode) {
 
                 if (_data.oid && _data.instance) {
 
+                    //fehlt noch
                     console.log("bind to " + _data.oid + '.val')
 
                     vis.states.bind(_data.oid + '.val', function () {
@@ -505,11 +380,13 @@ if (vis.editMode) {
         data-vis-type="history"
         data-vis-update-style="true"
         data-vis-prev='<img src="widgets/weather/img/Prev_tplHistorySparkLine.png"></img>'
-        data-vis-attrs="Type[rain]/select,rain,temperature,clouds;instance/history;aggregate[min]/select,average,min,max,total;chartType[line]/select,line,bar;"
-        data-vis-attrs0="points[20]/slider,1,100,1;time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;;min;max;disableTooltips/checkbox;"
-        data-vis-attrs1="group.line;lineColor/color;fillColor/color;lineWidth/slider,1,10,1;"
-        data-vis-attrs2="group.bar;barColor/color;negBarColor/color;zeroColor/color;min;max;barSpacing/slider,1,10,1;"
+        data-vis-attrs="instance/history;"
+        data-vis-attrs0="time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;"
+        data-vis-attrs1="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;"
+        data-vis-attrs2="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;"
+        data-vis-attrs3="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar;"
 >
+
     <div class="vis-widget <%== this.data.attr('class') %>" style="overflow: hidden; width: 210px; height: 170px;" id="<%= this.data.attr('wid') %>">
         <div class="vis-widget-body" <%= (el) -> vis.binds.weather.sparkLine.init(el, this.view, this.data) %>></div>
     </div>
