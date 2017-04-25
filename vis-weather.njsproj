@@ -71,7 +71,7 @@
     <Compile Include="tasks\jshint.js" />
     <Content Include="widgets\weather.html" />
     <Content Include="widgets\weather\css\style.css" />
-    <Content Include="widgets\weather\img\Prev_tplHistorySparkLine.png" />
+    <Content Include="widgets\weather\img\Prev_tplWeather.png" />
     <Content Include="widgets\weather\img\test.png" />
   </ItemGroup>
   <ItemGroup>

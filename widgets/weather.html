@@ -9,8 +9,6 @@
 <!--<link rel="stylesheet" href="widgets/weather/css/style.css" />-->
 <link href="widgets/weather/css/flot.css" rel="stylesheet" type="text/css">
 
-<!--<script type="text/javascript" src="widgets/weather/lib/js/jquery.sparkline.js"></script>-->
-<!--<script type="text/javascript" src="widgets/weather/lib/js/flot/jquery.js"></script>-->
 <script type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.js"></script>
 <script type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.time.js"></script>
 
@@ -110,7 +108,6 @@
             }
         },
 
-        //brauchen wir das noch?
         eventList: {
             intervals: {
                 '1 second': 1000,
@@ -153,7 +150,7 @@
 
            
         },
-        sparkLine: {
+        tempandrain: {
             update: function ($div) {
                 var data = $div.data('options');
 
@@ -174,13 +171,13 @@
                     }, function (err, result) {
                         var data = $div.data('options');
                         if (err) console.log(err);
-                        
-                        console.log("ShowChart begin");
+
+                        console.log("ShowChart temp/rain begin");
 
                         var dp_temp = "Temperature";
                         var dp_rain = "Rain";
-                        var dp_cloud = "???";
-        
+
+
                         var dp = "hour";
                         var values_rain = [];
                         var maxY_rain = -99;
@@ -204,7 +201,7 @@
 
                             for (var p = 0; p < 8; p++) {
                                 //get rain values
-                                var oid_rain = data.instance+".NextDaysDetailed." + d + "d." + p + "h." + dp_rain;
+                                var oid_rain = data.instance + ".NextDaysDetailed." + d + "d." + p + "h." + dp_rain;
                                 var val_rain = vis.states[oid_rain + '.val'];
                                 if (val_rain > maxY_rain) maxY_rain = val_rain;
                                 if (val_rain < minY_rain) minY_rain = val_rain;
@@ -215,8 +212,10 @@
                                 if (val_temp > maxY_temp) maxY_temp = val_temp;
                                 if (val_temp < minY_temp) minY_temp = val_temp;
 
+
+
                                 // get time
-                                var oid = data.instance+".NextDaysDetailed." + d + "d." + p + "h." + dp;
+                                var oid = data.instance + ".NextDaysDetailed." + d + "d." + p + "h." + dp;
                                 var sTime = vis.states[oid + '.val'];
 
                                 var hours = parseInt(sTime.substring(0, 2));
@@ -236,6 +235,7 @@
                                 //console.log(date);
                                 values_rain.push([date, val_rain]);
                                 values_temp.push([date, val_temp]);
+
                                 cnt++;
                             }
                         }
@@ -243,9 +243,9 @@
                         //maxY += 0.1 * maxY;
                         //minY -= 0.1 * minY;
 
-                        console.log("start " + maxY_rain + " / " + minY_rain +" "+ maxY_temp + " / " + minY_temp);
-                        var barWidth = $div.width() / (cnt) - (parseFloat(data.barSpacing) || 1);
-                        console.log("barwidth = " + barWidth);
+                        console.log("start " + maxY_rain + " / " + minY_rain + " " + maxY_temp + " / " + minY_temp);
+                        var barwidth = $div.width() / (cnt) - (parseFloat(data.barSpacing) || 1);
+                        console.log("barwidth = " + barwidth);
 
                         $.plot($div,
                             [{
@@ -261,7 +261,15 @@
                                 bars: { show: data.rainchartType == "bar" ? true : false }
                             }
                             ],
-                            { 
+                            {
+                                series: {
+                                    lines: {},
+                                    points: {},
+                                    bars:
+                                        {
+                                            barWidth: barwidth
+                                        }
+                                },
                                 xaxis:
                                   {
                                       mode: "time",
@@ -272,13 +280,13 @@
                                       max: maxY_temp,
                                       min: minY_temp,
                                       alignTicksWithAxis: 1,
-                                      position: "left" //warum geht das nicht??? ist immer rechts...
+                                      position: 'left' //warum geht das nicht??? ist immer rechts...
                                   },
                                   {
                                       max: maxY_rain,
                                       min: minY_rain,
-                                      alignTicksWithAxis:  1,
-                                      position: "right"
+                                      alignTicksWithAxis: 1,
+                                      position: 'right'
                                   }],
                                 grid:
                                   {
@@ -295,15 +303,12 @@
                                   }
                             }
                             );
-                        console.log("flot version " + $.plot.version);
-
                     });
                 }
-
             },
             init: function (el, view, data) {
                 var $div = $(el);
-
+                console.log("temp and rain init " + $div);
                 var _data = {};
                 for (var s in data) {
                    
@@ -314,7 +319,182 @@
                 }
                 data = null;
                 $div.data('options', _data);
+                if (_data.tempvisible || _data.rainvisible) {
 
+                    if (_data.oid && _data.instance) {
+
+                        //fehlt noch
+                        console.log("bind to " + _data.oid + '.val')
+
+                        vis.states.bind(_data.oid + '.val', function () {
+
+                            console.log("on bind " + _data.oid + '.val')
+
+                            vis.binds.weather.tempandrain.update($div);
+                        });
+                        // update every x seconds
+                        if (!vis.editMode) {
+                            $div.data('timer', setInterval(function () {
+                                vis.binds.weather.tempandrain.update($div);
+                            }, parseInt(vis.binds.weather.eventList.intervals[_data.time_interval] / (parseInt(_data.points, 10) || 10), 10)));
+                        }
+                    }
+                    vis.binds.weather.tempandrain.update($div);
+                    if (vis.editMode) {
+                        console.log("flot version " + $.plot.version);
+                    }
+                }
+            }
+        },
+    sunandclouds: {
+        update: function ($div) {
+            var data = $div.data('options');
+
+            if (!data.instance) {
+                console.log("keine instanz " + data.chartType);
+
+                $div.html("<br> <center> <font color='red'> no instance </font> </center></br>");
+            } else {
+                //warum wir das brauchen, verstehe ich noch nicht...
+                //ist eigentlich nur dummy...
+                vis.getHistory(data.oid, {
+                    instance: data.instance,
+                    count: parseInt(data.points, 10) || 10,
+                    aggregate: data.aggregate || 'average',
+                    start: vis.binds.weather.eventList.intervals[data.time_interval] ? new Date().getTime() - vis.binds.weather.eventList.intervals[data.time_interval] : undefined,
+                    end: new Date().getTime() + 5000,
+                    timeout: 2000
+                }, function (err, result) {
+                    var data = $div.data('options');
+                    if (err) console.log(err);
+
+                    console.log("ShowChart cloud begin");
+
+                    var dp_cloud = "Clouds";
+
+                    var dp = "hour";
+                    var values_cloud = [];
+                    var maxY_cloud = 100;
+                    var minY_cloud = 0;
+                    var cnt = 0;
+
+                    //get date
+                    var dateoid = data.instance + ".NextDaysDetailed.0d.date";
+                    var sDate = vis.states[dateoid + '.val'];
+                    //console.log("date was " + sDate);
+                    var day = parseInt(sDate.substring(6, 8));
+                    var month = parseInt(sDate.substring(4, 6));
+                    var year = parseInt(sDate.substring(0, 4));
+
+                    //console.log("date is " + day +"."+month+"."+year);
+                    var lastHour = -1;
+                    for (var d = 0; d < 5; d++) {
+
+                        for (var p = 0; p < 8; p++) {
+                            //get rain values
+
+                            //get cloud values
+                            var oid_cloud = data.instance + ".NextDaysDetailed." + d + "d." + p + "h." + dp_cloud;
+                            var val = parseInt(vis.states[oid_cloud + '.val']);
+                            var val_cloud = 0;
+                            if (data.sunorcloud == "sun") { //invert value 
+                                val_cloud = 100 - val;
+                            }
+                            else {
+                                val_cloud = val;
+                            }
+
+
+                            // get time
+                            var oid = data.instance + ".NextDaysDetailed." + d + "d." + p + "h." + dp;
+                            var sTime = vis.states[oid + '.val'];
+
+                            var hours = parseInt(sTime.substring(0, 2));
+                            var minutes = parseInt(sTime.substring(3, 5));
+
+                            //check next day
+                            if (hours < lastHour) {
+                                day++;
+                            }
+                            lastHour = hours;
+                            console.log(oid_cloud + " : " + val_cloud + " " + hours + ":" + minutes + " " + day + "." + month + "." + year);
+
+                            //need time in UTC
+                            var oDate = new Date(year, month, day, hours, minutes, 0, 0);
+                            var date = oDate.getTime();
+                            console.log(date);
+                            values_cloud.push([date, val_cloud]);
+                            cnt++;
+                        }
+                    }
+
+                    //maxY += 0.1 * maxY;
+                    //minY -= 0.1 * minY;
+
+                    var barwidth = $div.width() / (cnt) - (parseFloat(data.barSpacing) || 1);
+                    console.log("barwidth = " + barwidth);
+
+                    $.plot($div,
+                       [{
+                           data: values_cloud,
+                           lines: { show: data.cloudschartType == "line" ? true : false, fill: false },
+                           bars: { show: data.cloudschartType == "bar" ? true : false }
+                       }],
+                       {
+                           series: {
+                               lines: {},
+                               points: {},
+                               bars:
+                                   {
+                                       barWidth: barwidth
+                                   }
+                           },
+                           xaxis:
+                             {
+                                 mode: "time",
+                                 tickLength: 5
+                             },
+                           yaxis:
+                             [{
+                                 max: maxY_cloud,
+                                 min: minY_cloud,
+                                 alignTicksWithAxis: 1,
+                                 position: 'left' //warum geht das nicht??? ist immer rechts...
+                             }],
+                           grid:
+                             {
+                                 //Farben einstellen fehlt noch
+                                 backgroundColor: { colors: ["#fff", "#eee"] },
+                                 borderWidth: {
+                                     top: 1,
+                                     right: 1,
+                                     bottom: 2,
+                                     left: 2
+                                 },
+                                 //fehlt noch
+                                 //markings: nextDay
+                             }
+                       }
+                       );
+                });
+            }
+
+        },
+        init: function (el, view, data) {
+            var $div = $(el);
+            console.log("cloud init " + $div);
+            var _data = {};
+            for (var s in data) {
+
+                if (s[0] !== '_' && data.hasOwnProperty(s) && typeof data[s] !== 'object' && typeof data[s] !== 'function') {
+                    _data[s] = data[s];
+
+                }
+            }
+            data = null;
+            $div.data('options', _data);
+
+            if (_data.cloudsvisible) {
                 if (_data.oid && _data.instance) {
 
                     //fehlt noch
@@ -324,18 +504,22 @@
 
                         console.log("on bind " + _data.oid + '.val')
 
-                        vis.binds.weather.sparkLine.update($div);
+                        vis.binds.weather.clouds.update($div);
                     });
                     // update every x seconds
                     if (!vis.editMode) {
                         $div.data('timer', setInterval(function () {
-                            vis.binds.weather.sparkLine.update($div);
+                            vis.binds.weather.sunandclouds.update($div);
                         }, parseInt(vis.binds.weather.eventList.intervals[_data.time_interval] / (parseInt(_data.points, 10) || 10), 10)));
                     }
                 }
-                vis.binds.weather.sparkLine.update($div);
+                vis.binds.weather.sunandclouds.update($div);
+                if (vis.editMode) {
+                    console.log("flot version " + $.plot.version);
+                }
             }
         }
+    }
     };
 
     if (vis.editMode) {
@@ -376,19 +560,25 @@
         type="text/ejs"
         class="vis-tpl"
         data-vis-set="history"
-        data-vis-name="Weather_Sparkline"
+        data-vis-name="Weather"
         data-vis-type="history"
         data-vis-update-style="true"
-        data-vis-prev='<img src="widgets/weather/img/Prev_tplHistorySparkLine.png"></img>'
+        data-vis-prev='<img src="widgets/weather/img/Prev_tplWeather.png"></img>'
         data-vis-attrs="instance/history;"
         data-vis-attrs0="time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;"
         data-vis-attrs1="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;"
         data-vis-attrs2="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;"
-        data-vis-attrs3="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar;"
+        data-vis-attrs3="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar; sunorcloud[sun]/select,sun,clouds;"
 >
 
+<!--    <div class="vis-widget <%== this.data.attr('class') %>" style="overflow: hidden; width: 210px; height: 170px;" id="<%= this.data.attr('wid') %>">
+        <div class="vis-widget-body" <%= (el1) -> vis.binds.weather.tempandrain.init(el1, this.view, this.data) %>></div>
+        
+    </div>-->
     <div class="vis-widget <%== this.data.attr('class') %>" style="overflow: hidden; width: 210px; height: 170px;" id="<%= this.data.attr('wid') %>">
-        <div class="vis-widget-body" <%= (el) -> vis.binds.weather.sparkLine.init(el, this.view, this.data) %>></div>
+        
+        <div class="vis-widget-body" <%= (el2) -> vis.binds.weather.sunandclouds.init(el2, this.view, this.data) %>></div>
+
     </div>
 </script>
 
