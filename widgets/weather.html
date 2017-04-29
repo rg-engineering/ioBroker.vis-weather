@@ -268,63 +268,76 @@
                         //minY -= 0.1 * minY;
 
                         console.log("start " + maxY_rain + " / " + minY_rain + " " + maxY_temp + " / " + minY_temp);
-                        var barwidth = $div.width() / (cnt) - (parseFloat(data.barSpacing) || 1);
-                        console.log("barwidth = " + barwidth);
+                        var barwidth = 1000 * 60 * 60 * 2; //2h
+                        console.log("barwidth = " + barwidth); // in ms
+                        
 
                         $.plot($div,
                             [{
                                 data: data.tempvisible ? values_temp : {},
                                 yaxis: 1,
                                 lines: { show: data.tempchartType == "line" ? true : false, fill: false },
-                                bars: { show: data.tempchartType == "bar" ? true : false }
+                                bars:
+                                    {
+                                        show: data.tempchartType == "bar" ? true : false,
+                                        barWidth: barwidth
+                                    }
                             },
                             {
                                 data: data.rainvisible ? values_rain : {},
                                 yaxis: 2,
-                                lines: { show: data.rainchartType == "line" ? true : false, fill: false },
-                                bars: { show: data.rainchartType == "bar" ? true : false }
+                                lines:{ show: data.rainchartType == "line" ? true : false, fill: false },
+                                bars:
+                                    {
+                                        show: data.rainchartType == "bar" ? true : false,
+                                        barWidth: barwidth
+                                    }
                             },
                             {
                                 data: data.cloudsvisible ? values_cloud : {},
                                 yaxis: 3,
                                 lines: { show: data.cloudschartType == "line" ? true : false, fill: false },
-                                bars: { show: data.cloudschartType == "bar" ? true : false }
+                                bars:
+                                    {
+                                        show: data.cloudschartType == "bar" ? true : false,
+                                        barWidth: barwidth
+                                    }
                             }
                             ],
                             {
                                 series: {
                                     lines: {},
                                     points: {},
-                                    bars:
-                                        {
-                                            barWidth: barwidth
-                                        }
+                                    bars:   {}
                                 },
                                 xaxis:
                                   {
+                                      show: data.withxaxix ? true : false, //das geht
                                       mode: "time",
                                       tickLength: 5
                                   },
                                 yaxis:
                                   [{
+                                      show: data.tempvisible ? true : false,
                                       max: maxY_temp,
                                       min: minY_temp,
                                       alignTicksWithAxis: 1,
                                       position: 'left' //warum geht das nicht??? ist immer rechts...
                                   },
                                   {
+                                      show: data.rainvisible ? true : false, //das geht auch nicht
                                       max: maxY_rain,
                                       min: minY_rain,
                                       alignTicksWithAxis: 1,
                                       position: 'right'
                                   },
                                   {
+                                      show: data.cloudsvisible ? true : false,
                                       max: maxY_cloud,
                                       min: minY_cloud,
                                       alignTicksWithAxis: 1,
                                       position: 'right'
-                                  }
-                                  ],
+                                  }],
                                 grid:
                                   {
                                       //Farben einstellen fehlt noch
@@ -430,7 +443,7 @@
         data-vis-update-style="true"
         data-vis-prev='<img src="widgets/weather/img/Prev_tplWeather.png"></img>'
         data-vis-attrs="instance/history;"
-        data-vis-attrs0="time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;withxaxix/checkbox;"
+        data-vis-attrs0="time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;withxaxix[true]/checkbox;"
         data-vis-attrs1="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;"
         data-vis-attrs2="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;"
         data-vis-attrs3="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar; sunorcloud[sun]/select,sun,clouds;"
