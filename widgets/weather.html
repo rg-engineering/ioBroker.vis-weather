@@ -176,9 +176,7 @@
                         var data = $div.data('options');
                         if (err) console.log(err);
 
-
-
-                        console.log("ShowChart temp/rain begin");
+                        console.log("ShowChart temp/rain/cloud begin");
 
                         var dp_temp = "Temperature";
                         var dp_rain = "Rain";
@@ -199,10 +197,12 @@
                         //get date
                         var dateoid = data.instance + ".NextDaysDetailed.0d.date";
                         var sDate = vis.states[dateoid + '.val'];
-                        //console.log("date was " + sDate);
+                        console.log(dateoid + " date was " + sDate + " vis " + vis + " states " + vis.states);
                         var day = parseInt(sDate.substring(6, 8));
                         var month = parseInt(sDate.substring(4, 6));
                         var year = parseInt(sDate.substring(0, 4));
+
+                        month--;
 
                         //console.log("date is " + day +"."+month+"."+year);
                         var lastHour = -1;
@@ -275,6 +275,8 @@
                         $.plot($div,
                             [{
                                 data: data.tempvisible ? values_temp : {},
+                                color: data.tempcolor,
+                                xaxis: 1,
                                 yaxis: 1,
                                 lines: { show: data.tempchartType == "line" ? true : false, fill: false },
                                 bars:
@@ -285,6 +287,8 @@
                             },
                             {
                                 data: data.rainvisible ? values_rain : {},
+                                color: data.raincolor,
+                                xaxis: 1,
                                 yaxis: 2,
                                 lines:{ show: data.rainchartType == "line" ? true : false, fill: false },
                                 bars:
@@ -295,6 +299,8 @@
                             },
                             {
                                 data: data.cloudsvisible ? values_cloud : {},
+                                color: data.cloudcolor,
+                                xaxis: 1,
                                 yaxis: 3,
                                 lines: { show: data.cloudschartType == "line" ? true : false, fill: false },
                                 bars:
@@ -305,38 +311,39 @@
                             }
                             ],
                             {
-                                series: {
-                                    lines: {},
-                                    points: {},
-                                    bars:   {}
-                                },
-                                xaxis:
-                                  {
-                                      show: data.withxaxix ? true : false, //das geht
+
+                                xaxes: //xaxis mit [] geht nicht...!!!
+                                  [{//das folgende geht
+                                      show: data.withxaxix , 
                                       mode: "time",
-                                      tickLength: 5
-                                  },
-                                yaxis:
-                                  [{
-                                      show: data.tempvisible ? true : false,
+                                      tickLength: 5,
+                                      timeformat: "%d.%b %H:%M",
+                                      monthNames: ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"]
+                                  }],
+                                yaxes: //yaxis mit [] geht nicht...!!!                              
+                                    [{ //das folgende geht
+                                      show: data.tempvisible ,
                                       max: maxY_temp,
                                       min: minY_temp,
                                       alignTicksWithAxis: 1,
-                                      position: 'left' //warum geht das nicht??? ist immer rechts...
+                                      position: 'left',
+                                      ticks: 3
                                   },
                                   {
-                                      show: data.rainvisible ? true : false, //das geht auch nicht
+                                      show: data.rainvisible ,
                                       max: maxY_rain,
                                       min: minY_rain,
-                                      alignTicksWithAxis: 1,
-                                      position: 'right'
+                                      alignTicksWithAxis:2,
+                                      position: 'right',
+                                      ticks: 3
                                   },
                                   {
-                                      show: data.cloudsvisible ? true : false,
+                                      show: data.cloudsvisible ,
                                       max: maxY_cloud,
                                       min: minY_cloud,
-                                      alignTicksWithAxis: 1,
-                                      position: 'right'
+                                      alignTicksWithAxis: 3,
+                                      position: 'right',
+                                      ticks: 3
                                   }],
                                 grid:
                                   {
@@ -442,11 +449,11 @@
         data-vis-type="history"
         data-vis-update-style="true"
         data-vis-prev='<img src="widgets/weather/img/Prev_tplWeather.png"></img>'
-        data-vis-attrs="instance/history;"
+        data-vis-attrs="instance/daswetter;"
         data-vis-attrs0="time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;withxaxix[true]/checkbox;"
-        data-vis-attrs1="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;"
-        data-vis-attrs2="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;"
-        data-vis-attrs3="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar; sunorcloud[sun]/select,sun,clouds;"
+        data-vis-attrs1="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;raincolor[#1d0ed8]/color;"
+        data-vis-attrs2="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;tempcolor[#00b3ac]/color;"
+        data-vis-attrs3="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar; sunorcloud[sun]/select,sun,clouds;cloudcolor[#f6ef3c]/color;"
 >
 
     <div class="vis-widget <%== this.data.attr('class') %>" style="overflow: hidden; width: 210px; height: 170px;" id="<%= this.data.attr('wid') %>">
