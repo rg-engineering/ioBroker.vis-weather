@@ -1,7 +1,7 @@
 {
     "common": {
         "name":                     "vis-weather",
-        "version": "0.0.1",
+        "version": "0.0.2",
         "title":                    "ioBroker Visualisation - weather Widgets",
         "desc": {
             "en":                   "weather Widgets for ioBroker.vis",
@@ -12,7 +12,7 @@
         "icon":                     "weather.png",
         "enabled":                  true,
         "mode":                     "once",
-        "extIcon":                  "https://github.com/ioBroker/ioBroker.js-controller/raw/master/adapter/example/admin/example.png",
+        "extIcon":                  "https://raw.githubusercontent.com/rg-engineering/ioBroker.vis-weather/master/admin/vis-weather.png",
         "keywords":                 ["weather", "vis", "GUI", "graphical", "scada"],
         "readme":                   "https://github.com/ioBroker/ioBroker.vis-weather/blob/master/README.md",
         "authors": [

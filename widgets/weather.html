@@ -88,7 +88,7 @@
     }
 
     vis.binds.weather = {
-        version: "0.0.1",
+        version: "0.0.2",
         showVersion: function () {
             if (vis.binds.weather.version) {
                 console.log('Version vis-weather: ' + vis.binds.weather.version);
@@ -194,8 +194,23 @@
                         var minY_cloud = 0;
                         var cnt = 0;
 
+                        
+
+
                         //get date
                         var dateoid = data.instance + ".NextDaysDetailed.0d.date";
+
+                        //test only
+                        var val_temp_id = vis.states.attr(dateoid + '.val');
+                        if (val_temp_id === undefined || val_temp_id === null || val_temp_id === '') {
+                            val_temp_id = '';
+                            console.log("test failed " + val_temp_id);
+                        } else {
+                            val_temp_id = val_temp_id.toString();
+                            console.log("test " + val_temp_id);
+                        }
+
+
                         var sDate = vis.states[dateoid + '.val'];
                         console.log(dateoid + " date was " + sDate + " vis " + vis + " states " + vis.states);
                         var day = parseInt(sDate.substring(6, 8));

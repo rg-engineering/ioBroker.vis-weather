@@ -8,7 +8,9 @@ You need DasWetter-Adpater running as well...
 
 ## Changelog
 
-
+#### 0.0.2
+* (René) bug fixes
+	- in live mode nothing was shown
 
 #### 0.0.1
 * (René) initial release
