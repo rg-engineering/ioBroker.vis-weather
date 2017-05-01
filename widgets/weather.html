@@ -225,6 +225,7 @@
 
                             for (var p = 0; p < 8; p++) {
                                 //get rain values
+
                                 var oid_rain = data.instance + ".NextDaysDetailed." + d + "d." + p + "h." + dp_rain;
                                 var val_rain = parseInt(vis.states[oid_rain + '.val']);
                                 if (val_rain > maxY_rain) maxY_rain = val_rain;
@@ -395,17 +396,46 @@
                 $div.data('options', _data);
 
 
-                if (_data.oid && _data.instance) {
+                if ( _data.instance) {
 
-                    //fehlt noch
-                    console.log("bind to " + _data.oid + '.val')
+                    var dp_temp = "Temperature";
+                    var dp_rain = "Rain";
+                    var dp_cloud = "Clouds";
 
-                    vis.states.bind(_data.oid + '.val', function () {
+                    var dp = "hour";
 
-                        console.log("on bind " + _data.oid + '.val')
 
+                    var dateoid = _data.instance + ".NextDaysDetailed.0d.date";
+                    console.log("bind to " + dateoid + '.val')
+                    vis.states.bind(dateoid + '.val', function () {
                         vis.binds.weather.tempandrain.update($div);
                     });
+                    for (var d = 0; d < 5; d++) {
+
+                        for (var p = 0; p < 8; p++) {
+                            var oid_rain = _data.instance + ".NextDaysDetailed." + d + "d." + p + "h." + dp_rain;
+                            console.log("bind to " + oid_rain + '.val')
+                            vis.states.bind(oid_rain + '.val', function () {
+                                vis.binds.weather.tempandrain.update($div);
+                            });
+                            var oid_temp = _data.instance + ".NextDaysDetailed." + d + "d." + p + "h." + dp_temp;
+                            console.log("bind to " + oid_temp + '.val')
+                            vis.states.bind(oid_temp + '.val', function () {
+                                vis.binds.weather.tempandrain.update($div);
+                            });
+                            var oid_cloud = _data.instance + ".NextDaysDetailed." + d + "d." + p + "h." + dp_cloud;
+                            console.log("bind to " + oid_cloud + '.val')
+                            vis.states.bind(oid_cloud + '.val', function () {
+                                vis.binds.weather.tempandrain.update($div);
+                            });
+                            var oid = _data.instance + ".NextDaysDetailed." + d + "d." + p + "h." + dp;
+                            console.log("bind to " + oid + '.val')
+                            vis.states.bind(oid + '.val', function () {
+                                vis.binds.weather.tempandrain.update($div);
+                            });
+                        }
+                    }
+
                     // update every x seconds
                     if (!vis.editMode) {
                         $div.data('timer', setInterval(function () {
@@ -413,10 +443,12 @@
                         }, parseInt(vis.binds.weather.eventList.intervals[_data.time_interval] / (parseInt(_data.points, 10) || 10), 10)));
                     }
                 }
+                else {
+                    console.log("instance not set ");
+                }
                 vis.binds.weather.tempandrain.update($div);
                 if (vis.editMode) {
                     console.log("flot version " + $.plot.version);
-
                 }
             }
         },
@@ -431,7 +463,7 @@
             // Check if actual instance still in options
             var firstInstance = '';
             var found = false;
-            var custom = obj.common.custom || obj.common.history;
+            var custom = obj.common.custom || obj.common.weather;
             for (var h in custom) {
                 if (!custom.hasOwnProperty(h)) continue;
                 if (custom[h].enabled) {
