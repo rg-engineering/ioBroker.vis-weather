@@ -2,6 +2,16 @@
   "common": {
     "name": "vis-weather",
     "version": "0.0.2",
+    "news": {
+      "0.0.2": {
+        "en": "bug fixes",
+        "de": "Fehlerbehebung"
+      },
+      "0.0.1": {
+        "en": "initial release",
+        "de": "erste Version"
+      }
+    },
     "title": "ioBroker Visualisation - weather Widgets",
     "desc": {
       "en": "weather Widgets for ioBroker.vis",
@@ -9,6 +19,7 @@
       "ru": "weather Widgets для ioBroker.vis"
     },
     "platform": "Javascript/Node.js",
+    "loglevel":                 "info",
     "icon": "vis-weather.PNG",
     "enabled": true,
     "mode": "once",

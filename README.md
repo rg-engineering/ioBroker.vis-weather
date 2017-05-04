@@ -1,4 +1,4 @@
-![Logo](admin/weather.png)
+![Logo](admin/vis-weather.PNG)
 ioBroker.vis-weather
 ============
 
