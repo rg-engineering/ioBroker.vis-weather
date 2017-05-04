@@ -59,7 +59,8 @@
     <Content Include=".gitignore" />
     <Content Include=".npmignore" />
     <Content Include=".travis.yml" />
-    <Content Include="admin\weather.png" />
+    <Content Include="admin\index.html" />
+    <Content Include="admin\vis-weather.PNG" />
     <Content Include="img\widgets.png" />
     <Content Include="LICENSE" />
     <Content Include="io-package.json" />
