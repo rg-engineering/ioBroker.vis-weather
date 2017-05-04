@@ -1,9 +1,9 @@
-<!--
+﻿<!--
     ioBroker.vis weather Widget-Set
 
     version: "0.0.1"
 
-    Copyright 10.2015-2016 Ren� G. <info@rg-engineering.eu>
+    Copyright 10.2015-2016 René G. <info@rg-engineering.eu>
 -->
 <!-- here you can include so many css as you want -->
 <!--<link rel="stylesheet" href="widgets/weather/css/style.css" />-->
@@ -22,12 +22,8 @@
     if (vis.editMode) {
         // Add words for basic widgets
         $.extend(true, systemDictionary, {
-            "format_date": { "en": "Dateformat", "de": "Datumformat", "ru": "?????? ????" },
-            "format_date_tooltip": {
-                "en": "Dateformat",
-                "de": "Datumformat",
-                "ru": "?????? ????"
-            },
+            //            "format_date": { "en": "Dateformat", "de": "Datumformat", "ru": "?????? ????" },
+            //            "format_date_tooltip": {"en": "Dateformat","de": "Datumformat","ru": "?????? ????"},
             "1 second": { "en": "1 second", "de": "1 Sekunde", "ru": "1 ???????" },
             "10 seconds": { "en": "10 seconds", "de": "10 Sekunden", "ru": "10 ??????" },
             "30 seconds": { "en": "30 seconds", "de": "30 Sekunden", "ru": "30 ??????" },
@@ -43,47 +39,65 @@
             "12 hours": { "en": "12 hours", "de": "12 Stunden", "ru": "12 ?????" },
             "24 hours": { "en": "24 hours", "de": "24 Stunden", "ru": "24 ????" },
             "instance": { "en": "weather instance", "de": "Wetterinstanz", "ru": "?????????" },
-            "group_advanced": { "en": "Advanced", "de": "Erweitert", "ru": "?????????????" },
-            "max_lines": { "en": "Max. event amount", "de": "max. Ereignisse", "ru": "????. ???-?? ???????" },
-            "time_interval_min": { "en": "Not older than", "de": "Nicht �lter als", "ru": "?? ????? ???" },
-            "timeAsInterval": { "en": "Time as interval", "de": "Zeit als Intervall", "ru": "?????, ??? ????????" },
-            "inverseOrder": { "en": "Inverse order", "de": "Reihenfolge invertieren", "ru": "???????? ???????" },
-            "group_columns": { "en": "Columns", "de": "Spalten", "ru": "???????" },
-            "table_attr": { "en": "Table CSS style", "de": "CSS Stil - Tabelle", "ru": "??????? - CSS ?????" },
-            "header_attr": { "en": "Header CSS style", "de": "CSS Stil - Beschriftung", "ru": "????????? - CSS ?????" },
-            "time_name": { "en": "Time - name", "de": "Zeit - Name", "ru": "????? - ???" },
-            "time_hide": { "en": "Time - hide", "de": "Zeit - nicht zeigen", "ru": "????? - ??????" },
-            "time_width": { "en": "Time - width", "de": "Zeit - Breite", "ru": "????? - ??????" },
-            "time_attr": { "en": "Time - CSS style", "de": "Zeit - CSS Stil", "ru": "????? - CSS ?????" },
-            "time_unit": { "en": "Time - suffix", "de": "Zeit - Suffix", "ru": "????? - ???????" },
-            "val_name": { "en": "Val- name", "de": "Wert - Name", "ru": "???????? - ???" },
-            "val_hide": { "en": "Val - hide", "de": "Wert - nicht zeigen", "ru": "???????? - ??????" },
-            "val_width": { "en": "Val - width", "de": "Wert - Breite", "ru": "???????? - ??????" },
-            "val_attr": { "en": "Val - CSS style", "de": "Wert - CSS Stil", "ru": "???????? - CSS ?????" },
-            "val_unit": { "en": "Val - units", "de": "Wert - Einheit", "ru": "???????? - ???????" },
-            "from_name": { "en": "From - name", "de": "Von - Name", "ru": "?? - ???" },
-            "from_hide": { "en": "From - hide", "de": "Von - nicht zeigen", "ru": "?? - ??????" },
-            "from_width": { "en": "From - width", "de": "Von - Breite", "ru": "?? - ??????" },
-            "from_attr": { "en": "From - CSS style", "de": "Von - CSS Stil", "ru": "?? - CSS ?????" },
-            "from_unit": { "en": "From - suffix", "de": "Von - Suffix", "ru": "?? - ???????" },
-            "average": { "en": "average", "de": "Mittelwert", "ru": "???????" },
-            "total": { "en": "total", "de": "Summe", "ru": "?????" },
-            "line": { "en": "line", "de": "Linie", "ru": "?????" },
-            "aggregate": { "en": "Aggregation", "de": "Aggregation", "ru": "??????????????" },
-            "chartType": { "en": "chartType", "de": "Charttyp", "ru": "??? ???????" },
-            "points": { "en": "points", "de": "Anzahl Werten", "ru": "???-?? ?????" },
-            "time_interval": { "en": "Time interval", "de": "Zeitintervall", "ru": "????????" },
-            "group_line": { "en": "Line", "de": "Linie-Chart", "ru": "?????" },
-            "lineColor": { "en": "Line color", "de": "Linie-Farbe", "ru": "???? ?????" },
-            "fillColor": { "en": "Fill color", "de": "F�llfarbe", "ru": "???? ???????" },
-            "lineWidth": { "en": "Line width", "de": "Liniendicke", "ru": "?????? ?????" },
-            "group_bar": { "en": "Bar", "de": "Bar-Chart", "ru": "???????" },
-            "barColor": { "en": "Positive color", "de": "Positivfarbe", "ru": "???? ????????????? ????????" },
-            "negBarColor": { "en": "negative color", "de": "Negativfarbe", "ru": "???? ????????????? ????????" },
-            "zeroColor": { "en": "Zero color", "de": "0-Farbe", "ru": "???? ??????? ????????" },
-            "barSpacing": { "en": "Bar's spacing", "de": "Abstand", "ru": "?????????? ????? ?????????" },
-            "disableTooltips": { "en": "Hide tooltips", "de": "Kein Tooltips", "ru": "??? ?????????" },
-            "history": { "en": "history", "de": "history", "ru": "history" }
+            //            "group_advanced": { "en": "Advanced", "de": "Erweitert", "ru": "?????????????" },
+            //            "max_lines": { "en": "Max. event amount", "de": "max. Ereignisse", "ru": "????. ???-?? ???????" },
+            //            "time_interval_min": { "en": "Not older than", "de": "Nicht älter als", "ru": "?? ????? ???" },
+            //            "timeAsInterval": { "en": "Time as interval", "de": "Zeit als Intervall", "ru": "?????, ??? ????????" },
+            //            "inverseOrder": { "en": "Inverse order", "de": "Reihenfolge invertieren", "ru": "???????? ???????" },
+            //            "group_columns": { "en": "Columns", "de": "Spalten", "ru": "???????" },
+            //            "table_attr": { "en": "Table CSS style", "de": "CSS Stil - Tabelle", "ru": "??????? - CSS ?????" },
+            //            "header_attr": { "en": "Header CSS style", "de": "CSS Stil - Beschriftung", "ru": "????????? - CSS ?????" },
+            //            "time_name": { "en": "Time - name", "de": "Zeit - Name", "ru": "????? - ???" },
+            //            "time_hide": { "en": "Time - hide", "de": "Zeit - nicht zeigen", "ru": "????? - ??????" },
+            //            "time_width": { "en": "Time - width", "de": "Zeit - Breite", "ru": "????? - ??????" },
+            //            "time_attr": { "en": "Time - CSS style", "de": "Zeit - CSS Stil", "ru": "????? - CSS ?????" },
+            //            "time_unit": { "en": "Time - suffix", "de": "Zeit - Suffix", "ru": "????? - ???????" },
+            //            "val_name": { "en": "Val- name", "de": "Wert - Name", "ru": "???????? - ???" },
+            //            "val_hide": { "en": "Val - hide", "de": "Wert - nicht zeigen", "ru": "???????? - ??????" },
+            //            "val_width": { "en": "Val - width", "de": "Wert - Breite", "ru": "???????? - ??????" },
+            //            "val_attr": { "en": "Val - CSS style", "de": "Wert - CSS Stil", "ru": "???????? - CSS ?????" },
+            //            "val_unit": { "en": "Val - units", "de": "Wert - Einheit", "ru": "???????? - ???????" },
+            //            "from_name": { "en": "From - name", "de": "Von - Name", "ru": "?? - ???" },
+            //            "from_hide": { "en": "From - hide", "de": "Von - nicht zeigen", "ru": "?? - ??????" },
+            //            "from_width": { "en": "From - width", "de": "Von - Breite", "ru": "?? - ??????" },
+            //            "from_attr": { "en": "From - CSS style", "de": "Von - CSS Stil", "ru": "?? - CSS ?????" },
+            //            "from_unit": { "en": "From - suffix", "de": "Von - Suffix", "ru": "?? - ???????" },
+            //            "average": { "en": "average", "de": "Mittelwert", "ru": "???????" },
+            //            "total": { "en": "total", "de": "Summe", "ru": "?????" },
+            //            "line": { "en": "line", "de": "Linie", "ru": "?????" },
+            //            "aggregate": { "en": "Aggregation", "de": "Aggregation", "ru": "??????????????" },
+            //            "chartType": { "en": "chartType", "de": "Charttyp", "ru": "??? ???????" },
+            //            "points": { "en": "points", "de": "Anzahl Werten", "ru": "???-?? ?????" },
+            //            "time_interval": { "en": "Time interval", "de": "Zeitintervall", "ru": "????????" },
+            //            "group_line": { "en": "Line", "de": "Linie-Chart", "ru": "?????" },
+            //            "lineColor": { "en": "Line color", "de": "Linie-Farbe", "ru": "???? ?????" },
+            //            "fillColor": { "en": "Fill color", "de": "Füllfarbe", "ru": "???? ???????" },
+            //            "lineWidth": { "en": "Line width", "de": "Liniendicke", "ru": "?????? ?????" },
+            //            "group_bar": { "en": "Bar", "de": "Bar-Chart", "ru": "???????" },
+            //            "barColor": { "en": "Positive color", "de": "Positivfarbe", "ru": "???? ????????????? ????????" },
+            //            "negBarColor": { "en": "negative color", "de": "Negativfarbe", "ru": "???? ????????????? ????????" },
+            //            "zeroColor": { "en": "Zero color", "de": "0-Farbe", "ru": "???? ??????? ????????" },
+            //            "barSpacing": { "en": "Bar's spacing", "de": "Abstand", "ru": "?????????? ????? ?????????" },
+            //            "disableTooltips": { "en": "Hide tooltips", "de": "Kein Tooltips", "ru": "??? ?????????" },
+            //            "history": { "en": "history", "de": "history", "ru": "history" }
+            "group_rain": { "en": "rain", "de": "Regen", "ru": "???" },
+            "group_temperature": { "en": "temperature", "de": "Temperatur", "ru": "???" },
+            "group_clouds": { "en": "clouds", "de": "Wolken", "ru": "???" },
+            "withxaxix": { "en": "show X axis", "de": "Zeige X-Achse", "ru": "???" },
+            "rainvisible": { "en": "rain visible", "de": "Regen anzeigen", "ru": "???" },
+            "rainchartType": { "en": "rain chart type", "de": "Regencharttype", "ru": "???" },
+            "raincolor": { "en": "rain color", "de": "Farbe für Regen", "ru": "???" },
+            "tempvisible": { "en": "temperature visible", "de": "Temperatur anzeigen", "ru": "???" },
+            "tempchartType": { "en": "temperature chart type", "de": "Temperaturcharttype", "ru": "???" },
+            "tempcolor": { "en": "temperature color ", "de": "Farbe für Temperatur", "ru": "???" },
+            "cloudsvisible": { "en": "clouds/sun visible", "de": "Wolken/Sonne anzeigen", "ru": "???" },
+            "cloudschartType": { "en": "cloud/sun chart type", "de": "Wolken/Sonnecharttype", "ru": "???" },
+            "sunorcloud": { "en": "show sun or clouds", "de": "Anzeige Sonne oder Wolken", "ru": "???" },
+            "cloudcolor": { "en": "cloud/sun color", "de": "Farbe für Wolken/Sonne", "ru": "???" },
+            "line": { "en": "line", "de": "Linie", "ru": "???" },
+            "bar": { "en": "bar", "de": "Balken", "ru": "???" },
+            "sun": { "en": "sun", "de": "Sonne", "ru": "???" },
+            "clouds": { "en": "clouds", "de": "Wolken", "ru": "???" },
         });
     }
 
@@ -95,7 +109,7 @@
                 vis.binds.weather.version = null;
             }
         },
-        updateWidgets: [],
+/*        updateWidgets: [],
         updateIntervalTimer: null,
         startIntervalUpdate: function () {
             if (vis.editMode) return;
@@ -108,11 +122,11 @@
         },
         updateInterval: function () {
             for (var wid = 0; wid < vis.binds.weather.updateWidgets.length; wid++) {
-                vis.binds.weather.eventList.update($('#' + vis.binds.weather.updateWidgets[wid]).find('.vis-widget-body'));
+                vis.binds.weather.setup.update($('#' + vis.binds.weather.updateWidgets[wid]).find('.vis-widget-body'));
             }
         },
-
-        eventList: {
+        */
+        setup: {
             intervals: {
                 '1 second': 1000,
                 '10 seconds': 10000,
@@ -130,6 +144,7 @@
                 '24 hours': 86400000
 
             },
+  /* 
             header: function (data) {
                 var text = data.title ? '<div style="text-align: center; width: 100%;' + (data.title_attr || '') + '">' + data.title + '</div>' : '';
                 text += '<table class="vis-no-spaces">\n';
@@ -151,7 +166,7 @@
                 }
                 return { text: text, attrTime: attrTime, attrVal: attrVal, attrFrom: attrFrom, table_attr: table_attr };
             },
-
+          */  
            
         },
         tempandrain: {
@@ -164,221 +179,205 @@
                     $div.html("<br> <center> <font color='red'> no instance </font> </center></br>");
                 } else {
                     //warum wir das brauchen, verstehe ich noch nicht...
-                    //ist eigentlich nur dummy...
-                    vis.getHistory(data.oid, {
-                        instance: data.instance,
-                        count: parseInt(data.points, 10) || 10,
-                        aggregate: data.aggregate || 'average',
-                        start: vis.binds.weather.eventList.intervals[data.time_interval] ? new Date().getTime() - vis.binds.weather.eventList.intervals[data.time_interval] : undefined,
-                        end: new Date().getTime() + 5000,
-                        timeout: 1000
-                    }, function (err, result) {
-                        var data = $div.data('options');
-                        if (err) console.log(err);
+                    //ist eigentlich nur dummy... aber ohne wird plot ganz klein dargestellt ???
+                       vis.getHistory(data.oid, {
+                           instance: data.instance,
+                           count: parseInt(data.points, 10) || 10,
+                           aggregate: data.aggregate || 'average',
+                           start: vis.binds.weather.setup.intervals[data.time_interval] ? new Date().getTime() - vis.binds.weather.setup.intervals[data.time_interval] : undefined,
+                           end: new Date().getTime() + 5000,
+                           timeout: 1000
+                       }, function (err, result) {
+                           var data = $div.data('options');
+                           if (err) console.log(err);
+   
+                    console.log("ShowChart temp/rain/cloud begin");
 
-                        console.log("ShowChart temp/rain/cloud begin");
+                    var dp_temp = "Temperature";
+                    var dp_rain = "Rain";
+                    var dp_cloud = "Clouds";
 
-                        var dp_temp = "Temperature";
-                        var dp_rain = "Rain";
-                        var dp_cloud = "Clouds";
+                    var dp = "hour";
+                    var values_rain = [];
+                    var maxY_rain = -99;
+                    var minY_rain = 100;
+                    var values_temp = [];
+                    var maxY_temp = -99;
+                    var minY_temp = 100;
+                    var values_cloud = [];
+                    var maxY_cloud = 100;
+                    var minY_cloud = 0;
+                    var cnt = 0;
 
-                        var dp = "hour";
-                        var values_rain = [];
-                        var maxY_rain = -99;
-                        var minY_rain = 100;
-                        var values_temp = [];
-                        var maxY_temp = -99;
-                        var minY_temp = 100;
-                        var values_cloud = [];
-                        var maxY_cloud = 100;
-                        var minY_cloud = 0;
-                        var cnt = 0;
+                    //get date
+                    var dateoid = data.instance + ".NextDaysDetailed.0d.date";
 
-                        
+                    var sDate = vis.states[dateoid + '.val'];
+                    console.log(dateoid + " date was " + sDate + " vis " + vis + " states " + vis.states);
+                    var day = parseInt(sDate.substring(6, 8));
+                    var month = parseInt(sDate.substring(4, 6));
+                    var year = parseInt(sDate.substring(0, 4));
 
+                    month--;
 
-                        //get date
-                        var dateoid = data.instance + ".NextDaysDetailed.0d.date";
+                    //console.log("date is " + day +"."+month+"."+year);
+                    var lastHour = -1;
+                    for (var d = 0; d < 5; d++) {
 
-                        //test only
-                        var val_temp_id = vis.states.attr(dateoid + '.val');
-                        if (val_temp_id === undefined || val_temp_id === null || val_temp_id === '') {
-                            val_temp_id = '';
-                            console.log("test failed " + val_temp_id);
-                        } else {
-                            val_temp_id = val_temp_id.toString();
-                            console.log("test " + val_temp_id);
+                        for (var p = 0; p < 8; p++) {
+                            //get rain values
+
+                            var oid_rain = data.instance + ".NextDaysDetailed." + d + "d." + p + "h." + dp_rain;
+                            var val_rain = parseInt(vis.states[oid_rain + '.val']);
+                            if (val_rain > maxY_rain) maxY_rain = val_rain;
+                            if (val_rain < minY_rain) minY_rain = val_rain;
+
+                            //get temperature values
+                            var oid_temp = data.instance + ".NextDaysDetailed." + d + "d." + p + "h." + dp_temp;
+                            var val_temp = parseInt(vis.states[oid_temp + '.val']);
+                            if (val_temp > maxY_temp) maxY_temp = val_temp;
+                            if (val_temp < minY_temp) minY_temp = val_temp;
+
+                            //get cloud values
+                            var oid_cloud = data.instance + ".NextDaysDetailed." + d + "d." + p + "h." + dp_cloud;
+                            var val = parseInt(vis.states[oid_cloud + '.val']);
+                            var val_cloud = 0;
+                            if (data.sunorcloud == "sun") { //invert value 
+                                val_cloud = 100 - val;
+                            }
+                            else {
+                                val_cloud = val;
+                            }
+
+                            // get time
+                            var oid = data.instance + ".NextDaysDetailed." + d + "d." + p + "h." + dp;
+                            var sTime = vis.states[oid + '.val'];
+
+                            var hours = parseInt(sTime.substring(0, 2));
+                            var minutes = parseInt(sTime.substring(3, 5));
+
+                            var oDate = new Date(year, month, day, hours, minutes, 0, 0);
+
+                            //check next day
+                            if (hours < lastHour) {
+                                oDate.setDate(oDate.getDate() + 1);
+                                day = oDate.getUTCDate();
+                                month = oDate.getUTCMonth();
+                                year = oDate.getUTCFullYear();
+                            }
+                            lastHour = hours;
+                            //console.log(oid_rain + " : " + val_rain + " " + oid_temp + " : " + val_temp + " " + hours + "::" + minutes + " " + day + "." + month + "." + year);
+
+                            //need time in UTC
+                            var date = oDate.getTime();
+                            //console.log(date);
+                            values_rain.push([date, val_rain]);
+                            values_temp.push([date, val_temp]);
+                            values_cloud.push([date, val_cloud]);
+
+                            cnt++;
                         }
+                    }
+
+                    //maxY += 0.1 * maxY;
+                    //minY -= 0.1 * minY;
+
+                    console.log("start " + maxY_rain + " / " + minY_rain + " " + maxY_temp + " / " + minY_temp);
+                    var barwidth = 1000 * 60 * 60 * 2; //2h
+                    console.log("barwidth = " + barwidth); // in ms
 
 
-                        var sDate = vis.states[dateoid + '.val'];
-                        console.log(dateoid + " date was " + sDate + " vis " + vis + " states " + vis.states);
-                        var day = parseInt(sDate.substring(6, 8));
-                        var month = parseInt(sDate.substring(4, 6));
-                        var year = parseInt(sDate.substring(0, 4));
-
-                        month--;
-
-                        //console.log("date is " + day +"."+month+"."+year);
-                        var lastHour = -1;
-                        for (var d = 0; d < 5; d++) {
-
-                            for (var p = 0; p < 8; p++) {
-                                //get rain values
-
-                                var oid_rain = data.instance + ".NextDaysDetailed." + d + "d." + p + "h." + dp_rain;
-                                var val_rain = parseInt(vis.states[oid_rain + '.val']);
-                                if (val_rain > maxY_rain) maxY_rain = val_rain;
-                                if (val_rain < minY_rain) minY_rain = val_rain;
-
-                                //get temperature values
-                                var oid_temp = data.instance + ".NextDaysDetailed." + d + "d." + p + "h." + dp_temp;
-                                var val_temp = parseInt(vis.states[oid_temp + '.val']);
-                                if (val_temp > maxY_temp) maxY_temp = val_temp;
-                                if (val_temp < minY_temp) minY_temp = val_temp;
-
-                                //get cloud values
-                                var oid_cloud = data.instance + ".NextDaysDetailed." + d + "d." + p + "h." + dp_cloud;
-                                var val = parseInt(vis.states[oid_cloud + '.val']);
-                                var val_cloud = 0;
-                                if (data.sunorcloud == "sun") { //invert value 
-                                    val_cloud = 100 - val;
+                    $.plot($div,
+                        [{
+                            data: data.tempvisible ? values_temp : {},
+                            color: data.tempcolor,
+                            xaxis: 1,
+                            yaxis: 1,
+                            lines: { show: data.tempchartType == "line" ? true : false, fill: false },
+                            bars:
+                                {
+                                    show: data.tempchartType == "bar" ? true : false,
+                                    barWidth: barwidth
                                 }
-                                else {
-                                    val_cloud = val;
+                        },
+                        {
+                            data: data.rainvisible ? values_rain : {},
+                            color: data.raincolor,
+                            xaxis: 1,
+                            yaxis: 2,
+                            lines: { show: data.rainchartType == "line" ? true : false, fill: false },
+                            bars:
+                                {
+                                    show: data.rainchartType == "bar" ? true : false,
+                                    barWidth: barwidth
                                 }
-
-                                // get time
-                                var oid = data.instance + ".NextDaysDetailed." + d + "d." + p + "h." + dp;
-                                var sTime = vis.states[oid + '.val'];
-
-                                var hours = parseInt(sTime.substring(0, 2));
-                                var minutes = parseInt(sTime.substring(3, 5));
-
-                                var oDate = new Date(year, month, day, hours, minutes, 0, 0);
-
-                                //check next day
-                                //fehlt noch: besser siehe unten
-                                if (hours < lastHour) {
-                                    oDate.setDate(oDate.getDate() + 1);
-                                    day = oDate.getUTCDate();
-                                    month = oDate.getUTCMonth();
-                                    year = oDate.getUTCFullYear();
+                        },
+                        {
+                            data: data.cloudsvisible ? values_cloud : {},
+                            color: data.cloudcolor,
+                            xaxis: 1,
+                            yaxis: 3,
+                            lines: { show: data.cloudschartType == "line" ? true : false, fill: false },
+                            bars:
+                                {
+                                    show: data.cloudschartType == "bar" ? true : false,
+                                    barWidth: barwidth
                                 }
-                                lastHour = hours;
-                                console.log(oid_rain + " : " + val_rain + " " + oid_temp + " : " + val_temp + " " + hours + "::" + minutes + " " + day + "." + month + "." + year);
-
-                                //need time in UTC
-
-                                var date = oDate.getTime();
-                                //console.log(date);
-                                values_rain.push([date, val_rain]);
-                                values_temp.push([date, val_temp]);
-                                values_cloud.push([date, val_cloud]);
-
-                                cnt++;
-                            }
                         }
+                        ],
+                        {
 
-                        //maxY += 0.1 * maxY;
-                        //minY -= 0.1 * minY;
-
-                        console.log("start " + maxY_rain + " / " + minY_rain + " " + maxY_temp + " / " + minY_temp);
-                        var barwidth = 1000 * 60 * 60 * 2; //2h
-                        console.log("barwidth = " + barwidth); // in ms
-                        
-
-                        $.plot($div,
-                            [{
-                                data: data.tempvisible ? values_temp : {},
-                                color: data.tempcolor,
-                                xaxis: 1,
-                                yaxis: 1,
-                                lines: { show: data.tempchartType == "line" ? true : false, fill: false },
-                                bars:
-                                    {
-                                        show: data.tempchartType == "bar" ? true : false,
-                                        barWidth: barwidth
-                                    }
-                            },
-                            {
-                                data: data.rainvisible ? values_rain : {},
-                                color: data.raincolor,
-                                xaxis: 1,
-                                yaxis: 2,
-                                lines:{ show: data.rainchartType == "line" ? true : false, fill: false },
-                                bars:
-                                    {
-                                        show: data.rainchartType == "bar" ? true : false,
-                                        barWidth: barwidth
-                                    }
-                            },
-                            {
-                                data: data.cloudsvisible ? values_cloud : {},
-                                color: data.cloudcolor,
-                                xaxis: 1,
-                                yaxis: 3,
-                                lines: { show: data.cloudschartType == "line" ? true : false, fill: false },
-                                bars:
-                                    {
-                                        show: data.cloudschartType == "bar" ? true : false,
-                                        barWidth: barwidth
-                                    }
-                            }
-                            ],
-                            {
-
-                                xaxes: //xaxis mit [] geht nicht...!!!
-                                  [{//das folgende geht
-                                      show: data.withxaxix , 
-                                      mode: "time",
-                                      tickLength: 5,
-                                      timeformat: "%d.%b %H:%M",
-                                      monthNames: ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"]
-                                  }],
-                                yaxes: //yaxis mit [] geht nicht...!!!                              
-                                    [{ //das folgende geht
-                                      show: data.tempvisible ,
-                                      max: maxY_temp,
-                                      min: minY_temp,
-                                      alignTicksWithAxis: 1,
-                                      position: 'left',
-                                      ticks: 3
+                            xaxes: //xaxis mit [] geht nicht...!!!
+                              [{//das folgende geht
+                                  show: data.withxaxix,
+                                  mode: "time",
+                                  tickLength: 5,
+                                  timeformat: "%d.%b %H:%M",
+                                  monthNames: ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"]
+                              }],
+                            yaxes: //yaxis mit [] geht nicht...!!!                              
+                                [{ //das folgende geht
+                                    show: data.tempvisible,
+                                    max: maxY_temp,
+                                    min: minY_temp,
+                                    alignTicksWithAxis: 1,
+                                    position: 'left',
+                                    ticks: 3
+                                },
+                              {
+                                  show: data.rainvisible,
+                                  max: maxY_rain,
+                                  min: minY_rain,
+                                  alignTicksWithAxis: 2,
+                                  position: 'right',
+                                  ticks: 3
+                              },
+                              {
+                                  show: data.cloudsvisible,
+                                  max: maxY_cloud,
+                                  min: minY_cloud,
+                                  alignTicksWithAxis: 3,
+                                  position: 'right',
+                                  ticks: 3
+                              }],
+                            grid:
+                              {
+                                  //Farben einstellen fehlt noch
+                                  backgroundColor: { colors: ["#fff", "#eee"] },
+                                  borderWidth: {
+                                      top: 1,
+                                      right: 1,
+                                      bottom: 2,
+                                      left: 2
                                   },
-                                  {
-                                      show: data.rainvisible ,
-                                      max: maxY_rain,
-                                      min: minY_rain,
-                                      alignTicksWithAxis:2,
-                                      position: 'right',
-                                      ticks: 3
-                                  },
-                                  {
-                                      show: data.cloudsvisible ,
-                                      max: maxY_cloud,
-                                      min: minY_cloud,
-                                      alignTicksWithAxis: 3,
-                                      position: 'right',
-                                      ticks: 3
-                                  }],
-                                grid:
-                                  {
-                                      //Farben einstellen fehlt noch
-                                      backgroundColor: { colors: ["#fff", "#eee"] },
-                                      borderWidth: {
-                                          top: 1,
-                                          right: 1,
-                                          bottom: 2,
-                                          left: 2
-                                      },
-                                      //fehlt noch
-                                      //markings: nextDay
-                                  }
-                            }
-                            );
+                                  //fehlt noch
+                                  //markings: nextDay
+                              }
+                        }
+                        );
 
 
-                    });
+                     }); //GetHistory
                 }
             },
             init: function (el, view, data) {
@@ -406,7 +405,7 @@
 
 
                     var dateoid = _data.instance + ".NextDaysDetailed.0d.date";
-                    console.log("bind to " + dateoid + '.val')
+                    //console.log("bind to " + dateoid + '.val')
                     vis.states.bind(dateoid + '.val', function () {
                         vis.binds.weather.tempandrain.update($div);
                     });
@@ -414,22 +413,22 @@
 
                         for (var p = 0; p < 8; p++) {
                             var oid_rain = _data.instance + ".NextDaysDetailed." + d + "d." + p + "h." + dp_rain;
-                            console.log("bind to " + oid_rain + '.val')
+                            //console.log("bind to " + oid_rain + '.val')
                             vis.states.bind(oid_rain + '.val', function () {
                                 vis.binds.weather.tempandrain.update($div);
                             });
                             var oid_temp = _data.instance + ".NextDaysDetailed." + d + "d." + p + "h." + dp_temp;
-                            console.log("bind to " + oid_temp + '.val')
+                            //console.log("bind to " + oid_temp + '.val')
                             vis.states.bind(oid_temp + '.val', function () {
                                 vis.binds.weather.tempandrain.update($div);
                             });
                             var oid_cloud = _data.instance + ".NextDaysDetailed." + d + "d." + p + "h." + dp_cloud;
-                            console.log("bind to " + oid_cloud + '.val')
+                            //console.log("bind to " + oid_cloud + '.val')
                             vis.states.bind(oid_cloud + '.val', function () {
                                 vis.binds.weather.tempandrain.update($div);
                             });
                             var oid = _data.instance + ".NextDaysDetailed." + d + "d." + p + "h." + dp;
-                            console.log("bind to " + oid + '.val')
+                            //console.log("bind to " + oid + '.val')
                             vis.states.bind(oid + '.val', function () {
                                 vis.binds.weather.tempandrain.update($div);
                             });
@@ -440,7 +439,7 @@
                     if (!vis.editMode) {
                         $div.data('timer', setInterval(function () {
                             vis.binds.weather.tempandrain.update($div);
-                        }, parseInt(vis.binds.weather.eventList.intervals[_data.time_interval] / (parseInt(_data.points, 10) || 10), 10)));
+                        }, parseInt(vis.binds.weather.setup.intervals[_data.time_interval] / (parseInt(_data.points, 10) || 10), 10)));
                     }
                 }
                 else {
@@ -454,34 +453,6 @@
         },
     };
 
-    if (vis.editMode) {
-        vis.binds.weather.onHidChanged = function (widgetID, view, newId, fields) {
-            var obj = vis.objects[newId];
-            if (!obj || !obj.common) return null;
-            var changed = [];
-            var actualInstance = vis.views[view].widgets[widgetID].data.instance;
-            // Check if actual instance still in options
-            var firstInstance = '';
-            var found = false;
-            var custom = obj.common.custom || obj.common.weather;
-            for (var h in custom) {
-                if (!custom.hasOwnProperty(h)) continue;
-                if (custom[h].enabled) {
-                    if (firstInstance === '') firstInstance = h;
-                    if (h === actualInstance) {
-                        found = true;
-                        break;
-                    }
-                }
-            }
-            if (!found) {
-                changed.push('instance');
-                vis.views[view].widgets[widgetID].data.instance = firstInstance;
-            }
-            return changed.length ? changed : null;
-        };
-    }
-
     vis.binds.weather.showVersion();
 
 </script>
@@ -493,10 +464,10 @@
         class="vis-tpl"
         data-vis-set="history"
         data-vis-name="Weather"
-        data-vis-type="history"
+        data-vis-type="weather"
         data-vis-update-style="true"
         data-vis-prev='<img src="widgets/weather/img/Prev_tplWeather.png"></img>'
-        data-vis-attrs="instance/daswetter;"
+        data-vis-attrs="instance/weather;"
         data-vis-attrs0="time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;withxaxix[true]/checkbox;"
         data-vis-attrs1="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;raincolor[#1d0ed8]/color;"
         data-vis-attrs2="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;tempcolor[#00b3ac]/color;"
