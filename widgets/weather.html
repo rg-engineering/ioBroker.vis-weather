@@ -213,7 +213,7 @@
                     var dateoid = data.instance + ".NextDaysDetailed.0d.date";
 
                     var sDate = vis.states[dateoid + '.val'];
-                    console.log(dateoid + " date was " + sDate + " vis " + vis + " states " + vis.states);
+                    //console.log(dateoid + " date was " + sDate + " vis " + vis + " states " + vis.states);
                     var day = parseInt(sDate.substring(6, 8));
                     var month = parseInt(sDate.substring(4, 6));
                     var year = parseInt(sDate.substring(0, 4));
@@ -453,6 +453,236 @@
         },
     };
 
+    if (vis.editMode) {
+        vis.binds.weather.onHidChanged = function (widgetID, view, newId, fields) {
+            console.log('---------: ' + widgetID + ' - ' + view + ' - ' + newId + ' - ' + fields);
+
+            //vis.views[views].widgets[widgetID].data[oid_date] = newId + ".NextDaysDetailed.0d.date";
+
+            var obj = vis;
+
+            console.log(obj.toString());
+/*
+            // If it is real object and SETPOINT
+            if (obj && obj.common && obj.type === 'state') {
+                var roles = [];
+                var s;
+                for (s in vis.binds.weather.states) {
+
+                    console.log(s.toString());
+
+                    if (!vis.binds.weather.states.hasOwnProperty(s) || !vis.binds.weather.states[s][type]) continue;
+                    if (vis.views[view].widgets[widgetID].data[s]) continue;
+
+                    roles.push(vis.binds.weather.states[s].role);
+
+                    console.log("push " + vis.binds.weather.states[s].role);
+                }
+
+            }
+*/
+        }
+    }
+    /*
+    if (vis.editMode) {
+        vis.binds.weather.OnInstanceChanged = function (widgetID, view, newId, attr, isCss, oldValue, type) {
+
+            if (oldValue && oldValue !== 'nothing_selected') return;
+            console.log('---------: ' + widgetID + ' - ' + view + ' - ' + newId + ' - ' + attr + ' - ' + isCss);
+
+            var changed = [];
+            var obj = vis.objects[newId];
+
+            // If it is real object and SETPOINT
+            if (obj && obj.common && obj.type === 'state') {
+                var roles = [];
+                var s;
+                for (s in vis.binds.weather.states) {
+
+                    console.log(s.toString());
+
+                    if (!vis.binds.weather.states.hasOwnProperty(s) || !vis.binds.weather.states[s][type]) continue;
+                    if (vis.views[view].widgets[widgetID].data[s]) continue;
+
+                    roles.push(vis.binds.weather.states[s].role);
+                }
+
+                if (roles.length) {
+                    var result = vis.findByRoles(newId, roles);
+                    if (result) {
+                        var name;
+                        for (var r in result) {
+                            if (!result.hasOwnProperty(r)) continue;
+
+                            name = null;
+                            for (s in vis.binds.weather.states) {
+                                if (!vis.binds.weather.states.hasOwnProperty(s)) continue;
+
+                                if (vis.binds.weather.states[s].role === r) {
+                                    changed.push(s);
+                                    vis.views[view].widgets[widgetID].data[s] = result[r];
+                                    vis.widgets[widgetID].data[s] = result[r];
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return changed;
+        }
+    }
+    */
+            /* das geht nicht...
+            var data = $div.data('options');
+            
+            if (newId != "") {
+                console.log("fill oids: instance " + newId);
+                data.oid_raind0p0 = newId + ".NextDaysDetailed.0d.0h.Rain";
+                data.oid_raind0p1 = newId + ".NextDaysDetailed.0d.1h.Rain";
+                data.data.oid_raind0p2 = newId + ".NextDaysDetailed.0d.2h.Rain";
+                data.data.oid_raind0p3 = newId + ".NextDaysDetailed.0d.3h.Rain";
+                data.oid_raind0p4 = newId + ".NextDaysDetailed.0d.4h.Rain";
+                data.oid_raind0p5 = newId + ".NextDaysDetailed.0d.5h.Rain";
+                data.oid_raind0p6 = newId + ".NextDaysDetailed.0d.6h.Rain";
+                data.oid_raind0p7 = newId + ".NextDaysDetailed.0d.7h.Rain";
+
+                data.oid_raind1p0 = newId + ".NextDaysDetailed.1d.0h.Rain";
+                data.oid_raind1p1 = newId + ".NextDaysDetailed.1d.1h.Rain";
+                data.oid_raind1p2 = newId + ".NextDaysDetailed.1d.2h.Rain";
+                data.oid_raind1p3 = newId + ".NextDaysDetailed.1d.3h.Rain";
+                data.oid_raind1p4 = newId + ".NextDaysDetailed.1d.4h.Rain";
+                data.oid_raind1p5 = newId + ".NextDaysDetailed.1d.5h.Rain";
+                data.oid_raind1p6 = newId + ".NextDaysDetailed.1d.6h.Rain";
+                data.oid_raind1p7 = newId + ".NextDaysDetailed.1d.7h.Rain";
+
+                data.oid_raind2p0 = newId + ".NextDaysDetailed.2d.0h.Rain";
+                data.oid_raind2p1 = newId + ".NextDaysDetailed.2d.1h.Rain";
+                data.oid_raind2p2 = newId + ".NextDaysDetailed.2d.2h.Rain";
+                data.oid_raind2p3 = newId + ".NextDaysDetailed.2d.3h.Rain";
+                data.oid_raind2p4 = newId + ".NextDaysDetailed.2d.4h.Rain";
+                data.oid_raind2p5 = newId + ".NextDaysDetailed.2d.5h.Rain";
+                data.oid_raind2p6 = newId + ".NextDaysDetailed.2d.6h.Rain";
+                data.oid_raind2p7 = newId + ".NextDaysDetailed.2d.7h.Rain";
+
+                data.oid_raind3p0 = newId + ".NextDaysDetailed.3d.0h.Rain";
+                data.oid_raind3p1 = newId + ".NextDaysDetailed.3d.1h.Rain";
+                data.oid_raind3p2 = newId + ".NextDaysDetailed.3d.2h.Rain";
+                data.oid_raind3p3 = newId + ".NextDaysDetailed.3d.3h.Rain";
+                data.oid_raind3p4 = newId + ".NextDaysDetailed.3d.4h.Rain";
+                data.oid_raind3p5 = newId + ".NextDaysDetailed.3d.5h.Rain";
+                data.oid_raind3p6 = newId + ".NextDaysDetailed.3d.6h.Rain";
+                data.oid_raind3p7 = newId + ".NextDaysDetailed.3d.7h.Rain";
+
+                data.oid_raind4p0 = newId + ".NextDaysDetailed.4d.0h.Rain";
+                data.oid_raind4p1 = newId + ".NextDaysDetailed.4d.1h.Rain";
+                data.oid_raind4p2 = newId + ".NextDaysDetailed.4d.2h.Rain";
+                data.oid_raind4p3 = newId + ".NextDaysDetailed.4d.3h.Rain";
+                data.oid_raind4p4 = newId + ".NextDaysDetailed.4d.4h.Rain";
+                data.oid_raind4p5 = newId + ".NextDaysDetailed.4d.5h.Rain";
+                data.oid_raind4p6 = newId + ".NextDaysDetailed.4d.6h.Rain";
+                data.oid_raind4p7 = newId + ".NextDaysDetailed.4d.7h.Rain";
+
+                data.oid_tempd0p0 = newId + ".NextDaysDetailed.0d.0h.Temperature";
+                data.oid_tempd0p1 = newId + ".NextDaysDetailed.0d.1h.Temperature";
+                data.oid_tempd0p2 = newId + ".NextDaysDetailed.0d.2h.Temperature";
+                data.oid_tempd0p3 = newId + ".NextDaysDetailed.0d.3h.Temperature";
+                data.oid_tempd0p4 = newId + ".NextDaysDetailed.0d.4h.Temperature";
+                data.oid_tempd0p5 = newId + ".NextDaysDetailed.0d.5h.Temperature";
+                data.oid_tempd0p6 = newId + ".NextDaysDetailed.0d.6h.Temperature";
+                data.oid_tempd0p7 = newId + ".NextDaysDetailed.0d.7h.Temperature";
+
+                data.oid_tempd1p0 = newId + ".NextDaysDetailed.1d.0h.Temperature";
+                data.oid_tempd1p1 = newId + ".NextDaysDetailed.1d.1h.Temperature";
+                data.oid_tempd1p2 = newId + ".NextDaysDetailed.1d.2h.Temperature";
+                data.oid_tempd1p3 = newId + ".NextDaysDetailed.1d.3h.Temperature";
+                data.oid_tempd1p4 = newId + ".NextDaysDetailed.1d.4h.Temperature";
+                data.oid_tempd1p5 = newId + ".NextDaysDetailed.1d.5h.Temperature";
+                data.oid_tempd1p6 = newId + ".NextDaysDetailed.1d.6h.Temperature";
+                data.oid_tempd1p7 = newId + ".NextDaysDetailed.1d.7h.Temperature";
+
+                data.oid_tempd2p0 = newId + ".NextDaysDetailed.2d.0h.Temperature";
+                data.oid_tempd2p1 = newId + ".NextDaysDetailed.2d.1h.Temperature";
+                data.oid_tempd2p2 = newId + ".NextDaysDetailed.2d.2h.Temperature";
+                data.oid_tempd2p3 = newId + ".NextDaysDetailed.2d.3h.Temperature";
+                data.oid_tempd2p4 = newId + ".NextDaysDetailed.2d.4h.Temperature";
+                data.oid_tempd2p5 = newId + ".NextDaysDetailed.2d.5h.Temperature";
+                data.oid_tempd2p6 = newId + ".NextDaysDetailed.2d.6h.Temperature";
+                data.oid_tempd2p7 = newId + ".NextDaysDetailed.2d.7h.Temperature";
+
+                data.oid_tempd3p0 = newId + ".NextDaysDetailed.3d.0h.Temperature";
+                data.oid_tempd3p1 = newId + ".NextDaysDetailed.3d.1h.Temperature";
+                data.oid_tempd3p2 = newId + ".NextDaysDetailed.3d.2h.Temperature";
+                data.oid_tempd3p3 = newId + ".NextDaysDetailed.3d.3h.Temperature";
+                data.oid_tempd3p4 = newId + ".NextDaysDetailed.3d.4h.Temperature";
+                data.oid_tempd3p5 = newId + ".NextDaysDetailed.3d.5h.Temperature";
+                data.oid_tempd3p6 = newId + ".NextDaysDetailed.3d.6h.Temperature";
+                data.oid_tempd3p7 = newId + ".NextDaysDetailed.3d.7h.Temperature";
+
+                data.oid_tempd4p0 = newId + ".NextDaysDetailed.4d.0h.Temperature";
+                data.oid_tempd4p1 = newId + ".NextDaysDetailed.4d.1h.Temperature";
+                data.oid_tempd4p2 = newId + ".NextDaysDetailed.4d.2h.Temperature";
+                data.oid_tempd4p3 = newId + ".NextDaysDetailed.4d.3h.Temperature";
+                data.oid_tempd4p4 = newId + ".NextDaysDetailed.4d.4h.Temperature";
+                data.oid_tempd4p5 = newId + ".NextDaysDetailed.4d.5h.Temperature";
+                data.oid_tempd4p6 = newId + ".NextDaysDetailed.4d.6h.Temperature";
+                data.oid_tempd4p7 = newId + ".NextDaysDetailed.4d.7h.Temperature";
+
+
+                data.oid_cloudd0p0 = newId + ".NextDaysDetailed.0d.0h.Clouds";
+                data.oid_cloudd0p1 = newId + ".NextDaysDetailed.0d.1h.Clouds";
+                data.oid_cloudd0p2 = newId + ".NextDaysDetailed.0d.2h.Clouds";
+                data.oid_cloudd0p3 = newId + ".NextDaysDetailed.0d.3h.Clouds";
+                data.oid_cloudd0p4 = newId + ".NextDaysDetailed.0d.4h.Clouds";
+                data.oid_cloudd0p5 = newId + ".NextDaysDetailed.0d.5h.Clouds";
+                data.oid_cloudd0p6 = newId + ".NextDaysDetailed.0d.6h.Clouds";
+                data.oid_cloudd0p7 = newId + ".NextDaysDetailed.0d.7h.Clouds";
+
+                data.oid_cloudd1p0 = newId + ".NextDaysDetailed.1d.0h.Clouds";
+                data.oid_cloudd1p1 = newId + ".NextDaysDetailed.1d.1h.Clouds";
+                data.oid_cloudd1p2 = newId + ".NextDaysDetailed.1d.2h.Clouds";
+                data.oid_cloudd1p3 = newId + ".NextDaysDetailed.1d.3h.Clouds";
+                data.oid_cloudd1p4 = newId + ".NextDaysDetailed.1d.4h.Clouds";
+                data.oid_cloudd1p5 = newId + ".NextDaysDetailed.1d.5h.Clouds";
+                data.oid_cloudd1p6 = newId + ".NextDaysDetailed.1d.6h.Clouds";
+                data.oid_cloudd1p7 = newId + ".NextDaysDetailed.1d.7h.Clouds";
+
+                data.oid_cloudd2p0 = newId + ".NextDaysDetailed.2d.0h.Clouds";
+                data.oid_cloudd2p1 = newId + ".NextDaysDetailed.2d.1h.Clouds";
+                data.oid_cloudd2p2 = newId + ".NextDaysDetailed.2d.2h.Clouds";
+                data.oid_cloudd2p3 = newId + ".NextDaysDetailed.2d.3h.Clouds";
+                data.oid_cloudd2p4 = newId + ".NextDaysDetailed.2d.4h.Clouds";
+                data.oid_cloudd2p5 = newId + ".NextDaysDetailed.2d.5h.Clouds";
+                data.oid_cloudd2p6 = newId + ".NextDaysDetailed.2d.6h.Clouds";
+                data.oid_cloudd2p7 = newId + ".NextDaysDetailed.2d.7h.Clouds";
+
+                data.oid_cloudd3p0 = newId + ".NextDaysDetailed.3d.0h.Clouds";
+                data.oid_cloudd3p1 = newId + ".NextDaysDetailed.3d.1h.Clouds";
+                data.oid_cloudd3p2 = newId + ".NextDaysDetailed.3d.2h.Clouds";
+                data.oid_cloudd3p3 = newId + ".NextDaysDetailed.3d.3h.Clouds";
+                data.oid_cloudd3p4 = newId + ".NextDaysDetailed.3d.4h.Clouds";
+                data.oid_cloudd3p5 = newId + ".NextDaysDetailed.3d.5h.Clouds";
+                data.oid_cloudd3p6 = newId + ".NextDaysDetailed.3d.6h.Clouds";
+                data.oid_cloudd3p7 = newId + ".NextDaysDetailed.3d.7h.Clouds";
+
+                data.oid_cloudd4p0 = newId + ".NextDaysDetailed.4d.0h.Clouds";
+                data.oid_cloudd4p1 = newId + ".NextDaysDetailed.4d.1h.Clouds";
+                data.oid_cloudd4p2 = newId + ".NextDaysDetailed.4d.2h.Clouds";
+                data.oid_cloudd4p3 = newId + ".NextDaysDetailed.4d.3h.Clouds";
+                data.oid_cloudd4p4 = newId + ".NextDaysDetailed.4d.4h.Clouds";
+                data.oid_cloudd4p5 = newId + ".NextDaysDetailed.4d.5h.Clouds";
+                data.oid_cloudd4p6 = newId + ".NextDaysDetailed.4d.6h.Clouds";
+                data.oid_cloudd4p7 = newId + ".NextDaysDetailed.4d.7h.Clouds";
+
+                data.oid_date = newId + ".NextDaysDetailed.0d.date";
+            }
+            else {
+                console.log("instance not set");
+            }
+            
+        }
+    }
+    */
     vis.binds.weather.showVersion();
 
 </script>
@@ -462,16 +692,36 @@
 <script id="tplWeatherShowInstance"
         type="text/ejs"
         class="vis-tpl"
-        data-vis-set="history"
+        data-vis-set="weather"
         data-vis-name="Weather"
         data-vis-type="weather"
         data-vis-update-style="true"
         data-vis-prev='<img src="widgets/weather/img/Prev_tplWeather.png"></img>'
-        data-vis-attrs="instance/weather;"
+        data-vis-attrs="instance/weather/onHidChanged;"
         data-vis-attrs0="time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;withxaxix[true]/checkbox;"
         data-vis-attrs1="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;raincolor[#1d0ed8]/color;"
         data-vis-attrs2="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;tempcolor[#00b3ac]/color;"
         data-vis-attrs3="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar; sunorcloud[sun]/select,sun,clouds;cloudcolor[#f6ef3c]/color;"
+        
+        data-vis-attrs4="group.oids;oid_raind0p0/id;oid_raind0p1/id;oid_raind0p2/id;oid_raind0p3/id;oid_raind0p4/id;oid_raind0p5/id;oid_raind0p6/id;oid_raind0p7/id;"
+        data-vis-attrs5="oid_raind1p0/id;oid_raind1p1/id;oid_raind1p2/id;oid_raind1p3/id;oid_raind1p4/id;oid_raind1p5/id;oid_raind1p6/id;oid_raind1p7/id;"
+        data-vis-attrs6="oid_raind2p0/id;oid_raind2p1/id;oid_raind2p2/id;oid_raind2p3/id;oid_raind2p4/id;oid_raind2p5/id;oid_raind2p6/id;oid_raind2p7/id;"
+        data-vis-attrs7="oid_raind3p0/id;oid_raind3p1/id;oid_raind3p2/id;oid_raind3p3/id;oid_raind3p4/id;oid_raind3p5/id;oid_raind3p6/id;oid_raind3p7/id;"
+        data-vis-attrs8="oid_raind4p0/id;oid_raind4p1/id;oid_raind4p2/id;oid_raind4p3/id;oid_raind4p4/id;oid_raind4p5/id;oid_raind4p6/id;oid_raind4p7/id;"
+       
+        data-vis-attrs9="oid_tempd0p0/id;oid_tempd0p1/id;oid_tempd0p2/id;oid_tempd0p3/id;oid_tempd0p4/id;oid_tempd0p5/id;oid_tempd0p6/id;oid_tempd0p7/id;"
+        data-vis-attrs10="oid_tempd1p0/id;oid_tempd1p1/id;oid_tempd1p2/id;oid_tempd1p3/id;oid_tempd1p4/id;oid_tempd1p5/id;oid_tempd1p6/id;oid_tempd1p7/id;"
+        data-vis-attrs11="oid_tempd2p0/id;oid_tempd2p1/id;oid_tempd2p2/id;oid_tempd2p3/id;oid_tempd2p4/id;oid_tempd2p5/id;oid_tempd2p6/id;oid_tempd2p7/id;"
+        data-vis-attrs12="oid_tempd3p0/id;oid_tempd3p1/id;oid_tempd3p2/id;oid_tempd3p3/id;oid_tempd3p4/id;oid_tempd3p5/id;oid_tempd3p6/id;oid_tempd3p7/id;"
+        data-vis-attrs13="oid_tempd4p0/id;oid_tempd4p1/id;oid_tempd4p2/id;oid_tempd4p3/id;oid_tempd4p4/id;oid_tempd4p5/id;oid_tempd4p6/id;oid_tempd4p7/id;"
+
+        data-vis-attrs14="oid_cloudd0p0/id;oid_cloudd0p1/id;oid_cloudd0p2/id;oid_cloudd0p3/id;oid_cloudd0p4/id;oid_cloudd0p5/id;oid_cloudd0p6/id;oid_cloudd0p7/id;"
+        data-vis-attrs15="oid_cloudd1p0/id;oid_cloudd1p1/id;oid_cloudd1p2/id;oid_cloudd1p3/id;oid_cloudd1p4/id;oid_cloudd1p5/id;oid_cloudd1p6/id;oid_cloudd1p7/id;"
+        data-vis-attrs16="oid_cloudd2p0/id;oid_cloudd2p1/id;oid_cloudd2p2/id;oid_cloudd2p3/id;oid_cloudd2p4/id;oid_cloudd2p5/id;oid_cloudd2p6/id;oid_cloudd2p7/id;"
+        data-vis-attrs17="oid_cloudd3p0/id;oid_cloudd3p1/id;oid_cloudd3p2/id;oid_cloudd3p3/id;oid_cloudd3p4/id;oid_cloudd3p5/id;oid_cloudd3p6/id;oid_cloudd3p7/id;"
+        data-vis-attrs18="oid_cloudd4p0/id;oid_cloudd4p1/id;oid_cloudd4p2/id;oid_cloudd4p3/id;oid_cloudd4p4/id;oid_cloudd4p5/id;oid_cloudd4p6/id;oid_cloudd4p7/id;"
+
+        data-vis-attrs19="oid_date/id;"
 >
 
     <div class="vis-widget <%== this.data.attr('class') %>" style="overflow: hidden; width: 210px; height: 170px;" id="<%= this.data.attr('wid') %>">

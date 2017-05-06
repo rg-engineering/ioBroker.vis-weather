@@ -57,7 +57,6 @@
     <Compile Include="widgets\weather\lib\js\jquery.sparkline.js" />
     <Compile Include="widgets\weather\lib\js\jquery.sparkline.min.js" />
     <Content Include=".gitignore" />
-    <Content Include=".npmignore" />
     <Content Include=".travis.yml" />
     <Content Include="admin\index.html" />
     <Content Include="admin\vis-weather.PNG" />
