@@ -588,19 +588,14 @@
             var changed = [];
             for (var s in vis.binds.weather.states) {
 
-                if (!vis.binds.weather.states[s].objName) {
-                    console.log(s + " without name");
-                    continue;
-                }
+                if (!vis.binds.weather.states[s].objName) continue;
                 if (vis.objects[newId + vis.binds.weather.states[s].objName]) {
                     console.log(s + " updated ");
                     changed.push(s);
                     vis.views[view].widgets[widgetID].data[s] = newId + vis.binds.weather.states[s].objName;
                     vis.widgets[widgetID].data[s] = newId + vis.binds.weather.states[s].objName;
                 }
-                else {
-                    console.log(s + " does not exist");
-                }
+
             }
             return changed;
         }
