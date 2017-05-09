@@ -274,7 +274,7 @@
             oid_hourd4p4: { objName: '.NextDaysDetailed.4d.4h.hour' },
             oid_hourd4p5: { objName: '.NextDaysDetailed.4d.5h.hour' },
             oid_hourd4p6: { objName: '.NextDaysDetailed.4d.6h.hour' },
-            oid_hourd4p7: { objName: '.NextDaysDetailed.4d.7h.hour' }
+            oid_hourd4p7: { objName: '.NextDaysDetailed.4d.7h.hour' },
 
         },
 
@@ -348,12 +348,17 @@
 
                     month--;
 
+
+                   //to do: Zugriff auf die OID's fehlt noch...
+
+
                     //console.log("date is " + day +"."+month+"."+year);
                     var lastHour = -1;
                     for (var d = 0; d < 5; d++) {
 
                         for (var p = 0; p < 8; p++) {
                             //get rain values
+                            
 
                             var oid_rain = data.instance + ".NextDaysDetailed." + d + "d." + p + "h." + dp_rain;
                             var val_rain = parseInt(vis.states[oid_rain + '.val']);
@@ -621,31 +626,32 @@
         data-vis-attrs2="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;tempcolor[#00b3ac]/color;"
         data-vis-attrs3="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar; sunorcloud[sun]/select,sun,clouds;cloudcolor[#f6ef3c]/color;"
         
-        data-vis-attrs4="group.oids;oid_raind0p0/id;oid_raind0p1/id;oid_raind0p2/id;oid_raind0p3/id;oid_raind0p4/id;oid_raind0p5/id;oid_raind0p6/id;oid_raind0p7/id;"
-        data-vis-attrs5="oid_raind1p0/id;oid_raind1p1/id;oid_raind1p2/id;oid_raind1p3/id;oid_raind1p4/id;oid_raind1p5/id;oid_raind1p6/id;oid_raind1p7/id;"
-        data-vis-attrs6="oid_raind2p0/id;oid_raind2p1/id;oid_raind2p2/id;oid_raind2p3/id;oid_raind2p4/id;oid_raind2p5/id;oid_raind2p6/id;oid_raind2p7/id;"
-        data-vis-attrs7="oid_raind3p0/id;oid_raind3p1/id;oid_raind3p2/id;oid_raind3p3/id;oid_raind3p4/id;oid_raind3p5/id;oid_raind3p6/id;oid_raind3p7/id;"
-        data-vis-attrs8="oid_raind4p0/id;oid_raind4p1/id;oid_raind4p2/id;oid_raind4p3/id;oid_raind4p4/id;oid_raind4p5/id;oid_raind4p6/id;oid_raind4p7/id;"
+        data-vis-attrs4="oid_raind0p0/hidden;oid_raind0p1/hidden;oid_raind0p2/hidden;oid_raind0p3/hidden;oid_raind0p4/hidden;oid_raind0p5/hidden;oid_raind0p6/hidden;oid_raind0p7/hidden;"
+        data-vis-attrs5="oid_raind1p0/hidden;oid_raind1p1/hidden;oid_raind1p2/hidden;oid_raind1p3/hidden;oid_raind1p4/hidden;oid_raind1p5/hidden;oid_raind1p6/hidden;oid_raind1p7/hidden;"
+        data-vis-attrs6="oid_raind2p0/hidden;oid_raind2p1/hidden;oid_raind2p2/hidden;oid_raind2p3/hidden;oid_raind2p4/hidden;oid_raind2p5/hidden;oid_raind2p6/hidden;oid_raind2p7/hidden;"
+        data-vis-attrs7="oid_raind3p0/hidden;oid_raind3p1/hidden;oid_raind3p2/hidden;oid_raind3p3/hidden;oid_raind3p4/hidden;oid_raind3p5/hidden;oid_raind3p6/hidden;oid_raind3p7/hidden;"
+        data-vis-attrs8="oid_raind4p0/hidden;oid_raind4p1/hidden;oid_raind4p2/hidden;oid_raind4p3/hidden;oid_raind4p4/hidden;oid_raind4p5/hidden;oid_raind4p6/hidden;oid_raind4p7/hidden;"
        
-        data-vis-attrs9="oid_tempd0p0/id;oid_tempd0p1/id;oid_tempd0p2/id;oid_tempd0p3/id;oid_tempd0p4/id;oid_tempd0p5/id;oid_tempd0p6/id;oid_tempd0p7/id;"
-        data-vis-attrs10="oid_tempd1p0/id;oid_tempd1p1/id;oid_tempd1p2/id;oid_tempd1p3/id;oid_tempd1p4/id;oid_tempd1p5/id;oid_tempd1p6/id;oid_tempd1p7/id;"
-        data-vis-attrs11="oid_tempd2p0/id;oid_tempd2p1/id;oid_tempd2p2/id;oid_tempd2p3/id;oid_tempd2p4/id;oid_tempd2p5/id;oid_tempd2p6/id;oid_tempd2p7/id;"
-        data-vis-attrs12="oid_tempd3p0/id;oid_tempd3p1/id;oid_tempd3p2/id;oid_tempd3p3/id;oid_tempd3p4/id;oid_tempd3p5/id;oid_tempd3p6/id;oid_tempd3p7/id;"
-        data-vis-attrs13="oid_tempd4p0/id;oid_tempd4p1/id;oid_tempd4p2/id;oid_tempd4p3/id;oid_tempd4p4/id;oid_tempd4p5/id;oid_tempd4p6/id;oid_tempd4p7/id;"
+        data-vis-attrs9="oid_tempd0p0/hidden;oid_tempd0p1/hidden;oid_tempd0p2/hidden;oid_tempd0p3/hidden;oid_tempd0p4/hidden;oid_tempd0p5/hidden;oid_tempd0p6/hidden;oid_tempd0p7/hidden;"
+        data-vis-attrs10="oid_tempd1p0/hidden;oid_tempd1p1/hidden;oid_tempd1p2/hidden;oid_tempd1p3/hidden;oid_tempd1p4/hidden;oid_tempd1p5/hidden;oid_tempd1p6/hidden;oid_tempd1p7/hidden;"
+        data-vis-attrs11="oid_tempd2p0/hidden;oid_tempd2p1/hidden;oid_tempd2p2/hidden;oid_tempd2p3/hidden;oid_tempd2p4/hidden;oid_tempd2p5/hidden;oid_tempd2p6/hidden;oid_tempd2p7/hidden;"
+        data-vis-attrs12="oid_tempd3p0/hidden;oid_tempd3p1/hidden;oid_tempd3p2/hidden;oid_tempd3p3/hidden;oid_tempd3p4/hidden;oid_tempd3p5/hidden;oid_tempd3p6/hidden;oid_tempd3p7/hidden;"
+        data-vis-attrs13="oid_tempd4p0/hidden;oid_tempd4p1/hidden;oid_tempd4p2/hidden;oid_tempd4p3/hidden;oid_tempd4p4/hidden;oid_tempd4p5/hidden;oid_tempd4p6/hidden;oid_tempd4p7/hidden;"
 
-        data-vis-attrs14="oid_cloudd0p0/id;oid_cloudd0p1/id;oid_cloudd0p2/id;oid_cloudd0p3/id;oid_cloudd0p4/id;oid_cloudd0p5/id;oid_cloudd0p6/id;oid_cloudd0p7/id;"
-        data-vis-attrs15="oid_cloudd1p0/id;oid_cloudd1p1/id;oid_cloudd1p2/id;oid_cloudd1p3/id;oid_cloudd1p4/id;oid_cloudd1p5/id;oid_cloudd1p6/id;oid_cloudd1p7/id;"
-        data-vis-attrs16="oid_cloudd2p0/id;oid_cloudd2p1/id;oid_cloudd2p2/id;oid_cloudd2p3/id;oid_cloudd2p4/id;oid_cloudd2p5/id;oid_cloudd2p6/id;oid_cloudd2p7/id;"
-        data-vis-attrs17="oid_cloudd3p0/id;oid_cloudd3p1/id;oid_cloudd3p2/id;oid_cloudd3p3/id;oid_cloudd3p4/id;oid_cloudd3p5/id;oid_cloudd3p6/id;oid_cloudd3p7/id;"
-        data-vis-attrs18="oid_cloudd4p0/id;oid_cloudd4p1/id;oid_cloudd4p2/id;oid_cloudd4p3/id;oid_cloudd4p4/id;oid_cloudd4p5/id;oid_cloudd4p6/id;oid_cloudd4p7/id;"
+        data-vis-attrs14="oid_cloudd0p0/hidden;oid_cloudd0p1/hidden;oid_cloudd0p2/hidden;oid_cloudd0p3/hidden;oid_cloudd0p4/hidden;oid_cloudd0p5/hidden;oid_cloudd0p6/hidden;oid_cloudd0p7/hidden;"
+        data-vis-attrs15="oid_cloudd1p0/hidden;oid_cloudd1p1/hidden;oid_cloudd1p2/hidden;oid_cloudd1p3/hidden;oid_cloudd1p4/hidden;oid_cloudd1p5/hidden;oid_cloudd1p6/hidden;oid_cloudd1p7/hidden;"
+        data-vis-attrs16="oid_cloudd2p0/hidden;oid_cloudd2p1/hidden;oid_cloudd2p2/hidden;oid_cloudd2p3/hidden;oid_cloudd2p4/hidden;oid_cloudd2p5/hidden;oid_cloudd2p6/hidden;oid_cloudd2p7/hidden;"
+        data-vis-attrs17="oid_cloudd3p0/hidden;oid_cloudd3p1/hidden;oid_cloudd3p2/hidden;oid_cloudd3p3/hidden;oid_cloudd3p4/hidden;oid_cloudd3p5/hidden;oid_cloudd3p6/hidden;oid_cloudd3p7/hidden;"
+        data-vis-attrs18="oid_cloudd4p0/hidden;oid_cloudd4p1/hidden;oid_cloudd4p2/hidden;oid_cloudd4p3/hidden;oid_cloudd4p4/hidden;oid_cloudd4p5/hidden;oid_cloudd4p6/hidden;oid_cloudd4p7/hidden;"
 
-        data-vis-attrs19="oid_hourd0p0/id;oid_hourd0p1/id;oid_hourd0p2/id;oid_hourd0p3/id;oid_hourd0p4/id;oid_hourd0p5/id;oid_hourd0p6/id;oid_hourd0p7/id;"
-        data-vis-attrs20="oid_hourd1p0/id;oid_hourd1p1/id;oid_hourd1p2/id;oid_hourd1p3/id;oid_hourd1p4/id;oid_hourd1p5/id;oid_hourd1p6/id;oid_hourd1p7/id;"
-        data-vis-attrs21="oid_hourd2p0/id;oid_hourd2p1/id;oid_hourd2p2/id;oid_hourd2p3/id;oid_hourd2p4/id;oid_hourd2p5/id;oid_hourd2p6/id;oid_hourd2p7/id;"
-        data-vis-attrs22="oid_hourd3p0/id;oid_hourd3p1/id;oid_hourd3p2/id;oid_hourd3p3/id;oid_hourd3p4/id;oid_hourd3p5/id;oid_hourd3p6/id;oid_hourd3p7/id;"
-        data-vis-attrs23="oid_hourd4p0/id;oid_hourd4p1/id;oid_hourd4p2/id;oid_hourd4p3/id;oid_hourd4p4/id;oid_hourd4p5/id;oid_hourd4p6/id;oid_hourd4p7/id;"
+        data-vis-attrs19="oid_hourd0p0/hidden;oid_hourd0p1/hidden;oid_hourd0p2/hidden;oid_hourd0p3/hidden;oid_hourd0p4/hidden;oid_hourd0p5/hidden;oid_hourd0p6/hidden;oid_hourd0p7/hidden;"
+        data-vis-attrs20="oid_hourd1p0/hidden;oid_hourd1p1/hidden;oid_hourd1p2/hidden;oid_hourd1p3/hidden;oid_hourd1p4/hidden;oid_hourd1p5/hidden;oid_hourd1p6/hidden;oid_hourd1p7/hidden;"
+        data-vis-attrs21="oid_hourd2p0/hidden;oid_hourd2p1/hidden;oid_hourd2p2/hidden;oid_hourd2p3/hidden;oid_hourd2p4/hidden;oid_hourd2p5/hidden;oid_hourd2p6/hidden;oid_hourd2p7/hidden;"
+        data-vis-attrs22="oid_hourd3p0/hidden;oid_hourd3p1/hidden;oid_hourd3p2/hidden;oid_hourd3p3/hidden;oid_hourd3p4/hidden;oid_hourd3p5/hidden;oid_hourd3p6/hidden;oid_hourd3p7/hidden;"
+        data-vis-attrs23="oid_hourd4p0/hidden;oid_hourd4p1/hidden;oid_hourd4p2/hidden;oid_hourd4p3/hidden;oid_hourd4p4/hidden;oid_hourd4p5/hidden;oid_hourd4p6/hidden;oid_hourd4p7/hidden;"
 
-        data-vis-attrs24="oid_date/id;"
+        data-vis-attrs24="oid_date/hidden;"
+
 >
 
     <div class="vis-widget <%== this.data.attr('class') %>" style="overflow: hidden; width: 210px; height: 170px;" id="<%= this.data.attr('wid') %>">

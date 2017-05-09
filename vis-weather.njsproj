@@ -59,7 +59,7 @@
     <Content Include=".gitignore" />
     <Content Include=".travis.yml" />
     <Content Include="admin\index.html" />
-    <Content Include="admin\vis-weather.PNG" />
+    <Content Include="admin\vis-weather.png" />
     <Content Include="img\widgets.png" />
     <Content Include="LICENSE" />
     <Content Include="io-package.json" />

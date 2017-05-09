@@ -20,7 +20,7 @@
     },
     "platform": "Javascript/Node.js",
     "loglevel":                 "info",
-    "icon": "vis-weather.PNG",
+    "icon": "vis-weather.png",
     "enabled": true,
     "mode": "once",
     "extIcon": "https://raw.githubusercontent.com/rg-engineering/ioBroker.vis-weather/master/admin/vis-weather.png",
