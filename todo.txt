@@ -1,0 +1,3 @@
+﻿Daten von WU nutzen (umschaltbar)
+Y-Achse nur, wenn auch daten angezeigt werden
+Icon bei Instanz-Anzeige
