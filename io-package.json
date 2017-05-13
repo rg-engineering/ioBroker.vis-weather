@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "vis-weather",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "news": {
+      "0.0.3": {
+        "en": "support weatherunderground and DasWetter.com",
+        "de": "Unterstützung von weatherunderground and DasWetter.com"
+      },
       "0.0.2": {
         "en": "bug fixes",
         "de": "Fehlerbehebung"
@@ -30,7 +34,7 @@
       "René G. <info@rg-engineering.eu>"
     ],
     "localLink": "%web_protocol%://%ip%:%web_port%/vis/edit.html",
-    "license": "GPL-3.0",
+    "license": "MIT",
     "dependencies": [ "vis" ],
     "onlyWWW": true,
     "noConfig": true,

@@ -1,7 +1,7 @@
 {
   "name": "iobroker.vis-weather",
   "description": "weather Widgets for ioBroker.vis",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": {
     "name": "René G.",
     "email": "info@rg-engineering.eu"
@@ -19,7 +19,7 @@
   },
   "licenses": [
     {
-      "type": "GPL-3.0",
+      "type": "MIT",
       "url": "https://github.com/ioBroker/ioBroker.vis-weather/blob/master/LICENSE"
     }
   ],
@@ -48,5 +48,5 @@
   "scripts": {
     "test": "node node_modules/mocha/bin/mocha"
   },
-  "license": "GPL-3.0"
+  "license": "MIT"
 }
