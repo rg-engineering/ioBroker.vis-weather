@@ -1,4 +1,4 @@
-![Logo](admin/vis-weather.PNG)
+![Logo](admin/vis-weather.png)
 ioBroker.vis-weather
 ============
 
@@ -14,6 +14,9 @@ You need DasWetter-Adpater or weatherunderground-Adapter running as well...
     In DasWetter.com you need 5 days-forecast enabled.
 
 ## Changelog
+
+#### 0.0.4
+* (René) bug fixes
 
 #### 0.0.3
 * (René) support of DasWetter.com and weatherunderground

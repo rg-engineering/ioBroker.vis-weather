@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "vis-weather",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "news": {
+      "0.0.4": {
+        "en": "bug fixes",
+        "de": "Fehlerbehebung"
+      },
       "0.0.3": {
         "en": "support weatherunderground and DasWetter.com",
         "de": "Unterstützung von weatherunderground and DasWetter.com"
@@ -29,7 +33,7 @@
     "mode": "once",
     "extIcon": "https://raw.githubusercontent.com/rg-engineering/ioBroker.vis-weather/master/admin/vis-weather.png",
     "keywords": [ "weather", "vis", "GUI", "graphical", "scada" ],
-    "readme": "https://github.com/ioBroker/ioBroker.vis-weather/blob/master/README.md",
+    "readme": "https://github.com/rg-engineering/ioBroker.vis-weather/blob/master/README.md",
     "authors": [
       "René G. <info@rg-engineering.eu>"
     ],

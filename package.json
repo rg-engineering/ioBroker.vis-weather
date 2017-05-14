@@ -1,7 +1,7 @@
 {
   "name": "iobroker.vis-weather",
   "description": "weather Widgets for ioBroker.vis",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": {
     "name": "René G.",
     "email": "info@rg-engineering.eu"
@@ -12,15 +12,15 @@
       "email": "@@email@@"
     }
   ],
-  "homepage": "https://github.com/ioBroker/ioBroker.vis-weather",
+  "homepage": "https://github.com/rg-engineering/ioBroker.vis-weather",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ioBroker/ioBroker.vis-weather"
+    "url": "https://github.com/rg-engineering/ioBroker.vis-weather"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/ioBroker/ioBroker.vis-weather/blob/master/LICENSE"
+      "url": "https://github.com/rg-engineering/ioBroker.vis-weather/blob/master/LICENSE"
     }
   ],
   "keywords": [
@@ -42,7 +42,7 @@
     "chai": "^3.4.1"
   },
   "bugs": {
-    "url": "https://github.com/ioBroker/ioBroker.vis-weather/issues"
+    "url": "https://github.com/rg-engineering/ioBroker.vis-weather/issues"
   },
   "main": "widgets/weather.html",
   "scripts": {
