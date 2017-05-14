@@ -2,6 +2,11 @@
 ioBroker.vis-weather
 ============
 
+[![NPM version](https://img.shields.io/npm/v/iobroker.vis-weather.svg)](https://www.npmjs.com/package/iobroker.vis-weather)
+[![Downloads](https://img.shields.io/npm/dm/iobroker.vis-weather.svg)](https://www.npmjs.com/package/iobroker.vis-weather)
+
+[![NPM](https://nodei.co/npm/iobroker.vis-weather.png?downloads=true)](https://nodei.co/npm/iobroker.weatherunderground/)
+
 This vis-widget shows weather forecast data from DasWetter.com or weatherunderground
 You need DasWetter-Adpater or weatherunderground-Adapter running as well...
 
