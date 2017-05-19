@@ -231,6 +231,7 @@
                             var oid = data['oid_hour' + d];
                             var sTime = vis.states[oid + '.val'];
                             console.log("got " + sTime + " from " + oid);
+                            var bDateNotValid = false;
 
                             var oDate;
                             if (data.instance.indexOf("daswetter") > -1) {
@@ -251,57 +252,62 @@
                             }
                             else if (data.instance.indexOf("weatherunderground") > -1) {
                             
-                                //04:00 PM CEST am 14. Mai 2017
-                                var oTemp = sTime.split(' ');
-                                var oTemp1=oTemp[0].split(':');
-
-                                hour = parseInt(oTemp1[0], 10);
-                                if (oTemp[1] == "PM" && hour!=12) {
-                                    hour += 12; //PM
+                                if (typeof sTime == 'undefined') {
+                                    bDateNotValid = true;
                                 }
-                                if (oTemp[1] == "AM" && hour == 12) {
-                                    hour = 0; //AM
+                                else {
+                                    //04:00 PM CEST am 14. Mai 2017
+                                    var oTemp = sTime.split(' ');
+                                    var oTemp1 = oTemp[0].split(':');
+
+                                    hour = parseInt(oTemp1[0], 10);
+                                    if (oTemp[1] == "PM" && hour != 12) {
+                                        hour += 12; //PM
+                                    }
+                                    if (oTemp[1] == "AM" && hour == 12) {
+                                        hour = 0; //AM
+                                    }
+                                    //12 PM ist 12 Mittags
+                                    //12 AM ist 0 Nachts
+
+                                    minute = parseInt(oTemp1[1], 10);
+                                    year = parseInt(oTemp[6], 10);
+
+                                    switch (oTemp[5]) {
+                                        case "Januar": month = 0; break;
+                                        case "Februar": month = 1; break;
+                                        case "März": month = 2; break;
+                                        case "April": month = 3; break;
+                                        case "Mai": month = 4; break;
+                                        case "Juni": month = 5; break;
+                                        case "Juli": month = 6; break;
+                                        case "August": month = 7; break;
+                                        case "September": month = 8; break;
+                                        case "Oktober": month = 9; break;
+                                        case "November": month = 10; break;
+                                        case "Dezember": month = 11; break;
+                                    }
+
+
+                                    day = parseInt(oTemp[4], 10);
+
+                                    console.log("--------" + day + "." + month + 1 + "." + year + " " + hour + ":" + minute);
+
+                                    oDate = new Date(year, month, day, hour, minute, 0, 0);
                                 }
-                                //12 PM ist 12 Mittags
-                                //12 AM ist 0 Nachts
-
-                                minute = parseInt(oTemp1[1], 10);
-                                year = parseInt(oTemp[6], 10);
-
-                                switch (oTemp[5])
-                                {
-                                    case "Januar": month = 0; break;
-                                    case "Februar": month = 1; break;
-                                    case "März": month = 2; break;
-                                    case "April": month = 3; break;
-                                    case "Mai": month = 4; break;
-                                    case "Juni": month = 5; break;
-                                    case "Juli": month = 6; break;
-                                    case "August": month = 7; break;
-                                    case "September": month = 8; break;
-                                    case "Oktober": month = 9; break;
-                                    case "November": month = 10; break;
-                                    case "Dezember": month = 11; break;
-                                }
-
-                                
-                                day = parseInt(oTemp[4], 10);
-
-                                console.log("--------" + day + "." + month+1 + "." + year + " " + hour + ":" + minute);
-
-                                oDate = new Date(year, month, day, hour, minute, 0, 0);
                             }
                             
                             console.log(date+" "+ val_rain + " " + val_temp + " " + val_cloud);
 
-                            //need time in UTC
-                            var date = oDate.getTime();
-                            //console.log(date);
-                            values_rain.push([date, val_rain]);
-                            values_temp.push([date, val_temp]);
-                            values_cloud.push([date, val_cloud]);
-                            values_chancerain.push([date, val_chancerain]);
-                            
+                            if (!bDateNotValid) {
+                                //need time in UTC
+                                var date = oDate.getTime();
+                                //console.log(date);
+                                values_rain.push([date, val_rain]);
+                                values_temp.push([date, val_temp]);
+                                values_cloud.push([date, val_cloud]);
+                                values_chancerain.push([date, val_chancerain]);
+                            }
                         }
                     
                 
@@ -645,7 +651,8 @@
                         vis.widgets[widgetID].data['oid_rain' + h] = oid_rain;
                     }
                     else {
-                        $div.html("<br> <center> <font color='red'> wron version of weatherunderground? >1.0.5? </font> </center></br>");
+                        console.log ("wrong version of weatherunderground? >1.0.5?");
+                        $div.html("<br> <center> <font color='red'> wrong version of weatherunderground? >1.0.5? </font> </center></br>");
                     }
                     if (vis.objects[oid_chancerain]) {
                         console.log(oid_chancerain + " updated ");
