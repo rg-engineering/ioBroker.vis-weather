@@ -1,1 +1,3 @@
-﻿
+﻿Icon-Größe auf index.html
+
+check, ob 36 Werte in WU vorhanden sind, ansonsten Info auf update

@@ -644,6 +644,9 @@
                         vis.views[view].widgets[widgetID].data['oid_rain' + h] = oid_rain;
                         vis.widgets[widgetID].data['oid_rain' + h] = oid_rain;
                     }
+                    else {
+                        $div.html("<br> <center> <font color='red'> wron version of weatherunderground? >1.0.5? </font> </center></br>");
+                    }
                     if (vis.objects[oid_chancerain]) {
                         console.log(oid_chancerain + " updated ");
                         vis.views[view].widgets[widgetID].data['oid_chancerain' + h] = oid_chancerain;
