@@ -1,3 +1,1 @@
-﻿Icon-Größe auf index.html
-
-check, ob 36 Werte in WU vorhanden sind, ansonsten Info auf update
+﻿Y-achse für Wolken schaltet sich erst aus, wenn man die checkbox einmal anklickt...

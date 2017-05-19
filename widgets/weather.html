@@ -627,7 +627,7 @@
             }
             else if (newId.indexOf("weatherunderground") > -1) {
 
- 
+
                 for (var h = 0; h < 36; h++) {
 
                     //get rain oid weatherunderground.0.forecast.0h.qpf
@@ -651,8 +651,7 @@
                         vis.widgets[widgetID].data['oid_rain' + h] = oid_rain;
                     }
                     else {
-                        console.log ("wrong version of weatherunderground? >1.0.5?");
-                        $div.html("<br> <center> <font color='red'> wrong version of weatherunderground? >1.0.5? </font> </center></br>");
+                        console.log("wrong version of weatherunderground? >1.0.5?");
                     }
                     if (vis.objects[oid_chancerain]) {
                         console.log(oid_chancerain + " updated ");
@@ -675,12 +674,10 @@
                         vis.widgets[widgetID].data['oid_hour' + h] = oid_hour;
                     }
                 }
-
- 
             }
             else {
                 //ja was nun? do nothing
-                console.log( " no weather instance set ");
+                console.log(" no weather instance set ");
             }
 
           return changed;
