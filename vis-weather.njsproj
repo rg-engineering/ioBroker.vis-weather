@@ -18,44 +18,8 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
     <Compile Include="test\testPackageFiles.js" />
-    <Compile Include="widgets\weather\lib\js\flot\excanvas.js" />
-    <Compile Include="widgets\weather\lib\js\flot\excanvas.min.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.colorhelpers.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.colorhelpers.min.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.canvas.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.canvas.min.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.categories.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.categories.min.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.crosshair.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.crosshair.min.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.errorbars.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.errorbars.min.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.fillbetween.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.fillbetween.min.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.image.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.image.min.js" />
     <Compile Include="widgets\weather\lib\js\flot\jquery.flot.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.min.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.navigate.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.navigate.min.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.pie.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.pie.min.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.resize.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.resize.min.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.selection.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.selection.min.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.stack.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.stack.min.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.symbol.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.symbol.min.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.threshold.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.threshold.min.js" />
     <Compile Include="widgets\weather\lib\js\flot\jquery.flot.time.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.flot.time.min.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.js" />
-    <Compile Include="widgets\weather\lib\js\flot\jquery.min.js" />
-    <Compile Include="widgets\weather\lib\js\jquery.sparkline.js" />
-    <Compile Include="widgets\weather\lib\js\jquery.sparkline.min.js" />
     <Content Include=".gitignore" />
     <Content Include=".travis.yml" />
     <Content Include="admin\index.html" />
@@ -71,7 +35,8 @@
     <Compile Include="tasks\jshint.js" />
     <Content Include="readme.txt" />
     <Content Include="widgets\weather.html" />
-    <Content Include="widgets\weather\css\style.css" />
+    <Content Include="widgets\weather\css\flot.css" />
+    <Content Include="widgets\weather\css\style123.css" />
     <Content Include="widgets\weather\img\Prev_tplWeather.png" />
     <Content Include="widgets\weather\img\test.png" />
   </ItemGroup>

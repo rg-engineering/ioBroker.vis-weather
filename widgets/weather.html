@@ -87,6 +87,7 @@
             "rainvisible": { "en": "rain visible", "de": "Regen anzeigen", "ru": "???" },
             "rainchartType": { "en": "rain chart type", "de": "Regencharttype", "ru": "???" },
             "raincolor": { "en": "rain color", "de": "Farbe für Regen", "ru": "???" },
+            "chancerainvisible": { "en": "chance rain visible", "de": "Regenwahrscheinlichkeit", "ru": "???" },
             "tempvisible": { "en": "temperature visible", "de": "Temperatur anzeigen", "ru": "???" },
             "tempchartType": { "en": "temperature chart type", "de": "Temperaturcharttype", "ru": "???" },
             "tempcolor": { "en": "temperature color ", "de": "Farbe für Temperatur", "ru": "???" },
@@ -155,6 +156,7 @@
 
 
                         var values_rain = [];
+                        var values_chancerain = [];
                         var maxY_rain = -99;
                         var minY_rain = 100;
                         var values_temp = [];
@@ -184,6 +186,7 @@
                             month--;
 
                             max_cnt = 40;
+                            data.chancerainvisible = false; // value not available!!
 
                         }
                         else if (data.instance.indexOf("weatherunderground") > -1) {
@@ -200,6 +203,10 @@
                             console.log("got " + val_rain + " from " + oid_rain);
                             if (val_rain > maxY_rain) maxY_rain = val_rain;
                             if (val_rain < minY_rain) minY_rain = val_rain;
+                            var oid_chancerain = data['oid_chancerain' + d];
+                            var val_chancerain = parseInt(vis.states[oid_chancerain + '.val']);
+                            console.log("got " + val_chancerain + " from " + oid_chancerain);
+
 
                             //get temperature values
                             var oid_temp = data['oid_temp' + d];
@@ -293,7 +300,7 @@
                             values_rain.push([date, val_rain]);
                             values_temp.push([date, val_temp]);
                             values_cloud.push([date, val_cloud]);
-
+                            values_chancerain.push([date, val_chancerain]);
                             
                         }
                     
@@ -317,6 +324,20 @@
 
                     $.plot($div,
                         [{
+                            data: data.chancerainvisible ? values_chancerain : {},
+                            color: data.chanceraincolor,
+                            xaxis: 1,
+                            yaxis: 4,
+                            lines: { show: false },
+                            bars:
+                                {
+                                    show:  true,
+                                    barWidth: barwidth
+                                }
+                        },
+
+
+                            {
                             data: data.tempvisible ? values_temp : {},
                             color: data.tempcolor,
                             xaxis: 1,
@@ -352,6 +373,7 @@
                                     barWidth: barwidth
                                 }
                         }
+                        
                         ],
                         {
 
@@ -385,9 +407,17 @@
                                   max: maxY_cloud,
                                   min: minY_cloud,
                                   alignTicksWithAxis: 3,
-                                  position: 'right',
+                                  position: 'left',
                                   ticks: 3
-                              }],
+                              },
+                                {
+                                    show: false,  //much better visible without
+                                    max: 100,
+                                    min: 0,
+                                    alignTicksWithAxis: 4,
+                                    position: 'left',
+                                    ticks: 3
+                                }],
                             grid:
                               {
                                   //Farben einstellen fehlt noch
@@ -444,6 +474,17 @@
                         console.log("no wether instance set in init " + _data.instance);
                     }
 
+                    if (_data.instance.indexOf("weatherunderground") > -1) {
+                        for (var i = 0; i < max_cnt; i++) {
+
+                            //get chance rain oid
+                            var oid_chancerain = _data['oid_chancerain' + i];
+                            console.log("bind " + oid_chancerain);
+                            vis.states.bind(oid_chancerain + '.val', function () {
+                                vis.binds.weather.tempandrain.update($div);
+                            });
+                        }
+                    }
                     //gilt für beide nur mit unterschiedlichen grenzen
                     for (var i = 0; i < max_cnt; i++) {
 
@@ -454,6 +495,7 @@
                             vis.binds.weather.tempandrain.update($div);
                         });
 
+     
                         //get temperature oid
                         var oid_temp = _data['oid_temp' + i];
                         console.log("bind " + oid_temp);
@@ -507,6 +549,9 @@
                 vis.views[view].widgets[widgetID].data['oid_rain' + h] = "";
                 vis.widgets[widgetID].data['oid_rain' + h] = "";
 
+                vis.views[view].widgets[widgetID].data['oid_chancerain' + h] = "";
+                vis.widgets[widgetID].data['oid_chancerain' + h] = "";
+
                 vis.views[view].widgets[widgetID].data['oid_temp' + h] = "";
                 vis.widgets[widgetID].data['oid_temp' + h] = "";
 
@@ -536,6 +581,9 @@
                     for (var p = 0; p < 8; p++) {
                         //get rain oid
                         var oid_rain = newId+".NextDaysDetailed." + d + "d." + p + "h.Rain";
+
+                        //not available here
+                        //var oid_chancerain = newId + ???
 
                         //get temperature oid
                         var oid_temp = newId+ ".NextDaysDetailed." + d + "d." + p + "h.Temperature";
@@ -579,6 +627,9 @@
                     //get rain oid weatherunderground.0.forecast.0h.qpf
                     var oid_rain = newId + ".forecast." + h + "h.qpf";
 
+                    //get rain oid weatherunderground.0.forecast.0h.qpf
+                    var oid_chancerain = newId + ".forecast." + h + "h.pop";
+
                     //get temperature oid weatherunderground.0.forecast.0h.temp
                     var oid_temp = newId + ".forecast." + h + "h.temp";
 
@@ -592,6 +643,11 @@
                         console.log(oid_rain + " updated ");
                         vis.views[view].widgets[widgetID].data['oid_rain' + h] = oid_rain;
                         vis.widgets[widgetID].data['oid_rain' + h] = oid_rain;
+                    }
+                    if (vis.objects[oid_chancerain]) {
+                        console.log(oid_chancerain + " updated ");
+                        vis.views[view].widgets[widgetID].data['oid_chancerain' + h] = oid_chancerain;
+                        vis.widgets[widgetID].data['oid_chancerain' + h] = oid_rain;
                     }
                     if (vis.objects[oid_temp]) {
                         console.log(oid_temp + " updated ");
@@ -638,11 +694,11 @@
         data-vis-prev='<img src="widgets/weather/img/Prev_tplWeather.png"></img>'
         data-vis-attrs="instance/weather/onInstanceChanged;"
         data-vis-attrs0="time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;withxaxix[true]/checkbox;"
-        data-vis-attrs1="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;raincolor[#1d0ed8]/color;"
+        data-vis-attrs1="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;raincolor[#1d0ed8]/color;chancerainvisible[true]/checkbox;chanceraincolor[#877efc]/color;"
         data-vis-attrs2="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;tempcolor[#00b3ac]/color;"
         data-vis-attrs3="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar; sunorcloud[sun]/select,sun,clouds;cloudcolor[#f6ef3c]/color;"
         
-        data-vis-attrs4="group.oids;oid_rain(1-40)/id;oid_temp(1-40)/id;oid_cloud(1-40)/id;oid_hour(1-40)/id;"
+        data-vis-attrs4="group.oids;oid_rain(1-40)/id;oid_chancerain(1-40)/id;oid_temp(1-40)/id;oid_cloud(1-40)/id;oid_hour(1-40)/id;"
         data-vis-attrs5="oid_date/id;"
 
 >
