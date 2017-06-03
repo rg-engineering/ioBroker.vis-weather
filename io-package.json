@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "vis-weather",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "news": {
+      "0.0.5": {
+        "en": "number of labels on X axis adjustable",
+        "de": "Anzahl der Labels auf der X-Achse einstellbar"
+      },
       "0.0.4": {
         "en": "bug fixes",
         "de": "Fehlerbehebung"

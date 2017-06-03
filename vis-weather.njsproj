@@ -24,7 +24,6 @@
     <Content Include=".travis.yml" />
     <Content Include="admin\index.html" />
     <Content Include="admin\vis-weather.png" />
-    <Content Include="img\widgets.png" />
     <Content Include="LICENSE" />
     <Content Include="io-package.json" />
     <Content Include="package.json" />
@@ -36,13 +35,12 @@
     <Content Include="readme.txt" />
     <Content Include="widgets\weather.html" />
     <Content Include="widgets\weather\css\flot.css" />
-    <Content Include="widgets\weather\css\style123.css" />
     <Content Include="widgets\weather\img\Prev_tplWeather.png" />
     <Content Include="widgets\weather\img\test.png" />
+    <Content Include="widgets\weather\img\vis-weather.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="admin" />
-    <Folder Include="img\" />
     <Folder Include="tasks" />
     <Folder Include="test\" />
     <Folder Include="widgets\" />
