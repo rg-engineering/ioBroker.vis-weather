@@ -33,6 +33,7 @@
     <Compile Include="tasks\jscsRules.js" />
     <Compile Include="tasks\jshint.js" />
     <Content Include="readme.txt" />
+    <Content Include="todo.txt" />
     <Content Include="widgets\weather.html" />
     <Content Include="widgets\weather\css\flot.css" />
     <Content Include="widgets\weather\img\Prev_tplWeather.png" />
