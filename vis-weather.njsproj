@@ -17,6 +17,8 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
+    <Compile Include="test\lib\setup.js" />
+    <Compile Include="test\testAdapter.js" />
     <Compile Include="test\testPackageFiles.js" />
     <Compile Include="widgets\weather\lib\js\flot\jquery.flot.js" />
     <Compile Include="widgets\weather\lib\js\flot\jquery.flot.time.js" />
@@ -24,6 +26,7 @@
     <Content Include=".travis.yml" />
     <Content Include="admin\index.html" />
     <Content Include="admin\vis-weather.png" />
+    <Content Include="appveyor.yml" />
     <Content Include="LICENSE" />
     <Content Include="io-package.json" />
     <Content Include="package.json" />
@@ -44,6 +47,10 @@
     <Folder Include="admin" />
     <Folder Include="tasks" />
     <Folder Include="test\" />
+    <Folder Include="test\lib\" />
+    <Folder Include="typings\" />
+    <Folder Include="typings\globals\" />
+    <Folder Include="typings\globals\node\" />
     <Folder Include="widgets\" />
     <Folder Include="widgets\weather\" />
     <Folder Include="widgets\weather\css\" />
@@ -51,6 +58,10 @@
     <Folder Include="widgets\weather\lib\" />
     <Folder Include="widgets\weather\lib\js\" />
     <Folder Include="widgets\weather\lib\js\flot\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="typings\globals\node\index.d.ts" />
+    <TypeScriptCompile Include="typings\index.d.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <!--Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them.-->
