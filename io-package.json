@@ -26,12 +26,11 @@
     },
     "title": "ioBroker Visualisation - weather Widgets",
     "desc": {
-      "en": "weather Widgets for ioBroker.vis",
-      "de": "weather Widgets für ioBroker.vis",
-      "ru": "weather Widgets для ioBroker.vis"
+      "en": "general flot-based weather Widgets to be used with daswetter or weatherundergrund adapter",
+      "de": "allgemeines flot-basierendes Wetter-widget für daswetter und weatherundergrund"
     },
     "platform": "Javascript/Node.js",
-    "loglevel":                 "info",
+    "loglevel": "info",
     "icon": "vis-weather.png",
     "enabled": true,
     "mode": "once",
