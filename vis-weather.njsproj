@@ -38,7 +38,6 @@
     <Content Include="readme.txt" />
     <Content Include="todo.txt" />
     <Content Include="widgets\weather.html" />
-    <Content Include="widgets\weather\css\flot.css" />
     <Content Include="widgets\weather\img\Prev_tplWeather.png" />
     <Content Include="widgets\weather\img\test.png" />
     <Content Include="widgets\weather\img\vis-weather.png" />

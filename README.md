@@ -15,6 +15,9 @@ You need DasWetter-Adpater or weatherunderground-Adapter running as well...
 
 ## Changelog
 
+#### 0.0.6
+* (René) css removed
+
 #### 0.0.5
 * (René) number of labels on X axis adjustable
 
