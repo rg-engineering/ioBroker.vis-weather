@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "vis-weather",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "news": {
+      "0.0.7": {
+        "en": "bug fix for android app >1.0.6",
+        "de": "Fehlerbehebung für android app"
+      },
       "0.0.6": {
         "en": "css removed, housekeeping",
         "de": "css entfernt und aufgeräumt"

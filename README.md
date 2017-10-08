@@ -15,6 +15,10 @@ You need DasWetter-Adpater or weatherunderground-Adapter running as well...
 
 ## Changelog
 
+#### 0.0.7
+* (René) bug fix for android app > 1.0.6
+* (René) color adjustment for ticks and tick lable (from sbfspot)
+
 #### 0.0.6
 * (René) css removed
 

@@ -99,6 +99,8 @@
             "sun": { "en": "sun", "de": "Sonne", "ru": "???" },
             "clouds": { "en": "clouds", "de": "Wolken", "ru": "???" },
             "ticksonxaxix": { "en": "ticks on X axis", "de": "Anzahl Labels / X Achse", "ru": "???" },
+            "axislabelcolor": { "en": "color axis label", "de": "Farbe Achsbeschriftung", "ru": "???" },
+            "tickscolor": { "en": "color axis ticks", "de": "Farbe Achsmarke", "ru": "???" },
         });
     }
 
@@ -179,9 +181,9 @@
                             //get first date only for DasWetter.com
                             var oid_first_date = data.oid_date;
                             var sDate = vis.states[oid_first_date + '.val'];
-                            var day = parseInt(sDate.substring(6, 8));
-                            var month = parseInt(sDate.substring(4, 6));
-                            var year = parseInt(sDate.substring(0, 4));
+                            var day = parseInt(sDate.substring(6, 8),10);
+                            var month = parseInt(sDate.substring(4, 6),10);
+                            var year = parseInt(sDate.substring(0, 4),10);
                             console.log("got " + sDate + " from " + oid_first_date);
                             month--;
 
@@ -204,20 +206,20 @@
                             if (val_rain > maxY_rain) maxY_rain = val_rain;
                             if (val_rain < minY_rain) minY_rain = val_rain;
                             var oid_chancerain = data['oid_chancerain' + d];
-                            var val_chancerain = parseInt(vis.states[oid_chancerain + '.val']);
+                            var val_chancerain = parseInt(vis.states[oid_chancerain + '.val'],10);
                             console.log("got " + val_chancerain + " from " + oid_chancerain);
 
 
                             //get temperature values
                             var oid_temp = data['oid_temp' + d];
-                            var val_temp = parseInt(vis.states[oid_temp + '.val']);
+                            var val_temp = parseInt(vis.states[oid_temp + '.val'],10);
                             console.log("got " + val_temp + " from " + oid_temp);
                             if (val_temp > maxY_temp) maxY_temp = val_temp;
                             if (val_temp < minY_temp) minY_temp = val_temp;
 
                             //get cloud values
                             var oid_cloud = data['oid_cloud' + d];
-                            var val = parseInt(vis.states[oid_cloud + '.val']);
+                            var val = parseInt(vis.states[oid_cloud + '.val'],10);
                             console.log("got " + val + " from " + oid_cloud);
                             var val_cloud = 0;
                             if (data.sunorcloud == "sun") { //invert value 
@@ -236,8 +238,8 @@
                             var oDate;
                             if (data.instance.indexOf("daswetter") > -1) {
 
-                                hour = parseInt(sTime.substring(0, 2));
-                                minute = parseInt(sTime.substring(3, 5));
+                                hour = parseInt(sTime.substring(0, 2),10);
+                                minute = parseInt(sTime.substring(3, 5),10);
 
                                 oDate = new Date(year, month, day, hour, minute, 0, 0);
 
@@ -388,9 +390,13 @@
                                   show: data.withxaxix,
                                   mode: "time",
                                   tickLength: 5,
-                                  ticks: data.ticksonxaxix > 0 ? parseInt(data.ticksonxaxix) : 5,
+                                  ticks: data.ticksonxaxix > 0 ? parseInt(data.ticksonxaxix,10) : 5,
                                   timeformat: "%d.%b %H:%M",
-                                  monthNames: ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"]
+                                  monthNames: ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
+                                  color: data.tickscolor,
+                                  font: {
+                                      color: data.axislabelcolor
+                                  }
                               }],
                             yaxes: //yaxis mit [] geht nicht...!!!                              
                                 [{ //das folgende geht
@@ -399,7 +405,11 @@
                                     min: minY_temp,
                                     alignTicksWithAxis: 1,
                                     position: 'left',
-                                    ticks: 3
+                                    ticks: 3,
+                                    color: data.tickscolor,
+                                    font: {
+                                        color: data.axislabelcolor
+                                    }
                                 },
                               {
                                   show: data.rainvisible,
@@ -407,7 +417,11 @@
                                   min: minY_rain,
                                   alignTicksWithAxis: 2,
                                   position: 'right',
-                                  ticks: 3
+                                  ticks: 3,
+                                  color: data.tickscolor,
+                                  font: {
+                                      color: data.axislabelcolor
+                                  }
                               },
                               {
                                   show: data.cloudsvisible,
@@ -415,7 +429,11 @@
                                   min: minY_cloud,
                                   alignTicksWithAxis: 3,
                                   position: 'left',
-                                  ticks: 3
+                                  ticks: 3,
+                                  color: data.tickscolor,
+                                  font: {
+                                      color: data.axislabelcolor
+                                  }
                               },
                                 {
                                     show: false,  //much better visible without
@@ -423,7 +441,11 @@
                                     min: 0,
                                     alignTicksWithAxis: 4,
                                     position: 'left',
-                                    ticks: 3
+                                    ticks: 3,
+                                    color: data.tickscolor,
+                                    font: {
+                                        color: data.axislabelcolor
+                                    }
                                 }],
                             grid:
                               {
@@ -701,7 +723,7 @@
         data-vis-update-style="true"
         data-vis-prev='<img src="widgets/weather/img/Prev_tplWeather.png"></img>'
         data-vis-attrs="instance/weather/onInstanceChanged;"
-        data-vis-attrs0="time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;withxaxix[true]/checkbox;ticksonxaxix[5];"
+        data-vis-attrs0="time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;withxaxix[true]/checkbox;ticksonxaxix[5];axislabelcolor[#ffffff]/color;tickscolor[#ffffff]/color;"
         data-vis-attrs1="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;raincolor[#1d0ed8]/color;chancerainvisible[true]/checkbox;chanceraincolor[#877efc]/color;"
         data-vis-attrs2="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;tempcolor[#00b3ac]/color;"
         data-vis-attrs3="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar; sunorcloud[sun]/select,sun,clouds;cloudcolor[#f6ef3c]/color;"
