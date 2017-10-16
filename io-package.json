@@ -1,64 +1,72 @@
 {
-  "common": {
-    "name": "vis-weather",
-    "version": "0.0.7",
-    "news": {
-      "0.0.7": {
-        "en": "bug fix for android app >1.0.6",
-        "de": "Fehlerbehebung für android app"
-      },
-      "0.0.6": {
-        "en": "css removed, housekeeping",
-        "de": "css entfernt und aufgeräumt"
-      },
-      "0.0.5": {
-        "en": "number of labels on X axis adjustable",
-        "de": "Anzahl der Labels auf der X-Achse einstellbar"
-      },
-      "0.0.4": {
-        "en": "bug fixes",
-        "de": "Fehlerbehebung"
-      },
-      "0.0.3": {
-        "en": "support weatherunderground and DasWetter.com",
-        "de": "Unterstützung von weatherunderground and DasWetter.com"
-      },
-      "0.0.2": {
-        "en": "bug fixes",
-        "de": "Fehlerbehebung"
-      },
-      "0.0.1": {
-        "en": "initial release",
-        "de": "erste Version"
-      }
+    "common": {
+        "name": "vis-weather",
+        "version": "0.0.7",
+        "news": {
+            "0.0.7": {
+                "en": "bug fix for android app >1.0.6",
+                "de": "Fehlerbehebung für android app"
+            },
+            "0.0.6": {
+                "en": "css removed, housekeeping",
+                "de": "css entfernt und aufgeräumt"
+            },
+            "0.0.5": {
+                "en": "number of labels on X axis adjustable",
+                "de": "Anzahl der Labels auf der X-Achse einstellbar"
+            },
+            "0.0.4": {
+                "en": "bug fixes",
+                "de": "Fehlerbehebung"
+            },
+            "0.0.3": {
+                "en": "support weatherunderground and DasWetter.com",
+                "de": "Unterstützung von weatherunderground and DasWetter.com"
+            },
+            "0.0.2": {
+                "en": "bug fixes",
+                "de": "Fehlerbehebung"
+            },
+            "0.0.1": {
+                "en": "initial release",
+                "de": "erste Version"
+            }
+        },
+        "title": "ioBroker Visualisation - weather Widgets",
+        "desc": {
+            "en": "general flot-based weather Widgets to be used with daswetter or weatherundergrund adapter",
+            "de": "allgemeines flot-basierendes Wetter-widget für daswetter und weatherundergrund"
+        },
+        "platform": "Javascript/Node.js",
+        "loglevel": "info",
+        "icon": "vis-weather.png",
+        "enabled": true,
+        "mode": "once",
+        "extIcon": "https://raw.githubusercontent.com/rg-engineering/ioBroker.vis-weather/master/admin/vis-weather.png",
+        "keywords": [
+            "weather",
+            "vis",
+            "GUI",
+            "graphical",
+            "scada"
+        ],
+        "readme": "https://github.com/rg-engineering/ioBroker.vis-weather/blob/master/README.md",
+        "authors": [
+            "René G. <info@rg-engineering.eu>"
+        ],
+        "localLink": "%web_protocol%://%ip%:%web_port%/vis/edit.html",
+        "license": "MIT",
+        "dependencies": [
+            "vis"
+        ],
+        "onlyWWW": true,
+        "noConfig": true,
+        "singleton": true,
+        "type": "visualization-widgets",
+        "restartAdapters": [
+            "vis"
+        ]
     },
-    "title": "ioBroker Visualisation - weather Widgets",
-    "desc": {
-      "en": "general flot-based weather Widgets to be used with daswetter or weatherundergrund adapter",
-      "de": "allgemeines flot-basierendes Wetter-widget für daswetter und weatherundergrund"
-    },
-    "platform": "Javascript/Node.js",
-    "loglevel": "info",
-    "icon": "vis-weather.png",
-    "enabled": true,
-    "mode": "once",
-    "extIcon": "https://raw.githubusercontent.com/rg-engineering/ioBroker.vis-weather/master/admin/vis-weather.png",
-    "keywords": [ "weather", "vis", "GUI", "graphical", "scada" ],
-    "readme": "https://github.com/rg-engineering/ioBroker.vis-weather/blob/master/README.md",
-    "authors": [
-      "René G. <info@rg-engineering.eu>"
-    ],
-    "localLink": "%web_protocol%://%ip%:%web_port%/vis/edit.html",
-    "license": "MIT",
-    "dependencies": [ "vis" ],
-    "onlyWWW": true,
-    "noConfig": true,
-    "singleton": true,
-    "type": "vis",
-    "restartAdapters": [ "vis" ]
-  },
-  "native": {
-  },
-  "instanceObjects": [
-  ]
+    "native": {},
+    "instanceObjects": []
 }
