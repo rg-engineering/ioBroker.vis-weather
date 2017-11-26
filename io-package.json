@@ -1,37 +1,41 @@
 {
     "common": {
         "name": "vis-weather",
-        "version": "0.0.7",
-        "news": {
-            "0.0.7": {
-                "en": "bug fix for android app >1.0.6",
-                "de": "Fehlerbehebung für android app"
-            },
-            "0.0.6": {
-                "en": "css removed, housekeeping",
-                "de": "css entfernt und aufgeräumt"
-            },
-            "0.0.5": {
-                "en": "number of labels on X axis adjustable",
-                "de": "Anzahl der Labels auf der X-Achse einstellbar"
-            },
-            "0.0.4": {
-                "en": "bug fixes",
-                "de": "Fehlerbehebung"
-            },
-            "0.0.3": {
-                "en": "support weatherunderground and DasWetter.com",
-                "de": "Unterstützung von weatherunderground and DasWetter.com"
-            },
-            "0.0.2": {
-                "en": "bug fixes",
-                "de": "Fehlerbehebung"
-            },
-            "0.0.1": {
-                "en": "initial release",
-                "de": "erste Version"
-            }
+        "version": "1.0.0",
+      "news": {
+        "1.0.0": {
+          "en": "first stable version",
+          "de": "erste stabile version"
         },
+        "0.0.7": {
+          "en": "bug fix for android app >1.0.6",
+          "de": "Fehlerbehebung für android app"
+        },
+        "0.0.6": {
+          "en": "css removed, housekeeping",
+          "de": "css entfernt und aufgeräumt"
+        },
+        "0.0.5": {
+          "en": "number of labels on X axis adjustable",
+          "de": "Anzahl der Labels auf der X-Achse einstellbar"
+        },
+        "0.0.4": {
+          "en": "bug fixes",
+          "de": "Fehlerbehebung"
+        },
+        "0.0.3": {
+          "en": "support weatherunderground and DasWetter.com",
+          "de": "Unterstützung von weatherunderground and DasWetter.com"
+        },
+        "0.0.2": {
+          "en": "bug fixes",
+          "de": "Fehlerbehebung"
+        },
+        "0.0.1": {
+          "en": "initial release",
+          "de": "erste Version"
+        }
+      },
         "title": "ioBroker Visualisation - weather Widgets",
         "desc": {
             "en": "general flot-based weather Widgets to be used with daswetter or weatherundergrund adapter",
