@@ -101,6 +101,13 @@
             "ticksonxaxix": { "en": "ticks on X axis", "de": "Anzahl Labels / X Achse", "ru": "???" },
             "axislabelcolor": { "en": "color axis label", "de": "Farbe Achsbeschriftung", "ru": "???" },
             "tickscolor": { "en": "color axis ticks", "de": "Farbe Achsmarke", "ru": "???" },
+			"maxY_temp" : { "en": "max value of temp y-axix (0 for auto)", "de": "Max Wert Y-Achse Temperatur (0 für auto)", "ru": "???" },
+			"minY_temp" : { "en": "min value of temp y-axix (0 for auto)", "de": "Min Wert Y-Achse Temperatur (0 für auto)", "ru": "???" },
+			"yTempVisible" : { "en": "show y axis for temperature", "de": "Zeige Temp. Y-Achse", "ru": "???" },
+			"yRainVisible" : { "en": "show y axis for rain", "de": "Zeige Regen Y-Achse", "ru": "???" },
+			"yCloudVisible" : { "en": "show y axis for cloud", "de": "Zeige Wolken. Y-Achse", "ru": "???" },
+			"yChanceRainVisible" : { "en": "show y axis for chance rain", "de": "Zeige Regenwahrscheinlichkeit Y-Achse", "ru": "???" },
+			"xDateFormat" : { "en": "format for date/time on x-axis", "de": "Datum-/Zeitformat X-Achse", "ru": "???" },
         });
     }
 
@@ -329,7 +336,6 @@
                     }
                     console.log("barwidth = " + barwidth); // in ms
 
-
                     $.plot($div,
                         [{
                             data: data.chancerainvisible ? values_chancerain : {},
@@ -391,28 +397,34 @@
                                   mode: "time",
                                   tickLength: 5,
                                   ticks: data.ticksonxaxix > 0 ? parseInt(data.ticksonxaxix,10) : 5,
-                                  timeformat: "%d.%b %H:%M",
+                                  timeformat: data.xDateFormat,
                                   monthNames: ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
                                   color: data.tickscolor,
                                   font: {
                                       color: data.axislabelcolor
                                   }
                               }],
-                            yaxes: //yaxis mit [] geht nicht...!!!                              
-                                [{ //das folgende geht
-                                    show: data.tempvisible,
-                                    max: maxY_temp,
-                                    min: minY_temp,
+							
+                            yaxes: //yaxis mit [] geht nicht...!!!
+									//das folgende geht							
+                                
+								//temp y-axis
+								[{ 
+                                    show: data.yTempVisible,
+									max: data.maxY_temp != 0 ? parseInt(data.maxY_temp,10) : maxY_temp, //0 = default = auto determine max/min value
+                                    min: data.minY_temp != 0 ? parseInt(data.minY_temp,10) : minY_temp,
                                     alignTicksWithAxis: 1,
                                     position: 'left',
                                     ticks: 3,
                                     color: data.tickscolor,
                                     font: {
-                                        color: data.axislabelcolor
+                                        color: data.tempcolor,
                                     }
                                 },
-                              {
-                                  show: data.rainvisible,
+                              
+							  //rain visible y-axis
+							  {
+                                  show: data.yRainVisible,
                                   max: maxY_rain,
                                   min: minY_rain,
                                   alignTicksWithAxis: 2,
@@ -420,11 +432,13 @@
                                   ticks: 3,
                                   color: data.tickscolor,
                                   font: {
-                                      color: data.axislabelcolor
+                                      color: data.raincolor,
                                   }
                               },
+							  
+							  //sun-cloud y-axis
                               {
-                                  show: data.cloudsvisible,
+                                  show: data.yCloudVisible,
                                   max: maxY_cloud,
                                   min: minY_cloud,
                                   alignTicksWithAxis: 3,
@@ -432,19 +446,21 @@
                                   ticks: 3,
                                   color: data.tickscolor,
                                   font: {
-                                      color: data.axislabelcolor
+                                      color: data.cloudcolor
                                   }
                               },
+							  
+							  //chance rain y-axis  
                                 {
-                                    show: false,  //much better visible without
+                                    show: data.yChanceRainVisible,  //much better visible without
                                     max: 100,
                                     min: 0,
                                     alignTicksWithAxis: 4,
-                                    position: 'left',
+                                    position: 'right',
                                     ticks: 3,
                                     color: data.tickscolor,
                                     font: {
-                                        color: data.axislabelcolor
+                                        color: data.raincolor
                                     }
                                 }],
                             grid:
@@ -723,13 +739,13 @@
         data-vis-update-style="true"
         data-vis-prev='<img src="widgets/weather/img/Prev_tplWeather.png"></img>'
         data-vis-attrs="instance/weather/onInstanceChanged;"
-        data-vis-attrs0="time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;withxaxix[true]/checkbox;ticksonxaxix[5];axislabelcolor[#ffffff]/color;tickscolor[#ffffff]/color;"
-        data-vis-attrs1="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;raincolor[#1d0ed8]/color;chancerainvisible[true]/checkbox;chanceraincolor[#877efc]/color;"
-        data-vis-attrs2="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;tempcolor[#00b3ac]/color;"
-        data-vis-attrs3="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar; sunorcloud[sun]/select,sun,clouds;cloudcolor[#f6ef3c]/color;"
+        data-vis-attrs0="time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;withxaxix[true]/checkbox;ticksonxaxix[5];axislabelcolor[#ffffff]/color;tickscolor[#ffffff]/color;xDateFormat[%d.%b %H:%M];"
+        data-vis-attrs1="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;raincolor[#1d0ed8]/color;chancerainvisible[true]/checkbox;chanceraincolor[#877efc]/color;yRainVisible[true]/checkbox;"
+        data-vis-attrs2="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;tempcolor[#00b3ac]/color;maxY_temp[0];minY_temp[0];yTempVisible[true]/checkbox;"
+        data-vis-attrs3="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar; sunorcloud[sun]/select,sun,clouds;cloudcolor[#f6ef3c]/color;yCloudVisible[true]/checkbox;"
         
         data-vis-attrs4="group.oids;oid_rain(1-40)/id;oid_chancerain(1-40)/id;oid_temp(1-40)/id;oid_cloud(1-40)/id;oid_hour(1-40)/id;"
-        data-vis-attrs5="oid_date/id;"
+        data-vis-attrs5="oid_date/id;yChanceRainVisible[true]/checkbox;"
 
 >
 
