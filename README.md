@@ -13,6 +13,13 @@ You need DasWetter-Adpater or weatherunderground-Adapter running as well...
     In weatherunderground you need forecast of next 24 hours enabled.
     In DasWetter.com you need 5 days-forecast enabled.
 
+
+## Notes / wiki
+### Define Forecast hours
+By default the forecast diagram shows 40 hours (DasWetter) or 36 hours (wunderground). If you prefer to only show e.g. 10 hours forecast, simply delete the unnecessary OIDs under oid_groups in vis-edit. 
+
+
+
 ## Changelog
 
 #### 1.0.0
