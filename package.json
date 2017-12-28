@@ -1,9 +1,9 @@
 {
   "name": "iobroker.vis-weather",
   "description": "weather Widgets for ioBroker.vis",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": {
-    "name": "Ren� G.",
+    "name": "René G.",
     "email": "info@rg-engineering.eu"
   },
 
