@@ -521,7 +521,7 @@
                     if (_data.instance.indexOf("daswetter") > -1) {
 
                         var oid_first_date = _data.oid_date;
-                        console.log("bind " + oid_first_date);
+                        //console.log("bind " + oid_first_date);
                         vis.states.bind(oid_first_date + '.val', function () {
                             vis.binds.weather.tempandrain.update($div);
                         });
@@ -541,7 +541,7 @@
 
                             //get chance rain oid
                             var oid_chancerain = _data['oid_chancerain' + i];
-                            console.log("bind " + oid_chancerain);
+                            //console.log("bind " + oid_chancerain);
                             vis.states.bind(oid_chancerain + '.val', function () {
                                 vis.binds.weather.tempandrain.update($div);
                             });
@@ -552,7 +552,7 @@
 
                         //get rain oid
                         var oid_rain = _data['oid_rain' + i];
-                        console.log("bind " + oid_rain);
+                        //console.log("bind " + oid_rain);
                         vis.states.bind(oid_rain + '.val', function () {
                             vis.binds.weather.tempandrain.update($div);
                         });
@@ -560,21 +560,21 @@
      
                         //get temperature oid
                         var oid_temp = _data['oid_temp' + i];
-                        console.log("bind " + oid_temp);
+                        //console.log("bind " + oid_temp);
                         vis.states.bind(oid_temp + '.val', function () {
                             vis.binds.weather.tempandrain.update($div);
                         });
 
                         //get cloud oid
                         var oid_cloud = _data['oid_cloud' + i];
-                        console.log("bind " + oid_cloud);
+                        //console.log("bind " + oid_cloud);
                         vis.states.bind(oid_cloud + '.val', function () {
                             vis.binds.weather.tempandrain.update($div);
                         });
 
                         // get time oid
                         var oid_hour = _data['oid_hour' + i];
-                        console.log("bind " + oid_hour);
+                        //console.log("bind " + oid_hour);
                         vis.states.bind(oid_hour + '.val', function () {
                             vis.binds.weather.tempandrain.update($div);
                         });
@@ -632,7 +632,7 @@
                 var oid_first_date = newId + ".NextDaysDetailed.0d.date";
 
                 if (vis.objects[oid_first_date]) {
-                    console.log(oid_first_date + " updated ");
+                    //console.log(oid_first_date + " updated ");
                     vis.views[view].widgets[widgetID].data.oid_date = oid_first_date;
                     vis.widgets[widgetID].data.oid_date = oid_first_date;
                 }
@@ -658,22 +658,22 @@
 
 
                         if (vis.objects[oid_rain]) {
-                            console.log(oid_rain + " updated ");
+                            //console.log(oid_rain + " updated ");
                             vis.views[view].widgets[widgetID].data['oid_rain' + cnt] = oid_rain;
                             vis.widgets[widgetID].data['oid_rain' + cnt] = oid_rain;
                         }
                         if (vis.objects[oid_temp]) {
-                            console.log(oid_temp + " updated ");
+                            //console.log(oid_temp + " updated ");
                             vis.views[view].widgets[widgetID].data['oid_temp' + cnt] = oid_temp;
                             vis.widgets[widgetID].data['oid_temp' + cnt] = oid_temp;
                         }
                         if (vis.objects[oid_cloud]) {
-                            console.log(oid_cloud + " updated ");
+                            //console.log(oid_cloud + " updated ");
                             vis.views[view].widgets[widgetID].data['oid_cloud' + cnt] = oid_cloud;
                             vis.widgets[widgetID].data['oid_cloud' + cnt] = oid_cloud;
                         }
                         if (vis.objects[oid_hour]) {
-                            console.log(oid_hour + " updated ");
+                            //console.log(oid_hour + " updated ");
                             vis.views[view].widgets[widgetID].data['oid_hour' + cnt] = oid_hour;
                             vis.widgets[widgetID].data['oid_hour' + cnt] = oid_hour;
                         }
@@ -702,30 +702,30 @@
                     var oid_hour = newId + ".forecast." + h + "h.time";
 
                     if (vis.objects[oid_rain]) {
-                        console.log(oid_rain + " updated ");
+                        //console.log(oid_rain + " updated ");
                         vis.views[view].widgets[widgetID].data['oid_rain' + h] = oid_rain;
                         vis.widgets[widgetID].data['oid_rain' + h] = oid_rain;
                     }
                     else {
-                        console.log("wrong version of weatherunderground? >1.0.5?");
+                        //console.log("wrong version of weatherunderground? >1.0.5?");
                     }
                     if (vis.objects[oid_chancerain]) {
-                        console.log(oid_chancerain + " updated ");
+                        //console.log(oid_chancerain + " updated ");
                         vis.views[view].widgets[widgetID].data['oid_chancerain' + h] = oid_chancerain;
                         vis.widgets[widgetID].data['oid_chancerain' + h] = oid_rain;
                     }
                     if (vis.objects[oid_temp]) {
-                        console.log(oid_temp + " updated ");
+                        //console.log(oid_temp + " updated ");
                         vis.views[view].widgets[widgetID].data['oid_temp' + h] = oid_temp;
                         vis.widgets[widgetID].data['oid_temp' + h] = oid_temp;
                     }
                     if (vis.objects[oid_cloud]) {
-                        console.log(oid_cloud + " updated ");
+                        //console.log(oid_cloud + " updated ");
                         vis.views[view].widgets[widgetID].data['oid_cloud' + h] = oid_cloud;
                         vis.widgets[widgetID].data['oid_cloud' + h] = oid_cloud;
                     }
                     if (vis.objects[oid_hour]) {
-                        console.log(oid_hour + " updated ");
+                        //console.log(oid_hour + " updated ");
                         vis.views[view].widgets[widgetID].data['oid_hour' + h] = oid_hour;
                         vis.widgets[widgetID].data['oid_hour' + h] = oid_hour;
                     }
