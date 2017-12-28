@@ -23,7 +23,14 @@ By default the forecast diagram shows 40 hours (DasWetter) or 36 hours (wundergr
 ## Changelog
 
 #### 1.1.0
-* (René) 
+* (René) logs auskommentiert
+* (René) Berechnung min / max für Temperaturgraph optimiert
+* (René) Y-Achse automatisch ausblenden, wenn Graph nicht dargestellt wird
+* (gitbock) konfigurierbare Y-Achsen je Graph (anzeigen/nicht anzeigen)
+* (gitbock) Y-Achsen Beschriftung in der Farbe des Graphen
+* (gitbock) Max.-/Min Werte für Temperatur Y-Achse
+* (gitbock) konfigurierbares Datumsformat für X-Achse
+
 
 #### 1.0.0
 * (René) first stable version
