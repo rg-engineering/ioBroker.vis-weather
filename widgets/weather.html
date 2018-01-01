@@ -23,6 +23,7 @@
         $.extend(true, systemDictionary, {
             //            "format_date": { "en": "Dateformat", "de": "Datumformat", "ru": "?????? ????" },
             //            "format_date_tooltip": {"en": "Dateformat","de": "Datumformat","ru": "?????? ????"},
+            "weather": { "en": "weather", "de": "Wetter", "ru": "weather" },
             "1 second": { "en": "1 second", "de": "1 Sekunde", "ru": "1 ???????" },
             "10 seconds": { "en": "10 seconds", "de": "10 Sekunden", "ru": "10 ??????" },
             "30 seconds": { "en": "30 seconds", "de": "30 Sekunden", "ru": "30 ??????" },
@@ -38,63 +39,23 @@
             "12 hours": { "en": "12 hours", "de": "12 Stunden", "ru": "12 ?????" },
             "24 hours": { "en": "24 hours", "de": "24 Stunden", "ru": "24 ????" },
             "instance": { "en": "weather instance", "de": "Wetterinstanz", "ru": "?????????" },
-            //            "group_advanced": { "en": "Advanced", "de": "Erweitert", "ru": "?????????????" },
-            //            "max_lines": { "en": "Max. event amount", "de": "max. Ereignisse", "ru": "????. ???-?? ???????" },
-            //            "time_interval_min": { "en": "Not older than", "de": "Nicht älter als", "ru": "?? ????? ???" },
-            //            "timeAsInterval": { "en": "Time as interval", "de": "Zeit als Intervall", "ru": "?????, ??? ????????" },
-            //            "inverseOrder": { "en": "Inverse order", "de": "Reihenfolge invertieren", "ru": "???????? ???????" },
-            //            "group_columns": { "en": "Columns", "de": "Spalten", "ru": "???????" },
-            //            "table_attr": { "en": "Table CSS style", "de": "CSS Stil - Tabelle", "ru": "??????? - CSS ?????" },
-            //            "header_attr": { "en": "Header CSS style", "de": "CSS Stil - Beschriftung", "ru": "????????? - CSS ?????" },
-            //            "time_name": { "en": "Time - name", "de": "Zeit - Name", "ru": "????? - ???" },
-            //            "time_hide": { "en": "Time - hide", "de": "Zeit - nicht zeigen", "ru": "????? - ??????" },
-            //            "time_width": { "en": "Time - width", "de": "Zeit - Breite", "ru": "????? - ??????" },
-            //            "time_attr": { "en": "Time - CSS style", "de": "Zeit - CSS Stil", "ru": "????? - CSS ?????" },
-            //            "time_unit": { "en": "Time - suffix", "de": "Zeit - Suffix", "ru": "????? - ???????" },
-            //            "val_name": { "en": "Val- name", "de": "Wert - Name", "ru": "???????? - ???" },
-            //            "val_hide": { "en": "Val - hide", "de": "Wert - nicht zeigen", "ru": "???????? - ??????" },
-            //            "val_width": { "en": "Val - width", "de": "Wert - Breite", "ru": "???????? - ??????" },
-            //            "val_attr": { "en": "Val - CSS style", "de": "Wert - CSS Stil", "ru": "???????? - CSS ?????" },
-            //            "val_unit": { "en": "Val - units", "de": "Wert - Einheit", "ru": "???????? - ???????" },
-            //            "from_name": { "en": "From - name", "de": "Von - Name", "ru": "?? - ???" },
-            //            "from_hide": { "en": "From - hide", "de": "Von - nicht zeigen", "ru": "?? - ??????" },
-            //            "from_width": { "en": "From - width", "de": "Von - Breite", "ru": "?? - ??????" },
-            //            "from_attr": { "en": "From - CSS style", "de": "Von - CSS Stil", "ru": "?? - CSS ?????" },
-            //            "from_unit": { "en": "From - suffix", "de": "Von - Suffix", "ru": "?? - ???????" },
-            //            "average": { "en": "average", "de": "Mittelwert", "ru": "???????" },
-            //            "total": { "en": "total", "de": "Summe", "ru": "?????" },
-            //            "line": { "en": "line", "de": "Linie", "ru": "?????" },
-            //            "aggregate": { "en": "Aggregation", "de": "Aggregation", "ru": "??????????????" },
-            //            "chartType": { "en": "chartType", "de": "Charttyp", "ru": "??? ???????" },
-            //            "points": { "en": "points", "de": "Anzahl Werten", "ru": "???-?? ?????" },
-            "time_interval": { "en": "Time interval", "de": "Zeitintervall", "ru": "????????" },
-            //            "group_line": { "en": "Line", "de": "Linie-Chart", "ru": "?????" },
-            //            "lineColor": { "en": "Line color", "de": "Linie-Farbe", "ru": "???? ?????" },
-            //            "fillColor": { "en": "Fill color", "de": "Füllfarbe", "ru": "???? ???????" },
-            //            "lineWidth": { "en": "Line width", "de": "Liniendicke", "ru": "?????? ?????" },
-            //            "group_bar": { "en": "Bar", "de": "Bar-Chart", "ru": "???????" },
-            //            "barColor": { "en": "Positive color", "de": "Positivfarbe", "ru": "???? ????????????? ????????" },
-            //            "negBarColor": { "en": "negative color", "de": "Negativfarbe", "ru": "???? ????????????? ????????" },
-            //            "zeroColor": { "en": "Zero color", "de": "0-Farbe", "ru": "???? ??????? ????????" },
-            //            "barSpacing": { "en": "Bar's spacing", "de": "Abstand", "ru": "?????????? ????? ?????????" },
-            //            "disableTooltips": { "en": "Hide tooltips", "de": "Kein Tooltips", "ru": "??? ?????????" },
-            //            "history": { "en": "history", "de": "history", "ru": "history" }
-            "group_rain": { "en": "rain", "de": "Regen", "ru": "???" },
+             "time_interval": { "en": "Time interval", "de": "Zeitintervall", "ru": "????????" },
+             "group_rain": { "en": "rain", "de": "Regen", "ru": "???" },
             "group_temperature": { "en": "temperature", "de": "Temperatur", "ru": "???" },
             "group_clouds": { "en": "clouds", "de": "Wolken", "ru": "???" },
-            "withxaxix": { "en": "show X axis", "de": "Zeige X-Achse", "ru": "???" },
-            "rainvisible": { "en": "rain visible", "de": "Regen anzeigen", "ru": "???" },
+            "withxaxix": { "en": "show X axis", "de": "zeige X-Achse", "ru": "???" },
+            "rainvisible": { "en": "rain visible", "de": "Regenmenge sichtbar", "ru": "???" },
             "rainchartType": { "en": "rain chart type", "de": "Regencharttype", "ru": "???" },
-            "raincolor": { "en": "rain color", "de": "Farbe für Regen", "ru": "???" },
-            "chancerainvisible": { "en": "chance rain visible", "de": "Regenwahrscheinlichkeit", "ru": "???" },
-            "tempvisible": { "en": "temperature visible", "de": "Temperatur anzeigen", "ru": "???" },
-            "tempchartType": { "en": "temperature chart type", "de": "Temperaturcharttype", "ru": "???" },
-            "tempcolor": { "en": "temperature color ", "de": "Farbe für Temperatur", "ru": "???" },
+            "raincolor": { "en": "rain color", "de": "Farbe für Regenmenge", "ru": "???" },
+            "chancerainvisible": { "en": "chance rain visible", "de": "Regenwahrscheinlichkeit sichtbar", "ru": "???" },
+            "tempvisible": { "en": "visible", "de": "sichtbar", "ru": "???" },
+            "tempchartType": { "en": "chart type", "de": "Charttype", "ru": "???" },
+            "tempcolor": { "en": "color ", "de": "Farbe", "ru": "???" },
             "chanceraincolor": { "en": "chance rain color ", "de": "Farbe für Regenwahrscheinlichkeit", "ru": "???" },
-            "cloudsvisible": { "en": "clouds/sun visible", "de": "Wolken/Sonne anzeigen", "ru": "???" },
-            "cloudschartType": { "en": "cloud/sun chart type", "de": "Wolken/Sonnecharttype", "ru": "???" },
+            "cloudsvisible": { "en": "visible", "de": "sichtbar", "ru": "???" },
+            "cloudschartType": { "en": "chart type", "de": "Charttype", "ru": "???" },
             "sunorcloud": { "en": "show sun or clouds", "de": "Anzeige Sonne oder Wolken", "ru": "???" },
-            "cloudcolor": { "en": "cloud/sun color", "de": "Farbe für Wolken/Sonne", "ru": "???" },
+            "cloudcolor": { "en": "color", "de": "Farbe", "ru": "???" },
             "line": { "en": "line", "de": "Linie", "ru": "???" },
             "bar": { "en": "bar", "de": "Balken", "ru": "???" },
             "sun": { "en": "sun", "de": "Sonne", "ru": "???" },
@@ -102,18 +63,31 @@
             "ticksonxaxix": { "en": "ticks on X axis", "de": "Anzahl Labels / X Achse", "ru": "???" },
             "axislabelcolor": { "en": "color axis label", "de": "Farbe Achsbeschriftung", "ru": "???" },
             "tickscolor": { "en": "color axis ticks", "de": "Farbe Achsmarke", "ru": "???" },
-			"maxY_temp" : { "en": "max value of temp y-axix (0 for auto)", "de": "Max Wert Y-Achse Temperatur (0 für auto)", "ru": "???" },
-			"minY_temp" : { "en": "min value of temp y-axix (0 for auto)", "de": "Min Wert Y-Achse Temperatur (0 für auto)", "ru": "???" },
-			"yTempVisible" : { "en": "show y axis for temperature", "de": "Zeige Temp. Y-Achse", "ru": "???" },
-			"yRainVisible" : { "en": "show y axis for rain", "de": "Zeige Regen Y-Achse", "ru": "???" },
-			"yCloudVisible" : { "en": "show y axis for cloud", "de": "Zeige Wolken Y-Achse", "ru": "???" },
-			"yChanceRainVisible" : { "en": "show y axis for chance rain", "de": "Zeige Regenwahrscheinlichkeit Y-Achse", "ru": "???" },
+			"maxY_temp" : { "en": "max value y-axix (0 for auto)", "de": "Max Wert Y-Achse (0 für auto)", "ru": "???" },
+			"minY_temp" : { "en": "min value y-axix (0 for auto)", "de": "Min Wert Y-Achse (0 für auto)", "ru": "???" },
+			"yTempVisible" : { "en": "show y axis", "de": "zeige Y-Achse", "ru": "???" },
+			"yRainVisible" : { "en": "show y axis for rain", "de": "zeige Y-Achse (Regenmenge)", "ru": "???" },
+			"yCloudVisible" : { "en": "show y axis", "de": "zeige Y-Achse", "ru": "???" },
+			"yChanceRainVisible" : { "en": "show y axis for chance rain", "de": "zeige Y-Achse (Regenwahrscheinlichkeit)", "ru": "???" },
 			"xDateFormat" : { "en": "format for date/time on x-axis", "de": "Datum-/Zeitformat X-Achse", "ru": "???" },
         });
     }
 
+    function degreeFormatter(v, axis) {
+        return v.toFixed(axis.tickDecimals) + "°C";
+    }
+
+    function percentageFormatter(v, axis) {
+        return v.toFixed(axis.tickDecimals) + "%";
+    }
+
+    function mmFormatter(v, axis) {
+        return v.toFixed(axis.tickDecimals) + "mm";
+    }
+    
+    
     vis.binds.weather = {
-        version: "0.0.5",
+        version: "1.1.1",
         showVersion: function () {
             if (vis.binds.weather.version) {
                 console.log('Version vis-weather: ' + vis.binds.weather.version);
@@ -436,7 +410,8 @@
                                     color: data.tickscolor,
                                     font: {
                                         color: data.tempcolor,
-                                    }
+                                    },
+                                    tickFormatter: degreeFormatter
                                 },
                               
 							  //rain visible y-axis #2
@@ -450,7 +425,8 @@
                                   color: data.tickscolor,
                                   font: {
                                       color: data.raincolor,
-                                  }
+                                  },
+                                  tickFormatter: mmFormatter
                               },
 							  
 							  //sun-cloud y-axis
@@ -464,7 +440,8 @@
                                   color: data.tickscolor,
                                   font: {
                                       color: data.cloudcolor
-                                  }
+                                  },
+                                  tickFormatter: percentageFormatter
                               },
 							  
 							  //chance rain y-axis  #4
@@ -478,7 +455,8 @@
                                     color: data.tickscolor,
                                     font: {
                                         color: data.raincolor
-                                    }
+                                    },
+                                    tickFormatter: percentageFormatter
                                 }],
                             grid:
                               {
@@ -592,7 +570,7 @@
                 }
                 vis.binds.weather.tempandrain.update($div);
                 if (vis.editMode) {
-                    console.log("flot version " + $.plot.version);
+                    console.log("flot version " + $.plot.version + " for weather");
                 }
             }
         },

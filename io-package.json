@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "vis-weather",
-        "version": "1.1.0",
+        "version": "1.1.1",
       "news": {
+        "1.1.1": {
+          "en": "y axis with unit",
+          "de": "Y-Achse mit Einheit"
+        },
         "1.1.0": {
           "en": "y axis visibility configurable",
           "de": "konfigurierbare Y-Achsen je Graph (anzeigen/nicht anzeigen)"
