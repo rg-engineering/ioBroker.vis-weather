@@ -22,6 +22,9 @@ By default the forecast diagram shows 40 hours (DasWetter) or 36 hours (wundergr
 
 ## Changelog
 
+#### 1.1.2
+* (René) Support of admin3
+
 #### 1.1.1
 * (René) Y axis with units
 

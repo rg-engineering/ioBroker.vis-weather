@@ -1,84 +1,113 @@
 {
-    "common": {
-        "name": "vis-weather",
-        "version": "1.1.1",
-      "news": {
-        "1.1.1": {
-          "en": "y axis with unit",
-          "de": "Y-Achse mit Einheit"
-        },
-        "1.1.0": {
-          "en": "y axis visibility configurable",
-          "de": "konfigurierbare Y-Achsen je Graph (anzeigen/nicht anzeigen)"
-        },
-        "1.0.0": {
-          "en": "first stable version",
-          "de": "erste stabile version"
-        },
-        "0.0.7": {
-          "en": "bug fix for android app >1.0.6",
-          "de": "Fehlerbehebung für android app"
-        },
-        "0.0.6": {
-          "en": "css removed, housekeeping",
-          "de": "css entfernt und aufgeräumt"
-        },
-        "0.0.5": {
-          "en": "number of labels on X axis adjustable",
-          "de": "Anzahl der Labels auf der X-Achse einstellbar"
-        },
-        "0.0.4": {
-          "en": "bug fixes",
-          "de": "Fehlerbehebung"
-        },
-        "0.0.3": {
-          "en": "support weatherunderground and DasWetter.com",
-          "de": "Unterstützung von weatherunderground and DasWetter.com"
-        },
-        "0.0.2": {
-          "en": "bug fixes",
-          "de": "Fehlerbehebung"
-        },
-        "0.0.1": {
-          "en": "initial release",
-          "de": "erste Version"
-        }
+  "common": {
+    "name": "vis-weather",
+    "version": "1.1.2",
+    "news": {
+      "1.1.2": {
+        "en": "Support of admin3",
+        "de": "Unterstützung von admin3",
+        "ru": "Поддержка admin3",
+        "pt": "Suporte de admin3",
+        "nl": "Ondersteuning van admin3",
+        "fr": "Support de admin3",
+        "it": "Supporto di admin3",
+        "es": "Soporte de admin3"
       },
-        "title": "ioBroker Visualisation - weather Widgets",
-        "desc": {
-            "en": "general flot-based weather Widgets to be used with daswetter or weatherundergrund adapter",
-            "de": "allgemeines flot-basierendes Wetter-widget für daswetter und weatherundergrund"
-        },
-        "platform": "Javascript/Node.js",
-        "loglevel": "info",
-        "icon": "vis-weather.png",
-        "enabled": true,
-        "mode": "once",
-        "extIcon": "https://raw.githubusercontent.com/rg-engineering/ioBroker.vis-weather/master/admin/vis-weather.png",
-        "keywords": [
-            "weather",
-            "vis",
-            "GUI",
-            "graphical",
-            "scada"
-        ],
-        "readme": "https://github.com/rg-engineering/ioBroker.vis-weather/blob/master/README.md",
-        "authors": [
-            "René G. <info@rg-engineering.eu>"
-        ],
-        "localLink": "%web_protocol%://%ip%:%web_port%/vis/edit.html",
-        "license": "MIT",
-        "dependencies": [
-            "vis"
-        ],
-        "onlyWWW": true,
-        "noConfig": true,
-        "singleton": true,
-        "type": "visualization-widgets",
-        "restartAdapters": [
-            "vis"
-        ]
+      "1.1.1": {
+        "en": "y axis with unit",
+        "de": "Y-Achse mit Einheit"
+      },
+      "1.1.0": {
+        "en": "y axis visibility configurable",
+        "de": "konfigurierbare Y-Achsen je Graph (anzeigen/nicht anzeigen)"
+      },
+      "1.0.0": {
+        "en": "first stable version",
+        "de": "erste stabile version"
+      },
+      "0.0.7": {
+        "en": "bug fix for android app >1.0.6",
+        "de": "Fehlerbehebung für android app"
+      },
+      "0.0.6": {
+        "en": "css removed, housekeeping",
+        "de": "css entfernt und aufgeräumt"
+      },
+      "0.0.5": {
+        "en": "number of labels on X axis adjustable",
+        "de": "Anzahl der Labels auf der X-Achse einstellbar"
+      },
+      "0.0.4": {
+        "en": "bug fixes",
+        "de": "Fehlerbehebung"
+      },
+      "0.0.3": {
+        "en": "support weatherunderground and DasWetter.com",
+        "de": "Unterstützung von weatherunderground and DasWetter.com"
+      },
+      "0.0.2": {
+        "en": "bug fixes",
+        "de": "Fehlerbehebung"
+      },
+      "0.0.1": {
+        "en": "initial release",
+        "de": "erste Version"
+      }
     },
+    "title": "ioBroker Visualisation - weather Widgets",
+    "titleLang": {
+      "en": "ioBroker Visualisation - weather Widgets",
+      "de": "ioBroker Visualisierung - Wetter Widgets",
+      "ru": "Визуализация ioBroker - погода Виджеты",
+      "pt": "io Visualização do navegador - Widgets meteorológicos",
+      "nl": "io Broker Visualisatie - weer Widgets",
+      "fr": "ioBroker Visualisation - météo Widgets",
+      "it": "Visualizzazione ioBroker: widget meteo",
+      "es": "ioBroker Visualización - Widgets del tiempo",
+      "pl": "Wizualizacja ioBroker - Widgety pogodowe"
+    },
+    "desc": {
+      "en": "general flot-based weather Widgets to be used with daswetter or weatherundergrund adapter",
+      "de": "allgemeine Flot-basierte Wetter-Widgets, die mit demwetter- oder weatherundergrund-Adapter verwendet werden können",
+      "ru": "Визиты, которые будут использоваться с адаптером daswetter или weatherundergrund",
+      "pt": "Widgets de clima baseados em flotadores em geral para serem usados ​​com o adaptador daswetter ou weatherundergrund",
+      "nl": "algemene op flot gebaseerde weer Widgets voor gebruik met daswetter of weatherundergrund adapter",
+      "fr": "Widgets météo à base de flot à utiliser avec un adaptateur daswetter ou weatherundergrund",
+      "it": "widget meteo generali basati su flottazione da utilizzare con l'adattatore daswetter o weatherundergrund",
+      "es": "Widgets meteorológicos generales basados ​​en flotante para ser utilizados con el adaptador daswetter o weatherundergrund",
+      "pl": "Ogólne widgety pogodowe oparte na flotach, które mają być używane z adapterem daswetter lub weatherundergrund"
+    },
+    "platform": "Javascript/Node.js",
+    "loglevel": "info",
+    "icon": "vis-weather.png",
+    "enabled": true,
+    "mode": "once",
+    "extIcon": "https://raw.githubusercontent.com/rg-engineering/ioBroker.vis-weather/master/admin/vis-weather.png",
+    "keywords": [
+      "weather",
+      "vis",
+      "GUI",
+      "graphical",
+      "scada"
+    ],
+    "readme": "https://github.com/rg-engineering/ioBroker.vis-weather/blob/master/README.md",
+    "authors": [
+      "René G. <info@rg-engineering.eu>"
+    ],
+    "localLink": "%web_protocol%://%ip%:%web_port%/vis/edit.html",
+    "license": "MIT",
+    "dependencies": [
+      "vis"
+    ],
+    "materialize": true,
+    "onlyWWW": true,
+    "noConfig": true,
+    "singleton": true,
+    "type": "visualization-widgets",
+    "restartAdapters": [
+      "vis"
+    ]
+  },
     "native": {},
     "instanceObjects": []
 }
