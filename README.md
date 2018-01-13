@@ -23,46 +23,46 @@ By default the forecast diagram shows 40 hours (DasWetter) or 36 hours (wundergr
 ## Changelog
 
 #### 1.1.2
-* (René) Support of admin3
+* (RenÃ©) Support of admin3
 
 #### 1.1.1
-* (René) Y axis with units
+* (RenÃ© Y axis with units
 
 #### 1.1.0
-* (René) logs auskommentiert
-* (René) Berechnung min / max für Temperaturgraph optimiert
-* (René) Y-Achse automatisch ausblenden, wenn Graph nicht dargestellt wird
+* (RenÃ©) logs auskommentiert
+* (RenÃ©) Berechnung min / max fÃ¼r Temperaturgraph optimiert
+* (RenÃ©) Y-Achse automatisch ausblenden, wenn Graph nicht dargestellt wird
 * (gitbock) konfigurierbare Y-Achsen je Graph (anzeigen/nicht anzeigen)
 * (gitbock) Y-Achsen Beschriftung in der Farbe des Graphen
-* (gitbock) Max.-/Min Werte für Temperatur Y-Achse
-* (gitbock) konfigurierbares Datumsformat für X-Achse
+* (gitbock) Max.-/Min Werte fÃ¼r Temperatur Y-Achse
+* (gitbock) konfigurierbares Datumsformat fÃ¼r X-Achse
 
 
 #### 1.0.0
-* (René) first stable version
+* (RenÃ©) first stable version
 
 #### 0.0.7
-* (René) bug fix for android app > 1.0.6
-* (René) color adjustment for ticks and tick lable (from sbfspot)
+* (RenÃ©) bug fix for android app > 1.0.6
+* (RenÃ©) color adjustment for ticks and tick lable (from sbfspot)
 
 #### 0.0.6
-* (René) css removed
+* (RenÃ©) css removed
 
 #### 0.0.5
-* (René) number of labels on X axis adjustable
+* (RenÃ©) number of labels on X axis adjustable
 
 #### 0.0.4
-* (René) bug fixes
+* (RenÃ©) bug fixes
 
 #### 0.0.3
-* (René) support of DasWetter.com and weatherunderground
+* (RenÃ©) support of DasWetter.com and weatherunderground
 
 #### 0.0.2
-* (René) bug fixes
+* (RenÃ©) bug fixes
 	- in live mode nothing was shown
 
 #### 0.0.1
-* (René) initial release
+* (RenÃ©) initial release
 
 ## License
 Copyright (C) <2017>  <info@rg-engineering.eu>
