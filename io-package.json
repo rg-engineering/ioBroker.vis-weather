@@ -1,8 +1,19 @@
 {
   "common": {
     "name": "vis-weather",
-    "version": "1.1.2",
+    "version": "1.2.0",
     "news": {
+      "1.2.0": {
+        "en": "background color and border",
+        "de": "Hintergrundfarbe und Grenze",
+        "ru": "цвет фона и границы",
+        "pt": "cor de fundo e borda",
+        "nl": "achtergrondkleur en rand",
+        "fr": "couleur de fond et bordure",
+        "it": "colore di sfondo e bordo",
+        "es": "color de fondo y borde",
+        "pl": "kolor tła i obramowanie"
+      },
       "1.1.2": {
         "en": "Support of admin3",
         "de": "Unterstützung von admin3",
@@ -108,6 +119,6 @@
       "vis"
     ]
   },
-    "native": {},
-    "instanceObjects": []
+  "native": {},
+  "instanceObjects": []
 }

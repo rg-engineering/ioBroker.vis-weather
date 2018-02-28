@@ -69,7 +69,9 @@
 			"yRainVisible" : { "en": "show y axis for rain", "de": "zeige Y-Achse (Regenmenge)", "ru": "???" },
 			"yCloudVisible" : { "en": "show y axis", "de": "zeige Y-Achse", "ru": "???" },
 			"yChanceRainVisible" : { "en": "show y axis for chance rain", "de": "zeige Y-Achse (Regenwahrscheinlichkeit)", "ru": "???" },
-			"xDateFormat" : { "en": "format for date/time on x-axis", "de": "Datum-/Zeitformat X-Achse", "ru": "???" },
+            "xDateFormat": { "en": "format for date/time on x-axis", "de": "Datum-/Zeitformat X-Achse", "ru": "???" },
+            "nobgcolor": { "en": "no background color", "de": "keine Farbe Hintergrund", "ru": "nobgcolor" },
+            "withborder": { "en": "show border", "de": "Rahmen anzeigen", "ru": "withborder" },
         });
     }
 
@@ -461,13 +463,13 @@
                             grid:
                               {
                                   //Farben einstellen fehlt noch
-                                  backgroundColor: { colors: ["#fff", "#eee"] },
-                                  borderWidth: {
-                                      top: 1,
-                                      right: 1,
-                                      bottom: 2,
-                                      left: 2
-                                  },
+                                backgroundColor: data.nobgcolor ? null : { colors: ["#fff", "#eee"] },
+                                borderWidth: {
+                                    top: data.withborder ? 1 : 0,
+                                    right: data.withborder ? 1 : 0,
+                                    bottom: data.withborder ? 2 : 0,
+                                    left: data.withborder ? 2 : 0
+                                },
                                   //fehlt noch
                                   //markings: nextDay
                               }
@@ -734,7 +736,7 @@
         data-vis-update-style="true"
         data-vis-prev='<img src="widgets/weather/img/Prev_tplWeather.png"></img>'
         data-vis-attrs="instance/weather/onInstanceChanged;"
-        data-vis-attrs0="time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;withxaxix[true]/checkbox;ticksonxaxix[5];axislabelcolor[#ffffff]/color;tickscolor[#ffffff]/color;xDateFormat[%d.%b %H:%M];"
+        data-vis-attrs0="time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;withxaxix[true]/checkbox;ticksonxaxix[5];axislabelcolor[#ffffff]/color;tickscolor[#ffffff]/color;xDateFormat[%d.%b %H:%M];withborder[true]/checkbox;nobgcolor[true]/checkbox;"
         data-vis-attrs1="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;raincolor[#1d0ed8]/color;chancerainvisible[true]/checkbox;chanceraincolor[#877efc]/color;yRainVisible[true]/checkbox;yChanceRainVisible[true]/checkbox;"
         data-vis-attrs2="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;tempcolor[#00b3ac]/color;maxY_temp[0];minY_temp[0];yTempVisible[true]/checkbox;"
         data-vis-attrs3="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar; sunorcloud[sun]/select,sun,clouds;cloudcolor[#f6ef3c]/color;yCloudVisible[true]/checkbox;"
