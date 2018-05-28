@@ -1,8 +1,12 @@
 {
   "common": {
     "name": "vis-weather",
-    "version": "1.2.0",
+    "version": "2.0.0",
     "news": {
+      "2.0.0": {
+        "en": "support of 2.x of daswetter.com"
+        
+      },
       "1.2.0": {
         "en": "background color and border",
         "de": "Hintergrundfarbe und Grenze",

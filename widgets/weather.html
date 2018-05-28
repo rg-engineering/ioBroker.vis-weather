@@ -609,7 +609,20 @@
             var changed = [];
             if (newId.indexOf("daswetter") > -1) {
 
+                var daswetterversion = 0;
+                //with 1.x: daswetter.0.NextDaysDetailed.0d.date 20180524
+                //with 2.x: daswetter.0.NextDaysDetailed.Location_1.Day_1.value 20180524
                 var oid_first_date = newId + ".NextDaysDetailed.0d.date";
+
+                if (vis.objects[oid_first_date]) {
+                    daswetterversion = 1;
+                }
+                else {
+                    oid_first_date = newId + ".NextDaysDetailed.Location_1.Day_1.value";
+                    if (vis.objects[oid_first_date]) {
+                        daswetterversion = 2;
+                    }
+                }
 
                 if (vis.objects[oid_first_date]) {
                     //console.log(oid_first_date + " updated ");
@@ -622,20 +635,35 @@
 
                     for (var p = 0; p < 8; p++) {
                         //get rain oid
-                        var oid_rain = newId+".NextDaysDetailed." + d + "d." + p + "h.Rain";
 
-                        //not available here
-                        //var oid_chancerain = newId + ???
+                        if (daswetterversion == 1) {
+                            var oid_rain = newId + ".NextDaysDetailed." + d + "d." + p + "h.Rain";
 
-                        //get temperature oid
-                        var oid_temp = newId+ ".NextDaysDetailed." + d + "d." + p + "h.Temperature";
+                            //get temperature oid
+                            var oid_temp = newId + ".NextDaysDetailed." + d + "d." + p + "h.Temperature";
 
-                        //get cloud oid
-                        var oid_cloud =  newId+".NextDaysDetailed." + d + "d." + p + "h.Clouds";
+                            //get cloud oid
+                            var oid_cloud = newId + ".NextDaysDetailed." + d + "d." + p + "h.Clouds";
 
-                        // get time oid
-                        var oid_hour = newId+ ".NextDaysDetailed." + d + "d." + p + "h.hour";
+                            // get time oid
+                            var oid_hour = newId + ".NextDaysDetailed." + d + "d." + p + "h.hour";
+                        }
+                        else if (daswetterversion == 2) {
 
+                            //daswetter.0.NextDaysDetailed.Location_1.Day_1.Hour_1.rain.value
+                            var dd = d + 1;
+                            var pp = p + 1;
+                            var oid_rain = newId + ".NextDaysDetailed.Location_1.Day_" + dd + ".Hour_" + pp + ".rain.value";
+
+                            //get temperature oid
+                            var oid_temp = newId + ".NextDaysDetailed.Location_1.Day_" + dd + ".Hour_" + pp + ".temp.value";
+
+                            //get cloud oid
+                            var oid_cloud = newId + ".NextDaysDetailed.Location_1.Day_" + dd + ".Hour_" + pp + ".clouds.value";
+
+                            // get time oid
+                            var oid_hour = newId + ".NextDaysDetailed.Location_1.Day_" + dd + ".Hour_" + pp + ".value";
+                        }
 
                         if (vis.objects[oid_rain]) {
                             //console.log(oid_rain + " updated ");
