@@ -4,8 +4,15 @@
     "version": "2.0.0",
     "news": {
       "2.0.0": {
-        "en": "support of 2.x of daswetter.com"
-        
+        "en": "support of 2.x of daswetter.com",
+        "de": "Unterstützung von 2.x von daswetter.com",
+        "ru": "поддержка 2.x от daswetter.com",
+        "pt": "suporte de 2.x de daswetter.com",
+        "nl": "ondersteuning van 2.x van daswetter.com",
+        "fr": "support de 2.x de daswetter.com",
+        "it": "supporto di 2.x di daswetter.com",
+        "es": "soporte de 2.x de daswetter.com",
+        "pl": "obsługa 2.x daswetter.com"
       },
       "1.2.0": {
         "en": "background color and border",
