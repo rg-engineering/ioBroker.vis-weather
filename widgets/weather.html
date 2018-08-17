@@ -612,15 +612,16 @@
                 var daswetterversion = 0;
                 //with 1.x: daswetter.0.NextDaysDetailed.0d.date 20180524
                 //with 2.x: daswetter.0.NextDaysDetailed.Location_1.Day_1.value 20180524
-                var oid_first_date = newId + ".NextDaysDetailed.0d.date";
+                
+                var oid_first_date = newId + ".NextDaysDetailed.Location_1.Day_1.value";
 
                 if (vis.objects[oid_first_date]) {
-                    daswetterversion = 1;
+                    daswetterversion = 2;
                 }
                 else {
-                    oid_first_date = newId + ".NextDaysDetailed.Location_1.Day_1.value";
+                    oid_first_date = newId + ".NextDaysDetailed.0d.date";
                     if (vis.objects[oid_first_date]) {
-                        daswetterversion = 2;
+                        daswetterversion = 1;
                     }
                 }
 
