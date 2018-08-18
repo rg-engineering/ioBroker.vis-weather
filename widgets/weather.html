@@ -611,9 +611,9 @@
 
                 var daswetterversion = 0;
                 //with 1.x: daswetter.0.NextDaysDetailed.0d.date 20180524
-                //with 2.x: daswetter.0.NextDaysDetailed.Location_1.Day_1.value 20180524
+                //with 2.x: daswetter.0.NextDaysDetailed.Location_1.Day_1.day_value 20180524
                 
-                var oid_first_date = newId + ".NextDaysDetailed.Location_1.Day_1.value";
+                var oid_first_date = newId + ".NextDaysDetailed.Location_1.Day_1.day_value";
 
                 if (vis.objects[oid_first_date]) {
                     daswetterversion = 2;
@@ -654,16 +654,16 @@
                             //daswetter.0.NextDaysDetailed.Location_1.Day_1.Hour_1.rain.value
                             var dd = d + 1;
                             var pp = p + 1;
-                            var oid_rain = newId + ".NextDaysDetailed.Location_1.Day_" + dd + ".Hour_" + pp + ".rain.value";
+                            var oid_rain = newId + ".NextDaysDetailed.Location_1.Day_" + dd + ".Hour_" + pp + ".rain_value";
 
                             //get temperature oid
-                            var oid_temp = newId + ".NextDaysDetailed.Location_1.Day_" + dd + ".Hour_" + pp + ".temp.value";
+                            var oid_temp = newId + ".NextDaysDetailed.Location_1.Day_" + dd + ".Hour_" + pp + ".temp_value";
 
                             //get cloud oid
-                            var oid_cloud = newId + ".NextDaysDetailed.Location_1.Day_" + dd + ".Hour_" + pp + ".clouds.value";
+                            var oid_cloud = newId + ".NextDaysDetailed.Location_1.Day_" + dd + ".Hour_" + pp + ".clouds_value";
 
                             // get time oid
-                            var oid_hour = newId + ".NextDaysDetailed.Location_1.Day_" + dd + ".Hour_" + pp + ".value";
+                            var oid_hour = newId + ".NextDaysDetailed.Location_1.Day_" + dd + ".Hour_" + pp + ".hour_value";
                         }
 
                         if (vis.objects[oid_rain]) {
