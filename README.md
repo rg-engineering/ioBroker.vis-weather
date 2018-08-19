@@ -22,7 +22,7 @@ By default the forecast diagram shows 40 hours (DasWetter) or 36 hours (wundergr
 
 ## Changelog
 
-#### 2.0.0 (2018-08-18)
+#### 2.1.0 (2018-08-18)
 * (René) support of 2.x of weatherundergruond
 
 #### 2.0.0
