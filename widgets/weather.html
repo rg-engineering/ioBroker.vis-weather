@@ -237,48 +237,88 @@
                                 lastHour = hour;
                             }
                             else if (data.instance.indexOf("weatherunderground") > -1) {
-                            
+
+                                
+
+
+
                                 if (typeof sTime == 'undefined') {
                                     bDateNotValid = true;
                                 }
                                 else {
-                                    //04:00 PM CEST am 14. Mai 2017
+
+                                    //check which version??
+                                    //V1.x: 05:00 PM CEST am 18. August 2018
+                                    //V2.x: 8/18/2018, 5:00:00 PM
                                     var oTemp = sTime.split(' ');
-                                    var oTemp1 = oTemp[0].split(':');
-
-                                    hour = parseInt(oTemp1[0], 10);
-                                    if (oTemp[1] == "PM" && hour != 12) {
-                                        hour += 12; //PM
+                                    var wuversion = 0;
+                                    if (oTemp[1] == "PM" || oTemp[1] == "AM") {
+                                        wuversion = 1;
+                                        //console.log("+++ old version +++");
                                     }
-                                    if (oTemp[1] == "AM" && hour == 12) {
-                                        hour = 0; //AM
-                                    }
-                                    //12 PM ist 12 Mittags
-                                    //12 AM ist 0 Nachts
-
-                                    minute = parseInt(oTemp1[1], 10);
-                                    year = parseInt(oTemp[6], 10);
-
-                                    switch (oTemp[5]) {
-                                        case "Januar": month = 0; break;
-                                        case "Februar": month = 1; break;
-                                        case "März": month = 2; break;
-                                        case "April": month = 3; break;
-                                        case "Mai": month = 4; break;
-                                        case "Juni": month = 5; break;
-                                        case "Juli": month = 6; break;
-                                        case "August": month = 7; break;
-                                        case "September": month = 8; break;
-                                        case "Oktober": month = 9; break;
-                                        case "November": month = 10; break;
-                                        case "Dezember": month = 11; break;
+                                    else if (oTemp[2] == "PM" || oTemp[2] == "AM") {
+                                        wuversion = 2;
+                                        //console.log("+++ new version +++");
                                     }
 
+                                    if (wuversion == 2) {
+                                        var oTemp1 = oTemp[0].split('/');
 
-                                    day = parseInt(oTemp[4], 10);
+                                        day = parseInt(oTemp1[1], 10);
+                                        month = parseInt(oTemp1[0], 10);
+                                        year = parseInt(oTemp1[2], 10);
 
+                                        var oTemp2 = oTemp[1].split(':');
+
+                                        hour = parseInt(oTemp2[0], 10);
+                                        if (oTemp[2] == "PM" && hour != 12) {
+                                            hour += 12; //PM
+                                        }
+                                        if (oTemp[2] == "AM" && hour == 12) {
+                                            hour = 0; //AM
+                                        }
+                                        minute = parseInt(oTemp2[1], 10);
+
+                                    }
+                                    else {
+                                        // WU V1.0
+
+                                        //04:00 PM CEST am 14. Mai 2017
+                                        
+                                        var oTemp1 = oTemp[0].split(':');
+
+                                        hour = parseInt(oTemp1[0], 10);
+                                        if (oTemp[1] == "PM" && hour != 12) {
+                                            hour += 12; //PM
+                                        }
+                                        if (oTemp[1] == "AM" && hour == 12) {
+                                            hour = 0; //AM
+                                        }
+                                        //12 PM ist 12 Mittags
+                                        //12 AM ist 0 Nachts
+
+                                        minute = parseInt(oTemp1[1], 10);
+                                        year = parseInt(oTemp[6], 10);
+
+                                        switch (oTemp[5]) {
+                                            case "Januar": month = 0; break;
+                                            case "Februar": month = 1; break;
+                                            case "März": month = 2; break;
+                                            case "April": month = 3; break;
+                                            case "Mai": month = 4; break;
+                                            case "Juni": month = 5; break;
+                                            case "Juli": month = 6; break;
+                                            case "August": month = 7; break;
+                                            case "September": month = 8; break;
+                                            case "Oktober": month = 9; break;
+                                            case "November": month = 10; break;
+                                            case "Dezember": month = 11; break;
+                                        }
+
+
+                                        day = parseInt(oTemp[4], 10);
+                                    }
                                     //console.log("--------" + day + "." + month + 1 + "." + year + " " + hour + ":" + minute);
-
                                     oDate = new Date(year, month, day, hour, minute, 0, 0);
                                 }
                             }
@@ -607,6 +647,12 @@
             //wu oder DasWetter (umschaltbar)
 
             var changed = [];
+            var oid_rain = "";
+            var oid_chancerain = "";
+            var oid_temp = "";
+            var oid_cloud = "";
+            var oid_hour = "";
+
             if (newId.indexOf("daswetter") > -1) {
 
                 var daswetterversion = 0;
@@ -617,11 +663,13 @@
 
                 if (vis.objects[oid_first_date]) {
                     daswetterversion = 2;
+                    console.log("using new data structure with DasWetter");
                 }
                 else {
                     oid_first_date = newId + ".NextDaysDetailed.0d.date";
                     if (vis.objects[oid_first_date]) {
                         daswetterversion = 1;
+                        console.log("using old data structure with DasWetter");
                     }
                 }
 
@@ -638,32 +686,35 @@
                         //get rain oid
 
                         if (daswetterversion == 1) {
-                            var oid_rain = newId + ".NextDaysDetailed." + d + "d." + p + "h.Rain";
+                            oid_rain = newId + ".NextDaysDetailed." + d + "d." + p + "h.Rain";
 
                             //get temperature oid
-                            var oid_temp = newId + ".NextDaysDetailed." + d + "d." + p + "h.Temperature";
+                            oid_temp = newId + ".NextDaysDetailed." + d + "d." + p + "h.Temperature";
 
                             //get cloud oid
-                            var oid_cloud = newId + ".NextDaysDetailed." + d + "d." + p + "h.Clouds";
+                            oid_cloud = newId + ".NextDaysDetailed." + d + "d." + p + "h.Clouds";
 
                             // get time oid
-                            var oid_hour = newId + ".NextDaysDetailed." + d + "d." + p + "h.hour";
+                            oid_hour = newId + ".NextDaysDetailed." + d + "d." + p + "h.hour";
                         }
                         else if (daswetterversion == 2) {
 
                             //daswetter.0.NextDaysDetailed.Location_1.Day_1.Hour_1.rain.value
                             var dd = d + 1;
                             var pp = p + 1;
-                            var oid_rain = newId + ".NextDaysDetailed.Location_1.Day_" + dd + ".Hour_" + pp + ".rain_value";
+                            oid_rain = newId + ".NextDaysDetailed.Location_1.Day_" + dd + ".Hour_" + pp + ".rain_value";
 
                             //get temperature oid
-                            var oid_temp = newId + ".NextDaysDetailed.Location_1.Day_" + dd + ".Hour_" + pp + ".temp_value";
+                            oid_temp = newId + ".NextDaysDetailed.Location_1.Day_" + dd + ".Hour_" + pp + ".temp_value";
 
                             //get cloud oid
-                            var oid_cloud = newId + ".NextDaysDetailed.Location_1.Day_" + dd + ".Hour_" + pp + ".clouds_value";
+                            oid_cloud = newId + ".NextDaysDetailed.Location_1.Day_" + dd + ".Hour_" + pp + ".clouds_value";
 
                             // get time oid
-                            var oid_hour = newId + ".NextDaysDetailed.Location_1.Day_" + dd + ".Hour_" + pp + ".hour_value";
+                            oid_hour = newId + ".NextDaysDetailed.Location_1.Day_" + dd + ".Hour_" + pp + ".hour_value";
+                        }
+                        else {
+                            console.log("could not define which version to use with DasWetter");
                         }
 
                         if (vis.objects[oid_rain]) {
@@ -692,24 +743,67 @@
             }
             else if (newId.indexOf("weatherunderground") > -1) {
 
+                var wuversion = 0;
+
+                //weatherunderground.0.forecastHourly.0h.time
+
+                var oid_version_check = newId + ".forecastHourly.0h.time";
+
+                if (vis.objects[oid_version_check]) {
+                    wuversion = 2;
+                    console.log("using new data structure with WU");
+                }
+                else {
+
+                    //weatherunderground.0.forecast.0h.time
+                    oid_version_check = newId + ".forecast.0h.time";
+                    if (vis.objects[oid_version_check]) {
+                        wuversion = 1;
+                        console.log("using old data structure with WU");
+                    }
+                }
+
 
                 for (var h = 0; h < 36; h++) {
 
-                    //get rain oid weatherunderground.0.forecast.0h.qpf
-                    var oid_rain = newId + ".forecast." + h + "h.qpf";
+                    if (wuversion == 1) {
 
-                    //get rain oid weatherunderground.0.forecast.0h.qpf
-                    var oid_chancerain = newId + ".forecast." + h + "h.pop";
+                        //get rain oid weatherunderground.0.forecast.0h.qpf
+                        oid_rain = newId + ".forecast." + h + "h.qpf";
 
-                    //get temperature oid weatherunderground.0.forecast.0h.temp
-                    var oid_temp = newId + ".forecast." + h + "h.temp";
+                        //get rain oid weatherunderground.0.forecast.0h.qpf
+                        oid_chancerain = newId + ".forecast." + h + "h.pop";
 
-                    //get cloud oid weatherunderground.0.forecast.0h.sky
-                    var oid_cloud = newId + ".forecast." + h + "h.sky";
+                        //get temperature oid weatherunderground.0.forecast.0h.temp
+                        oid_temp = newId + ".forecast." + h + "h.temp";
 
-                    // get time oid
-                    var oid_hour = newId + ".forecast." + h + "h.time";
+                        //get cloud oid weatherunderground.0.forecast.0h.sky
+                        oid_cloud = newId + ".forecast." + h + "h.sky";
 
+                        // get time oid
+                        oid_hour = newId + ".forecast." + h + "h.time";
+                    }
+                    else if (wuversion == 2) {
+
+                        //get rain oid weatherunderground.0.forecastHourly.0h.precipitation
+                        oid_rain = newId + ".forecastHourly." + h + "h.precipitation";
+
+                        //get rain oid weatherunderground.0.forecastHourly.0h.precipitationChance
+                        oid_chancerain = newId + ".forecastHourly." + h + "h.precipitationChance";
+
+                        //get temperature oid weatherunderground.0.forecastHourly.0h.temp
+                        oid_temp = newId + ".forecastHourly." + h + "h.temp";
+
+                        //get cloud oid weatherunderground.0.forecastHourly.0h.sky
+                        oid_cloud = newId + ".forecastHourly." + h + "h.sky";
+
+                        // get time oid weatherunderground.0.forecastHourly.0h.time
+                        oid_hour = newId + ".forecastHourly." + h + "h.time";
+
+                    }
+                    else {
+                        console.log("could not define which version to use with WU");
+                    }
                     if (vis.objects[oid_rain]) {
                         //console.log(oid_rain + " updated ");
                         vis.views[view].widgets[widgetID].data['oid_rain' + h] = oid_rain;
