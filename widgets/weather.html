@@ -89,7 +89,7 @@
     
     
     vis.binds.weather = {
-        version: "1.1.1",
+        version: "2.1.0",
         showVersion: function () {
             if (vis.binds.weather.version) {
                 console.log('Version vis-weather: ' + vis.binds.weather.version);
@@ -247,38 +247,33 @@
                                 }
                                 else {
 
+
+
                                     //check which version??
                                     //V1.x: 05:00 PM CEST am 18. August 2018
                                     //V2.x: 8/18/2018, 5:00:00 PM
+                                    //      oder 2018 - 8 - 19 12: 00: 00
                                     var oTemp = sTime.split(' ');
                                     var wuversion = 0;
                                     if (oTemp[1] == "PM" || oTemp[1] == "AM") {
                                         wuversion = 1;
                                         //console.log("+++ old version +++");
                                     }
-                                    else if (oTemp[2] == "PM" || oTemp[2] == "AM") {
+                                    else  {
                                         wuversion = 2;
                                         //console.log("+++ new version +++");
                                     }
 
                                     if (wuversion == 2) {
-                                        var oTemp1 = oTemp[0].split('/');
 
-                                        day = parseInt(oTemp1[1], 10);
-                                        month = parseInt(oTemp1[0], 10);
-                                        year = parseInt(oTemp1[2], 10);
-
-                                        var oTemp2 = oTemp[1].split(':');
-
-                                        hour = parseInt(oTemp2[0], 10);
-                                        if (oTemp[2] == "PM" && hour != 12) {
-                                            hour += 12; //PM
-                                        }
-                                        if (oTemp[2] == "AM" && hour == 12) {
-                                            hour = 0; //AM
-                                        }
-                                        minute = parseInt(oTemp2[1], 10);
-
+                                        //in WU wird ToLocalstring verwendet
+                                        var oDateWU = new Date(sTime);
+                                        hour = oDateWU.getHours();
+                                        minute = oDateWU.getMinutes();
+                                        year = oDateWU.getFullYear();
+                                        month = oDateWU.getMonth();
+                                        day = oDateWU.getDate();
+                                        //console.log("--------" + sTime + " = " + oDateWU.toLocaleString());
                                     }
                                     else {
                                         // WU V1.0
