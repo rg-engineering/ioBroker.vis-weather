@@ -1,7 +1,7 @@
 {
   "name": "iobroker.vis-weather",
   "description": "weather Widgets for ioBroker.vis",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "author": {
     "name": "René G.",
     "email": "info@rg-engineering.eu"
@@ -24,7 +24,7 @@
   ],
   "devDependencies": {
     "gulp": "^3.9.1",
-    "mocha": "^4.1.0",
+    "mocha": "^5.2.0",
     "chai": "^4.1.2"
   },
   "bugs": {

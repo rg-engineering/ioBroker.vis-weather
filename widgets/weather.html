@@ -215,8 +215,17 @@
 
                             // get time
                             var oid = data['oid_hour' + d];
+                            console.log("check " + oid);
+                            if (oid.length<3) {
+                                //stop loop here
+                                console.log("less then " + max_cnt + " oid (" + d + ") found");
+                                d = max_cnt;
+                                break;
+                            }
                             var sTime = vis.states[oid + '.val'];
-                            //console.log("got " + sTime + " from " + oid);
+                            console.log("got " + sTime + " from " + oid);
+
+
                             var bDateNotValid = false;
 
                             var oDate;
@@ -273,7 +282,7 @@
                                         year = oDateWU.getFullYear();
                                         month = oDateWU.getMonth();
                                         day = oDateWU.getDate();
-                                        //console.log("--------" + sTime + " = " + oDateWU.toLocaleString());
+                                        console.log("--------" + sTime + " = " + oDateWU.toLocaleString());
                                     }
                                     else {
                                         // WU V1.0
@@ -854,13 +863,15 @@
         data-vis-update-style="true"
         data-vis-prev='<img src="widgets/weather/img/Prev_tplWeather.png"></img>'
         data-vis-attrs="instance/weather/onInstanceChanged;"
-        data-vis-attrs0="time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;withxaxix[true]/checkbox;ticksonxaxix[5];axislabelcolor[#ffffff]/color;tickscolor[#ffffff]/color;xDateFormat[%d.%b %H:%M];withborder[true]/checkbox;nobgcolor[true]/checkbox;"
-        data-vis-attrs1="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;raincolor[#1d0ed8]/color;chancerainvisible[true]/checkbox;chanceraincolor[#877efc]/color;yRainVisible[true]/checkbox;yChanceRainVisible[true]/checkbox;"
-        data-vis-attrs2="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;tempcolor[#00b3ac]/color;maxY_temp[0];minY_temp[0];yTempVisible[true]/checkbox;"
-        data-vis-attrs3="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar; sunorcloud[sun]/select,sun,clouds;cloudcolor[#f6ef3c]/color;yCloudVisible[true]/checkbox;"
+        data-vis-attrs0="time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;"
+        data-vis-attrs1="datensatz[1]/select,1,2,3,4;"
+        data-vis-attrs2="withxaxix[true]/checkbox;ticksonxaxix[5];axislabelcolor[#ffffff]/color;tickscolor[#ffffff]/color;xDateFormat[%d.%b %H:%M];withborder[true]/checkbox;nobgcolor[true]/checkbox;"
+        data-vis-attrs3="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;raincolor[#1d0ed8]/color;chancerainvisible[true]/checkbox;chanceraincolor[#877efc]/color;yRainVisible[true]/checkbox;yChanceRainVisible[true]/checkbox;"
+        data-vis-attrs4="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;tempcolor[#00b3ac]/color;maxY_temp[0];minY_temp[0];yTempVisible[true]/checkbox;"
+        data-vis-attrs5="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar; sunorcloud[sun]/select,sun,clouds;cloudcolor[#f6ef3c]/color;yCloudVisible[true]/checkbox;"
         
-        data-vis-attrs4="group.oids;oid_rain(1-40)/id;oid_chancerain(1-40)/id;oid_temp(1-40)/id;oid_cloud(1-40)/id;oid_hour(1-40)/id;"
-        data-vis-attrs5="oid_date/id;"
+        data-vis-attrs6="group.oids;oid_rain(0-39)/id;oid_chancerain(0-39)/id;oid_temp(0-39)/id;oid_cloud(0-39)/id;oid_hour(0-39)/id;"
+        data-vis-attrs7="oid_date/id;"
 
 >
 
