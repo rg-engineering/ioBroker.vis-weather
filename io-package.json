@@ -1,11 +1,29 @@
 {
   "common": {
     "name": "vis-weather",
-    "version": "2.1.1",
+    "version": "2.2.0",
     "news": {
+      "2.2.0": {
+        "en": "OID's for different data structures ",
+        "de": "OIDs für verschiedene Datenstrukturen",
+        "ru": "OID для разных структур данных",
+        "pt": "OID's para diferentes estruturas de dados",
+        "nl": "OID's voor verschillende datastructuren",
+        "fr": "OID pour différentes structures de données",
+        "it": "OID per diverse strutture di dati",
+        "es": "OID para diferentes estructuras de datos",
+        "pl": "OID dla różnych struktur danych"
+      },
       "2.1.1": {
-        "en": "bug fix"
-
+        "en": "bug fixes",
+        "de": "Fehlerbehebung",
+        "ru": "исправление ошибок",
+        "pt": "correções de bugs",
+        "nl": "bugfixes",
+        "fr": "corrections de bugs",
+        "it": "correzioni di bug",
+        "es": "corrección de errores",
+        "pl": "poprawki błędów"
       },
       "2.1.0": {
         "en": "support of 2.x of weatherunderground",

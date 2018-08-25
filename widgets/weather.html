@@ -72,6 +72,7 @@
             "xDateFormat": { "en": "format for date/time on x-axis", "de": "Datum-/Zeitformat X-Achse", "ru": "???" },
             "nobgcolor": { "en": "no background color", "de": "keine Farbe Hintergrund", "ru": "nobgcolor" },
             "withborder": { "en": "show border", "de": "Rahmen anzeigen", "ru": "withborder" },
+            "datastructure": { "en": "data structure", "de": "Datenstruktur", "ru": "data structure" },
         });
     }
 
@@ -89,7 +90,7 @@
     
     
     vis.binds.weather = {
-        version: "2.1.0",
+        version: "2.2.0",
         showVersion: function () {
             if (vis.binds.weather.version) {
                 console.log('Version vis-weather: ' + vis.binds.weather.version);
@@ -163,12 +164,14 @@
                         if (data.instance.indexOf("daswetter") > -1) {
 
                             //get first date only for DasWetter.com
+                            //20180825
                             var oid_first_date = data.oid_date;
                             var sDate = vis.states[oid_first_date + '.val'];
-                            var day = parseInt(sDate.substring(6, 8),10);
-                            var month = parseInt(sDate.substring(4, 6),10);
-                            var year = parseInt(sDate.substring(0, 4),10);
+                            var day = parseInt(sDate.substring(6, 8), 10);
+                            var month = parseInt(sDate.substring(4, 6), 10);
+                            var year = parseInt(sDate.substring(0, 4), 10);
                             //console.log("got " + sDate + " from " + oid_first_date);
+                            console.log("got first date " + sDate + " = " + day + "." + month + "." + year);
                             month--;
 
                             max_cnt = 40;
@@ -223,10 +226,12 @@
                                 break;
                             }
                             var sTime = vis.states[oid + '.val'];
-                            console.log("got " + sTime + " from " + oid);
-
+                            //console.log("got " + sTime + " from " + oid);
+                            //console.log("got " + sTime );
 
                             var bDateNotValid = false;
+
+                            console.log("### date "  + day + "." + month + "." + year);
 
                             var oDate;
                             if (data.instance.indexOf("daswetter") > -1) {
@@ -236,12 +241,16 @@
 
                                 oDate = new Date(year, month, day, hour, minute, 0, 0);
 
+                                console.log("### check next day " + hour + " ? " + lastHour + " at " + oDate.toLocaleString());
+
                                 //check next day
                                 if (hour < lastHour) {
                                     oDate.setDate(oDate.getDate() + 1);
-                                    day = oDate.getUTCDate();
-                                    month = oDate.getUTCMonth();
-                                    year = oDate.getUTCFullYear();
+                                    day = oDate.getDate();
+                                    month = oDate.getMonth();
+                                    year = oDate.getFullYear();
+
+                                    console.log("### next day found " + oDate.toLocaleString());
                                 }
                                 lastHour = hour;
                             }
@@ -326,7 +335,8 @@
                                     oDate = new Date(year, month, day, hour, minute, 0, 0);
                                 }
                             }
-                            
+                            console.log("-#--#---" + day + "." + month + "." + year + " " + hour + ":" + minute);
+
                             //console.log(date+" "+ val_rain + " " + val_temp + " " + val_cloud);
 
                             if (!bDateNotValid) {
@@ -366,7 +376,7 @@
 
                     var barwidth = 0;
                     if (data.instance.indexOf("daswetter") > -1) {
-                        barwidth = 1000 * 60 * 60 * 2; //2h
+                        barwidth = 1000 * 60 * 60 * 1; //1h
                     }
                     else if (data.instance.indexOf("weatherunderground") > -1) {
                         barwidth = 1000 * 60 * 60 * 0.5; //0.5h
@@ -623,6 +633,8 @@
     };
 
     if (vis.editMode) {
+
+
         vis.binds.weather.onInstanceChanged = function (widgetID, view, newId, fields) {
             console.log('---------: ' + widgetID + ' - ' + view + ' - ' + newId + ' - ' + fields);
 
@@ -662,20 +674,39 @@
                 var daswetterversion = 0;
                 //with 1.x: daswetter.0.NextDaysDetailed.0d.date 20180524
                 //with 2.x: daswetter.0.NextDaysDetailed.Location_1.Day_1.day_value 20180524
-                
-                var oid_first_date = newId + ".NextDaysDetailed.Location_1.Day_1.day_value";
+
+
+                var oid_first_date = "";
+
+                if (vis.views[view].widgets[widgetID].data.datastructure == "NextDaysDetailed") {
+                    oid_first_date = newId + ".NextDaysDetailed.Location_1.Day_1.day_value";  
+                }
+                else if (vis.views[view].widgets[widgetID].data.datastructure == "NextHours") {
+                    oid_first_date = newId + ".NextHours.Location_1.Day_1.day_value";  
+                }
+                else if (vis.views[view].widgets[widgetID].data.datastructure == "NextHours2") {
+                    oid_first_date = newId + ".NextHours2.Location_1.Day_1.date";  
+                }
+
 
                 if (vis.objects[oid_first_date]) {
                     daswetterversion = 2;
                     console.log("using new data structure with DasWetter");
                 }
                 else {
+
+
+
                     oid_first_date = newId + ".NextDaysDetailed.0d.date";
                     if (vis.objects[oid_first_date]) {
                         daswetterversion = 1;
                         console.log("using old data structure with DasWetter");
                     }
                 }
+
+                //which datastructure
+                console.log("datastructure is " + vis.views[view].widgets[widgetID].data.datastructure);
+
 
                 if (vis.objects[oid_first_date]) {
                     //console.log(oid_first_date + " updated ");
@@ -684,9 +715,30 @@
                 }
 
                 var cnt = 0;
-                for (var d = 0; d < 5; d++) {
+                var max_days = 5;
+                var max_periods = 8;
 
-                    for (var p = 0; p < 8; p++) {
+
+                //we only have 40 OID'S!!!
+                if (daswetterversion == 2) {
+                    if (vis.views[view].widgets[widgetID].data.datastructure == "NextDaysDetailed") {
+                        max_days = 5;
+                        max_periods = 8;
+                    }
+                    else if (vis.views[view].widgets[widgetID].data.datastructure == "NextHours") {
+                        max_days = 5;
+                        max_periods = 24;
+                    }
+                    else if (vis.views[view].widgets[widgetID].data.datastructure == "NextHours2") {
+                        max_days = 5;
+                        max_periods = 8;
+                    }
+                }
+
+
+                for (var d = 0; d < max_days; d++) {
+
+                    for (var p = 0; p < max_periods; p++) {
                         //get rain oid
 
                         if (daswetterversion == 1) {
@@ -706,16 +758,54 @@
                             //daswetter.0.NextDaysDetailed.Location_1.Day_1.Hour_1.rain.value
                             var dd = d + 1;
                             var pp = p + 1;
-                            oid_rain = newId + ".NextDaysDetailed.Location_1.Day_" + dd + ".Hour_" + pp + ".rain_value";
 
-                            //get temperature oid
-                            oid_temp = newId + ".NextDaysDetailed.Location_1.Day_" + dd + ".Hour_" + pp + ".temp_value";
+                            //NextDaysDetailed,NextHours,NextHours2
+                            if (vis.views[view].widgets[widgetID].data.datastructure == "NextDaysDetailed") {
+                                //daswetter.0.NextDaysDetailed.Location_1.Day_1.Hour_1.rain_value
+                                oid_rain = newId + ".NextDaysDetailed.Location_1.Day_" + dd + ".Hour_" + pp + ".rain_value";
 
-                            //get cloud oid
-                            oid_cloud = newId + ".NextDaysDetailed.Location_1.Day_" + dd + ".Hour_" + pp + ".clouds_value";
+                                //get temperature oid
+                                oid_temp = newId + ".NextDaysDetailed.Location_1.Day_" + dd + ".Hour_" + pp + ".temp_value";
 
-                            // get time oid
-                            oid_hour = newId + ".NextDaysDetailed.Location_1.Day_" + dd + ".Hour_" + pp + ".hour_value";
+                                //get cloud oid
+                                oid_cloud = newId + ".NextDaysDetailed.Location_1.Day_" + dd + ".Hour_" + pp + ".clouds_value";
+
+                                // get time oid
+                                oid_hour = newId + ".NextDaysDetailed.Location_1.Day_" + dd + ".Hour_" + pp + ".hour_value";
+                            }
+                            else if (vis.views[view].widgets[widgetID].data.datastructure == "NextHours") {
+
+                                //daswetter.0.NextHours.Location_1.Day_1.Hour_1.rain_value
+                                oid_rain = newId + ".NextHours.Location_1.Day_" + dd + ".Hour_" + pp + ".rain_value";
+
+                                //get temperature oid
+                                //daswetter.0.NextHours.Location_1.Day_1.Hour_1.temp_value
+                                oid_temp = newId + ".NextHours.Location_1.Day_" + dd + ".Hour_" + pp + ".temp_value";
+
+                                //get cloud oid
+                                //daswetter.0.NextHours.Location_1.Day_1.Hour_1.clouds_value
+                                oid_cloud = newId + ".NextHours.Location_1.Day_" + dd + ".Hour_" + pp + ".clouds_value";
+
+                                // get time oid
+                                //daswetter.0.NextHours.Location_1.Day_1.Hour_1.hour_value
+                                oid_hour = newId + ".NextHours.Location_1.Day_" + dd + ".Hour_" + pp + ".hour_value";
+                            }
+                            else if (vis.views[view].widgets[widgetID].data.datastructure == "NextHours2") {
+                                //daswetter.0.NextHours2.Location_1.Day_1.Hour_1.rain
+                                oid_rain = newId + ".NextHours2.Location_1.Day_" + dd + ".Hour_" + pp + ".rain";
+
+                                //get temperature oid
+                                //daswetter.0.NextHours2.Location_1.Day_1.Hour_1.temp
+                                oid_temp = newId + ".NextHours2.Location_1.Day_" + dd + ".Hour_" + pp + ".temp";
+
+                                //get cloud oid
+                                //daswetter.0.NextHours2.Location_1.Day_1.Hour_1.clouds
+                                oid_cloud = newId + ".NextHours2.Location_1.Day_" + dd + ".Hour_" + pp + ".clouds";
+
+                                // get time oid
+                                //daswetter.0.NextHours2.Location_1.Day_1.Hour_1.hour
+                                oid_hour = newId + ".NextHours2.Location_1.Day_" + dd + ".Hour_" + pp + ".hour";
+                            }
                         }
                         else {
                             console.log("could not define which version to use with DasWetter");
@@ -742,6 +832,10 @@
                             vis.widgets[widgetID].data['oid_hour' + cnt] = oid_hour;
                         }
                         cnt++;
+                        if (cnt >= 40) {
+                            console.log("OID limit reached");
+                            break;
+                        }
                     }
                 }
             }
@@ -863,15 +957,14 @@
         data-vis-update-style="true"
         data-vis-prev='<img src="widgets/weather/img/Prev_tplWeather.png"></img>'
         data-vis-attrs="instance/weather/onInstanceChanged;"
-        data-vis-attrs0="time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;"
-        data-vis-attrs1="datensatz[1]/select,1,2,3,4;"
-        data-vis-attrs2="withxaxix[true]/checkbox;ticksonxaxix[5];axislabelcolor[#ffffff]/color;tickscolor[#ffffff]/color;xDateFormat[%d.%b %H:%M];withborder[true]/checkbox;nobgcolor[true]/checkbox;"
-        data-vis-attrs3="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;raincolor[#1d0ed8]/color;chancerainvisible[true]/checkbox;chanceraincolor[#877efc]/color;yRainVisible[true]/checkbox;yChanceRainVisible[true]/checkbox;"
-        data-vis-attrs4="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;tempcolor[#00b3ac]/color;maxY_temp[0];minY_temp[0];yTempVisible[true]/checkbox;"
-        data-vis-attrs5="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar; sunorcloud[sun]/select,sun,clouds;cloudcolor[#f6ef3c]/color;yCloudVisible[true]/checkbox;"
+        data-vis-attrs0="datastructure[NextDaysDetailed]/select,NextDaysDetailed,NextHours,NextHours2;"
+        data-vis-attrs1="withxaxix[true]/checkbox;ticksonxaxix[5];axislabelcolor[#ffffff]/color;tickscolor[#ffffff]/color;xDateFormat[%d.%b %H:%M];withborder[true]/checkbox;nobgcolor[true]/checkbox;"
+        data-vis-attrs2="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;raincolor[#1d0ed8]/color;chancerainvisible[true]/checkbox;chanceraincolor[#877efc]/color;yRainVisible[true]/checkbox;yChanceRainVisible[true]/checkbox;"
+        data-vis-attrs3="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;tempcolor[#00b3ac]/color;maxY_temp[0];minY_temp[0];yTempVisible[true]/checkbox;"
+        data-vis-attrs4="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar; sunorcloud[sun]/select,sun,clouds;cloudcolor[#f6ef3c]/color;yCloudVisible[true]/checkbox;"
         
-        data-vis-attrs6="group.oids;oid_rain(0-39)/id;oid_chancerain(0-39)/id;oid_temp(0-39)/id;oid_cloud(0-39)/id;oid_hour(0-39)/id;"
-        data-vis-attrs7="oid_date/id;"
+        data-vis-attrs5="group.oids;oid_rain(0-39)/id;oid_chancerain(0-39)/id;oid_temp(0-39)/id;oid_cloud(0-39)/id;oid_hour(0-39)/id;"
+        data-vis-attrs6="oid_date/id;"
 
 >
 
