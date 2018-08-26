@@ -234,8 +234,8 @@
                             //console.log("got " + sTime );
 
                             var bDateNotValid = false;
-
-                            console.log("### date "  + day + "." + month + "." + year);
+                            var month1 = month + 1;
+                            console.log("### date " + day + "." + month1 + "." + year);
 
                             var oDate;
                             if (data.instance.indexOf("daswetter") > -1) {
@@ -288,8 +288,21 @@
 
                                     if (wuversion == 2) {
 
+                                        //acc. https://stackoverflow.com/questions/4310953/invalid-date-in-safari#
+                                        //safari doesnt support 2018-8-26
+                                        //it supports:
+                                        //MM - dd - yyyy
+                                        //yyyy / MM / dd
+                                        //MM / dd / yyyy
+                                        //MMMM dd, yyyy
+                                        //MMM dd, yyyy
+                                        //so we just replace '-' by '/'
+
+                                        //test only:
+                                        //sTime = "2018-8-26";
+
                                         //in WU wird ToLocalstring verwendet
-                                        var oDateWU = new Date(sTime);
+                                        var oDateWU = new Date(sTime.replace(/-/g, "/"));
                                         hour = oDateWU.getHours();
                                         minute = oDateWU.getMinutes();
                                         year = oDateWU.getFullYear();
@@ -856,6 +869,8 @@
                 }
             }
             else if (newId.indexOf("weatherunderground") > -1) {
+                vis.views[view].widgets[widgetID].data.datastructure = "";
+                vis.widgets[widgetID].data.datastructure = "";
 
                 var wuversion = 0;
 
