@@ -4,14 +4,15 @@ ioBroker.vis-weather
 
 [![NPM version](https://img.shields.io/npm/v/iobroker.vis-weather.svg)](https://www.npmjs.com/package/iobroker.vis-weather)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.vis-weather.svg)](https://www.npmjs.com/package/iobroker.vis-weather)
-
+[![Tests](https://travis-ci.org/rg-engineering/ioBroker.vis-weather.svg?branch=master)](https://travis-ci.org/rg-engineering/ioBroker.vis-weather)
+[![Build Status](https://travis-ci.org/rg-engineering/ioBroker.vis-weather.svg?branch=master)](https://travis-ci.org/rg-engineering/ioBroker.vis-weather)
 [![NPM](https://nodei.co/npm/iobroker.vis-weather.png?downloads=true)](https://nodei.co/npm/iobroker.vis-weather/)
 
 This vis-widget shows weather forecast data from DasWetter.com or weatherunderground
 You need DasWetter-Adpater or weatherunderground-Adapter running as well...
 
-    In weatherunderground you need forecast of next 24 hours enabled.
-    In DasWetter.com you need 5 days-forecast enabled.
+In weatherunderground you need forecast of next 36 hours enabled.
+In DasWetter.com you need one of four forecast data structures enabled. You can select the one you want to display. 
 
 
 ## Notes / wiki
