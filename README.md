@@ -5,7 +5,7 @@ ioBroker.vis-weather
 [![NPM version](https://img.shields.io/npm/v/iobroker.vis-weather.svg)](https://www.npmjs.com/package/iobroker.vis-weather)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.vis-weather.svg)](https://www.npmjs.com/package/iobroker.vis-weather)
 [![Tests](https://travis-ci.org/rg-engineering/ioBroker.vis-weather.svg?branch=master)](https://travis-ci.org/rg-engineering/ioBroker.vis-weather)
-[![Build Status](https://travis-ci.org/rg-engineering/ioBroker.vis-weather.svg?branch=master)](https://travis-ci.org/rg-engineering/ioBroker.vis-weather)
+
 [![NPM](https://nodei.co/npm/iobroker.vis-weather.png?downloads=true)](https://nodei.co/npm/iobroker.vis-weather/)
 
 This vis-widget shows weather forecast data from DasWetter.com or weatherunderground
@@ -23,7 +23,7 @@ By default the forecast diagram shows 40 hours (DasWetter) or 36 hours (wundergr
 
 ## Changelog
 #### 2.2.0 (2018-08-25)
-* (René) OID's for different data structures (only DasWetter 2.x)'
+* (René) OID's for different data structures (only DasWetter 2.x)
 
 #### 2.1.1 (2018-08-24)
 * (René) bug fixes
