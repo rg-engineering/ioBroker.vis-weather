@@ -22,28 +22,28 @@ By default the forecast diagram shows 40 hours (DasWetter) or 36 hours (wundergr
 
 
 ## Changelog
-#### 2.2.0 (2018-08-25)
+### 2.2.0 (2018-08-25)
 * (René) OID's for different data structures (only DasWetter 2.x)
 
-#### 2.1.1 (2018-08-24)
+### 2.1.1 (2018-08-24)
 * (René) bug fixes
 
-#### 2.1.0 (2018-08-18)
+### 2.1.0 (2018-08-18)
 * (René) support of 2.x of weatherundergruond
 
-#### 2.0.0
+### 2.0.0
 * (René) support of 2.x of daswetter.com
 
-#### 1.2.0
+### 1.2.0
 * (René) background color and border
 
-#### 1.1.2
+### 1.1.2
 * (René) Support of admin3
 
-#### 1.1.1
+### 1.1.1
 * (René) Y axis with units
 
-#### 1.1.0
+### 1.1.0
 * (René) logs auskommentiert
 * (René) Berechnung min / max für Temperaturgraph optimiert
 * (René) Y-Achse automatisch ausblenden, wenn Graph nicht dargestellt wird
@@ -52,31 +52,30 @@ By default the forecast diagram shows 40 hours (DasWetter) or 36 hours (wundergr
 * (gitbock) Max.-/Min Werte für Temperatur Y-Achse
 * (gitbock) konfigurierbares Datumsformat für X-Achse
 
-
-#### 1.0.0
+### 1.0.0
 * (René) first stable version
 
-#### 0.0.7
+### 0.0.7
 * (René) bug fix for android app > 1.0.6
 * (René) color adjustment for ticks and tick lable (from sbfspot)
 
-#### 0.0.6
+### 0.0.6
 * (René) css removed
 
-#### 0.0.5
+### 0.0.5
 * (René) number of labels on X axis adjustable
 
-#### 0.0.4
+### 0.0.4
 * (René) bug fixes
 
-#### 0.0.3
+### 0.0.3
 * (René) support of DasWetter.com and weatherunderground
 
-#### 0.0.2
+### 0.0.2
 * (René) bug fixes
 	- in live mode nothing was shown
 
-#### 0.0.1
+### 0.0.1
 * (René) initial release
 
 ## License
