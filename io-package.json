@@ -1,17 +1,28 @@
 {
   "common": {
     "name": "vis-weather",
-    "version": "2.2.0",
+    "version": "2.2.1",
     "news": {
+      "2.2.1": {
+        "en": "bug fix issue #12: unnecessary code removed",
+        "de": "Fehlerbehebung Problem Nr. 12: unnötiger Code wurde entfernt",
+        "ru": "ошибка № 12: удален ненужный код",
+        "pt": "problema de correção de bug # 12: código desnecessário removido",
+        "nl": "probleem met bugfix # 12: onnodige code verwijderd",
+        "fr": "problème de correction de bogue n ° 12: code inutile supprimé",
+        "it": "problema di correzione degli errori numero 12: codice non necessario rimosso",
+        "es": "problema de corrección de errores # 12: código innecesario eliminado",
+        "pl": "bug fix issue # 12: niepotrzebny kod usunięty"
+      },
       "2.2.0": {
-        "en": "OID's for different data structures ",
+        "en": "OID's for different data structures",
         "de": "OIDs für verschiedene Datenstrukturen",
         "ru": "OID для разных структур данных",
         "pt": "OID's para diferentes estruturas de dados",
         "nl": "OID's voor verschillende datastructuren",
         "fr": "OID pour différentes structures de données",
         "it": "OID per diverse strutture di dati",
-        "es": "OID para diferentes estructuras de datos",
+        "es": "OID's para diferentes estructuras de datos",
         "pl": "OID dla różnych struktur danych"
       },
       "2.1.1": {

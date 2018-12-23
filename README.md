@@ -22,6 +22,10 @@ By default the forecast diagram shows 40 hours (DasWetter) or 36 hours (wundergr
 
 
 ## Changelog
+
+### 2.2.1 (2018-12-23)
+* (René) bug fix issue #12: unnecessary code removed
+
 ### 2.2.0 (2018-08-25)
 * (René) OID's for different data structures (only DasWetter 2.x)
 
