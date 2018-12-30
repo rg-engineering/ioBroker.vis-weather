@@ -1,8 +1,19 @@
 {
   "common": {
     "name": "vis-weather",
-    "version": "2.2.1",
+    "version": "2.2.2",
     "news": {
+      "2.2.2": {
+        "en": "If oid_date is not set when using weatherunderground, an unnecessary error message was issued and the plot was not shown",
+        "de": "Wenn bei Verwendung von weatherunderground nicht oid_date eingestellt ist, wurde eine unnötige Fehlermeldung ausgegeben und die Darstellung wurde nicht angezeigt",
+        "ru": "Если oid_date не установлен при использовании weatherunderground, выдается ненужное сообщение об ошибке и график не отображается",
+        "pt": "Se oid_date não for definido ao usar o weatherunderground, uma mensagem de erro desnecessária será emitida e o gráfico não será mostrado",
+        "nl": "Als oid_date niet is ingesteld bij gebruik van weatherunderground, is een onnodige foutmelding gegeven en is de plot niet weergegeven",
+        "fr": "Si oid_date n'est pas défini lors de l'utilisation de weatherunder, un message d'erreur inutile est apparu et le tracé n'a pas été affiché.",
+        "it": "Se oid_date non è impostato quando si utilizza weatherunderground, è stato emesso un messaggio di errore non necessario e il grafico non è stato mostrato",
+        "es": "Si no se establece oid_date cuando se usa weatherunderground, se emitió un mensaje de error innecesario y no se mostró el gráfico",
+        "pl": "Jeśli wartość oid_date nie jest ustawiona podczas używania weatherunderground, wygenerowano niepotrzebny komunikat o błędzie, a wykres nie został wyświetlony"
+      },
       "2.2.1": {
         "en": "bug fix issue #12: unnecessary code removed",
         "de": "Fehlerbehebung Problem Nr. 12: unnötiger Code wurde entfernt",

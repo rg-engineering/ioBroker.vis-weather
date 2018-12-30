@@ -179,8 +179,6 @@
 
                 }
 
-                
-
                 function update() {
 
                     console.log("ShowChart temp/rain/cloud  (" + widgetID + ")");
@@ -196,11 +194,13 @@
 
                     console.log("ShowChart temp/rain/cloud begin (" + widgetID + ")");
                     
-
-
-                    if (!data || !data.instance || data.oid_date == "") {
-                        console.log("keine instanz oder keine OID (" + widgetID + ")");
-                        $div.html("<br> <center> <font color='red'> no instance or OID's specified </font> </center></br>");
+                    if (!data || !data.instance ) {
+                        console.log("keine instanz  (" + widgetID + ")");
+                        $div.html("<br> <center> <font color='red'> no instance  specified </font> </center></br>");
+                    }
+                    else if (data.instance.indexOf("daswetter") > -1 && data.oid_date == "") {
+                        console.log("no OID's for DasWetter  (" + widgetID + ")");
+                        $div.html("<br> <center> <font color='red'> no OID's for DasWetter specified </font> </center></br>");
                     }
                     else {
                         //warum wir das brauchen, verstehe ich noch nicht... //ist eigentlich nur dummy... aber ohne wird plot ganz klein dargestellt ??? //vis.getHistory(data.oid, {
@@ -949,6 +949,7 @@
                     }
 
                 }
+
 
 
                 for (var h = 0; h < 36; h++) {

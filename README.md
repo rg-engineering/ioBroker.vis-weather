@@ -23,6 +23,9 @@ By default the forecast diagram shows 40 hours (DasWetter) or 36 hours (wundergr
 
 ## Changelog
 
+### 2.2.2 (2018-12-30)
+* (René) bug fix: If oid_date is not set when using weatherunderground, an unnecessary error message was issued and the plot was not shown
+
 ### 2.2.1 (2018-12-23)
 * (René) bug fix issue #12: unnecessary code removed
 
