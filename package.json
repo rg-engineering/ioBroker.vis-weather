@@ -24,7 +24,7 @@
   ],
   "devDependencies": {
     "gulp": "^3.9.1",
-    "mocha": "^5.2.0",
+    "mocha": "^6.0.2",
     "chai": "^4.1.2"
   },
   "bugs": {
@@ -34,5 +34,8 @@
   "scripts": {
     "test": "node node_modules/mocha/bin/mocha --exit"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@iobroker/adapter-core": "^1.0.3"
+  }
 }
