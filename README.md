@@ -16,7 +16,7 @@ In DasWetter.com you need one of four forecast data structures enabled. You can 
 
 
 ## Notes / wiki
-### Define Forecast hours
+![Number of Installations](http://iobroker.live/badges/vis-weather-installed.svg) ![Number of Installations](http://iobroker.live/badges/vis-weather-stable.svg) ### Define Forecast hours
 By default the forecast diagram shows 40 hours (DasWetter) or 36 hours (wunderground). If you prefer to only show e.g. 10 hours forecast, simply delete the unnecessary OIDs under oid_groups in vis-edit. 
 
 
