@@ -1,6 +1,6 @@
 ![Logo](admin/vis-weather.png)
-ioBroker.vis-weather
-============
+# ioBroker.vis-weather
+![Number of Installations](http://iobroker.live/badges/vis-weather-installed.svg) ![Number of Installations](http://iobroker.live/badges/vis-weather-stable.svg) 
 
 [![NPM version](https://img.shields.io/npm/v/iobroker.vis-weather.svg)](https://www.npmjs.com/package/iobroker.vis-weather)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.vis-weather.svg)](https://www.npmjs.com/package/iobroker.vis-weather)
@@ -16,7 +16,7 @@ In DasWetter.com you need one of four forecast data structures enabled. You can 
 
 
 ## Notes / wiki
-![Number of Installations](http://iobroker.live/badges/vis-weather-installed.svg) ![Number of Installations](http://iobroker.live/badges/vis-weather-stable.svg) ### Define Forecast hours
+### Define Forecast hours
 By default the forecast diagram shows 40 hours (DasWetter) or 36 hours (wunderground). If you prefer to only show e.g. 10 hours forecast, simply delete the unnecessary OIDs under oid_groups in vis-edit. 
 
 
