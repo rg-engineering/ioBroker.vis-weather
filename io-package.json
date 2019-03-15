@@ -131,17 +131,17 @@
         "de": "erste Version"
       }
     },
-    "title": "Visualisation - weather Widgets",
+    "title": "weather Widgets",
     "titleLang": {
-      "en": "ioBroker Visualisation - weather Widgets",
-      "de": "ioBroker Visualisierung - Wetter Widgets",
-      "ru": "Визуализация ioBroker - погода Виджеты",
-      "pt": "io Visualização do navegador - Widgets meteorológicos",
-      "nl": "io Broker Visualisatie - weer Widgets",
-      "fr": "ioBroker Visualisation - météo Widgets",
-      "it": "Visualizzazione ioBroker: widget meteo",
-      "es": "ioBroker Visualización - Widgets del tiempo",
-      "pl": "Wizualizacja ioBroker - Widgety pogodowe"
+      "en": "weather Widgets",
+      "de": "Wetter Widgets",
+      "ru": "погода Виджеты",
+      "pt": "Widgets meteorológicos",
+      "nl": "weer Widgets",
+      "fr": "météo Widgets",
+      "it": "widget meteo",
+      "es": "Widgets del tiempo",
+      "pl": "Widgety pogodowe"
     },
     "desc": {
       "en": "general flot-based weather Widgets to be used with daswetter or weatherundergrund adapter",
