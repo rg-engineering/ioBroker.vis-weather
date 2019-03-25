@@ -2,7 +2,7 @@
     ioBroker.vis weather Widget-Set
 
 
-    Copyright 10.2015-2018 René G. <info@rg-engineering.eu>
+    Copyright 10.2015-2019 René G. <info@rg-engineering.eu>
 -->
 <!-- here you can include so many css as you want -->
 <!--<link rel="stylesheet" href="widgets/weather/css/style.css" />-->
@@ -10,6 +10,7 @@
 
 <script type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.js"></script>
 <script type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.time.js"></script>
+    
 
 <!-- doku for flot : -->
 <!--  https://github.com/flot/flot/blob/master/API.md -->
@@ -25,6 +26,10 @@
 
 <script type="text/javascript">
     'use strict';
+
+    //require('flot');
+
+    var MarkingColor = "eaebe5";
 
     if (vis.editMode) {
         // Add words for basic widgets
@@ -69,9 +74,10 @@
             "bar": { "en": "bar", "de": "Balken", "ru": "???" },
             "sun": { "en": "sun", "de": "Sonne", "ru": "???" },
             "clouds": { "en": "clouds", "de": "Wolken", "ru": "???" },
-            "ticksonxaxix": { "en": "ticks on X axis", "de": "Anzahl Labels / X Achse", "ru": "???" },
             "axislabelcolor": { "en": "color axis label", "de": "Farbe Achsbeschriftung", "ru": "???" },
             "tickscolor": { "en": "color axis ticks", "de": "Farbe Achsmarke", "ru": "???" },
+            "markingcolor": { "en": "color marking", "de": "Farbe Hervorhebung", "ru": "???" },
+         
             "maxY_temp": { "en": "max value y-axix (0 for auto)", "de": "Max Wert Y-Achse (0 für auto)", "ru": "???" },
             "minY_temp": { "en": "min value y-axix (0 for auto)", "de": "Min Wert Y-Achse (0 für auto)", "ru": "???" },
             "yTempVisible": { "en": "show y axis", "de": "zeige Y-Achse", "ru": "???" },
@@ -83,6 +89,10 @@
             "withborder": { "en": "show border", "de": "Rahmen anzeigen", "ru": "withborder" },
             "datastructure": { "en": "data structure", "de": "Datenstruktur", "ru": "data structure" },
         });
+    }
+
+    function SetMarkingColor(color) {
+        MarkingColor=color;
     }
 
     function degreeFormatter(v, axis) {
@@ -97,10 +107,68 @@
         return v.toFixed(axis.tickDecimals) + "mm";
     }
 
+    function GridMarkings(axes) {
 
+        var markings = [];
+        var minDate = new Date(axes.xaxis.min);
+
+        const dayDiff = (axes.xaxis.max - axes.xaxis.min) / 1000 / 60 / 60 / 24;
+        console.log('DayDiff ' + dayDiff);
+
+        var i = minDate.getTime();
+
+        //if we only few hours then we need markings per hour otherwise per day
+        if (dayDiff > 2) {
+            do {
+                markings.push({ xaxis: { from: i, to: i + 24 * 60 * 60 * 1000 }, color: MarkingColor });
+                i += 2 * 24 * 60 * 60 * 1000;
+            } while (i < axes.xaxis.max);
+
+        }
+        else {
+            do {
+                markings.push({ xaxis: { from: i, to: i + 60 * 60 * 1000 }, color: MarkingColor });
+                i += 2 * 60 * 60 * 1000;
+            } while (i < axes.xaxis.max);
+        }
+        return markings;
+
+    }
+
+    function CalcTicks4X(axis) {
+
+        var ticks = [];
+
+        var minDate = new Date(axis.min);
+
+        const dayDiff = (axis.max - axis.min) / 1000 / 60 / 60 / 24;
+
+        console.log('DayDiff ' + dayDiff);
+
+        //if we only few hours then we need markings per hour otherwise per day
+        if (dayDiff > 2) {
+            minDate.setUTCHours(12);
+            minDate.setUTCMinutes(0);
+            var i = minDate.getTime();
+            do {
+                ticks.push([i]);
+                i += 24 * 60 * 60 * 1000;
+            } while (i < axis.max);
+        }
+        else {
+            minDate.setUTCHours(0);
+            minDate.setUTCMinutes(0);
+            var i = minDate.getTime();
+            do {
+                ticks.push([i]);
+                i += 6 * 60 * 60 * 1000;
+            } while (i < axis.max);
+        }
+        return ticks;
+    }
 
     vis.binds.weather = {
-        version: "2.2.1",
+        version: "2.3.0",
         showVersion: function () {
             if (vis.binds.weather.version) {
                 console.log('Version vis-weather: ' + vis.binds.weather.version);
@@ -193,8 +261,8 @@
                     }
 
                     console.log("ShowChart temp/rain/cloud begin (" + widgetID + ")");
-                    
-                    if (!data || !data.instance ) {
+
+                    if (!data || !data.instance) {
                         console.log("keine instanz  (" + widgetID + ")");
                         $div.html("<br> <center> <font color='red'> no instance  specified </font> </center></br>");
                     }
@@ -203,19 +271,10 @@
                         $div.html("<br> <center> <font color='red'> no OID's for DasWetter specified </font> </center></br>");
                     }
                     else {
-                        //warum wir das brauchen, verstehe ich noch nicht... //ist eigentlich nur dummy... aber ohne wird plot ganz klein dargestellt ??? //vis.getHistory(data.oid, {
-                        //    instance: data.instance,
-                        //    count: parseInt(data.points, 10) || 10,
-                        //    aggregate: data.aggregate || 'average',
-                        //    start: vis.binds.weather.setup.intervals[data.time_interval] ? new Date().getTime() - vis.binds.weather.setup.intervals[data.time_interval] : undefined,
-                        //    end: new Date().getTime() + 5000,
-                        //    timeout: 1000
-                        //}, function (err, result) {
-                        //var data = $div.data('options');
-                        //if (err) console.log(err);
 
 
 
+                        SetMarkingColor(data.markingcolor);
 
                         var values_rain = [];
                         var values_chancerain = [];
@@ -500,7 +559,8 @@
                                 bars:
                                     {
                                         show: true,
-                                        barWidth: barwidth
+                                        barWidth: barwidth,
+                                        align: "center"
                                     }
                             },
 
@@ -514,7 +574,8 @@
                                 bars:
                                     {
                                         show: data.tempchartType == "bar" ? true : false,
-                                        barWidth: barwidth
+                                        barWidth: barwidth,
+                                        align: "center"
                                     }
                             },
                             {
@@ -526,7 +587,8 @@
                                 bars:
                                     {
                                         show: data.rainchartType == "bar" ? true : false,
-                                        barWidth: barwidth
+                                        barWidth: barwidth,
+                                        align: "center"
                                     }
                             },
                             {
@@ -538,19 +600,21 @@
                                 bars:
                                     {
                                         show: data.cloudschartType == "bar" ? true : false,
-                                        barWidth: barwidth
+                                        barWidth: barwidth,
+                                        align: "center"
                                     }
                             }
 
                             ],
                             {
 
-                                xaxes: //xaxis mit [] geht nicht...!!!
-                                    [{//das folgende geht
+                                xaxes:
+                                    [{
                                         show: data.withxaxix,
                                         mode: "time",
                                         tickLength: 5,
-                                        ticks: data.ticksonxaxix > 0 ? parseInt(data.ticksonxaxix, 10) : 5,
+                                        //ticks: data.ticksonxaxix > 0 ? parseInt(data.ticksonxaxix, 10) : 5,
+                                        ticks: CalcTicks4X,
                                         timeformat: data.xDateFormat,
                                         monthNames: ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
                                         color: data.tickscolor,
@@ -559,8 +623,8 @@
                                         }
                                     }],
 
-                                yaxes: //yaxis mit [] geht nicht...!!!
-                                    //das folgende geht
+                                yaxes:
+
 
                                     //temp y-axis #1
                                     [{
@@ -623,7 +687,8 @@
                                     }],
                                 grid:
                                     {
-                                        //Farben einstellen fehlt noch
+                                        markings: GridMarkings,
+
                                         backgroundColor: data.nobgcolor ? null : { colors: ["#fff", "#eee"] },
                                         borderWidth: {
                                             top: data.withborder ? 1 : 0,
@@ -631,15 +696,13 @@
                                             bottom: data.withborder ? 2 : 0,
                                             left: data.withborder ? 2 : 0
                                         },
-                                        //fehlt noch
-                                        //markings: nextDay
+
                                     }
                             }
                         );
 
 
-                        //});
-                        //GetHistory
+
                     }
 
                 };
@@ -1046,7 +1109,7 @@
         data-vis-prev='<img src="widgets/weather/img/Prev_tplWeather.png"></img>'
         data-vis-attrs="instance/weather/onInstanceChanged;"
         data-vis-attrs0="datastructure[NextDaysDetailed]/select,NextDaysDetailed,NextHours,NextHours2/onInstanceChanged;"
-        data-vis-attrs1="withxaxix[true]/checkbox;ticksonxaxix[5];axislabelcolor[#ffffff]/color;tickscolor[#ffffff]/color;xDateFormat[%d.%b %H:%M];withborder[true]/checkbox;nobgcolor[true]/checkbox;"
+        data-vis-attrs1="withxaxix[true]/checkbox;axislabelcolor[#ffffff]/color;tickscolor[#ffffff]/color;markingcolor[#eaebe5]/color;xDateFormat[%d.%b %H:%M];withborder[true]/checkbox;nobgcolor[true]/checkbox;"
         data-vis-attrs2="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;raincolor[#1d0ed8]/color;chancerainvisible[true]/checkbox;chanceraincolor[#877efc]/color;yRainVisible[true]/checkbox;yChanceRainVisible[true]/checkbox;"
         data-vis-attrs3="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;tempcolor[#00b3ac]/color;maxY_temp[0];minY_temp[0];yTempVisible[true]/checkbox;"
         data-vis-attrs4="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar; sunorcloud[sun]/select,sun,clouds;cloudcolor[#f6ef3c]/color;yCloudVisible[true]/checkbox;"
