@@ -4,6 +4,16 @@
     "version": "2.3.0",
     "news": {
       "2.3.0": {
+        "en": "markings added",
+        "de": "Markierungen hinzugefügt",
+        "ru": "добавлена ​​маркировка",
+        "pt": "marcações adicionadas",
+        "nl": "markeringen toegevoegd",
+        "fr": "marquages ​​ajoutés",
+        "it": "marcature aggiunte",
+        "es": "marcas añadidas",
+        "pl": "dodane oznaczenia",
+        "zh-cn": "标记添加"
       },
       "2.2.2": {
         "en": "If oid_date is not set when using weatherunderground, an unnecessary error message was issued and the plot was not shown",

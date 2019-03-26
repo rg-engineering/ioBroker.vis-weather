@@ -77,7 +77,7 @@
             "axislabelcolor": { "en": "color axis label", "de": "Farbe Achsbeschriftung", "ru": "???" },
             "tickscolor": { "en": "color axis ticks", "de": "Farbe Achsmarke", "ru": "???" },
             "markingcolor": { "en": "color marking", "de": "Farbe Hervorhebung", "ru": "???" },
-         
+            "withmarking": { "en": "with marking", "de": "Hervorhebungen", "ru": "???" },
             "maxY_temp": { "en": "max value y-axix (0 for auto)", "de": "Max Wert Y-Achse (0 für auto)", "ru": "???" },
             "minY_temp": { "en": "min value y-axix (0 for auto)", "de": "Min Wert Y-Achse (0 für auto)", "ru": "???" },
             "yTempVisible": { "en": "show y axis", "de": "zeige Y-Achse", "ru": "???" },
@@ -85,7 +85,7 @@
             "yCloudVisible": { "en": "show y axis", "de": "zeige Y-Achse", "ru": "???" },
             "yChanceRainVisible": { "en": "show y axis for chance rain", "de": "zeige Y-Achse (Regenwahrscheinlichkeit)", "ru": "???" },
             "xDateFormat": { "en": "format for date/time on x-axis", "de": "Datum-/Zeitformat X-Achse", "ru": "???" },
-            "nobgcolor": { "en": "no background color", "de": "keine Farbe Hintergrund", "ru": "nobgcolor" },
+            "nobgcolor": { "en": "no background color", "de": "ohne Hintergrundfarbe", "ru": "nobgcolor" },
             "withborder": { "en": "show border", "de": "Rahmen anzeigen", "ru": "withborder" },
             "datastructure": { "en": "data structure", "de": "Datenstruktur", "ru": "data structure" },
         });
@@ -687,7 +687,7 @@
                                     }],
                                 grid:
                                     {
-                                        markings: GridMarkings,
+                                        markings: data.withmarking ? GridMarkings : null,
 
                                         backgroundColor: data.nobgcolor ? null : { colors: ["#fff", "#eee"] },
                                         borderWidth: {
@@ -1109,7 +1109,7 @@
         data-vis-prev='<img src="widgets/weather/img/Prev_tplWeather.png"></img>'
         data-vis-attrs="instance/weather/onInstanceChanged;"
         data-vis-attrs0="datastructure[NextDaysDetailed]/select,NextDaysDetailed,NextHours,NextHours2/onInstanceChanged;"
-        data-vis-attrs1="withxaxix[true]/checkbox;axislabelcolor[#ffffff]/color;tickscolor[#ffffff]/color;markingcolor[#eaebe5]/color;xDateFormat[%d.%b %H:%M];withborder[true]/checkbox;nobgcolor[true]/checkbox;"
+        data-vis-attrs1="withxaxix[true]/checkbox;axislabelcolor[#ffffff]/color;tickscolor[#ffffff]/color;withmarking[true]/checkbox;markingcolor[#eaebe5]/color;xDateFormat[%d.%b %H:%M];withborder[true]/checkbox;nobgcolor[true]/checkbox;"
         data-vis-attrs2="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;raincolor[#1d0ed8]/color;chancerainvisible[true]/checkbox;chanceraincolor[#877efc]/color;yRainVisible[true]/checkbox;yChanceRainVisible[true]/checkbox;"
         data-vis-attrs3="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;tempcolor[#00b3ac]/color;maxY_temp[0];minY_temp[0];yTempVisible[true]/checkbox;"
         data-vis-attrs4="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar; sunorcloud[sun]/select,sun,clouds;cloudcolor[#f6ef3c]/color;yCloudVisible[true]/checkbox;"
