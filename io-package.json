@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "vis-weather",
-    "version": "2.3.0",
+    "version": "2.3.1",
     "news": {
+      "2.3.1": {
+        "en": "missing timer added",
+        "de": "fehlender Timer hinzugefügt",
+        "ru": "добавлен отсутствующий таймер",
+        "pt": "temporizador ausente adicionado",
+        "nl": "ontbrekende timer toegevoegd",
+        "fr": "minuterie manquante ajoutée",
+        "it": "timer mancante aggiunto",
+        "es": "temporizador faltante añadido",
+        "pl": "dodano brakujący timer",
+        "zh-cn": "缺少计时器"
+      },
       "2.3.0": {
         "en": "markings added",
         "de": "Markierungen hinzugefügt",
