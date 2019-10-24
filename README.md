@@ -30,6 +30,9 @@ You might need to enable "NextDaysDetailed".
 
 ## Changelog
 
+### 2.3.2 (2019-10-24)
+* (René) add logs for issue #20 
+
 ### 2.3.1 (2019-07-13)
 * (René) bug fix: missing timer added
 

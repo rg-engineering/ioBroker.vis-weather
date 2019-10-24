@@ -494,7 +494,7 @@
                             //console.log("++++ timediff " + nTimeDiff);
                             oldHour = hour;
 
-                            //console.log(date+" "+ val_rain + " " + val_temp + " " + val_cloud);
+                            console.log("### " + oDate.toLocaleString() + " rain: " + val_rain + " temp: " + val_temp + " cloud: " + val_cloud);
 
                             if (!bDateNotValid) {
                                 //need time in UTC
@@ -528,7 +528,7 @@
                         maxY_rain = Math.ceil((maxY_rain + 1) / 10) * 10;
                         if (maxY_rain < 10) maxY_rain = 10;
 
-                        //console.log("start " + maxY_rain + " / " + minY_rain + " " + maxY_temp + " / " + minY_temp);
+                        console.log("start " + maxY_rain + " / " + minY_rain + " " + maxY_temp + " / " + minY_temp);
 
 
                         var barwidth = 0;
