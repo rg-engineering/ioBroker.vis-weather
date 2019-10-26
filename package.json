@@ -34,7 +34,6 @@
     "test:integration": "mocha test/integration --exit"
   },
   "dependencies": {
-    "flot": "^2.3.1",
     "npm": "^6.9.0"
   }
 }
