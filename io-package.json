@@ -1,165 +1,177 @@
 {
   "common": {
     "name": "vis-weather",
-    "version": "2.3.2",
+    "version": "2.4.0",
     "news": {
-      "2.3.2": {
-        "en": "update flot to version 3.0",
-        "de": "update flot auf version 3.0",
-        "ru": "обновление flot до версии 3.0",
-        "pt": "atualização flot para a versão 3.0",
-        "nl": "update flot naar versie 3.0",
-        "fr": "mettre à jour flot à la version 3.0",
-        "it": "aggiorna il flot alla versione 3.0",
-        "es": "actualizar flot a la versión 3.0",
-        "pl": "zaktualizuj flota do wersji 3.0",
-        "zh-cn": "将flot更新到版本3.0"
+      "2.4.0": {
+        "en": "legend added",
+        "de": "Legende hinzugefügt",
+        "ru": "легенда добавлена",
+        "pt": "legenda adicionada",
+        "nl": "legende toegevoegd",
+        "fr": "légende ajoutée",
+        "it": "leggenda aggiunta",
+        "es": "leyenda agregada",
+        "pl": "dodano legendę",
+        "zh-cn": "图例已添加"
       },
-      "2.3.1": {
-        "en": "missing timer added",
-        "de": "fehlender Timer hinzugefügt",
-        "ru": "добавлен отсутствующий таймер",
-        "pt": "temporizador ausente adicionado",
-        "nl": "ontbrekende timer toegevoegd",
-        "fr": "minuterie manquante ajoutée",
-        "it": "timer mancante aggiunto",
-        "es": "temporizador faltante añadido",
-        "pl": "dodano brakujący timer",
-        "zh-cn": "缺少计时器"
+        "2.3.2": {
+          "en": "update flot to version 3.0",
+          "de": "update flot auf version 3.0",
+          "ru": "обновление flot до версии 3.0",
+          "pt": "atualização flot para a versão 3.0",
+          "nl": "update flot naar versie 3.0",
+          "fr": "mettre à jour flot à la version 3.0",
+          "it": "aggiorna il flot alla versione 3.0",
+          "es": "actualizar flot a la versión 3.0",
+          "pl": "zaktualizuj flota do wersji 3.0",
+          "zh-cn": "将flot更新到版本3.0"
+        },
+        "2.3.1": {
+          "en": "missing timer added",
+          "de": "fehlender Timer hinzugefügt",
+          "ru": "добавлен отсутствующий таймер",
+          "pt": "temporizador ausente adicionado",
+          "nl": "ontbrekende timer toegevoegd",
+          "fr": "minuterie manquante ajoutée",
+          "it": "timer mancante aggiunto",
+          "es": "temporizador faltante añadido",
+          "pl": "dodano brakujący timer",
+          "zh-cn": "缺少计时器"
+        },
+        "2.3.0": {
+          "en": "markings added",
+          "de": "Markierungen hinzugefügt",
+          "ru": "добавлена ​​маркировка",
+          "pt": "marcações adicionadas",
+          "nl": "markeringen toegevoegd",
+          "fr": "marquages ​​ajoutés",
+          "it": "marcature aggiunte",
+          "es": "marcas añadidas",
+          "pl": "dodane oznaczenia",
+          "zh-cn": "标记添加"
+        },
+        "2.2.2": {
+          "en": "If oid_date is not set when using weatherunderground, an unnecessary error message was issued and the plot was not shown",
+          "de": "Wenn bei Verwendung von weatherunderground nicht oid_date eingestellt ist, wurde eine unnötige Fehlermeldung ausgegeben und die Darstellung wurde nicht angezeigt",
+          "ru": "Если oid_date не установлен при использовании weatherunderground, выдается ненужное сообщение об ошибке и график не отображается",
+          "pt": "Se oid_date não for definido ao usar o weatherunderground, uma mensagem de erro desnecessária será emitida e o gráfico não será mostrado",
+          "nl": "Als oid_date niet is ingesteld bij gebruik van weatherunderground, is een onnodige foutmelding gegeven en is de plot niet weergegeven",
+          "fr": "Si oid_date n'est pas défini lors de l'utilisation de weatherunder, un message d'erreur inutile est apparu et le tracé n'a pas été affiché.",
+          "it": "Se oid_date non è impostato quando si utilizza weatherunderground, è stato emesso un messaggio di errore non necessario e il grafico non è stato mostrato",
+          "es": "Si no se establece oid_date cuando se usa weatherunderground, se emitió un mensaje de error innecesario y no se mostró el gráfico",
+          "pl": "Jeśli wartość oid_date nie jest ustawiona podczas używania weatherunderground, wygenerowano niepotrzebny komunikat o błędzie, a wykres nie został wyświetlony"
+        },
+        "2.2.1": {
+          "en": "bug fix issue #12: unnecessary code removed",
+          "de": "Fehlerbehebung Problem Nr. 12: unnötiger Code wurde entfernt",
+          "ru": "ошибка № 12: удален ненужный код",
+          "pt": "problema de correção de bug # 12: código desnecessário removido",
+          "nl": "probleem met bugfix # 12: onnodige code verwijderd",
+          "fr": "problème de correction de bogue n ° 12: code inutile supprimé",
+          "it": "problema di correzione degli errori numero 12: codice non necessario rimosso",
+          "es": "problema de corrección de errores # 12: código innecesario eliminado",
+          "pl": "bug fix issue # 12: niepotrzebny kod usunięty"
+        },
+        "2.2.0": {
+          "en": "OID's for different data structures",
+          "de": "OIDs für verschiedene Datenstrukturen",
+          "ru": "OID для разных структур данных",
+          "pt": "OID's para diferentes estruturas de dados",
+          "nl": "OID's voor verschillende datastructuren",
+          "fr": "OID pour différentes structures de données",
+          "it": "OID per diverse strutture di dati",
+          "es": "OID's para diferentes estructuras de datos",
+          "pl": "OID dla różnych struktur danych"
+        },
+        "2.1.1": {
+          "en": "bug fixes",
+          "de": "Fehlerbehebung",
+          "ru": "исправление ошибок",
+          "pt": "correções de bugs",
+          "nl": "bugfixes",
+          "fr": "corrections de bugs",
+          "it": "correzioni di bug",
+          "es": "corrección de errores",
+          "pl": "poprawki błędów"
+        },
+        "2.1.0": {
+          "en": "support of 2.x of weatherunderground",
+          "de": "Unterstützung von 2.x von Wetteruntergrund",
+          "ru": "поддержка 2.x погоды под землей",
+          "pt": "suporte de 2.x do clima subterrâneo",
+          "nl": "ondersteuning van 2.x van ondergronds weer",
+          "fr": "soutien de 2.x de la météo sous terre",
+          "it": "supporto di 2.x del tempo sottoterra",
+          "es": "soporte de 2.x de clima subterráneo",
+          "pl": "wsparcie 2.x pogody pod ziemią"
+        },
+        "2.0.0": {
+          "en": "support of 2.x of daswetter.com",
+          "de": "Unterstützung von 2.x von daswetter.com",
+          "ru": "поддержка 2.x от daswetter.com",
+          "pt": "suporte de 2.x de daswetter.com",
+          "nl": "ondersteuning van 2.x van daswetter.com",
+          "fr": "support de 2.x de daswetter.com",
+          "it": "supporto di 2.x di daswetter.com",
+          "es": "soporte de 2.x de daswetter.com",
+          "pl": "obsługa 2.x daswetter.com"
+        }
       },
-      "2.3.0": {
-        "en": "markings added",
-        "de": "Markierungen hinzugefügt",
-        "ru": "добавлена ​​маркировка",
-        "pt": "marcações adicionadas",
-        "nl": "markeringen toegevoegd",
-        "fr": "marquages ​​ajoutés",
-        "it": "marcature aggiunte",
-        "es": "marcas añadidas",
-        "pl": "dodane oznaczenia",
-        "zh-cn": "标记添加"
+      "title": "weather Widgets",
+      "titleLang": {
+        "en": "weather Widgets",
+        "de": "Wetter Widgets",
+        "ru": "погода Виджеты",
+        "pt": "Widgets meteorológicos",
+        "nl": "weer Widgets",
+        "fr": "météo Widgets",
+        "it": "widget meteo",
+        "es": "Widgets del tiempo",
+        "pl": "Widgety pogodowe"
       },
-      "2.2.2": {
-        "en": "If oid_date is not set when using weatherunderground, an unnecessary error message was issued and the plot was not shown",
-        "de": "Wenn bei Verwendung von weatherunderground nicht oid_date eingestellt ist, wurde eine unnötige Fehlermeldung ausgegeben und die Darstellung wurde nicht angezeigt",
-        "ru": "Если oid_date не установлен при использовании weatherunderground, выдается ненужное сообщение об ошибке и график не отображается",
-        "pt": "Se oid_date não for definido ao usar o weatherunderground, uma mensagem de erro desnecessária será emitida e o gráfico não será mostrado",
-        "nl": "Als oid_date niet is ingesteld bij gebruik van weatherunderground, is een onnodige foutmelding gegeven en is de plot niet weergegeven",
-        "fr": "Si oid_date n'est pas défini lors de l'utilisation de weatherunder, un message d'erreur inutile est apparu et le tracé n'a pas été affiché.",
-        "it": "Se oid_date non è impostato quando si utilizza weatherunderground, è stato emesso un messaggio di errore non necessario e il grafico non è stato mostrato",
-        "es": "Si no se establece oid_date cuando se usa weatherunderground, se emitió un mensaje de error innecesario y no se mostró el gráfico",
-        "pl": "Jeśli wartość oid_date nie jest ustawiona podczas używania weatherunderground, wygenerowano niepotrzebny komunikat o błędzie, a wykres nie został wyświetlony"
+      "desc": {
+        "en": "general flot-based weather Widgets to be used with daswetter or weatherundergrund adapter",
+        "de": "allgemeine Flot-basierte Wetter-Widgets, die mit daswetter- oder weatherundergrund-Adapter verwendet werden können",
+        "ru": "Визиты, которые будут использоваться с адаптером daswetter или weatherundergrund",
+        "pt": "Widgets de clima baseados em flotadores em geral para serem usados ​​com o adaptador daswetter ou weatherundergrund",
+        "nl": "algemene op flot gebaseerde weer Widgets voor gebruik met daswetter of weatherundergrund adapter",
+        "fr": "Widgets météo à base de flot à utiliser avec un adaptateur daswetter ou weatherundergrund",
+        "it": "widget meteo generali basati su flottazione da utilizzare con l'adattatore daswetter o weatherundergrund",
+        "es": "Widgets meteorológicos generales basados ​​en flotante para ser utilizados con el adaptador daswetter o weatherundergrund",
+        "pl": "Ogólne widgety pogodowe oparte na flotach, które mają być używane z adapterem daswetter lub weatherundergrund"
       },
-      "2.2.1": {
-        "en": "bug fix issue #12: unnecessary code removed",
-        "de": "Fehlerbehebung Problem Nr. 12: unnötiger Code wurde entfernt",
-        "ru": "ошибка № 12: удален ненужный код",
-        "pt": "problema de correção de bug # 12: código desnecessário removido",
-        "nl": "probleem met bugfix # 12: onnodige code verwijderd",
-        "fr": "problème de correction de bogue n ° 12: code inutile supprimé",
-        "it": "problema di correzione degli errori numero 12: codice non necessario rimosso",
-        "es": "problema de corrección de errores # 12: código innecesario eliminado",
-        "pl": "bug fix issue # 12: niepotrzebny kod usunięty"
-      },
-      "2.2.0": {
-        "en": "OID's for different data structures",
-        "de": "OIDs für verschiedene Datenstrukturen",
-        "ru": "OID для разных структур данных",
-        "pt": "OID's para diferentes estruturas de dados",
-        "nl": "OID's voor verschillende datastructuren",
-        "fr": "OID pour différentes structures de données",
-        "it": "OID per diverse strutture di dati",
-        "es": "OID's para diferentes estructuras de datos",
-        "pl": "OID dla różnych struktur danych"
-      },
-      "2.1.1": {
-        "en": "bug fixes",
-        "de": "Fehlerbehebung",
-        "ru": "исправление ошибок",
-        "pt": "correções de bugs",
-        "nl": "bugfixes",
-        "fr": "corrections de bugs",
-        "it": "correzioni di bug",
-        "es": "corrección de errores",
-        "pl": "poprawki błędów"
-      },
-      "2.1.0": {
-        "en": "support of 2.x of weatherunderground",
-        "de": "Unterstützung von 2.x von Wetteruntergrund",
-        "ru": "поддержка 2.x погоды под землей",
-        "pt": "suporte de 2.x do clima subterrâneo",
-        "nl": "ondersteuning van 2.x van ondergronds weer",
-        "fr": "soutien de 2.x de la météo sous terre",
-        "it": "supporto di 2.x del tempo sottoterra",
-        "es": "soporte de 2.x de clima subterráneo",
-        "pl": "wsparcie 2.x pogody pod ziemią"
-      },
-      "2.0.0": {
-        "en": "support of 2.x of daswetter.com",
-        "de": "Unterstützung von 2.x von daswetter.com",
-        "ru": "поддержка 2.x от daswetter.com",
-        "pt": "suporte de 2.x de daswetter.com",
-        "nl": "ondersteuning van 2.x van daswetter.com",
-        "fr": "support de 2.x de daswetter.com",
-        "it": "supporto di 2.x di daswetter.com",
-        "es": "soporte de 2.x de daswetter.com",
-        "pl": "obsługa 2.x daswetter.com"
-      }
+      "platform": "Javascript/Node.js",
+      "loglevel": "info",
+      "icon": "vis-weather.png",
+      "enabled": true,
+      "mode": "once",
+      "extIcon": "https://raw.githubusercontent.com/rg-engineering/ioBroker.vis-weather/master/admin/vis-weather.png",
+      "keywords": [
+        "weather",
+        "vis",
+        "GUI",
+        "graphical",
+        "scada"
+      ],
+      "readme": "https://github.com/rg-engineering/ioBroker.vis-weather/blob/master/README.md",
+      "authors": [
+        "René G. <info@rg-engineering.eu>"
+      ],
+      "localLink": "%web_protocol%://%ip%:%web_port%/vis/edit.html",
+      "license": "MIT",
+      "dependencies": [
+        "vis"
+      ],
+      "materialize": true,
+      "onlyWWW": true,
+      "noConfig": true,
+      "singleton": true,
+      "type": "visualization-widgets",
+      "restartAdapters": [
+        "vis"
+      ]
     },
-    "title": "weather Widgets",
-    "titleLang": {
-      "en": "weather Widgets",
-      "de": "Wetter Widgets",
-      "ru": "погода Виджеты",
-      "pt": "Widgets meteorológicos",
-      "nl": "weer Widgets",
-      "fr": "météo Widgets",
-      "it": "widget meteo",
-      "es": "Widgets del tiempo",
-      "pl": "Widgety pogodowe"
-    },
-    "desc": {
-      "en": "general flot-based weather Widgets to be used with daswetter or weatherundergrund adapter",
-      "de": "allgemeine Flot-basierte Wetter-Widgets, die mit daswetter- oder weatherundergrund-Adapter verwendet werden können",
-      "ru": "Визиты, которые будут использоваться с адаптером daswetter или weatherundergrund",
-      "pt": "Widgets de clima baseados em flotadores em geral para serem usados ​​com o adaptador daswetter ou weatherundergrund",
-      "nl": "algemene op flot gebaseerde weer Widgets voor gebruik met daswetter of weatherundergrund adapter",
-      "fr": "Widgets météo à base de flot à utiliser avec un adaptateur daswetter ou weatherundergrund",
-      "it": "widget meteo generali basati su flottazione da utilizzare con l'adattatore daswetter o weatherundergrund",
-      "es": "Widgets meteorológicos generales basados ​​en flotante para ser utilizados con el adaptador daswetter o weatherundergrund",
-      "pl": "Ogólne widgety pogodowe oparte na flotach, które mają być używane z adapterem daswetter lub weatherundergrund"
-    },
-    "platform": "Javascript/Node.js",
-    "loglevel": "info",
-    "icon": "vis-weather.png",
-    "enabled": true,
-    "mode": "once",
-    "extIcon": "https://raw.githubusercontent.com/rg-engineering/ioBroker.vis-weather/master/admin/vis-weather.png",
-    "keywords": [
-      "weather",
-      "vis",
-      "GUI",
-      "graphical",
-      "scada"
-    ],
-    "readme": "https://github.com/rg-engineering/ioBroker.vis-weather/blob/master/README.md",
-    "authors": [
-      "René G. <info@rg-engineering.eu>"
-    ],
-    "localLink": "%web_protocol%://%ip%:%web_port%/vis/edit.html",
-    "license": "MIT",
-    "dependencies": [
-      "vis"
-    ],
-    "materialize": true,
-    "onlyWWW": true,
-    "noConfig": true,
-    "singleton": true,
-    "type": "visualization-widgets",
-    "restartAdapters": [
-      "vis"
-    ]
-  },
   "native": {},
   "instanceObjects": []
 }
