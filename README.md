@@ -30,6 +30,8 @@ You might need to enable "NextDaysDetailed".
 
 ## Changelog
 
+### 2.4.1 (2019-11-xx)
+* (René) see issue #23: names for legend adjustable
 
 ### 2.4.0 (2019-10-31)
 * (René) legend added

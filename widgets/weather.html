@@ -21,6 +21,7 @@
 <script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.uiConstants.js"></script>
 <script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.time.js"></script>
 <script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.legend.js"></script>
+<script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.axislabels.js"></script>
 
 
 <!-- doku for flot : -->
@@ -106,6 +107,12 @@
             "nobgcolor": { "en": "no background color", "de": "ohne Hintergrundfarbe", "ru": "nobgcolor" },
             "withborder": { "en": "show border", "de": "Rahmen anzeigen", "ru": "withborder" },
             "datastructure": { "en": "data structure", "de": "Datenstruktur", "ru": "data structure" },
+
+            "rainname": { "en": "legend name ", "de": "Name" },
+            "tempname": { "en": "legend name ", "de": "Name" },
+            "cloudsname": { "en": "legend name ", "de": "Name" },
+            "chancerainname": { "en": "legend name ", "de": "Name" }
+
         });
     }
 
@@ -596,7 +603,7 @@
                                 color: data.chanceraincolor,
                                 xaxis: 1,
                                 yaxis: 4,
-                                label: "chance rain",
+                                label: data.chancerainname,
                                lines: { show: false },
                                 bars:
                                 {
@@ -612,7 +619,7 @@
                                 color: data.tempcolor,
                                 xaxis: 1,
                                 yaxis: 1,
-                                label: "temperature",
+                                label: data.tempname,
                                 lines: { show: data.tempchartType == "line" ? true : false, fill: false },
                                 bars:
                                 {
@@ -627,7 +634,7 @@
                                 color: data.raincolor,
                                 xaxis: 1,
                                 yaxis: 2,
-                                label: "rain",
+                                label:data.rainname,
                                 lines: { show: data.rainchartType == "line" ? true : false, fill: false },
                                 bars:
                                 {
@@ -642,7 +649,7 @@
                                 color: data.cloudcolor,
                                 xaxis: 1,
                                 yaxis: 3,
-                                label: "clouds",
+                                label: data.cloudsname,
                                 lines: { show: data.cloudschartType == "line" ? true : false, fill: false },
                                 bars:
                                 {
@@ -663,15 +670,23 @@
                                         timeBase: "milliseconds",
                                         tickLength: 5,
                                         min: dateMin,
-					                    max: dateMax,
+                                        max: dateMax,
                                         //ticks: data.ticksonxaxix > 0 ? parseInt(data.ticksonxaxix, 10) : 5,
                                         ticks: CalcTicks4X,
                                         autoScale: "none",
                                         timeformat: data.xDateFormat,
                                         monthNames: ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
                                         color: data.tickscolor,
+                                        tickColor: data.tickscolor,
                                         font: {
-                                            color: data.axislabelcolor
+                                            color: data.axislabelcolor,
+                                            size: 11,
+                                            lineHeight: 13,
+                                            style: "italic",
+                                            weight: "bold",
+                                            family: "sans-serif",
+                                            variant: "small-caps"
+
                                         },
                                         timezone: "browser"
                                     }],
@@ -688,6 +703,7 @@
                                         position: 'left',
                                         ticks: 3,
                                         color: data.tickscolor,
+                                        tickColor: data.tickscolor,
                                         font: {
                                             color: data.tempcolor,
                                         },
@@ -703,6 +719,7 @@
                                         position: 'right',
                                         ticks: 3,
                                         color: data.tickscolor,
+                                        tickColor: data.tickscolor,
                                         font: {
                                             color: data.raincolor,
                                         },
@@ -718,6 +735,7 @@
                                         position: 'left',
                                         ticks: 3,
                                         color: data.tickscolor,
+                                        tickColor: data.tickscolor,
                                         font: {
                                             color: data.cloudcolor
                                         },
@@ -733,6 +751,7 @@
                                         position: 'right',
                                         ticks: 3,
                                         color: data.tickscolor,
+                                        tickColor: data.tickscolor,
                                         font: {
                                             color: data.raincolor
                                         },
@@ -1175,10 +1194,12 @@
         data-vis-attrs="instance/weather/onInstanceChanged;"
         data-vis-attrs0="time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;"
         data-vis-attrs1="datastructure[NextDaysDetailed]/select,NextDaysDetailed,NextHours,NextHours2/onInstanceChanged;"
-        data-vis-attrs2="withxaxix[true]/checkbox;axislabelcolor[#ffffff]/color;tickscolor[#ffffff]/color;withmarking[true]/checkbox;markingcolor[#eaebe5]/color;xDateFormat[%d.%b %H:%M];withborder[true]/checkbox;nobgcolor[true]/checkbox;withlegend[false]/checkbox;legendposition[ne]/select,ne,nw,se,sw;"
-        data-vis-attrs3="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;raincolor[#1d0ed8]/color;chancerainvisible[true]/checkbox;chanceraincolor[#877efc]/color;yRainVisible[true]/checkbox;yChanceRainVisible[true]/checkbox;"
-        data-vis-attrs4="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;tempcolor[#00b3ac]/color;maxY_temp[0];minY_temp[0];yTempVisible[true]/checkbox;"
-        data-vis-attrs5="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar; sunorcloud[sun]/select,sun,clouds;cloudcolor[#f6ef3c]/color;yCloudVisible[true]/checkbox;"
+        data-vis-attrs2="withxaxix[true]/checkbox;axislabelcolor[#39e00b]/color;tickscolor[#ffffff]/color;withmarking[true]/checkbox;markingcolor[#eaebe5]/color;xDateFormat[%d.%b %H:%M];withborder[true]/checkbox;nobgcolor[true]/checkbox;withlegend[false]/checkbox;legendposition[ne]/select,ne,nw,se,sw;"
+        
+        data-vis-attrs3="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;rainname[rain];raincolor[#1d0ed8]/color;chancerainvisible[true]/checkbox;chancerainname[chance rain];chanceraincolor[#877efc]/color;yRainVisible[true]/checkbox;yChanceRainVisible[true]/checkbox;"
+        data-vis-attrs4="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;tempname[temperature];tempcolor[#00b3ac]/color;maxY_temp[0];minY_temp[0];yTempVisible[true]/checkbox;"
+        data-vis-attrs5="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar;cloudsname[clouds]; sunorcloud[sun]/select,sun,clouds;cloudcolor[#f6ef3c]/color;yCloudVisible[true]/checkbox;"
+        
         data-vis-attrs6="group.oids;oid_rain(0-39)/id;oid_chancerain(0-39)/id;oid_temp(0-39)/id;oid_cloud(0-39)/id;oid_hour(0-39)/id;"
         data-vis-attrs7="oid_date/id;">
 
