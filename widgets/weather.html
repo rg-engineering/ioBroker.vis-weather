@@ -73,23 +73,23 @@
             "group_clouds": { "en": "clouds", "de": "Wolken", "ru": "???" },
             "withxaxix": { "en": "show X axis", "de": "zeige X-Achse", "ru": "???" },
             "rainvisible": { "en": "rain visible", "de": "Regenmenge sichtbar", "ru": "???" },
-            "rainchartType": { "en": "rain chart type", "de": "Regencharttype", "ru": "???" },
-            "raincolor": { "en": "rain color", "de": "Farbe für Regenmenge", "ru": "???" },
+            "rainchartType": { "en": "chart type", "de": "Charttyp", "ru": "???" },
+            "raincolor": { "en": "color", "de": "Farbe", "ru": "???" },
             "chancerainvisible": { "en": "chance rain visible", "de": "Regenwahrscheinlichkeit sichtbar", "ru": "???" },
             "tempvisible": { "en": "visible", "de": "sichtbar", "ru": "???" },
-            "tempchartType": { "en": "chart type", "de": "Charttype", "ru": "???" },
-            "tempcolor": { "en": "color ", "de": "Farbe", "ru": "???" },
-            "chanceraincolor": { "en": "chance rain color ", "de": "Farbe für Regenwahrscheinlichkeit", "ru": "???" },
+            "tempchartType": { "en": "chart type", "de": "Charttyp", "ru": "???" },
+            "tempcolor": { "en": "color", "de": "Farbe", "ru": "???" },
+            "chanceraincolor": { "en": "color", "de": "Farbe", "ru": "???" },
             "cloudsvisible": { "en": "visible", "de": "sichtbar", "ru": "???" },
-            "cloudschartType": { "en": "chart type", "de": "Charttype", "ru": "???" },
+            "cloudschartType": { "en": "chart type", "de": "Charttyp", "ru": "???" },
             "sunorcloud": { "en": "show sun or clouds", "de": "Anzeige Sonne oder Wolken", "ru": "???" },
             "cloudcolor": { "en": "color", "de": "Farbe", "ru": "???" },
             "line": { "en": "line", "de": "Linie", "ru": "???" },
             "bar": { "en": "bar", "de": "Balken", "ru": "???" },
             "sun": { "en": "sun", "de": "Sonne", "ru": "???" },
             "clouds": { "en": "clouds", "de": "Wolken", "ru": "???" },
-            "axislabelcolor": { "en": "color axis label", "de": "Farbe Achsbeschriftung", "ru": "???" },
-            "tickscolor": { "en": "color axis ticks", "de": "Farbe Achsmarke", "ru": "???" },
+            "axislabelcolor": { "en": "color axis label", "de": "Farbe Tick Label", "ru": "???" },
+            "tickscolor": { "en": "color axis ticks", "de": "Farbe Achse", "ru": "???" },
             "markingcolor": { "en": "color marking", "de": "Farbe Hervorhebung", "ru": "???" },
             "withmarking": { "en": "with marking", "de": "Hervorhebungen", "ru": "???" },
             "maxY_temp": { "en": "max value y-axix (0 for auto)", "de": "Max Wert Y-Achse (0 für auto)", "ru": "???" },
@@ -102,6 +102,16 @@
             "nobgcolor": { "en": "no background color", "de": "ohne Hintergrundfarbe", "ru": "nobgcolor" },
             "withborder": { "en": "show border", "de": "Rahmen anzeigen", "ru": "withborder" },
             "datastructure": { "en": "data structure", "de": "Datenstruktur", "ru": "data structure" },
+            "raincolorticklabel": { "en": "color tick lable", "de": "Farbe Tick Label", "ru": "color tick lable" },
+            "chanceraincolorticklabel": { "en": "color tick lable", "de": "Farbe Tick Label", "ru": "color tick lable" },
+            "tempcolorticklabel": { "en": "color tick lable", "de": "Farbe Tick Label", "ru": "color tick lable" },
+            "cloudcolorticklabel": { "en": "color tick lable", "de": "Farbe Tick Label", "ru": "color tick lable" },
+
+            "raincoloraxis": { "en": "color axis", "de": "Farbe Achse", "ru": "color axis" },
+            "chanceraincoloraxis": { "en": "color axis", "de": "Farbe Achse", "ru": "color axis" },
+            "tempcoloraxis": { "en": "color axis", "de": "Farbe Achse", "ru": "color axis" },
+            "cloudcoloraxis": { "en": "color axis", "de": "Farbe Achse", "ru": "color axis" },
+
 
             "rainname": { "en": "legend name ", "de": "Name" },
             "tempname": { "en": "legend name ", "de": "Name" },
@@ -133,7 +143,7 @@
         if (series.data == null || typeof series.data == "undefined" || typeof series.data[0] == "undefined") {
 
             console.log('legendformater no label ');
-            return null;
+            return label;
         }
         else {
             console.log('legendformater label ' + label);
@@ -692,7 +702,6 @@
 
                                 yaxes:
 
-
                                     //temp y-axis #1
                                     [{
                                         axisLabelUseCanvas: true,
@@ -705,8 +714,8 @@
                                         alignTicksWithAxis: 1,
                                         position: 'left',
                                         ticks: 3,
-                                        color: data.tickscolor,
-                                        tickColor: data.tickscolor,
+                                        color: data.tempcoloraxis,
+                                        tickColor: data.tempcoloraxis,
                                         font: {
                                             size: 10,
                                             lineHeight: 13,
@@ -714,7 +723,7 @@
                                             weight: "bold",
                                             family: "sans-serif",
                                             variant: "small-caps",
-                                            color: data.tempcolor,
+                                            color: data.tempcolorticklabel,
                                         },
                                         tickFormatter: degreeFormatter
                                     },
@@ -730,8 +739,8 @@
                                         alignTicksWithAxis: 2,
                                         position: 'right',
                                         ticks: 3,
-                                        color: data.tickscolor,
-                                        tickColor: data.tickscolor,
+                                        color: data.raincoloraxis,
+                                        tickColor: data.raincoloraxis,
                                         font: {
                                             size: 10,
                                             lineHeight: 13,
@@ -739,7 +748,7 @@
                                             weight: "bold",
                                             family: "sans-serif",
                                             variant: "small-caps",
-                                            color: data.raincolor,
+                                            color: data.raincolorticklabel,
                                         },
                                         tickFormatter: mmFormatter
                                     },
@@ -755,8 +764,8 @@
                                         alignTicksWithAxis: 3,
                                         position: 'left',
                                         ticks: 3,
-                                        color: data.tickscolor,
-                                        tickColor: data.tickscolor,
+                                        color: data.cloudcoloraxis,
+                                        tickColor: data.cloudcoloraxis,
                                         font: {
                                             size: 10,
                                             lineHeight: 13,
@@ -764,7 +773,7 @@
                                             weight: "bold",
                                             family: "sans-serif",
                                             variant: "small-caps",
-                                            color: data.cloudcolor
+                                            color: data.cloudcolorticklabel
                                         },
                                         tickFormatter: percentageFormatter
                                     },
@@ -780,8 +789,8 @@
                                         alignTicksWithAxis: 4,
                                         position: 'right',
                                         ticks: 3,
-                                        color: data.tickscolor,
-                                        tickColor: data.tickscolor,
+                                        color: data.chanceraincoloraxis,
+                                        tickColor: data.chanceraincoloraxis,
                                         font: {
                                             size: 10,
                                             lineHeight: 13,
@@ -790,7 +799,7 @@
                                             family: "sans-serif",
                                             variant: "small-caps",
 
-                                            color: data.raincolor
+                                            color: data.chanceraincolorticklabel
                                         },
                                         tickFormatter: percentageFormatter
                                     }],
@@ -1232,9 +1241,9 @@
         data-vis-attrs0="time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;"
         data-vis-attrs1="datastructure[NextDaysDetailed]/select,NextDaysDetailed,NextHours,NextHours2/onInstanceChanged;"
         data-vis-attrs2="withxaxix[true]/checkbox;axislabelcolor[#39e00b]/color;tickscolor[#ffffff]/color;withmarking[true]/checkbox;markingcolor[#eaebe5]/color;xDateFormat[%d.%b %H:%M];withborder[true]/checkbox;nobgcolor[true]/checkbox;withlegend[false]/checkbox;legendposition[ne]/select,ne,nw,se,sw;"
-        data-vis-attrs3="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;rainname[rain];raincolor[#1d0ed8]/color;chancerainvisible[true]/checkbox;chancerainname[chance rain];chanceraincolor[#877efc]/color;yRainVisible[true]/checkbox;yChanceRainVisible[true]/checkbox;"
-        data-vis-attrs4="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;tempname[temperature];tempcolor[#00b3ac]/color;maxY_temp[0];minY_temp[0];yTempVisible[true]/checkbox;"
-        data-vis-attrs5="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar;cloudsname[clouds]; sunorcloud[sun]/select,sun,clouds;cloudcolor[#f6ef3c]/color;yCloudVisible[true]/checkbox;"
+        data-vis-attrs3="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;rainname[rain];raincolor[#1d0ed8]/color;raincoloraxis[#1d0ed8]/color;raincolorticklabel[#1d0ed8]/color;chancerainvisible[true]/checkbox;chancerainname[chance rain];chanceraincolor[#877efc]/color;chanceraincoloraxis[#1d0ed8]/color;chanceraincolorticklabel[#1d0ed8]/color;yRainVisible[true]/checkbox;yChanceRainVisible[true]/checkbox;"
+        data-vis-attrs4="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;tempname[temperature];tempcolor[#00b3ac]/color;tempcoloraxis[#1d0ed8]/color;tempcolorticklabel[#1d0ed8]/color;maxY_temp[0];minY_temp[0];yTempVisible[true]/checkbox;"
+        data-vis-attrs5="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar;cloudsname[clouds]; sunorcloud[sun]/select,sun,clouds;cloudcolor[#f6ef3c]/color;cloudcoloraxis[#1d0ed8]/color;cloudcolorticklabel[#1d0ed8]/color;yCloudVisible[true]/checkbox;"
         data-vis-attrs6="group.oids;oid_rain(0-39)/id;oid_chancerain(0-39)/id;oid_temp(0-39)/id;oid_cloud(0-39)/id;oid_hour(0-39)/id;"
         data-vis-attrs7="oid_date/id;">
 
