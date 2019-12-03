@@ -142,8 +142,8 @@
         //wenn keine Daten, dann ausblenden ->  (return null)
         if (series.data == null || typeof series.data == "undefined" || typeof series.data[0] == "undefined") {
 
-            console.log('legendformater no label ');
-            return label;
+            console.log('legendformater no label because no data ');
+            return null;
         }
         else {
             console.log('legendformater label ' + label);
@@ -575,6 +575,15 @@
                             minY_temp = -1.0 * minY_temp;
                         }
 
+                        console.log("maxY_temp " + data.maxY_temp); 
+                        if (parseInt(data.maxY_temp, 10) != 0) {
+                            maxY_temp = parseInt(data.maxY_temp, 10);
+                        }
+
+                        console.log("minY_temp " + data.minY_temp);
+                        if (parseInt(data.minY_temp, 10) != 0) {
+                            minY_temp = parseInt(data.minY_temp, 10);
+                        }
 
 
                         maxY_rain = Math.ceil((maxY_rain + 1) / 10) * 10;
@@ -709,8 +718,12 @@
 
 
                                         show: (data.tempvisible && data.yTempVisible),
-                                        max: data.maxY_temp != 0 ? parseInt(data.maxY_temp, 10) : maxY_temp, //0 = default = auto determine max/min value
-                                        min: data.minY_temp != 0 ? parseInt(data.minY_temp, 10) : minY_temp,
+                                        //max: parseInt(data.maxY_temp,10) != 0 ? parseInt(data.maxY_temp, 10) : maxY_temp, //0 = default = auto determine max/min value
+                                        //min: parseInt(data.minY_temp,10) != 0 ? parseInt(data.minY_temp, 10) : minY_temp,
+                                        max: maxY_temp, 
+                                        min: minY_temp,
+                                        autoScale: "none", // Available modes: "none", "loose", "exact"
+                                        showTickLabels: "major", 
                                         alignTicksWithAxis: 1,
                                         position: 'left',
                                         ticks: 3,
@@ -736,6 +749,8 @@
                                         show: (data.rainvisible && data.yRainVisible),
                                         max: maxY_rain,
                                         min: 0,
+                                        autoScale: "none", // Available modes: "none", "loose", "exact"
+                                        showTickLabels: "major", 
                                         alignTicksWithAxis: 2,
                                         position: 'right',
                                         ticks: 3,
@@ -761,6 +776,8 @@
                                         show: (data.cloudsvisible && data.yCloudVisible),
                                         max: maxY_cloud,
                                         min: minY_cloud,
+                                        autoScale: "none", // Available modes: "none", "loose", "exact"
+                                        showTickLabels: "major", 
                                         alignTicksWithAxis: 3,
                                         position: 'left',
                                         ticks: 3,
@@ -786,6 +803,8 @@
                                         show: (data.chancerainvisible && data.yChanceRainVisible),  //much better visible without
                                         max: 100,
                                         min: 0,
+                                        autoScale: "none", // Available modes: "none", "loose", "exact"
+                                        showTickLabels: "major", 
                                         alignTicksWithAxis: 4,
                                         position: 'right',
                                         ticks: 3,
