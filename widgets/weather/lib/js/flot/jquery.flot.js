@@ -1848,7 +1848,7 @@ Licensed under the MIT license.
                     y = y+15;
 
                 } else {
-                    x= x-40;
+                    x= x-35;
 
                 }
 

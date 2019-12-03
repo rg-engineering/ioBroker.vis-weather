@@ -4,8 +4,9 @@
 
     Copyright 10.2015-2019 René G. <info@rg-engineering.eu>
 -->
-
+<!--
 <script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.js"></script>
+-->
 <script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.canvaswrapper.js"></script>
 <script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.colorhelpers.js"></script>
 <script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.js"></script>
@@ -676,7 +677,7 @@
                                         color: data.tickscolor,
                                         tickColor: data.tickscolor,
                                         font: {
-                                            size: 8,
+                                            size: 10,
                                             lineHeight: 13,
                                             style: "italic",
                                             weight: "bold",
@@ -707,7 +708,7 @@
                                         color: data.tickscolor,
                                         tickColor: data.tickscolor,
                                         font: {
-                                            size: 8,
+                                            size: 10,
                                             lineHeight: 13,
                                             style: "italic",
                                             weight: "bold",
@@ -719,54 +720,54 @@
                                     },
 
                                     //rain visible y-axis #2
-                                        {
-                                            axisLabelUseCanvas: true,
-                                            axisLabelColour: 'orange',
+                                    {
+                                        axisLabelUseCanvas: true,
+                                        axisLabelColour: 'orange',
 
-                                            show: (data.rainvisible && data.yRainVisible),
-                                            max: maxY_rain,
-                                            min: 0,
-                                            alignTicksWithAxis: 2,
-                                            position: 'right',
-                                            ticks: 3,
-                                            color: data.tickscolor,
-                                            tickColor: data.tickscolor,
-                                            font: {
-                                                size: 8,
-                                                lineHeight: 13,
-                                                style: "italic",
-                                                weight: "bold",
-                                                family: "sans-serif",
-                                                variant: "small-caps",
-                                                color: data.raincolor,
-                                            },
-                                            tickFormatter: mmFormatter
+                                        show: (data.rainvisible && data.yRainVisible),
+                                        max: maxY_rain,
+                                        min: 0,
+                                        alignTicksWithAxis: 2,
+                                        position: 'right',
+                                        ticks: 3,
+                                        color: data.tickscolor,
+                                        tickColor: data.tickscolor,
+                                        font: {
+                                            size: 10,
+                                            lineHeight: 13,
+                                            style: "italic",
+                                            weight: "bold",
+                                            family: "sans-serif",
+                                            variant: "small-caps",
+                                            color: data.raincolor,
                                         },
+                                        tickFormatter: mmFormatter
+                                    },
 
                                     //sun-cloud y-axis
-                                        {
-                                            axisLabelUseCanvas: true,
-                                            axisLabelColour: 'orange',
+                                    {
+                                        axisLabelUseCanvas: true,
+                                        axisLabelColour: 'orange',
 
-                                            show: (data.cloudsvisible && data.yCloudVisible),
-                                            max: maxY_cloud,
-                                            min: minY_cloud,
-                                            alignTicksWithAxis: 3,
-                                            position: 'left',
-                                            ticks: 3,
-                                            color: data.tickscolor,
-                                            tickColor: data.tickscolor,
-                                            font: {
-                                                size: 8,
-                                                lineHeight: 13,
-                                                style: "italic",
-                                                weight: "bold",
-                                                family: "sans-serif",
-                                                variant: "small-caps",
-                                                color: data.cloudcolor
-                                            },
-                                            tickFormatter: percentageFormatter
+                                        show: (data.cloudsvisible && data.yCloudVisible),
+                                        max: maxY_cloud,
+                                        min: minY_cloud,
+                                        alignTicksWithAxis: 3,
+                                        position: 'left',
+                                        ticks: 3,
+                                        color: data.tickscolor,
+                                        tickColor: data.tickscolor,
+                                        font: {
+                                            size: 10,
+                                            lineHeight: 13,
+                                            style: "italic",
+                                            weight: "bold",
+                                            family: "sans-serif",
+                                            variant: "small-caps",
+                                            color: data.cloudcolor
                                         },
+                                        tickFormatter: percentageFormatter
+                                    },
 
                                     //chance rain y-axis  #4
                                     {
@@ -782,11 +783,11 @@
                                         color: data.tickscolor,
                                         tickColor: data.tickscolor,
                                         font: {
-                                            size: 8,
-                                lineHeight: 13,
-                                style: "italic",
-                                weight: "bold",
-                                family: "sans-serif",
+                                            size: 10,
+                                            lineHeight: 13,
+                                            style: "italic",
+                                            weight: "bold",
+                                            family: "sans-serif",
                                             variant: "small-caps",
 
                                             color: data.raincolor
