@@ -4,8 +4,16 @@
     "version": "2.4.1",
     "news": {
       "2.4.1": {
-        "en": "???"
-        
+        "en": "bugfixes and color adjustment for axis and tick labels",
+        "de": "Bugfixes und Farbanpassung für Achsen- und Tick-Labels",
+        "ru": "исправления ошибок и настройка цвета для меток осей и тиков",
+        "pt": "correções de bugs e ajuste de cores para etiquetas de eixos e marcações",
+        "nl": "bugfixes en kleuraanpassing voor as- en tiklabels",
+        "fr": "corrections de bugs et ajustement de la couleur pour les étiquettes d'axe et de tick",
+        "it": "correzioni di errori e regolazione del colore per etichette di assi e tick",
+        "es": "correcciones de errores y ajuste de color para etiquetas de eje y marcas",
+        "pl": "poprawki błędów i dopasowanie kolorów dla etykiet osi i znaczników",
+        "zh-cn": "轴和刻度标签的错误修正和颜色调整"
       },
       "2.4.0": {
         "en": "legend added",
