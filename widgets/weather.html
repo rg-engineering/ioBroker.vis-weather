@@ -4,14 +4,8 @@
 
     Copyright 10.2015-2019 René G. <info@rg-engineering.eu>
 -->
-<!-- here you can include so many css as you want -->
-<!--<link rel="stylesheet" href="widgets/weather/css/style.css" />-->
-<!--<link href="widgets/weather/css/flot.css" rel="stylesheet" type="text/css">-->
-<!--
-<script type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.js"></script>
-<script type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.time.js"></script>
-    -->
-<!-- <script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.js"></script> -->
+
+<script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.js"></script>
 <script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.canvaswrapper.js"></script>
 <script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.colorhelpers.js"></script>
 <script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.js"></script>
@@ -21,7 +15,8 @@
 <script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.uiConstants.js"></script>
 <script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.time.js"></script>
 <script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.legend.js"></script>
-<script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.axislabels.js"></script>
+
+<script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.axislabels_V2.js"></script>
 
 
 <!-- doku for flot : -->
@@ -40,7 +35,6 @@
         stroke: rgba(0, 0, 0, 0.85);
         stroke-width: 1;
     }
-
 </style>
 
 <script type="text/javascript">
@@ -131,7 +125,7 @@
     function mmFormatter(v, axis) {
         return v.toFixed(axis.tickDecimals) + "mm";
     }
-    
+
     function legendformater(label, series) {
 
         //wenn keine Daten, dann ausblenden ->  (return null)
@@ -152,7 +146,7 @@
         var minDate = new Date(axes.xaxis.min);
 
         const dayDiff = (axes.xaxis.max - axes.xaxis.min) / 1000 / 60 / 60 / 24;
-        console.log('GridMarkings: DayDiff ' + dayDiff+ ' (' + axes.xaxis.max + ' ' + axes.xaxis.min + ')');
+        console.log('GridMarkings: DayDiff ' + dayDiff + ' (' + axes.xaxis.max + ' ' + axes.xaxis.min + ')');
 
         var i = minDate.getTime();
 
@@ -591,9 +585,9 @@
                         else if (data.instance.indexOf("weatherunderground") > -1) {
                             barwidth = 1000 * 60 * 60 * 0.5; //0.5h
                         }
-                        console.log("barwidth = " + barwidth + " with " +  nTimeDiff); // in ms
+                        console.log("barwidth = " + barwidth + " with " + nTimeDiff); // in ms
 
-                       
+
 
                         console.log("start plot (" + widgetID + ")");
 
@@ -604,11 +598,11 @@
                                 xaxis: 1,
                                 yaxis: 4,
                                 label: data.chancerainname,
-                               lines: { show: false },
+                                lines: { show: false },
                                 bars:
                                 {
                                     show: true,
-                                    barWidth: [barwidth,true],
+                                    barWidth: [barwidth, true],
                                     align: "center",
                                     horizontal: false
                                 }
@@ -624,7 +618,7 @@
                                 bars:
                                 {
                                     show: data.tempchartType == "bar" ? true : false,
-                                    barWidth:  [barwidth,true],
+                                    barWidth: [barwidth, true],
                                     align: "center",
                                     horizontal: false
                                 }
@@ -634,12 +628,12 @@
                                 color: data.raincolor,
                                 xaxis: 1,
                                 yaxis: 2,
-                                label:data.rainname,
+                                label: data.rainname,
                                 lines: { show: data.rainchartType == "line" ? true : false, fill: false },
                                 bars:
                                 {
                                     show: data.rainchartType == "bar" ? true : false,
-                                    barWidth:  [barwidth,true],
+                                    barWidth: [barwidth, true],
                                     align: "center",
                                     horizontal: false
                                 }
@@ -654,7 +648,7 @@
                                 bars:
                                 {
                                     show: data.cloudschartType == "bar" ? true : false,
-                                    barWidth:  [barwidth,true],
+                                    barWidth: [barwidth, true],
                                     align: "center",
                                     horizontal: false
                                 }
@@ -665,6 +659,9 @@
 
                                 xaxes:
                                     [{
+                                        axisLabelUseCanvas: true,
+                                        axisLabelColour: 'orange',
+
                                         show: data.withxaxix,
                                         mode: "time",
                                         timeBase: "milliseconds",
@@ -679,13 +676,14 @@
                                         color: data.tickscolor,
                                         tickColor: data.tickscolor,
                                         font: {
-                                            color: data.axislabelcolor,
-                                            size: 11,
+                                            size: 8,
                                             lineHeight: 13,
                                             style: "italic",
                                             weight: "bold",
                                             family: "sans-serif",
-                                            variant: "small-caps"
+                                            variant: "small-caps",
+                                            color: data.axislabelcolor,
+
 
                                         },
                                         timezone: "browser"
@@ -696,6 +694,10 @@
 
                                     //temp y-axis #1
                                     [{
+                                        axisLabelUseCanvas: true,
+                                        axisLabelColour: 'orange',
+
+
                                         show: (data.tempvisible && data.yTempVisible),
                                         max: data.maxY_temp != 0 ? parseInt(data.maxY_temp, 10) : maxY_temp, //0 = default = auto determine max/min value
                                         min: data.minY_temp != 0 ? parseInt(data.minY_temp, 10) : minY_temp,
@@ -705,45 +707,72 @@
                                         color: data.tickscolor,
                                         tickColor: data.tickscolor,
                                         font: {
+                                            size: 8,
+                                            lineHeight: 13,
+                                            style: "italic",
+                                            weight: "bold",
+                                            family: "sans-serif",
+                                            variant: "small-caps",
                                             color: data.tempcolor,
                                         },
                                         tickFormatter: degreeFormatter
                                     },
 
                                     //rain visible y-axis #2
-                                    {
-                                        show: (data.rainvisible && data.yRainVisible),
-                                        max: maxY_rain,
-                                        min: 0,
-                                        alignTicksWithAxis: 2,
-                                        position: 'right',
-                                        ticks: 3,
-                                        color: data.tickscolor,
-                                        tickColor: data.tickscolor,
-                                        font: {
-                                            color: data.raincolor,
+                                        {
+                                            axisLabelUseCanvas: true,
+                                            axisLabelColour: 'orange',
+
+                                            show: (data.rainvisible && data.yRainVisible),
+                                            max: maxY_rain,
+                                            min: 0,
+                                            alignTicksWithAxis: 2,
+                                            position: 'right',
+                                            ticks: 3,
+                                            color: data.tickscolor,
+                                            tickColor: data.tickscolor,
+                                            font: {
+                                                size: 8,
+                                                lineHeight: 13,
+                                                style: "italic",
+                                                weight: "bold",
+                                                family: "sans-serif",
+                                                variant: "small-caps",
+                                                color: data.raincolor,
+                                            },
+                                            tickFormatter: mmFormatter
                                         },
-                                        tickFormatter: mmFormatter
-                                    },
 
                                     //sun-cloud y-axis
-                                    {
-                                        show: (data.cloudsvisible && data.yCloudVisible),
-                                        max: maxY_cloud,
-                                        min: minY_cloud,
-                                        alignTicksWithAxis: 3,
-                                        position: 'left',
-                                        ticks: 3,
-                                        color: data.tickscolor,
-                                        tickColor: data.tickscolor,
-                                        font: {
-                                            color: data.cloudcolor
+                                        {
+                                            axisLabelUseCanvas: true,
+                                            axisLabelColour: 'orange',
+
+                                            show: (data.cloudsvisible && data.yCloudVisible),
+                                            max: maxY_cloud,
+                                            min: minY_cloud,
+                                            alignTicksWithAxis: 3,
+                                            position: 'left',
+                                            ticks: 3,
+                                            color: data.tickscolor,
+                                            tickColor: data.tickscolor,
+                                            font: {
+                                                size: 8,
+                                                lineHeight: 13,
+                                                style: "italic",
+                                                weight: "bold",
+                                                family: "sans-serif",
+                                                variant: "small-caps",
+                                                color: data.cloudcolor
+                                            },
+                                            tickFormatter: percentageFormatter
                                         },
-                                        tickFormatter: percentageFormatter
-                                    },
 
                                     //chance rain y-axis  #4
                                     {
+                                        axisLabelUseCanvas: true,
+                                        axisLabelColour: 'orange',
+
                                         show: (data.chancerainvisible && data.yChanceRainVisible),  //much better visible without
                                         max: 100,
                                         min: 0,
@@ -753,6 +782,13 @@
                                         color: data.tickscolor,
                                         tickColor: data.tickscolor,
                                         font: {
+                                            size: 8,
+                                lineHeight: 13,
+                                style: "italic",
+                                weight: "bold",
+                                family: "sans-serif",
+                                            variant: "small-caps",
+
                                             color: data.raincolor
                                         },
                                         tickFormatter: percentageFormatter
@@ -770,7 +806,7 @@
                                     },
 
                                 },
-                                 legend: {
+                                legend: {
                                     show: data.withlegend,
                                     labelFormatter: legendformater,
                                     //labelBoxBorderColor: color,
@@ -1195,11 +1231,9 @@
         data-vis-attrs0="time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;"
         data-vis-attrs1="datastructure[NextDaysDetailed]/select,NextDaysDetailed,NextHours,NextHours2/onInstanceChanged;"
         data-vis-attrs2="withxaxix[true]/checkbox;axislabelcolor[#39e00b]/color;tickscolor[#ffffff]/color;withmarking[true]/checkbox;markingcolor[#eaebe5]/color;xDateFormat[%d.%b %H:%M];withborder[true]/checkbox;nobgcolor[true]/checkbox;withlegend[false]/checkbox;legendposition[ne]/select,ne,nw,se,sw;"
-        
         data-vis-attrs3="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;rainname[rain];raincolor[#1d0ed8]/color;chancerainvisible[true]/checkbox;chancerainname[chance rain];chanceraincolor[#877efc]/color;yRainVisible[true]/checkbox;yChanceRainVisible[true]/checkbox;"
         data-vis-attrs4="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;tempname[temperature];tempcolor[#00b3ac]/color;maxY_temp[0];minY_temp[0];yTempVisible[true]/checkbox;"
         data-vis-attrs5="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar;cloudsname[clouds]; sunorcloud[sun]/select,sun,clouds;cloudcolor[#f6ef3c]/color;yCloudVisible[true]/checkbox;"
-        
         data-vis-attrs6="group.oids;oid_rain(0-39)/id;oid_chancerain(0-39)/id;oid_temp(0-39)/id;oid_cloud(0-39)/id;oid_hour(0-39)/id;"
         data-vis-attrs7="oid_date/id;">
 
