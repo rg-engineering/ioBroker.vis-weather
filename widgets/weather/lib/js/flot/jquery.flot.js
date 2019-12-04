@@ -1848,7 +1848,7 @@ Licensed under the MIT license.
                     y = y+15;
 
                 } else {
-                    x= x-35;
+                    x= x-30;
 
                 }
 
@@ -1898,6 +1898,8 @@ Licensed under the MIT license.
                                         y = alignPosition(ctx.lineWidth, y);
                                         
                                     }
+
+                                    
 
                                     console.log('show ' + axis.ticks[i].label + " on " + x + "/" + y);
                                     ctx.fillText(axis.ticks[i].label, x, y);

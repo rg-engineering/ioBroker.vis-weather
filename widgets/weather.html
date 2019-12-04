@@ -696,9 +696,9 @@
                                         color: data.tickscolor,
                                         tickColor: data.tickscolor,
                                         font: {
-                                            size: 10,
+                                            size: data.LabelFontSize,
                                             lineHeight: 13,
-                                            style: "italic",
+                                            style: "normal", //"italic",
                                             weight: "bold",
                                             family: "sans-serif",
                                             variant: "small-caps",
@@ -730,9 +730,9 @@
                                         color: data.tempcoloraxis,
                                         tickColor: data.tempcoloraxis,
                                         font: {
-                                            size: 10,
+                                            size: data.LabelFontSize,
                                             lineHeight: 13,
-                                            style: "italic",
+                                            style: "normal", //"italic",
                                             weight: "bold",
                                             family: "sans-serif",
                                             variant: "small-caps",
@@ -757,9 +757,9 @@
                                         color: data.raincoloraxis,
                                         tickColor: data.raincoloraxis,
                                         font: {
-                                            size: 10,
+                                            size: data.LabelFontSize,
                                             lineHeight: 13,
-                                            style: "italic",
+                                            style: "normal", //"italic",
                                             weight: "bold",
                                             family: "sans-serif",
                                             variant: "small-caps",
@@ -784,9 +784,9 @@
                                         color: data.cloudcoloraxis,
                                         tickColor: data.cloudcoloraxis,
                                         font: {
-                                            size: 10,
+                                            size: data.LabelFontSize,
                                             lineHeight: 13,
-                                            style: "italic",
+                                            style: "normal", //"italic",
                                             weight: "bold",
                                             family: "sans-serif",
                                             variant: "small-caps",
@@ -811,9 +811,9 @@
                                         color: data.chanceraincoloraxis,
                                         tickColor: data.chanceraincoloraxis,
                                         font: {
-                                            size: 10,
+                                            size: data.LabelFontSize,
                                             lineHeight: 13,
-                                            style: "italic",
+                                            style: "normal", //"italic",
                                             weight: "bold",
                                             family: "sans-serif",
                                             variant: "small-caps",
@@ -1259,7 +1259,7 @@
         data-vis-attrs="instance/weather/onInstanceChanged;"
         data-vis-attrs0="time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;"
         data-vis-attrs1="datastructure[NextDaysDetailed]/select,NextDaysDetailed,NextHours,NextHours2/onInstanceChanged;"
-        data-vis-attrs2="withxaxix[true]/checkbox;axislabelcolor[#39e00b]/color;tickscolor[#ffffff]/color;withmarking[true]/checkbox;markingcolor[#eaebe5]/color;xDateFormat[%d.%b %H:%M];withborder[true]/checkbox;nobgcolor[true]/checkbox;withlegend[false]/checkbox;legendposition[ne]/select,ne,nw,se,sw;"
+        data-vis-attrs2="withxaxix[true]/checkbox;axislabelcolor[#39e00b]/color;tickscolor[#ffffff]/color;LabelFontSize[8];withmarking[true]/checkbox;markingcolor[#eaebe5]/color;xDateFormat[%d.%b %H:%M];withborder[true]/checkbox;nobgcolor[true]/checkbox;withlegend[false]/checkbox;legendposition[ne]/select,ne,nw,se,sw;"
         data-vis-attrs3="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;rainname[rain];raincolor[#1d0ed8]/color;raincoloraxis[#1d0ed8]/color;raincolorticklabel[#1d0ed8]/color;chancerainvisible[true]/checkbox;chancerainname[chance rain];chanceraincolor[#877efc]/color;chanceraincoloraxis[#1d0ed8]/color;chanceraincolorticklabel[#1d0ed8]/color;yRainVisible[true]/checkbox;yChanceRainVisible[true]/checkbox;"
         data-vis-attrs4="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;tempname[temperature];tempcolor[#00b3ac]/color;tempcoloraxis[#1d0ed8]/color;tempcolorticklabel[#1d0ed8]/color;maxY_temp[0];minY_temp[0];yTempVisible[true]/checkbox;"
         data-vis-attrs5="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar;cloudsname[clouds]; sunorcloud[sun]/select,sun,clouds;cloudcolor[#f6ef3c]/color;cloudcoloraxis[#1d0ed8]/color;cloudcolorticklabel[#1d0ed8]/color;yCloudVisible[true]/checkbox;"
