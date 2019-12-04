@@ -1891,18 +1891,20 @@ Licensed under the MIT license.
                                         }
                                     }
 
+
+                                    var posx = x;
+                                    var posy = y;
                                     if (axis.direction === "x") {
                                         x = alignPosition(ctx.lineWidth, x);
+                                        posx = x - ctx.measureText(axis.ticks[i].label).width / 2;
                                         
                                     } else {
                                         y = alignPosition(ctx.lineWidth, y);
-                                        
+                                        posy = y + axis.options.font.size;
                                     }
 
-                                    
-
-                                    console.log('show ' + axis.ticks[i].label + " on " + x + "/" + y);
-                                    ctx.fillText(axis.ticks[i].label, x, y);
+                                    console.log('show ' + axis.ticks[i].label + " on " + x + "/" + y + " text is " + ctx.measureText(axis.ticks[i].label).width + " width and " + axis.options.font.size + " high");
+                                    ctx.fillText(axis.ticks[i].label, posx, posy);
                                 }
                             }
                             break;
@@ -1923,7 +1925,7 @@ Licensed under the MIT license.
             });
         }
 
-
+        
 
         function extractRange(ranges, coord) {
             var axis, from, to, key, axes = allAxes();
