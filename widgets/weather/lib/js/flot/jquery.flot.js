@@ -1817,14 +1817,14 @@ Licensed under the MIT license.
 
 
         //*******************************************************************
-        // this is to overcome problem with colored tixks and axis labels
+        // this is to overcome problem with colored ticks and axis labels
         // xxx
         //*******************************************************************
         function ShowTickLabels() {
             console.log('#1#1#');
 
             $.each(allAxes(), function (_, axis) {
-                if (!axis.show) {
+                if (!axis.show || !axis.showTicks) {
                     return;
                 }
 
@@ -1848,7 +1848,7 @@ Licensed under the MIT license.
                     y = y+15;
 
                 } else {
-                    x= x-30;
+                    //x= x-30;
 
                 }
 
@@ -1896,14 +1896,22 @@ Licensed under the MIT license.
                                     var posy = y;
                                     if (axis.direction === "x") {
                                         x = alignPosition(ctx.lineWidth, x);
-                                        posx = x - ctx.measureText(axis.ticks[i].label).width / 2;
+                                        posx = x - ctx.measureText(axis.ticks[i].label).width / 2 + xoff;
+                                        posy = y + yoff;
                                         
                                     } else {
                                         y = alignPosition(ctx.lineWidth, y);
-                                        posy = y + axis.options.font.size;
+                                        posy = y + axis.options.font.size + yoff;
+
+                                        if (axis.position == "left") {
+                                            posx = x - ctx.measureText(axis.ticks[i].label).width + xoff;
+                                        }
+                                        else {
+                                            posx = x + xoff;
+                                        }
                                     }
 
-                                    console.log('show ' + axis.ticks[i].label + " on " + x + "/" + y + " text is " + ctx.measureText(axis.ticks[i].label).width + " width and " + axis.options.font.size + " high");
+                                    console.log('show ' + axis.ticks[i].label + " on " + x + "/" + y + " Text is " + ctx.measureText(axis.ticks[i].label).width + " width and " + axis.options.font.size + " high");
                                     ctx.fillText(axis.ticks[i].label, posx, posy);
                                 }
                             }

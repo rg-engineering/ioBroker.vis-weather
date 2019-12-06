@@ -111,7 +111,9 @@
             "chanceraincoloraxis": { "en": "color axis", "de": "Farbe Achse", "ru": "color axis" },
             "tempcoloraxis": { "en": "color axis", "de": "Farbe Achse", "ru": "color axis" },
             "cloudcoloraxis": { "en": "color axis", "de": "Farbe Achse", "ru": "color axis" },
-            "LabelFontSize":  { "en": "Label Font Size", "de": "Schriftgröße Achsbeschriftung", "ru": "color axis" },
+            "LabelFontSize": { "en": "Label Font Size", "de": "Schriftgröße Achsbeschriftung", "ru": "Label Font Size" },
+            "LabelFontFamily": { "en": "Label Font Family", "de": "Schrift Achsbeschriftung", "ru": "Label Font Family" },
+
 
             "rainname": { "en": "legend name ", "de": "Name" },
             "tempname": { "en": "legend name ", "de": "Name" },
@@ -156,21 +158,27 @@
         var markings = [];
         var minDate = new Date(axes.xaxis.min);
 
+        //start from midnight
+        minDate.setUTCHours(0);
+
         const dayDiff = (axes.xaxis.max - axes.xaxis.min) / 1000 / 60 / 60 / 24;
-        console.log('GridMarkings: DayDiff ' + dayDiff + ' (' + axes.xaxis.max + ' ' + axes.xaxis.min + ')');
+        console.log('GridMarkings: DayDiff ' + dayDiff + ' (' + axes.xaxis.max + ' ' + axes.xaxis.min + ') start at ' + minDate.toString());
 
         var i = minDate.getTime();
 
         //if we only few hours then we need markings per hour otherwise per day
         if (dayDiff > 2) {
             do {
+                console.log("new day marking from " + i);
                 markings.push({ xaxis: { from: i, to: i + 24 * 60 * 60 * 1000 }, color: MarkingColor });
                 i += 2 * 24 * 60 * 60 * 1000;
             } while (i < axes.xaxis.max);
 
         }
         else {
+
             do {
+                console.log("new hour marking from " + i);
                 markings.push({ xaxis: { from: i, to: i + 60 * 60 * 1000 }, color: MarkingColor });
                 i += 2 * 60 * 60 * 1000;
             } while (i < axes.xaxis.max);
@@ -189,12 +197,13 @@
 
         console.log('CalcTicks4X: DayDiff ' + dayDiff + ' (' + axis.max + ' ' + axis.min + ')');
 
-        //if we only few hours then we need markings per hour otherwise per day
+        //if we only few hours then we need ticks per hour otherwise per day
         if (dayDiff > 2) {
             minDate.setUTCHours(12);
             minDate.setUTCMinutes(0);
             var i = minDate.getTime();
             do {
+                console.log("new day tick at " + i);
                 ticks.push([i]);
                 i += 24 * 60 * 60 * 1000;
             } while (i < axis.max);
@@ -204,6 +213,7 @@
             minDate.setUTCMinutes(0);
             var i = minDate.getTime();
             do {
+                console.log("new hour tick at " + i);
                 ticks.push([i]);
                 i += 6 * 60 * 60 * 1000;
             } while (i < axis.max);
@@ -575,7 +585,7 @@
                             minY_temp = -1.0 * minY_temp;
                         }
 
-                        console.log("maxY_temp " + data.maxY_temp); 
+                        console.log("maxY_temp " + data.maxY_temp);
                         if (parseInt(data.maxY_temp, 10) != 0) {
                             maxY_temp = parseInt(data.maxY_temp, 10);
                         }
@@ -609,7 +619,7 @@
 
 
 
-                        console.log("start plot (" + widgetID + ")");
+                        console.log("start plot (" + widgetID + ") ");
 
                         $.plot($div,
                             [{
@@ -686,6 +696,7 @@
                                         mode: "time",
                                         timeBase: "milliseconds",
                                         tickLength: 5,
+
                                         min: dateMin,
                                         max: dateMax,
                                         //ticks: data.ticksonxaxix > 0 ? parseInt(data.ticksonxaxix, 10) : 5,
@@ -700,7 +711,7 @@
                                             lineHeight: 13,
                                             style: "normal", //"italic",
                                             weight: "bold",
-                                            family: "sans-serif",
+                                            family: data.LabelFontFamily,
                                             variant: "small-caps",
                                             color: data.axislabelcolor,
 
@@ -720,13 +731,22 @@
                                         show: (data.tempvisible && data.yTempVisible),
                                         //max: parseInt(data.maxY_temp,10) != 0 ? parseInt(data.maxY_temp, 10) : maxY_temp, //0 = default = auto determine max/min value
                                         //min: parseInt(data.minY_temp,10) != 0 ? parseInt(data.minY_temp, 10) : minY_temp,
-                                        max: maxY_temp, 
+                                        max: maxY_temp,
                                         min: minY_temp,
                                         autoScale: "none", // Available modes: "none", "loose", "exact"
-                                        showTickLabels: "major", 
+                                        showTickLabels: "major",
                                         alignTicksWithAxis: 1,
                                         position: 'left',
-                                        ticks: 3,
+                                        //ticks: 3,
+
+                                        tickLength: data.temptickLength,            //20, // size in pixels of major tick marks
+                                        showMinorTicks: data.tempshowMinorTicks,    //false, // true = show minor tick marks, false = hide minor tick marks
+                                        showTicks: data.tempshowTicks,              //true, // true = show tick marks, false = hide all tick marks
+                                        tickDecimals: data.temptickDecimals,        //1, // no. of decimals, null means auto
+                                        tickSize: data.temptickSize,                //3, // number or [number, "unit"]
+                                        minTickSize: data.tempminTickSize,          //1, // number or [number, "unit"]
+
+
                                         color: data.tempcoloraxis,
                                         tickColor: data.tempcoloraxis,
                                         font: {
@@ -734,7 +754,7 @@
                                             lineHeight: 13,
                                             style: "normal", //"italic",
                                             weight: "bold",
-                                            family: "sans-serif",
+                                            family: data.LabelFontFamily,
                                             variant: "small-caps",
                                             color: data.tempcolorticklabel,
                                         },
@@ -750,10 +770,19 @@
                                         max: maxY_rain,
                                         min: 0,
                                         autoScale: "none", // Available modes: "none", "loose", "exact"
-                                        showTickLabels: "major", 
+                                        showTickLabels: "major",
                                         alignTicksWithAxis: 2,
                                         position: 'right',
-                                        ticks: 3,
+                                        //ticks: 3,
+
+                                        tickLength: data.raintickLength,            //20, // size in pixels of major tick marks
+                                        showMinorTicks: data.rainshowMinorTicks,    //false, // true = show minor tick marks, false = hide minor tick marks
+                                        showTicks: data.rainshowTicks,              //true, // true = show tick marks, false = hide all tick marks
+                                        tickDecimals: data.raintickDecimals,        //1, // no. of decimals, null means auto
+                                        tickSize: data.raintickSize,                //3, // number or [number, "unit"]
+                                        minTickSize: data.rainminTickSize,          //1, // number or [number, "unit"]
+
+
                                         color: data.raincoloraxis,
                                         tickColor: data.raincoloraxis,
                                         font: {
@@ -761,7 +790,7 @@
                                             lineHeight: 13,
                                             style: "normal", //"italic",
                                             weight: "bold",
-                                            family: "sans-serif",
+                                            family: data.LabelFontFamily,
                                             variant: "small-caps",
                                             color: data.raincolorticklabel,
                                         },
@@ -777,10 +806,18 @@
                                         max: maxY_cloud,
                                         min: minY_cloud,
                                         autoScale: "none", // Available modes: "none", "loose", "exact"
-                                        showTickLabels: "major", 
+                                        showTickLabels: "major",
                                         alignTicksWithAxis: 3,
                                         position: 'left',
-                                        ticks: 3,
+                                        //ticks: 3,
+
+                                        tickLength: data.cloudtickLength,            //20, // size in pixels of major tick marks
+                                        showMinorTicks: data.cloudshowMinorTicks,    //false, // true = show minor tick marks, false = hide minor tick marks
+                                        showTicks: data.cloudshowTicks,              //true, // true = show tick marks, false = hide all tick marks
+                                        tickDecimals: data.cloudtickDecimals,        //1, // no. of decimals, null means auto
+                                        tickSize: data.cloudtickSize,                //3, // number or [number, "unit"]
+                                        minTickSize: data.cloudminTickSize,          //1, // number or [number, "unit"]
+
                                         color: data.cloudcoloraxis,
                                         tickColor: data.cloudcoloraxis,
                                         font: {
@@ -788,7 +825,7 @@
                                             lineHeight: 13,
                                             style: "normal", //"italic",
                                             weight: "bold",
-                                            family: "sans-serif",
+                                            family: data.LabelFontFamily,
                                             variant: "small-caps",
                                             color: data.cloudcolorticklabel
                                         },
@@ -804,10 +841,19 @@
                                         max: 100,
                                         min: 0,
                                         autoScale: "none", // Available modes: "none", "loose", "exact"
-                                        showTickLabels: "major", 
+                                        showTickLabels: "major",
                                         alignTicksWithAxis: 4,
                                         position: 'right',
-                                        ticks: 3,
+                                        //ticks: 3,
+
+                                        tickLength: data.chanceraintickLength,            //20, // size in pixels of major tick marks
+                                        showMinorTicks: data.chancerainshowMinorTicks,    //false, // true = show minor tick marks, false = hide minor tick marks
+                                        showTicks: data.chancerainshowTicks,              //true, // true = show tick marks, false = hide all tick marks
+                                        tickDecimals: data.chanceraintickDecimals,        //1, // no. of decimals, null means auto
+                                        tickSize: data.chanceraintickSize,                //3, // number or [number, "unit"]
+                                        minTickSize: data.chancerainminTickSize,          //1, // number or [number, "unit"]
+
+
                                         color: data.chanceraincoloraxis,
                                         tickColor: data.chanceraincoloraxis,
                                         font: {
@@ -815,7 +861,7 @@
                                             lineHeight: 13,
                                             style: "normal", //"italic",
                                             weight: "bold",
-                                            family: "sans-serif",
+                                            family: data.LabelFontFamily,
                                             variant: "small-caps",
 
                                             color: data.chanceraincolorticklabel
@@ -1259,20 +1305,20 @@
         data-vis-attrs="instance/weather/onInstanceChanged;"
         data-vis-attrs0="time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;"
         data-vis-attrs1="datastructure[NextDaysDetailed]/select,NextDaysDetailed,NextHours,NextHours2/onInstanceChanged;"
-        data-vis-attrs2="withxaxix[true]/checkbox;axislabelcolor[#39e00b]/color;tickscolor[#ffffff]/color;LabelFontSize[8];withmarking[true]/checkbox;markingcolor[#eaebe5]/color;xDateFormat[%d.%b %H:%M];withborder[true]/checkbox;nobgcolor[true]/checkbox;withlegend[false]/checkbox;legendposition[ne]/select,ne,nw,se,sw;"
-        data-vis-attrs3="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;rainname[rain];raincolor[#1d0ed8]/color;raincoloraxis[#1d0ed8]/color;raincolorticklabel[#1d0ed8]/color;chancerainvisible[true]/checkbox;chancerainname[chance rain];chanceraincolor[#877efc]/color;chanceraincoloraxis[#1d0ed8]/color;chanceraincolorticklabel[#1d0ed8]/color;yRainVisible[true]/checkbox;yChanceRainVisible[true]/checkbox;"
-        data-vis-attrs4="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;tempname[temperature];tempcolor[#00b3ac]/color;tempcoloraxis[#1d0ed8]/color;tempcolorticklabel[#1d0ed8]/color;maxY_temp[0];minY_temp[0];yTempVisible[true]/checkbox;"
-        data-vis-attrs5="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar;cloudsname[clouds]; sunorcloud[sun]/select,sun,clouds;cloudcolor[#f6ef3c]/color;cloudcoloraxis[#1d0ed8]/color;cloudcolorticklabel[#1d0ed8]/color;yCloudVisible[true]/checkbox;"
+        data-vis-attrs2="withxaxix[true]/checkbox;axislabelcolor[#39e00b]/color;tickscolor[#ffffff]/color;LabelFontSize[8];LabelFontFamily[Arial]/fontname;withmarking[true]/checkbox;markingcolor[#eaebe5]/color;xDateFormat[%d.%b %H:%M];withborder[true]/checkbox;nobgcolor[true]/checkbox;withlegend[false]/checkbox;legendposition[ne]/select,ne,nw,se,sw;"
+        data-vis-attrs3="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;rainname[rain];raincolor[#1d0ed8]/color;raincoloraxis[#1d0ed8]/color;raincolorticklabel[#1d0ed8]/color;chancerainvisible[true]/checkbox;chancerainname[chance rain];chanceraincolor[#877efc]/color;chanceraincoloraxis[#1d0ed8]/color;chanceraincolorticklabel[#1d0ed8]/color;yRainVisible[true]/checkbox;raintickLength[5];rainshowMinorTicks[true]/checkbox;rainshowTicks[true]/checkbox;raintickDecimals[1];raintickSize[3];rainminTickSize[2];yChanceRainVisible[true]/checkbox;chanceraintickLength[5];chancerainshowMinorTicks[true]/checkbox;chancerainshowTicks[true]/checkbox;chanceraintickDecimals[1];chanceraintickSize[3];chancerainpminTickSize[2];"
+        data-vis-attrs4="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;tempname[temperature];tempcolor[#00b3ac]/color;tempcoloraxis[#1d0ed8]/color;tempcolorticklabel[#1d0ed8]/color;maxY_temp[0];minY_temp[0];yTempVisible[true]/checkbox;temptickLength[5];tempshowMinorTicks[true]/checkbox;tempshowTicks[true]/checkbox;temptickDecimals[1];temptickSize[3];tempminTickSize[2];"
+        data-vis-attrs5="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar;cloudsname[clouds]; sunorcloud[sun]/select,sun,clouds;cloudcolor[#f6ef3c]/color;cloudcoloraxis[#1d0ed8]/color;cloudcolorticklabel[#1d0ed8]/color;yCloudVisible[true]/checkbox;cloudtickLength[5];cloudshowMinorTicks[true]/checkbox;cloudshowTicks[true]/checkbox;cloudtickDecimals[1];cloudtickSize[3];cloudminTickSize[2];"
         data-vis-attrs6="group.oids;oid_rain(0-39)/id;oid_chancerain(0-39)/id;oid_temp(0-39)/id;oid_cloud(0-39)/id;oid_hour(0-39)/id;"
         data-vis-attrs7="oid_date/id;">
 
 
-    <div class="vis-widget <%== this.data.attr('class') %>" style="overflow: hidden; width: 210px; height: 170px; " id="<%= this.data.attr('wid') %>">
-        <div class="vis-weather-widget-body">
-            <% vis.binds.weather.tempandrain.init(this.data.wid, this.view, this.data, this.style); %>
-        </div>
-
+<div class="vis-widget <%== this.data.attr('class') %>" style="overflow: hidden; width: 210px; height: 170px; " id="<%= this.data.attr('wid') %>">
+    <div class="vis-weather-widget-body">
+        <% vis.binds.weather.tempandrain.init(this.data.wid, this.view, this.data, this.style); %>
     </div>
+
+</div>
 
 </script>
 
