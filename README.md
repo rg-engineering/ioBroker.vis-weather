@@ -34,7 +34,7 @@ You might need to enable "NextDaysDetailed".
 * (René) see issue #20: scaling problem solved 
 * (René) see issue #22: bugfix colors for axis labeling 
 * (René) color adjustment for axis and tick lables 
-* (René) more adjustements for ticks on Y axis
+* (René) more adjustments for ticks on Y axis
 * (René) see issue #23: names for legend adjustable
 
 ### 2.4.0 (2019-10-31)

@@ -118,7 +118,35 @@
             "rainname": { "en": "legend name ", "de": "Name" },
             "tempname": { "en": "legend name ", "de": "Name" },
             "cloudsname": { "en": "legend name ", "de": "Name" },
-            "chancerainname": { "en": "legend name ", "de": "Name" }
+            "chancerainname": { "en": "legend name ", "de": "Name" },
+
+            "raintickLength": { "en": "tick length ", "de": "Länge Ticks" },
+            "rainshowMinorTicks": { "en": "show minor ticks ", "de": "mit minor Ticks" },
+            "rainshowTicks": { "en": "show ticks ", "de": "mit Ticks" },
+            "raintickDecimals": { "en": "decimals", "de": "Nachkommastellen" },
+            "raintickSize": { "en": "tick size", "de": "Tickabstand" },
+            "rainminTickSize": { "en": "min. tick size", "de": "min. Tickabstand" },
+
+            "chanceraintickLength": { "en": "tick length ", "de": "Länge Ticks" },
+            "chancerainshowMinorTicks": { "en": "show minor ticks ", "de": "mit minor Ticks" },
+            "chancerainshowTicks": { "en": "show ticks ", "de": "mit Ticks" },
+            "chanceraintickDecimals": { "en": "decimals", "de": "Nachkommastellen" },
+            "chanceraintickSize": { "en": "tick size", "de": "Tickabstand" },
+            "chancerainminTickSize": { "en": "min. tick size", "de": "min. Tickabstand" },
+
+            "temptickLength": { "en": "tick length ", "de": "Länge Ticks" },
+            "tempshowMinorTicks": { "en": "show minor ticks ", "de": "mit minor Ticks" },
+            "tempshowTicks": { "en": "show ticks ", "de": "mit Ticks" },
+            "temptickDecimals": { "en": "decimals", "de": "Nachkommastellen" },
+            "temptickSize": { "en": "tick size", "de": "Tickabstand" },
+            "tempminTickSize": { "en": "min. tick size", "de": "min. Tickabstand" },
+
+            "cloudtickLength": { "en": "tick length ", "de": "Länge Ticks" },
+            "cloudshowMinorTicks": { "en": "show minor ticks ", "de": "mit minor Ticks" },
+            "cloudshowTicks": { "en": "show ticks ", "de": "mit Ticks" },
+            "cloudtickDecimals": { "en": "decimals", "de": "Nachkommastellen" },
+            "cloudtickSize": { "en": "tick size", "de": "Tickabstand" },
+            "cloudminTickSize": { "en": "min. tick size", "de": "min. Tickabstand" },
 
         });
     }
@@ -1306,11 +1334,12 @@
         data-vis-attrs0="time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;"
         data-vis-attrs1="datastructure[NextDaysDetailed]/select,NextDaysDetailed,NextHours,NextHours2/onInstanceChanged;"
         data-vis-attrs2="withxaxix[true]/checkbox;axislabelcolor[#39e00b]/color;tickscolor[#ffffff]/color;LabelFontSize[8];LabelFontFamily[Arial]/fontname;withmarking[true]/checkbox;markingcolor[#eaebe5]/color;xDateFormat[%d.%b %H:%M];withborder[true]/checkbox;nobgcolor[true]/checkbox;withlegend[false]/checkbox;legendposition[ne]/select,ne,nw,se,sw;"
-        data-vis-attrs3="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;rainname[rain];raincolor[#1d0ed8]/color;raincoloraxis[#1d0ed8]/color;raincolorticklabel[#1d0ed8]/color;chancerainvisible[true]/checkbox;chancerainname[chance rain];chanceraincolor[#877efc]/color;chanceraincoloraxis[#1d0ed8]/color;chanceraincolorticklabel[#1d0ed8]/color;yRainVisible[true]/checkbox;raintickLength[5];rainshowMinorTicks[true]/checkbox;rainshowTicks[true]/checkbox;raintickDecimals[1];raintickSize[3];rainminTickSize[2];yChanceRainVisible[true]/checkbox;chanceraintickLength[5];chancerainshowMinorTicks[true]/checkbox;chancerainshowTicks[true]/checkbox;chanceraintickDecimals[1];chanceraintickSize[3];chancerainpminTickSize[2];"
-        data-vis-attrs4="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;tempname[temperature];tempcolor[#00b3ac]/color;tempcoloraxis[#1d0ed8]/color;tempcolorticklabel[#1d0ed8]/color;maxY_temp[0];minY_temp[0];yTempVisible[true]/checkbox;temptickLength[5];tempshowMinorTicks[true]/checkbox;tempshowTicks[true]/checkbox;temptickDecimals[1];temptickSize[3];tempminTickSize[2];"
-        data-vis-attrs5="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar;cloudsname[clouds]; sunorcloud[sun]/select,sun,clouds;cloudcolor[#f6ef3c]/color;cloudcoloraxis[#1d0ed8]/color;cloudcolorticklabel[#1d0ed8]/color;yCloudVisible[true]/checkbox;cloudtickLength[5];cloudshowMinorTicks[true]/checkbox;cloudshowTicks[true]/checkbox;cloudtickDecimals[1];cloudtickSize[3];cloudminTickSize[2];"
-        data-vis-attrs6="group.oids;oid_rain(0-39)/id;oid_chancerain(0-39)/id;oid_temp(0-39)/id;oid_cloud(0-39)/id;oid_hour(0-39)/id;"
-        data-vis-attrs7="oid_date/id;">
+        data-vis-attrs3="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;rainname[rain];raincolor[#1d0ed8]/color;raincoloraxis[#1d0ed8]/color;raincolorticklabel[#1d0ed8]/color;yRainVisible[true]/checkbox;raintickLength[5];rainshowMinorTicks[true]/checkbox;rainshowTicks[true]/checkbox;raintickDecimals[1];raintickSize[3];rainminTickSize[2];"
+        data-vis-attrs4="group.chancerain;chancerainvisible[true]/checkbox;chancerainname[chance rain];chanceraincolor[#877efc]/color;chanceraincoloraxis[#1d0ed8]/color;chanceraincolorticklabel[#1d0ed8]/color;yChanceRainVisible[true]/checkbox;chanceraintickLength[5];chancerainshowMinorTicks[true]/checkbox;chancerainshowTicks[true]/checkbox;chanceraintickDecimals[1];chanceraintickSize[3];chancerainminTickSize[2];"
+        data-vis-attrs5="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;tempname[temperature];tempcolor[#00b3ac]/color;tempcoloraxis[#1d0ed8]/color;tempcolorticklabel[#1d0ed8]/color;maxY_temp[0];minY_temp[0];yTempVisible[true]/checkbox;temptickLength[5];tempshowMinorTicks[true]/checkbox;tempshowTicks[true]/checkbox;temptickDecimals[1];temptickSize[3];tempminTickSize[2];"
+        data-vis-attrs6="group.clouds;cloudsvisible/checkbox;cloudschartType[bar]/select,line,bar;cloudsname[clouds]; sunorcloud[sun]/select,sun,clouds;cloudcolor[#f6ef3c]/color;cloudcoloraxis[#1d0ed8]/color;cloudcolorticklabel[#1d0ed8]/color;yCloudVisible[true]/checkbox;cloudtickLength[5];cloudshowMinorTicks[true]/checkbox;cloudshowTicks[true]/checkbox;cloudtickDecimals[1];cloudtickSize[3];cloudminTickSize[2];"
+        data-vis-attrs7="group.oids;oid_rain(0-39)/id;oid_chancerain(0-39)/id;oid_temp(0-39)/id;oid_cloud(0-39)/id;oid_hour(0-39)/id;"
+        data-vis-attrs8="oid_date/id;">
 
 
 <div class="vis-widget <%== this.data.attr('class') %>" style="overflow: hidden; width: 210px; height: 170px; " id="<%= this.data.attr('wid') %>">
