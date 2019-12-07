@@ -30,6 +30,9 @@ You might need to enable "NextDaysDetailed".
 
 ## Changelog
 
+### 2.5.1 (2019-12-09)
+* (René) alignment of bars with marking
+
 ### 2.5.0 (2019-12-08)
 * (René) see issue #20: scaling problem solved 
 * (René) see issue #22: bugfix colors for axis labeling 

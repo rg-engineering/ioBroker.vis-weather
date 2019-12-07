@@ -99,8 +99,12 @@
             "yCloudVisible": { "en": "show y axis", "de": "zeige Y-Achse", "ru": "???" },
             "yChanceRainVisible": { "en": "show y axis for chance rain", "de": "zeige Y-Achse (Regenwahrscheinlichkeit)", "ru": "???" },
             "xDateFormat": { "en": "format for date/time on x-axis", "de": "Datum-/Zeitformat X-Achse", "ru": "???" },
-            "nobgcolor": { "en": "no background color", "de": "ohne Hintergrundfarbe", "ru": "nobgcolor" },
-            "withborder": { "en": "show border", "de": "Rahmen anzeigen", "ru": "withborder" },
+            "nobgcolor": {"en": "no background color on grid", "de": "Grid ohne Hintergrundfarbe", "ru": "nobgcolor"},
+            
+            "bgcolor": { "en": "background color on grid", "de": "Grid Hintergrundfarbe", "ru": "nobgcolor" },
+            "withborder": { "en": "show grid border", "de": "Grid Rahmen anzeigen", "ru": "withborder" },
+            "bordercolor": { "en": "grid border color", "de": "Grid Rahmenfarbe", "ru": "withborder" },
+
             "datastructure": { "en": "data structure", "de": "Datenstruktur", "ru": "data structure" },
             "raincolorticklabel": { "en": "color tick lable", "de": "Farbe Tick Label", "ru": "color tick lable" },
             "chanceraincolorticklabel": { "en": "color tick lable", "de": "Farbe Tick Label", "ru": "color tick lable" },
@@ -668,7 +672,7 @@
                                 {
                                     show: true,
                                     barWidth: [barwidth, true],
-                                    align: "center",
+                                    align: "left", //"center",
                                     horizontal: false
                                 }
                             },
@@ -684,7 +688,7 @@
                                 {
                                     show: data.tempchartType == "bar" ? true : false,
                                     barWidth: [barwidth, true],
-                                    align: "center",
+                                    align: "left", //"center",
                                     horizontal: false
                                 }
                             },
@@ -699,7 +703,7 @@
                                 {
                                     show: data.rainchartType == "bar" ? true : false,
                                     barWidth: [barwidth, true],
-                                    align: "center",
+                                    align: "left", //"center",
                                     horizontal: false
                                 }
                             },
@@ -955,13 +959,18 @@
                                 {
                                     markings: data.withmarking ? GridMarkings : null,
 
-                                    backgroundColor: data.nobgcolor ? null : { colors: ["#fff", "#eee"] },
+                                    // backgroundColor: data.nobgcolor ? null : { colors: ["#fff", "#eee"] },
+                                    backgroundColor: data.nobgcolor ? null : data.bgcolor,
+                                    borderWidth: data.withborder,
+                                    borderColor: data.bordercolor,
+                                    margin: 1,
+                                    /*
                                     borderWidth: {
                                         top: data.withborder ? 1 : 0,
                                         right: data.withborder ? 1 : 0,
                                         bottom: data.withborder ? 2 : 0,
                                         left: data.withborder ? 2 : 0
-                                    },
+                                    },*/
 
                                 },
                                 legend: {
@@ -975,14 +984,10 @@
                                     backgroundOpacity: 0,
                                     container: null,
                                     sorted: false
-                                }
+                                },
                             }
                         );
-
-
-
                     }
-
                 };
 
 
@@ -1388,7 +1393,7 @@
         data-vis-attrs="instance/weather/onInstanceChanged;"
         data-vis-attrs0="time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;"
         data-vis-attrs1="datastructure[NextDaysDetailed]/select,NextDaysDetailed,NextHours,NextHours2/onInstanceChanged;"
-        data-vis-attrs2="withxaxix[true]/checkbox;axislabelcolor[#39e00b]/color;tickscolor[#ffffff]/color;LabelFontSize[8];LabelFontFamily[Arial]/fontname;withmarking[true]/checkbox;markingcolor[#eaebe5]/color;xDateFormat[%d.%b %H:%M];withborder[true]/checkbox;nobgcolor[true]/checkbox;withlegend[false]/checkbox;legendposition[ne]/select,ne,nw,se,sw;"
+        data-vis-attrs2="withxaxix[true]/checkbox;axislabelcolor[#39e00b]/color;tickscolor[#ffffff]/color;LabelFontSize[8];LabelFontFamily[Arial]/fontname;withmarking[true]/checkbox;markingcolor[#eaebe5]/color;xDateFormat[%d.%b %H:%M];withborder[true]/checkbox;bordercolor[#000000]/color;nobgcolor[true]/checkbox;bgcolor[#FFFFFF]/color;withlegend[false]/checkbox;legendposition[ne]/select,ne,nw,se,sw;"
         data-vis-attrs3="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;rainname[rain];raincolor[#1d0ed8]/color;raincoloraxis[#1d0ed8]/color;raincolorticklabel[#1d0ed8]/color;yRainVisible[true]/checkbox;raintickLength[5];rainshowMinorTicks[true]/checkbox;rainshowTicks[true]/checkbox;raintickDecimals[1];raintickSize[3];rainminTickSize[2];rainlabelwidth[30];"
         data-vis-attrs4="group.chancerain;chancerainvisible[true]/checkbox;chancerainname[chance rain];chanceraincolor[#877efc]/color;chanceraincoloraxis[#1d0ed8]/color;chanceraincolorticklabel[#1d0ed8]/color;yChanceRainVisible[true]/checkbox;chanceraintickLength[5];chancerainshowMinorTicks[true]/checkbox;chancerainshowTicks[true]/checkbox;chanceraintickDecimals[1];chanceraintickSize[3];chancerainminTickSize[2];chancerainlabelwidth[30];"
         data-vis-attrs5="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;tempname[temperature];tempcolor[#00b3ac]/color;tempcoloraxis[#1d0ed8]/color;tempcolorticklabel[#1d0ed8]/color;maxY_temp[0];minY_temp[0];yTempVisible[true]/checkbox;temptickLength[5];tempshowMinorTicks[true]/checkbox;tempshowTicks[true]/checkbox;temptickDecimals[1];temptickSize[3];tempminTickSize[2];templabelwidth[30];"
