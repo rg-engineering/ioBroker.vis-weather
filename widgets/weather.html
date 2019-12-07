@@ -648,7 +648,7 @@
                         else if (data.instance.indexOf("weatherunderground") > -1) {
                             barwidth = 1000 * 60 * 60 * 0.5; //0.5h
                         }
-                        console.log("barwidth = " + barwidth + " with " + nTimeDiff); // in ms
+                        console.log("barwidth = " + barwidth + " with TimeDiff " + nTimeDiff + "ms"); // in ms
 
 
 
@@ -714,7 +714,7 @@
                                 {
                                     show: data.cloudschartType == "bar" ? true : false,
                                     barWidth: [barwidth, true],
-                                    align: "center",
+                                    align: "left", //"center",
                                     horizontal: false
                                 }
                             }
