@@ -1828,7 +1828,8 @@ Licensed under the MIT license.
                     return;
                 }
 
-                
+                //console.log("label width " + axis.labelWidth);
+
                 ctx.save();
                 ctx.translate(plotOffset.left, plotOffset.top);
 
@@ -1845,91 +1846,88 @@ Licensed under the MIT license.
 
 
                 if (axis.direction === "x") {
-                    y = y+15;
-
-                } else {
-                    //x= x-30;
+                    y = y + 15;
 
                 }
 
-                    switch (axis.options.showTickLabels) {
-                        case 'none':
-                            break;
-                        case 'endpoints':
-                            console.log('endpoints');
-                            //labelBoxes.push(drawAxisLabel(axis.ticks[0], labelBoxes));
-                            //labelBoxes.push(drawAxisLabel(axis.ticks[axis.ticks.length - 1], labelBoxes));
-                            break;
-                        case 'major':
-                            console.log('major');
-                            //labelBoxes.push(drawAxisLabel(axis.ticks[0], labelBoxes));
-                            //labelBoxes.push(drawAxisLabel(axis.ticks[axis.ticks.length - 1], labelBoxes));
-                            for (i = 0; i < axis.ticks.length; i++) {
-                                //labelBoxes.push(drawAxisLabel(axis.ticks[i], labelBoxes));
-                                var v = axis.ticks[i].v,
-                                    xoff = 0,
-                                    yoff = 0,
-                                    xminor = 0,
-                                    yminor = 0,
-                                    j;
+                switch (axis.options.showTickLabels) {
+                    case 'none':
+                        break;
+                    case 'endpoints':
+                        console.log('endpoints');
+                        //labelBoxes.push(drawAxisLabel(axis.ticks[0], labelBoxes));
+                        //labelBoxes.push(drawAxisLabel(axis.ticks[axis.ticks.length - 1], labelBoxes));
+                        break;
+                    case 'major':
+                        console.log('major');
+                        //labelBoxes.push(drawAxisLabel(axis.ticks[0], labelBoxes));
+                        //labelBoxes.push(drawAxisLabel(axis.ticks[axis.ticks.length - 1], labelBoxes));
+                        for (i = 0; i < axis.ticks.length; i++) {
+                            //labelBoxes.push(drawAxisLabel(axis.ticks[i], labelBoxes));
+                            var v = axis.ticks[i].v,
+                                xoff = 0,
+                                yoff = 0,
+                                xminor = 0,
+                                yminor = 0,
+                                j;
 
-                                if (!isNaN(v) && v >= axis.min && v <= axis.max) {
+                            if (!isNaN(v) && v >= axis.min && v <= axis.max) {
 
-                                    if (axis.direction === "x") {
-                                        x = axis.p2c(v);
-                                        yoff = t;
+                                if (axis.direction === "x") {
+                                    x = axis.p2c(v);
+                                    yoff = t;
 
-                                        if (axis.position === "top") {
-                                            yoff = -yoff;
-                                        }
-                                    } else {
-                                        y = axis.p2c(v);
-                                        xoff = t;
-
-                                        if (axis.position === "left") {
-                                            xoff = -xoff;
-                                        }
+                                    if (axis.position === "top") {
+                                        yoff = -yoff;
                                     }
+                                } else {
+                                    y = axis.p2c(v);
+                                    xoff = t;
 
-
-                                    var posx = x;
-                                    var posy = y;
-                                    if (axis.direction === "x") {
-                                        x = alignPosition(ctx.lineWidth, x);
-                                        posx = x - ctx.measureText(axis.ticks[i].label).width / 2 + xoff;
-                                        posy = y + yoff;
-                                        
-                                    } else {
-                                        y = alignPosition(ctx.lineWidth, y);
-                                        posy = y + axis.options.font.size + yoff;
-
-                                        if (axis.position == "left") {
-                                            posx = x - ctx.measureText(axis.ticks[i].label).width + xoff;
-                                        }
-                                        else {
-                                            posx = x + xoff;
-                                        }
+                                    if (axis.position === "left") {
+                                        xoff = -xoff;
                                     }
-
-                                    console.log('show ' + axis.ticks[i].label + " on " + x + "/" + y + " Text is " + ctx.measureText(axis.ticks[i].label).width + " width and " + axis.options.font.size + " high");
-                                    ctx.fillText(axis.ticks[i].label, posx, posy);
                                 }
+
+
+                                var posx = x;
+                                var posy = y;
+                                if (axis.direction === "x") {
+                                    x = alignPosition(ctx.lineWidth, x);
+                                    posx = x - ctx.measureText(axis.ticks[i].label).width / 2 + xoff;
+                                    posy = y + yoff;
+
+                                } else {
+                                    y = alignPosition(ctx.lineWidth, y);
+                                    posy = y + axis.options.font.size + yoff;
+
+                                    if (axis.position == "left") {
+                                        posx = x - ctx.measureText(axis.ticks[i].label).width + xoff;
+                                    }
+                                    else {
+                                        posx = x + xoff;
+                                    }
+                                }
+
+                                console.log('show ' + axis.ticks[i].label + " on " + x + "/" + y + " Text is " + ctx.measureText(axis.ticks[i].label).width + " width and " + axis.options.font.size + " high");
+                                ctx.fillText(axis.ticks[i].label, posx, posy);
                             }
-                            break;
-                        case 'all':
-                            console.log('all');
-                            //labelBoxes.push(drawAxisLabel(axis.ticks[0], []));
-                            //labelBoxes.push(drawAxisLabel(axis.ticks[axis.ticks.length - 1], labelBoxes));
-                            for (i = 1; i < axis.ticks.length - 1; ++i) {
-                                //labelBoxes.push(drawAxisLabel(axis.ticks[i], labelBoxes));
-                            }
-                            break;
-                    }
+                        }
+                        break;
+                    case 'all':
+                        console.log('all');
+                        //labelBoxes.push(drawAxisLabel(axis.ticks[0], []));
+                        //labelBoxes.push(drawAxisLabel(axis.ticks[axis.ticks.length - 1], labelBoxes));
+                        for (i = 1; i < axis.ticks.length - 1; ++i) {
+                            //labelBoxes.push(drawAxisLabel(axis.ticks[i], labelBoxes));
+                        }
+                        break;
+                }
 
 
                 ctx.restore();
-                    
-                
+
+
             });
         }
 
