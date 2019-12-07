@@ -1,9 +1,9 @@
 {
   "common": {
     "name": "vis-weather",
-    "version": "2.4.1",
+    "version": "2.5.0",
     "news": {
-      "2.4.1": {
+      "2.5.0": {
         "en": "bugfixes and color adjustment for axis and tick labels",
         "de": "Bugfixes und Farbanpassung für Achsen- und Tick-Labels",
         "ru": "исправления ошибок и настройка цвета для меток осей и тиков",
