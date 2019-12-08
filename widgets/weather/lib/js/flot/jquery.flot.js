@@ -1847,7 +1847,6 @@ Licensed under the MIT license.
 
                 if (axis.direction === "x") {
                     y = y + 15;
-
                 }
 
                 switch (axis.options.showTickLabels) {
@@ -1899,7 +1898,7 @@ Licensed under the MIT license.
 
                                 } else {
                                     y = alignPosition(ctx.lineWidth, y);
-                                    posy = y + axis.options.font.size + yoff;
+                                    posy = y + 0.5 * axis.options.font.size + yoff;
 
                                     if (axis.position == "left") {
                                         posx = x - ctx.measureText(axis.ticks[i].label).width + xoff;
