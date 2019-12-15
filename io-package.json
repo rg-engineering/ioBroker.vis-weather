@@ -1,19 +1,19 @@
 {
   "common": {
     "name": "vis-weather",
-    "version": "2.5.1",
+    "version": "2.5.2",
     "news": {
-      "2.5.1": {
-        "en": "smaller bugfixes",
-        "de": "kleinere Bugfixes",
-        "ru": "мелкие исправления",
-        "pt": "correções menores",
-        "nl": "kleinere bugfixes",
-        "fr": "corrections de bugs plus petits",
-        "it": "correzioni di errori minori",
-        "es": "correcciones de errores más pequeñas",
-        "pl": "mniejsze poprawki",
-        "zh-cn": "较小的错误修正"
+      "2.5.2": {
+        "en": "some changes to make it compatible with widgets in sbfspot and ebus",
+        "de": "Einige Änderungen, um es mit Widgets in sbfspot und ebus kompatibel zu machen",
+        "ru": "некоторые изменения, чтобы сделать его совместимым с виджетами в sbfspot и ebus",
+        "pt": "algumas mudanças para torná-lo compatível com widgets no sbfspot e ebus",
+        "nl": "enkele wijzigingen om het compatibel te maken met widgets in sbfspot en ebus",
+        "fr": "quelques changements pour le rendre compatible avec les widgets dans sbfspot et ebus",
+        "it": "alcune modifiche per renderlo compatibile con i widget in sbfspot ed ebus",
+        "es": "algunos cambios para que sea compatible con widgets en sbfspot y ebus",
+        "pl": "kilka zmian, aby uczynić go kompatybilnym z widgetami w sbfspot i ebus",
+        "zh-cn": "进行一些更改以使其与sbfspot和ebus中的小部件兼容"
       },
       "2.5.0": {
         "en": "bugfixes and color adjustment for axis and tick labels",

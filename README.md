@@ -32,6 +32,10 @@ You might need to enable "NextDaysDetailed".
 
 ## Changelog
 
+
+### 2.5.2 (2019-12-xx)
+* (René) some changes to make it compatible with widgets in sbfspot and ebus
+
 ### 2.5.1 (2019-12-08)
 * (René) alignment of bars with marking
 * (René) position of tick labels of Y axis changed
