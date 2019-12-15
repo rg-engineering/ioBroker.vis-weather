@@ -663,6 +663,7 @@
                 "pl": "kolor tła na siatce",
                 "zh-cn": "网格上的背景色"
             },
+            /*
             "withborder": {
                 "en": "show border of grid",
                 "de": "Rahmen des Gitters anzeigen",
@@ -674,7 +675,7 @@
                 "es": "mostrar borde de cuadrícula",
                 "pl": "pokaż granicę siatki",
                 "zh-cn": "显示网格边框"
-            },
+            },*/
             "bordercolor": {
                 "en": "color of grid border",
                 "de": "Farbe des Gitterrandes",
@@ -1211,12 +1212,95 @@
                 "es": "ancho de etiqueta",
                 "pl": "szerokość etykiety",
                 "zh-cn": "标签宽度"
-            },
+            }
 
         });
     }
 
-    function SetMarkingColor(color) {
+ 
+
+    vis.binds.weather = {
+        version: "2.4.1",
+        showVersion: function () {
+            if (vis.binds.weather.version) {
+                console.log('Version vis-weather: ' + vis.binds.weather.version);
+                vis.binds.weather.version = null;
+            }
+        },
+        setup: {
+            intervals:
+            {
+                '1 second': 1000,
+                '10 seconds': 10000,
+                '30 seconds': 30000,
+                '1 minute': 60000,
+                '2 minutes': 120000,
+                '5 minutes': 300000,
+                '10 minutes': 600000,
+                '30 minutes': 1800000,
+                '1 hour': 3600000,
+                '2 hours': 7200000,
+                '4 hours': 14400000,
+                '8 hours': 28800000,
+                '12 hours': 43200000,
+                '24 hours': 86400000
+            },
+        },
+        tempandrain: {
+
+
+            //==================================================================================
+            //
+            // just for test
+            // will be commented out later
+            test: function (widgetID, view, data, style) {
+                console.log("test begins here ");
+
+                var $div = $('#' + widgetID);
+                // if nothing found => wait
+                if (!$div.length) {
+                    return setTimeout(function () {
+                        console.log("need to wait...");
+                        vis.binds.weather.tempandrain.test(widgetID, view, data, style);
+                    }, 1000);
+                }
+
+                var text = '';
+                text += 'OID: ' + data.oid + '</div><br>';
+                text += 'OID value: <span class="myset-value">' + vis.states[data.oid + '.val'] + '</span><br>';
+                text += 'Color: <span style="color: ' + data.myColor + '">' + data.myColor + '</span><br>';
+                text += 'extraAttr: ' + data.extraAttr + '<br>';
+                text += 'Browser instance: ' + vis.instance + '<br>';
+                text += 'htmlText: <textarea readonly style="width:100%">' + (data.htmlText || '') + '</textarea><br>';
+
+                $('#' + widgetID).html(text);
+
+                // subscribe on updates of value
+                if (data.oid) {
+                    vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
+                        $div.find('.template-value').html(newVal);
+                    });
+                }
+
+            },
+
+
+
+
+
+            init: function (widgetID, view, data1, style) {
+                var $div = $('#' + widgetID);
+                console.log("temp and rain init (" + widgetID + ")");
+                var data = {};
+                for (var s in data1) {
+                    if (s[0] !== '_' && data1.hasOwnProperty(s) && typeof data1[s] !== 'object' && typeof data1[s] !== 'function') {
+                        data[s] = data1[s];
+                    }
+
+                }
+
+
+                   function SetMarkingColor(color) {
         MarkingColor = color;
     }
 
@@ -1314,85 +1398,7 @@
         return ticks;
     }
 
-    vis.binds.weather = {
-        version: "2.4.1",
-        showVersion: function () {
-            if (vis.binds.weather.version) {
-                console.log('Version vis-weather: ' + vis.binds.weather.version);
-                vis.binds.weather.version = null;
-            }
-        },
-        setup: {
-            intervals:
-            {
-                '1 second': 1000,
-                '10 seconds': 10000,
-                '30 seconds': 30000,
-                '1 minute': 60000,
-                '2 minutes': 120000,
-                '5 minutes': 300000,
-                '10 minutes': 600000,
-                '30 minutes': 1800000,
-                '1 hour': 3600000,
-                '2 hours': 7200000,
-                '4 hours': 14400000,
-                '8 hours': 28800000,
-                '12 hours': 43200000,
-                '24 hours': 86400000
-            },
-        },
-        tempandrain: {
 
-
-            //==================================================================================
-            //
-            // just for test
-            // will be commented out later
-            test: function (widgetID, view, data, style) {
-                console.log("test begins here ");
-
-                var $div = $('#' + widgetID);
-                // if nothing found => wait
-                if (!$div.length) {
-                    return setTimeout(function () {
-                        console.log("need to wait...");
-                        vis.binds.weather.tempandrain.test(widgetID, view, data, style);
-                    }, 1000);
-                }
-
-                var text = '';
-                text += 'OID: ' + data.oid + '</div><br>';
-                text += 'OID value: <span class="myset-value">' + vis.states[data.oid + '.val'] + '</span><br>';
-                text += 'Color: <span style="color: ' + data.myColor + '">' + data.myColor + '</span><br>';
-                text += 'extraAttr: ' + data.extraAttr + '<br>';
-                text += 'Browser instance: ' + vis.instance + '<br>';
-                text += 'htmlText: <textarea readonly style="width:100%">' + (data.htmlText || '') + '</textarea><br>';
-
-                $('#' + widgetID).html(text);
-
-                // subscribe on updates of value
-                if (data.oid) {
-                    vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                        $div.find('.template-value').html(newVal);
-                    });
-                }
-
-            },
-
-
-
-
-
-            init: function (widgetID, view, data1, style) {
-                var $div = $('#' + widgetID);
-                console.log("temp and rain init (" + widgetID + ")");
-                var data = {};
-                for (var s in data1) {
-                    if (s[0] !== '_' && data1.hasOwnProperty(s) && typeof data1[s] !== 'object' && typeof data1[s] !== 'function') {
-                        data[s] = data1[s];
-                    }
-
-                }
 
                 function update() {
 
@@ -2017,7 +2023,7 @@
 
                                     // backgroundColor: data.nobgcolor ? null : { colors: ["#fff", "#eee"] },
                                     backgroundColor: data.nobgcolor ? null : data.bgcolor,
-                                    borderWidth: data.withborder,
+                                    borderWidth:  parseFloat(data.borderWidth), //data.withborder,
                                     borderColor: data.bordercolor,
                                     margin: 1,
                                     /*
@@ -2449,7 +2455,7 @@
         data-vis-attrs="instance/weather/onInstanceChanged;"
         data-vis-attrs0="time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;"
         data-vis-attrs1="datastructure[NextDaysDetailed]/select,NextDaysDetailed,NextHours,NextHours2/onInstanceChanged;"
-        data-vis-attrs2="withxaxix[true]/checkbox;axislabelcolor[#39e00b]/color;tickscolor[#ffffff]/color;LabelFontSize[8];LabelFontFamily[Arial]/fontname;withmarking[true]/checkbox;markingcolor[#eaebe5]/color;xDateFormat[%d.%b %H:%M];withborder[true]/checkbox;bordercolor[#000000]/color;nobgcolor[true]/checkbox;bgcolor[#FFFFFF]/color;withlegend[false]/checkbox;legendposition[ne]/select,ne,nw,se,sw;"
+        data-vis-attrs2="withxaxix[true]/checkbox;axislabelcolor[#39e00b]/color;tickscolor[#ffffff]/color;LabelFontSize[8];LabelFontFamily[Arial]/fontname;withmarking[true]/checkbox;markingcolor[#eaebe5]/color;xDateFormat[%d.%b %H:%M];borderWidth[1];bordercolor[#000000]/color;nobgcolor[true]/checkbox;bgcolor[#FFFFFF]/color;withlegend[false]/checkbox;legendposition[ne]/select,ne,nw,se,sw;"
         data-vis-attrs3="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;rainname[rain];raincolor[#1d0ed8]/color;raincoloraxis[#1d0ed8]/color;raincolorticklabel[#1d0ed8]/color;yRainVisible[true]/checkbox;raintickLength[5];rainshowMinorTicks[true]/checkbox;rainshowTicks[true]/checkbox;raintickDecimals[1];raintickSize[3];rainminTickSize[2];rainlabelwidth[30];"
         data-vis-attrs4="group.chancerain;chancerainvisible[true]/checkbox;chancerainname[chance rain];chanceraincolor[#877efc]/color;chanceraincoloraxis[#1d0ed8]/color;chanceraincolorticklabel[#1d0ed8]/color;yChanceRainVisible[true]/checkbox;chanceraintickLength[5];chancerainshowMinorTicks[true]/checkbox;chancerainshowTicks[true]/checkbox;chanceraintickDecimals[1];chanceraintickSize[3];chancerainminTickSize[2];chancerainlabelwidth[30];"
         data-vis-attrs5="group.temperature;tempvisible[true]/checkbox;tempchartType[line]/select,line,bar;tempname[temperature];tempcolor[#00b3ac]/color;tempcoloraxis[#1d0ed8]/color;tempcolorticklabel[#1d0ed8]/color;maxY_temp[0];minY_temp[0];yTempVisible[true]/checkbox;temptickLength[5];tempshowMinorTicks[true]/checkbox;tempshowTicks[true]/checkbox;temptickDecimals[1];temptickSize[3];tempminTickSize[2];templabelwidth[30];"
