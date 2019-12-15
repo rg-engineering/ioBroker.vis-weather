@@ -8,6 +8,11 @@
 
 [![NPM](https://nodei.co/npm/iobroker.vis-weather.png?downloads=true)](https://nodei.co/npm/iobroker.vis-weather/)
 
+**If you like it, please consider a donation:**
+                                                                          
+[![paypal](https://www.paypalobjects.com/en_US/DK/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YBAZTEBT9SYC2&source=url)
+
+
 This vis-widget shows weather forecast data from DasWetter.com or weatherunderground
 You need DasWetter-Adpater or weatherunderground-Adapter running as well...
 
