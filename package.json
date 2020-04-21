@@ -32,8 +32,5 @@
     "test:package": "mocha test/package --exit",
     "test:unit": "mocha test/unit --exit",
     "test:integration": "mocha test/integration --exit"
-  },
-  "dependencies": {
-    "npm": "^6.13.5"
   }
 }
