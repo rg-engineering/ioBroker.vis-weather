@@ -8,7 +8,7 @@
 
 [![NPM](https://nodei.co/npm/iobroker.vis-weather.png?downloads=true)](https://nodei.co/npm/iobroker.vis-weather/)
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/rg-engineering/ioBroker.vis-weather.svg)](https://greenkeeper.io/)
+
 
 **If you like it, please consider a donation:**
                                                                           
