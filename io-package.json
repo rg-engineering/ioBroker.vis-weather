@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "vis-weather",
-    "version": "2.5.2",
+    "version": "2.5.3",
     "news": {
+      "2.5.3": {
+        "en": "dependencies updated",
+        "de": "Abhängigkeiten aktualisiert",
+        "ru": "зависимости обновлены",
+        "pt": "dependências atualizadas",
+        "nl": "afhankelijkheden bijgewerkt",
+        "fr": "dépendances mises à jour",
+        "it": "dipendenze aggiornate",
+        "es": "dependencias actualizadas",
+        "pl": "zaktualizowane zależności",
+        "zh-cn": "依赖关系已更新"
+      },
       "2.5.2": {
         "en": "some changes to make it compatible with widgets in sbfspot and ebus",
         "de": "Einige Änderungen, um es mit Widgets in sbfspot und ebus kompatibel zu machen",
@@ -142,60 +154,62 @@
         "pl": "obsługa 2.x daswetter.com"
       }
     },
-      "title": "weather Widgets",
-      "titleLang": {
-        "en": "weather Widgets",
-        "de": "Wetter Widgets",
-        "ru": "погода Виджеты",
-        "pt": "Widgets meteorológicos",
-        "nl": "weer Widgets",
-        "fr": "météo Widgets",
-        "it": "widget meteo",
-        "es": "Widgets del tiempo",
-        "pl": "Widgety pogodowe"
-      },
-      "desc": {
-        "en": "general flot-based weather Widgets to be used with daswetter or weatherundergrund adapter",
-        "de": "allgemeine Flot-basierte Wetter-Widgets, die mit daswetter- oder weatherundergrund-Adapter verwendet werden können",
-        "ru": "Визиты, которые будут использоваться с адаптером daswetter или weatherundergrund",
-        "pt": "Widgets de clima baseados em flotadores em geral para serem usados ​​com o adaptador daswetter ou weatherundergrund",
-        "nl": "algemene op flot gebaseerde weer Widgets voor gebruik met daswetter of weatherundergrund adapter",
-        "fr": "Widgets météo à base de flot à utiliser avec un adaptateur daswetter ou weatherundergrund",
-        "it": "widget meteo generali basati su flottazione da utilizzare con l'adattatore daswetter o weatherundergrund",
-        "es": "Widgets meteorológicos generales basados ​​en flotante para ser utilizados con el adaptador daswetter o weatherundergrund",
-        "pl": "Ogólne widgety pogodowe oparte na flotach, które mają być używane z adapterem daswetter lub weatherundergrund"
-      },
-      "platform": "Javascript/Node.js",
-      "loglevel": "info",
-      "icon": "vis-weather.png",
-      "enabled": true,
-      "mode": "once",
-      "extIcon": "https://raw.githubusercontent.com/rg-engineering/ioBroker.vis-weather/master/admin/vis-weather.png",
-      "keywords": [
-        "weather",
-        "vis",
-        "GUI",
-        "graphical",
-        "scada"
-      ],
-      "readme": "https://github.com/rg-engineering/ioBroker.vis-weather/blob/master/README.md",
-      "authors": [
-        "René G. <info@rg-engineering.eu>"
-      ],
-      "localLink": "%web_protocol%://%ip%:%web_port%/vis/edit.html",
-      "license": "MIT",
-      "dependencies": [
-        "vis"
-      ],
-      "materialize": true,
-      "onlyWWW": true,
-      "noConfig": true,
-      "singleton": true,
-      "type": "visualization-widgets",
-      "restartAdapters": [
-        "vis"
-      ]
+    "title": "weather Widgets",
+    "titleLang": {
+      "en": "weather Widgets",
+      "de": "Wetter Widgets",
+      "ru": "погода Виджеты",
+      "pt": "Widgets meteorológicos",
+      "nl": "weer Widgets",
+      "fr": "météo Widgets",
+      "it": "widget meteo",
+      "es": "Widgets del tiempo",
+      "pl": "Widgety pogodowe"
     },
+    "desc": {
+      "en": "general flot-based weather Widgets to be used with daswetter or weatherundergrund adapter",
+      "de": "allgemeine Flot-basierte Wetter-Widgets, die mit daswetter- oder weatherundergrund-Adapter verwendet werden können",
+      "ru": "Визиты, которые будут использоваться с адаптером daswetter или weatherundergrund",
+      "pt": "Widgets de clima baseados em flotadores em geral para serem usados ​​com o adaptador daswetter ou weatherundergrund",
+      "nl": "algemene op flot gebaseerde weer Widgets voor gebruik met daswetter of weatherundergrund adapter",
+      "fr": "Widgets météo à base de flot à utiliser avec un adaptateur daswetter ou weatherundergrund",
+      "it": "widget meteo generali basati su flottazione da utilizzare con l'adattatore daswetter o weatherundergrund",
+      "es": "Widgets meteorológicos generales basados ​​en flotante para ser utilizados con el adaptador daswetter o weatherundergrund",
+      "pl": "Ogólne widgety pogodowe oparte na flotach, które mają być używane z adapterem daswetter lub weatherundergrund"
+    },
+    "platform": "Javascript/Node.js",
+    "loglevel": "info",
+    "icon": "vis-weather.png",
+    "enabled": true,
+    "mode": "once",
+    "extIcon": "https://raw.githubusercontent.com/rg-engineering/ioBroker.vis-weather/master/admin/vis-weather.png",
+    "keywords": [
+      "weather",
+      "vis",
+      "GUI",
+      "graphical",
+      "scada"
+    ],
+    "readme": "https://github.com/rg-engineering/ioBroker.vis-weather/blob/master/README.md",
+    "authors": [
+      "René G. <info@rg-engineering.eu>"
+    ],
+    "localLink": "%web_protocol%://%ip%:%web_port%/vis/edit.html",
+    "license": "MIT",
+    "dependencies": [
+      "vis"
+    ],
+    "materialize": true,
+    "onlyWWW": true,
+    "noConfig": true,
+    "singleton": true,
+    "type": "visualization-widgets",
+    "restartAdapters": [
+      "vis"
+    ],
+    "connectionType": "local",
+    "dataSource": "push"
+  },
   "native": {},
   "instanceObjects": []
 }

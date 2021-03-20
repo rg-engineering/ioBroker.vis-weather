@@ -18,10 +18,10 @@
     "weather vis"
   ],
   "devDependencies": {
-    "gulp": "^4.0.0",
-    "mocha": "^7.1.1",
+    "@iobroker/testing": "^2.1.0",
     "chai": "^4.2.0",
-    "@iobroker/testing": "^2.1.0"
+    "gulp": "^4.0.0",
+    "mocha": "^7.1.1"
   },
   "bugs": {
     "url": "https://github.com/rg-engineering/ioBroker.vis-weather/issues"
