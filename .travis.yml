@@ -23,7 +23,7 @@ addons:
       - g++-6
 script:
   - npm run test:package
-  - npm run test:unit
-  - export DEBUG=testing:*
-  - npm run test:integration
+#  - npm run test:unit
+#  - export DEBUG=testing:*
+#  - npm run test:integration
 
