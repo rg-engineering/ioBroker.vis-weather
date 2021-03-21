@@ -33,8 +33,10 @@ You might need to enable "NextDaysDetailed".
 
 ## Changelog
 
+### 2.5.3 (2021-03-21)
+* (René) dependencies updated
 
-### 2.5.2 (2019-12-xx)
+### 2.5.2 (2019-12-12)
 * (René) some changes to make it compatible with widgets in sbfspot and ebus
 
 ### 2.5.1 (2019-12-08)
