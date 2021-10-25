@@ -1,0 +1,6 @@
+{
+    "Weather_widget_settings": "Wetter widget Einstellungen",
+    "more_info_1": "Bei Wetteruntergrund müssen Sie die Vorhersage für die nächsten 36 Stunden aktivieren. Nur Versionen höher als 1.0.6 unterstützen dies. In DasWetter.com benötigen Sie 5 Tage Voraussage aktiviert.",
+    "nothing_to_configure": "es gibt nichts zu konfigurieren",
+    "support_hint": "das widget unterstützt nun die beiden Adapter DasWetter.com und weatherunderground"
+}

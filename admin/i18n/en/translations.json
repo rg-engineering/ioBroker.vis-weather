@@ -1,0 +1,6 @@
+{
+    "Weather_widget_settings": "Weather widget settings",
+    "more_info_1": "In weatherunderground you need forecast of next 36 hours enabled.Only versions higher then 1.0.6 support it. In DasWetter.com you need 5 days- forecast enabled.",
+    "nothing_to_configure": "there is nothing to configure",
+    "support_hint": "now this widget supports DasWetter.com and weatherunderground - adapter"
+}

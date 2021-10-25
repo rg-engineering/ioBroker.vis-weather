@@ -1,0 +1,6 @@
+{
+    "Weather_widget_settings": "Настройки виджета погоды",
+    "more_info_1": "В weatherunderground вам нужен прогноз следующих 36 часов. Только версии выше 1.0.6 поддерживают его. В DasWetter.com вам нужно 5 дней - прогноз включен.",
+    "nothing_to_configure": "нет ничего, чтобы настроить",
+    "support_hint": "Теперь виджет поддерживает два адаптера DasWetter.com и weatherunderground"
+}

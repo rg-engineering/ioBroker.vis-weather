@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "vis-weather",
-        "version": "2.5.3",
+        "version": "2.5.4",
         "news": {
+            "2.5.4": {
+                "en": "avoid endles loops",
+                "de": "Endlosschleifen vermeiden",
+                "ru": "избегать петель endles",
+                "pt": "evite loops de endles",
+                "nl": "vermijd eindeloze lussen",
+                "fr": "éviter les boucles sans fin",
+                "it": "evita i loop infiniti",
+                "es": "evitar bucles endles",
+                "pl": "unikaj niekończących się pętli",
+                "zh-cn": "避免无限循环"
+            },
             "2.5.3": {
                 "en": "dependencies updated",
                 "de": "Abhängigkeiten aktualisiert",

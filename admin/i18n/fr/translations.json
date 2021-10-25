@@ -1,0 +1,6 @@
+{
+    "Weather_widget_settings": "Paramètres du widget météo",
+    "more_info_1": "Dans weatherunderground vous avez besoin des prévisions des prochaines 36 heures activées. Seules les versions supérieures à 1.0.6 le supportent. Sur DasWetter.com, vous avez besoin de 5 jours de prévision.",
+    "nothing_to_configure": "il n'y a rien à configurer",
+    "support_hint": "maintenant ce widget prend en charge DasWetter.com et weatherunderground - adaptateur"
+}

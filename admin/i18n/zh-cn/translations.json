@@ -1,0 +1,6 @@
+{
+    "Weather_widget_settings": "天气小部件设置",
+    "more_info_1": "在地下天气中，您需要预测未来36小时处于启用状态，只有高于1.0.6的版本才支持它。",
+    "nothing_to_configure": "没有什么可配置",
+    "support_hint": "现在此小部件支持DasWetter.com和weatherunderground-适配器"
+}

@@ -1,0 +1,6 @@
+{
+    "Weather_widget_settings": "Configuración del widget del tiempo",
+    "more_info_1": "En weatherunderground, necesita un pronóstico de las próximas 36 horas habilitadas. Solo las versiones superiores a 1.0.6 lo admiten. En DasWetter.com necesita 5 días: pronóstico habilitado.",
+    "nothing_to_configure": "no hay nada que configurar",
+    "support_hint": "ahora este widget es compatible con DasWetter.com y Weatherunderground - adaptador"
+}
