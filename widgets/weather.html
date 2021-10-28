@@ -1404,12 +1404,14 @@
                     var i = minDate.getTime();
 
                     //if we only few hours then we need markings per hour otherwise per day
+                    let limit = 0;
                     if (dayDiff > 2) {
                         do {
                             //console.log("new day marking from " + i);
                             markings.push({ xaxis: { from: i, to: i + 24 * 60 * 60 * 1000 }, color: MarkingColor });
                             i += 2 * 24 * 60 * 60 * 1000;
-                        } while (i < axes.xaxis.max);
+                            limit++;
+                        } while (i < axes.xaxis.max || limit > 200);
 
                     }
                     else {
@@ -1418,7 +1420,8 @@
                             //console.log("new hour marking from " + i);
                             markings.push({ xaxis: { from: i, to: i + 60 * 60 * 1000 }, color: MarkingColor });
                             i += 2 * 60 * 60 * 1000;
-                        } while (i < axes.xaxis.max);
+                            limit++;
+                        } while (i < axes.xaxis.max || limit > 200);
                     }
                     return markings;
 
@@ -1434,26 +1437,31 @@
 
                     console.log('CalcTicks4X: DayDiff ' + dayDiff + ' (' + axis.max + ' ' + axis.min + ')');
 
+                    let limit = 0;
                     //if we only few hours then we need ticks per hour otherwise per day
                     if (dayDiff > 2) {
                         minDate.setHours(12);
                         minDate.setMinutes(0);
                         var i = minDate.getTime();
+                        
                         do {
                             //console.log("new day tick at " + i);
                             ticks.push([i]);
                             i += 24 * 60 * 60 * 1000;
-                        } while (i < axis.max);
+                            limit++;
+                        } while (i < axis.max || limit > 200);
                     }
                     else {
                         minDate.setHours(0);
                         minDate.setMinutes(0);
                         var i = minDate.getTime();
+                        
                         do {
                             //console.log("new hour tick at " + i);
                             ticks.push([i]);
                             i += 6 * 60 * 60 * 1000;
-                        } while (i < axis.max);
+                            limit++;
+                        } while (i < axis.max || limit > 200);
                     }
                     return ticks;
                 }
