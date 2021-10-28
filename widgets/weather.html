@@ -1279,7 +1279,7 @@
  
 
     vis.binds.weather = {
-        version: "2.4.1",
+        version: "2.5.4",
         showVersion: function () {
             if (vis.binds.weather.version) {
                 console.log('Version vis-weather: ' + vis.binds.weather.version);
@@ -1406,7 +1406,7 @@
                     //if we only few hours then we need markings per hour otherwise per day
                     if (dayDiff > 2) {
                         do {
-                            console.log("new day marking from " + i);
+                            //console.log("new day marking from " + i);
                             markings.push({ xaxis: { from: i, to: i + 24 * 60 * 60 * 1000 }, color: MarkingColor });
                             i += 2 * 24 * 60 * 60 * 1000;
                         } while (i < axes.xaxis.max);
@@ -1415,7 +1415,7 @@
                     else {
 
                         do {
-                            console.log("new hour marking from " + i);
+                            //console.log("new hour marking from " + i);
                             markings.push({ xaxis: { from: i, to: i + 60 * 60 * 1000 }, color: MarkingColor });
                             i += 2 * 60 * 60 * 1000;
                         } while (i < axes.xaxis.max);
@@ -1440,7 +1440,7 @@
                         minDate.setMinutes(0);
                         var i = minDate.getTime();
                         do {
-                            console.log("new day tick at " + i);
+                            //console.log("new day tick at " + i);
                             ticks.push([i]);
                             i += 24 * 60 * 60 * 1000;
                         } while (i < axis.max);
@@ -1450,7 +1450,7 @@
                         minDate.setMinutes(0);
                         var i = minDate.getTime();
                         do {
-                            console.log("new hour tick at " + i);
+                            //console.log("new hour tick at " + i);
                             ticks.push([i]);
                             i += 6 * 60 * 60 * 1000;
                         } while (i < axis.max);
@@ -1715,7 +1715,7 @@
                             //console.log("++++ timediff " + nTimeDiff);
                             oldHour = hour;
 
-                            console.log("### " + oDate.toLocaleString() + " = " + oDate.getTime() + " rain: " + val_rain + " temp: " + val_temp + " cloud: " + val_cloud);
+                            //console.log("### " + oDate.toLocaleString() + " = " + oDate.getTime() + " rain: " + val_rain + " temp: " + val_temp + " cloud: " + val_cloud);
 
                             if (!bDateNotValid) {
                                 //need time in UTC
@@ -2181,6 +2181,7 @@
 
                     // update every x seconds
                     if (!vis.editMode) {
+                        console.log("interval " + vis.binds.weather.setup.intervals[data.time_interval]);
                         $div.data('timer', setInterval(function () {
                             update();
                         }, parseInt(vis.binds.weather.setup.intervals[data.time_interval] / (parseInt(data.points, 10) || 10), 10)));
