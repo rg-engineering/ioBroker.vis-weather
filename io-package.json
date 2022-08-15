@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "vis-weather",
-        "version": "2.5.5",
+        "version": "2.5.6",
         "news": {
+            "2.5.6": {
+                "en": "tooltip with value added",
+                "de": "Tooltip mit Mehrwert",
+                "ru": "всплывающая подсказка с добавленной стоимостью",
+                "pt": "dica de ferramenta com valor agregado",
+                "nl": "tooltip met toegevoegde waarde",
+                "fr": "info-bulle à valeur ajoutée",
+                "it": "tooltip con valore aggiunto",
+                "es": "información sobre herramientas con valor agregado",
+                "pl": "podpowiedź z wartością dodaną",
+                "zh-cn": "具有附加值的工具提示"
+            },
             "2.5.5": {
                 "en": "bug fix color of labels in widget",
                 "de": "Fehlerkorrektur Farbe der Labels im Widget",

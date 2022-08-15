@@ -7,8 +7,13 @@
 <!--
 <script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.js"></script>
 -->
+<script language="javascript" type="text/javascript" src="widgets/weather/lib/js/lib/jquery.event.drag.js"></script>
+<script language="javascript" type="text/javascript" src="widgets/weather/lib/js/lib/jquery.mousewheel.js"></script>
+
 <script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.canvaswrapper.js"></script>
 <script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.colorhelpers.js"></script>
+
+
 <script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.js"></script>
 <script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.saturated.js"></script>
 <script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.browser.js"></script>
@@ -16,8 +21,14 @@
 <script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.uiConstants.js"></script>
 <script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.time.js"></script>
 <script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.legend.js"></script>
+<script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.navigate.js"></script>
+<script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.touchNavigate.js"></script>
+<script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.hover.js"></script>
+<script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.touch.js"></script>
+<script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.selection.js"></script>
 
-<script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.axislabels_V2.js"></script>
+<script language="javascript" type="text/javascript" src="widgets/weather/lib/js/flot/jquery.flot.axislabels.js"></script>
+
 
 
 <!-- doku for flot : -->
@@ -1271,15 +1282,27 @@
                 "es": "posición de leyenda",
                 "pl": "pozycja legendy",
                 "zh-cn": "图例位置"
+            },
+            "WithHOver": {
+                "en": "With Value box",
+                "de": "Mit Wertbox",
+                "ru": "С коробкой ценности",
+                "pt": "Com caixa de valor",
+                "nl": "Met Value box",
+                "fr": "Avec boîte de valeur",
+                "it": "Con Valore",
+                "es": "Con caja de valor",
+                "pl": "Wagon z Value",
+                "zh-cn": "价值箱"
             }
 
         });
     }
 
- 
+
 
     vis.binds.weather = {
-        version: "2.5.4",
+        version: "2.5.6",
         showVersion: function () {
             if (vis.binds.weather.version) {
                 console.log('Version vis-weather: ' + vis.binds.weather.version);
@@ -1307,47 +1330,6 @@
         },
         tempandrain: {
 
-
-            //==================================================================================
-            //
-            // just for test
-            // will be commented out later
-            /*
-            test: function (widgetID, view, data, style) {
-                console.log("test begins here ");
-
-                var $div = $('#' + widgetID);
-                // if nothing found => wait
-                if (!$div.length) {
-                    return setTimeout(function () {
-                        console.log("need to wait...");
-                        vis.binds.weather.tempandrain.test(widgetID, view, data, style);
-                    }, 1000);
-                }
-
-                var text = '';
-                text += 'OID: ' + data.oid + '</div><br>';
-                text += 'OID value: <span class="myset-value">' + vis.states[data.oid + '.val'] + '</span><br>';
-                text += 'Color: <span style="color: ' + data.myColor + '">' + data.myColor + '</span><br>';
-                text += 'extraAttr: ' + data.extraAttr + '<br>';
-                text += 'Browser instance: ' + vis.instance + '<br>';
-                text += 'htmlText: <textarea readonly style="width:100%">' + (data.htmlText || '') + '</textarea><br>';
-
-                $('#' + widgetID).html(text);
-
-                // subscribe on updates of value
-                if (data.oid) {
-                    vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-                        $div.find('.template-value').html(newVal);
-                    });
-                }
-
-            },
-            */
-
-
-
-
             init: function (widgetID, view, data1, style) {
                 var $div = $('#' + widgetID);
                 console.log("temp and rain init (" + widgetID + ")");
@@ -1358,7 +1340,6 @@
                     }
 
                 }
-
 
                 function SetMarkingColor(color) {
                     MarkingColor = color;
@@ -1443,7 +1424,7 @@
                         minDate.setHours(12);
                         minDate.setMinutes(0);
                         var i = minDate.getTime();
-                        
+
                         do {
                             //console.log("new day tick at " + i);
                             ticks.push([i]);
@@ -1455,7 +1436,7 @@
                         minDate.setHours(0);
                         minDate.setMinutes(0);
                         var i = minDate.getTime();
-                        
+
                         do {
                             //console.log("new hour tick at " + i);
                             ticks.push([i]);
@@ -2092,6 +2073,10 @@
                                     }],
                                 grid:
                                 {
+                                    //hover
+                                    hoverable: true, //to trigger plothover event on mouse hover or tap on a point
+                                    clickable: true, //to trigger plotclick event on mouse hover
+
                                     markings: data.withmarking ? GridMarkings : null,
 
                                     // backgroundColor: data.nobgcolor ? null : { colors: ["#fff", "#eee"] },
@@ -2125,7 +2110,45 @@
                     }
                 };
 
+                //****************************************************************************************
+                //hover
 
+                console.log("hover start " + widgetID + " " + data.WithHOver);
+                if (data.WithHOver) {
+                    console.log("hover start " + widgetID);
+                    $('#' + widgetID).bind("plotclick", function (event, pos, item) {
+                        console.log("clicked at " + pos.x + ", " + pos.y);
+                        // axis coordinates for other axes, if present, are in pos.x2, pos.x3, ...
+                        // if you need global screen coordinates, they are pos.pageX, pos.pageY
+
+                        if (item) {
+
+                            let x = item.datapoint[0];
+                            let y = item.datapoint[1].toFixed(2);
+
+                            console.log("clicked a point!" + item.series.label + " " + y + " on " + x);
+
+                            $("#tooltip").html("Wert " + y)
+                                .css({ top: item.pageY + 5, left: item.pageX + 5 })
+                                .fadeIn(200);
+
+                        }
+                        else {
+                            $("#tooltip").stop().hide();
+                        }
+                    });
+
+                    $("<div id='tooltip'></div>").css({
+                        position: "absolute",
+                        display: "none",
+                        border: "1px solid #fdd",
+                        padding: "2px",
+                        "background-color": "#fee",
+                        opacity: 0.80
+                    }).appendTo("body");
+                    //****************************************************************************************
+
+                }
 
                 if (data.instance) {
                     //Umschalten wu / daswetter und auf oid zugreifen
@@ -2528,7 +2551,7 @@
         data-vis-prev='<img src="widgets/weather/img/Prev_tplWeather.png"></img>'
         data-vis-attrs="instance/weather/onInstanceChanged;"
         data-vis-attrs0="time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;"
-        data-vis-attrs1="datastructure[NextDaysDetailed]/select,NextDaysDetailed,NextHours,NextHours2/onInstanceChanged;"
+        data-vis-attrs1="datastructure[NextDaysDetailed]/select,NextDaysDetailed,NextHours,NextHours2/onInstanceChanged;WithHOver[true]/checkbox"
         data-vis-attrs2="withxaxix[true]/checkbox;axislabelcolor[#39e00b]/color;tickscolor[#ffffff]/color;LabelFontSize[8];LabelFontFamily[Arial]/fontname;withmarking[true]/checkbox;markingcolor[#eaebe5]/color;xDateFormat[%d.%b %H:%M];borderWidth[1];bordercolor[#000000]/color;nobgcolor[true]/checkbox;bgcolor[#FFFFFF]/color;withlegend[false]/checkbox;legendposition[ne]/select,ne,nw,se,sw;"
         data-vis-attrs3="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;rainname[rain];raincolor[#1d0ed8]/color;raincoloraxis[#1d0ed8]/color;raincolorticklabel[#1d0ed8]/color;yRainVisible[true]/checkbox;raintickLength[5];rainshowMinorTicks[true]/checkbox;rainshowTicks[true]/checkbox;raintickDecimals[1];raintickSize[3];rainminTickSize[2];rainlabelwidth[30];"
         data-vis-attrs4="group.chancerain;chancerainvisible[true]/checkbox;chancerainname[chance rain];chanceraincolor[#877efc]/color;chanceraincoloraxis[#1d0ed8]/color;chanceraincolorticklabel[#1d0ed8]/color;yChanceRainVisible[true]/checkbox;chanceraintickLength[5];chancerainshowMinorTicks[true]/checkbox;chancerainshowTicks[true]/checkbox;chanceraintickDecimals[1];chanceraintickSize[3];chancerainminTickSize[2];chancerainlabelwidth[30];"
