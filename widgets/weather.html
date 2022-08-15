@@ -1294,6 +1294,18 @@
                 "es": "Con caja de valor",
                 "pl": "Wagon z Value",
                 "zh-cn": "价值箱"
+            },
+            "WithPoints": {
+                "en": "with points",
+                "de": "mit Punkten",
+                "ru": "с точками",
+                "pt": "com pontos",
+                "nl": "met punten",
+                "fr": "avec points",
+                "it": "con punti",
+                "es": "con puntos",
+                "pl": "punkty",
+                "zh-cn": "要点"
             }
 
         });
@@ -1370,6 +1382,8 @@
                         return label;
                     }
                 }
+
+                
 
                 function GridMarkings(axes) {
 
@@ -1784,6 +1798,7 @@
                                 yaxis: 4,
                                 label: data.chancerainname,
                                 lines: { show: false },
+                                points: { show: data.WithPoints  },
                                 bars:
                                 {
                                     show: true,
@@ -1800,6 +1815,7 @@
                                 yaxis: 1,
                                 label: data.tempname,
                                 lines: { show: data.tempchartType == "line" ? true : false, fill: false },
+                                points: { show: data.WithPoints  },
                                 bars:
                                 {
                                     show: data.tempchartType == "bar" ? true : false,
@@ -1815,6 +1831,7 @@
                                 yaxis: 2,
                                 label: data.rainname,
                                 lines: { show: data.rainchartType == "line" ? true : false, fill: false },
+                                points: { show: data.WithPoints  },
                                 bars:
                                 {
                                     show: data.rainchartType == "bar" ? true : false,
@@ -1830,6 +1847,7 @@
                                 yaxis: 3,
                                 label: data.cloudsname,
                                 lines: { show: data.cloudschartType == "line" ? true : false, fill: false },
+                                points: { show: data.WithPoints  },
                                 bars:
                                 {
                                     show: data.cloudschartType == "bar" ? true : false,
@@ -2107,48 +2125,54 @@
                                 },
                             }
                         );
+
+                        //****************************************************************************************
+                        //hover
+
+                        console.log("hover start " + widgetID + " " + data.WithHOver);
+                        if (data.WithHOver) {
+                            console.log("hover start " + widgetID);
+                            $('#' + widgetID).bind("plotclick", function (event, pos, item) {
+                                console.log("clicked at " + pos.x + ", " + pos.y);
+                                // axis coordinates for other axes, if present, are in pos.x2, pos.x3, ...
+                                // if you need global screen coordinates, they are pos.pageX, pos.pageY
+
+                                if (item) {
+
+                                    let x = item.datapoint[0];
+                                    let y = item.datapoint[1].toFixed(2);
+
+                                    var xDate = new Date(x);
+                                    
+
+                                    console.log("clicked a point!" + item.series.label + " " + y + " on " + xDate.toString());
+
+                                    $("#tooltip").html("Wert " + y)
+                                        .css({ top: item.pageY + 5, left: item.pageX + 5 })
+                                        .fadeIn(200);
+
+                                }
+                                else {
+                                    $("#tooltip").stop().hide();
+                                }
+                            });
+
+                            $("<div id='tooltip'></div>").css({
+                                position: "absolute",
+                                display: "none",
+                                border: "1px solid #fdd",
+                                padding: "2px",
+                                "background-color": "#fee",
+                                opacity: 0.80
+                            }).appendTo("body");
+                            //****************************************************************************************
+
+                        }
+
                     }
                 };
 
-                //****************************************************************************************
-                //hover
-
-                console.log("hover start " + widgetID + " " + data.WithHOver);
-                if (data.WithHOver) {
-                    console.log("hover start " + widgetID);
-                    $('#' + widgetID).bind("plotclick", function (event, pos, item) {
-                        console.log("clicked at " + pos.x + ", " + pos.y);
-                        // axis coordinates for other axes, if present, are in pos.x2, pos.x3, ...
-                        // if you need global screen coordinates, they are pos.pageX, pos.pageY
-
-                        if (item) {
-
-                            let x = item.datapoint[0];
-                            let y = item.datapoint[1].toFixed(2);
-
-                            console.log("clicked a point!" + item.series.label + " " + y + " on " + x);
-
-                            $("#tooltip").html("Wert " + y)
-                                .css({ top: item.pageY + 5, left: item.pageX + 5 })
-                                .fadeIn(200);
-
-                        }
-                        else {
-                            $("#tooltip").stop().hide();
-                        }
-                    });
-
-                    $("<div id='tooltip'></div>").css({
-                        position: "absolute",
-                        display: "none",
-                        border: "1px solid #fdd",
-                        padding: "2px",
-                        "background-color": "#fee",
-                        opacity: 0.80
-                    }).appendTo("body");
-                    //****************************************************************************************
-
-                }
+                
 
                 if (data.instance) {
                     //Umschalten wu / daswetter und auf oid zugreifen
@@ -2551,7 +2575,7 @@
         data-vis-prev='<img src="widgets/weather/img/Prev_tplWeather.png"></img>'
         data-vis-attrs="instance/weather/onInstanceChanged;"
         data-vis-attrs0="time_interval[30 minutes]/select,1 second,10 seconds,30 seconds,1 minute,2 minutes,5 minutes,10 minutes,30 minutes,1 hour,2 hours,4 hours,8 hours,12 hours,24 hours;"
-        data-vis-attrs1="datastructure[NextDaysDetailed]/select,NextDaysDetailed,NextHours,NextHours2/onInstanceChanged;WithHOver[true]/checkbox"
+        data-vis-attrs1="datastructure[NextDaysDetailed]/select,NextDaysDetailed,NextHours,NextHours2/onInstanceChanged;WithHOver[true]/checkbox;WithPoints[true]/checkbox;"
         data-vis-attrs2="withxaxix[true]/checkbox;axislabelcolor[#39e00b]/color;tickscolor[#ffffff]/color;LabelFontSize[8];LabelFontFamily[Arial]/fontname;withmarking[true]/checkbox;markingcolor[#eaebe5]/color;xDateFormat[%d.%b %H:%M];borderWidth[1];bordercolor[#000000]/color;nobgcolor[true]/checkbox;bgcolor[#FFFFFF]/color;withlegend[false]/checkbox;legendposition[ne]/select,ne,nw,se,sw;"
         data-vis-attrs3="group.rain;rainvisible[true]/checkbox;rainchartType[bar]/select,line,bar;rainname[rain];raincolor[#1d0ed8]/color;raincoloraxis[#1d0ed8]/color;raincolorticklabel[#1d0ed8]/color;yRainVisible[true]/checkbox;raintickLength[5];rainshowMinorTicks[true]/checkbox;rainshowTicks[true]/checkbox;raintickDecimals[1];raintickSize[3];rainminTickSize[2];rainlabelwidth[30];"
         data-vis-attrs4="group.chancerain;chancerainvisible[true]/checkbox;chancerainname[chance rain];chanceraincolor[#877efc]/color;chanceraincoloraxis[#1d0ed8]/color;chanceraincolorticklabel[#1d0ed8]/color;yChanceRainVisible[true]/checkbox;chanceraintickLength[5];chancerainshowMinorTicks[true]/checkbox;chancerainshowTicks[true]/checkbox;chanceraintickDecimals[1];chanceraintickSize[3];chancerainminTickSize[2];chancerainlabelwidth[30];"
