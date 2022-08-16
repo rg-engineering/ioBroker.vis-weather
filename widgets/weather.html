@@ -1493,8 +1493,6 @@
                     }
                     else {
 
-
-
                         SetMarkingColor(data.markingcolor);
 
                         var values_rain = [];
@@ -1798,7 +1796,7 @@
                                 yaxis: 4,
                                 label: data.chancerainname,
                                 lines: { show: false },
-                                points: { show: data.WithPoints  },
+                                points: { show: data.WithPoints },
                                 bars:
                                 {
                                     show: true,
@@ -1815,7 +1813,7 @@
                                 yaxis: 1,
                                 label: data.tempname,
                                 lines: { show: data.tempchartType == "line" ? true : false, fill: false },
-                                points: { show: data.WithPoints  },
+                                points: { show: data.WithPoints },
                                 bars:
                                 {
                                     show: data.tempchartType == "bar" ? true : false,
@@ -1831,7 +1829,7 @@
                                 yaxis: 2,
                                 label: data.rainname,
                                 lines: { show: data.rainchartType == "line" ? true : false, fill: false },
-                                points: { show: data.WithPoints  },
+                                points: { show: data.WithPoints },
                                 bars:
                                 {
                                     show: data.rainchartType == "bar" ? true : false,
@@ -1847,7 +1845,7 @@
                                 yaxis: 3,
                                 label: data.cloudsname,
                                 lines: { show: data.cloudschartType == "line" ? true : false, fill: false },
-                                points: { show: data.WithPoints  },
+                                points: { show: data.WithPoints },
                                 bars:
                                 {
                                     show: data.cloudschartType == "bar" ? true : false,
@@ -2143,9 +2141,8 @@
                                     let y = item.datapoint[1].toFixed(2);
 
                                     var xDate = new Date(x);
-                                    
 
-                                    console.log("clicked a point!" + item.series.label + " " + y + " on " + xDate.toString());
+                                    console.log("clicked a point!" + item.series.label + " " + y + " on " + xDate.toLocaleString());
 
                                     $("#tooltip").html("Wert " + y)
                                         .css({ top: item.pageY + 5, left: item.pageX + 5 })
@@ -2168,7 +2165,6 @@
                             //****************************************************************************************
 
                         }
-
                     }
                 };
 
