@@ -35,7 +35,7 @@ You might need to enable "NextDaysDetailed".
 
 ## Changelog
 
-### 2.5.6 (2022-08-15)
+### 2.5.6 (2022-08-18)
 * (René) tooltip with value added as an option
 * (René) flot update
 * (René) dependencies update
