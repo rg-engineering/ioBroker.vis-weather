@@ -13,7 +13,8 @@
                 "it": "tooltip con valore aggiunto",
                 "es": "información sobre herramientas con valor agregado",
                 "pl": "podpowiedź z wartością dodaną",
-                "zh-cn": "具有附加值的工具提示"
+                "zh-cn": "具有附加值的工具提示",
+                "uk": "підказка з доданою вартістю"
             },
             "2.5.5": {
                 "en": "bug fix color of labels in widget",
@@ -25,7 +26,8 @@
                 "it": "bug fix colore delle etichette nel widget",
                 "es": "corrección de errores de color de las etiquetas en el widget",
                 "pl": "naprawa błędu koloru etykiet w widżecie",
-                "zh-cn": "错误修复小部件中标签的颜色"
+                "zh-cn": "错误修复小部件中标签的颜色",
+                "uk": "виправлено помилку кольору міток у віджеті"
             },
             "2.5.4": {
                 "en": "avoid endles loops",
@@ -37,7 +39,8 @@
                 "it": "evita i loop infiniti",
                 "es": "evitar bucles endles",
                 "pl": "unikaj niekończących się pętli",
-                "zh-cn": "避免无限循环"
+                "zh-cn": "避免无限循环",
+                "uk": "уникайте нескінченних циклів"
             },
             "2.5.3": {
                 "en": "dependencies updated",
@@ -49,7 +52,8 @@
                 "it": "dipendenze aggiornate",
                 "es": "dependencias actualizadas",
                 "pl": "zaktualizowane zależności",
-                "zh-cn": "依赖关系已更新"
+                "zh-cn": "依赖关系已更新",
+                "uk": "залежності оновлено"
             },
             "2.5.2": {
                 "en": "some changes to make it compatible with widgets in sbfspot and ebus",
@@ -61,7 +65,8 @@
                 "it": "alcune modifiche per renderlo compatibile con i widget in sbfspot ed ebus",
                 "es": "algunos cambios para que sea compatible con widgets en sbfspot y ebus",
                 "pl": "kilka zmian, aby uczynić go kompatybilnym z widgetami w sbfspot i ebus",
-                "zh-cn": "进行一些更改以使其与sbfspot和ebus中的小部件兼容"
+                "zh-cn": "进行一些更改以使其与sbfspot和ebus中的小部件兼容",
+                "uk": "деякі зміни, щоб зробити його сумісним з віджетами в sbfspot і ebus"
             },
             "2.5.0": {
                 "en": "bugfixes and color adjustment for axis and tick labels",
@@ -73,7 +78,8 @@
                 "it": "correzioni di errori e regolazione del colore per etichette di assi e tick",
                 "es": "correcciones de errores y ajuste de color para etiquetas de eje y marcas",
                 "pl": "poprawki błędów i dopasowanie kolorów dla etykiet osi i znaczników",
-                "zh-cn": "轴和刻度标签的错误修正和颜色调整"
+                "zh-cn": "轴和刻度标签的错误修正和颜色调整",
+                "uk": "виправлення помилок і налаштування кольору для позначок осі та галочки"
             },
             "2.4.0": {
                 "en": "legend added",
@@ -85,7 +91,8 @@
                 "it": "leggenda aggiunta",
                 "es": "leyenda agregada",
                 "pl": "dodano legendę",
-                "zh-cn": "图例已添加"
+                "zh-cn": "图例已添加",
+                "uk": "легенда додана"
             },
             "2.3.2": {
                 "en": "update flot to version 3.0",
@@ -97,7 +104,8 @@
                 "it": "aggiorna il flot alla versione 3.0",
                 "es": "actualizar flot a la versión 3.0",
                 "pl": "zaktualizuj flota do wersji 3.0",
-                "zh-cn": "将flot更新到版本3.0"
+                "zh-cn": "将flot更新到版本3.0",
+                "uk": "оновити flot до версії 3.0"
             },
             "2.3.1": {
                 "en": "missing timer added",
@@ -109,7 +117,8 @@
                 "it": "timer mancante aggiunto",
                 "es": "temporizador faltante añadido",
                 "pl": "dodano brakujący timer",
-                "zh-cn": "缺少计时器"
+                "zh-cn": "缺少计时器",
+                "uk": "додано відсутній таймер"
             },
             "2.3.0": {
                 "en": "markings added",
@@ -121,7 +130,8 @@
                 "it": "marcature aggiunte",
                 "es": "marcas añadidas",
                 "pl": "dodane oznaczenia",
-                "zh-cn": "标记添加"
+                "zh-cn": "标记添加",
+                "uk": "додані позначки"
             },
             "2.2.2": {
                 "en": "If oid_date is not set when using weatherunderground, an unnecessary error message was issued and the plot was not shown",
@@ -133,7 +143,8 @@
                 "it": "Se oid_date non è impostato quando si utilizza weatherunderground, è stato emesso un messaggio di errore non necessario e il grafico non è stato mostrato",
                 "es": "Si no se establece oid_date cuando se usa weatherunderground, se emitió un mensaje de error innecesario y no se mostró el gráfico",
                 "pl": "Jeśli wartość oid_date nie jest ustawiona podczas używania weatherunderground, wygenerowano niepotrzebny komunikat o błędzie, a wykres nie został wyświetlony",
-                "zh-cn": "如果在使用Weatherunderground时未设置oid_date，则会发出不必要的错误消息，并且不会显示该图"
+                "zh-cn": "如果在使用Weatherunderground时未设置oid_date，则会发出不必要的错误消息，并且不会显示该图",
+                "uk": "Якщо oid_date не встановлено під час використання weatherunderground, видається непотрібне повідомлення про помилку та графік не відображається"
             },
             "2.2.1": {
                 "en": "bug fix issue #12: unnecessary code removed",
@@ -145,7 +156,8 @@
                 "it": "problema di correzione degli errori numero 12: codice non necessario rimosso",
                 "es": "problema de corrección de errores # 12: código innecesario eliminado",
                 "pl": "bug fix issue # 12: niepotrzebny kod usunięty",
-                "zh-cn": "错误修复问题＃12：删除了不必要的代码"
+                "zh-cn": "错误修复问题＃12：删除了不必要的代码",
+                "uk": "проблема виправлення помилки №12: видалено непотрібний код"
             },
             "2.2.0": {
                 "en": "OID's for different data structures",
@@ -157,7 +169,8 @@
                 "it": "OID per diverse strutture di dati",
                 "es": "OID's para diferentes estructuras de datos",
                 "pl": "OID dla różnych struktur danych",
-                "zh-cn": "用于不同数据结构的OID"
+                "zh-cn": "用于不同数据结构的OID",
+                "uk": "OID для різних структур даних"
             },
             "2.1.1": {
                 "en": "bug fixes",
@@ -169,7 +182,8 @@
                 "it": "correzioni di bug",
                 "es": "corrección de errores",
                 "pl": "poprawki błędów",
-                "zh-cn": "bug修复"
+                "zh-cn": "bug修复",
+                "uk": "виправлення помилок"
             },
             "2.1.0": {
                 "en": "support of 2.x of weatherunderground",
@@ -181,7 +195,8 @@
                 "it": "supporto di 2.x del tempo sottoterra",
                 "es": "soporte de 2.x de clima subterráneo",
                 "pl": "wsparcie 2.x pogody pod ziemią",
-                "zh-cn": "支持2.x的weatherunderground"
+                "zh-cn": "支持2.x的weatherunderground",
+                "uk": "підтримка 2.x weatherunderground"
             },
             "2.0.0": {
                 "en": "support of 2.x of daswetter.com",
@@ -193,7 +208,8 @@
                 "it": "supporto di 2.x di daswetter.com",
                 "es": "soporte de 2.x de daswetter.com",
                 "pl": "obsługa 2.x daswetter.com",
-                "zh-cn": "daswetter.com 2.x的支持"
+                "zh-cn": "daswetter.com 2.x的支持",
+                "uk": "підтримка 2.x сайту daswetter.com"
             }
         },
         "title": "weather Widgets",
@@ -207,7 +223,8 @@
             "it": "widget meteo",
             "es": "Widgets del tiempo",
             "pl": "Widgety pogodowe",
-            "zh-cn": "天气小部件"
+            "zh-cn": "天气小部件",
+            "uk": "Віджети погоди"
         },
         "desc": {
             "en": "general flot-based weather Widgets to be used with daswetter or weatherundergrund adapter",
@@ -219,7 +236,8 @@
             "it": "widget meteo generali basati su flottazione da utilizzare con l'adattatore daswetter o weatherundergrund",
             "es": "Widgets meteorológicos generales basados ​​en flotante para ser utilizados con el adaptador daswetter o weatherundergrund",
             "pl": "Ogólne widgety pogodowe oparte na flotach, które mają być używane z adapterem daswetter lub weatherundergrund",
-            "zh-cn": "基于浮点的常规天气小部件，可与daswetter或weatherundergrund适配器一起使用"
+            "zh-cn": "基于浮点的常规天气小部件，可与daswetter或weatherundergrund适配器一起使用",
+            "uk": "загальні віджети погоди на основі флоту для використання з адаптером daswetter або weatherundergrund"
         },
         "platform": "Javascript/Node.js",
         "loglevel": "info",

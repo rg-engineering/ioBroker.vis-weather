@@ -1,0 +1,6 @@
+{
+    "Weather_widget_settings": "Налаштування віджета погоди",
+    "more_info_1": "У weatherunderground потрібно ввімкнути прогноз на наступні 36 годин. Його підтримують лише версії вище 1.0.6. У DasWetter.com вам потрібно включити прогноз на 5 днів.",
+    "nothing_to_configure": "нема чого налаштовувати",
+    "support_hint": "тепер цей віджет підтримує DasWetter.com і weatherunderground - адаптер"
+}
