@@ -35,6 +35,11 @@ You might need to enable "NextDaysDetailed".
 
 ## Changelog
 
+<!--
+  Placeholder for the next version (at the beginning of the line):
+  ### **WORK IN PROGRESS**
+-->
+
 ### 2.5.7 (in progress)
 
 ### 2.5.6 (2022-08-18)
