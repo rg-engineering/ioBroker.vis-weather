@@ -40,7 +40,11 @@ You might need to enable "NextDaysDetailed".
   ### **WORK IN PROGRESS**
 -->
 
+### **WORK IN PROGRESS**
+* (René) make it ready to run with vis-2
+
 ### 2.5.7 (in progress)
+* (René) dependencies update
 
 ### 2.5.6 (2022-08-18)
 * (René) tooltip with value added as an option
