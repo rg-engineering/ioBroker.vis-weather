@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "vis-weather",
-    "version": "2.5.7",
+    "version": "2.5.8",
     "news": {
+      "2.5.8": {
+        "en": "(René) dependencies update",
+        "de": "Aktualisierung der Abhängigkeiten",
+        "ru": "(René)",
+        "pt": "(René) atualizações de dependências",
+        "nl": "(René) update afhankelijkheden",
+        "fr": "Mise à jour des dépendances (René)",
+        "it": "(René) aggiornamento delle dipendenze",
+        "es": "(René) dependencies update",
+        "pl": "Aktualizacja zależności (René)",
+        "uk": "(René) оновлення залежності",
+        "zh-cn": "(René) 附属关系最新情况"
+      },
       "2.5.7": {
         "en": "in progress",
         "de": "in Bearbeitung",
