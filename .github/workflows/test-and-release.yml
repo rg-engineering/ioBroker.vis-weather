@@ -23,28 +23,41 @@ jobs:
     steps:
       - uses: ioBroker/testing-action-check@v1
         with:
-          node-version: '18.x'
+          node-version: '18.x' 
           # Uncomment the following line if your adapter cannot be installed using 'npm ci'
           # install-command: 'npm install'
           lint: true
 
   # Runs adapter tests on all supported node versions and OSes
   adapter-tests:
-    if: contains(github.event.head_commit.message, '[skip ci]') == false
+     if: contains(github.event.head_commit.message, '[skip ci]') == false
 
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        node-version: [16.x, 18.x, 20.x]
-        os: [ubuntu-latest, windows-latest, macos-latest]
+     runs-on: ${{ matrix.os }}
+     strategy:
+       matrix:
+         node-version: [16.x, 18.x, 20.x]
+         os: [ubuntu-latest, windows-latest, macos-latest]
 
-    steps:
-      - uses: ioBroker/testing-action-adapter@v1
+     steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-          os: ${{ matrix.os }}
-          # Uncomment the following line if your adapter cannot be installed using 'npm ci'
-          # install-command: 'npm install'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run local tests
+        run: npm test
+#      - name: Run unit tests
+#        run: npm run test:unit
+#      - name: Run integration tests # (linux/osx)
+#        if: startsWith(runner.OS, 'windows') == false
+#        run: DEBUG=testing:* npm run test:integration
+#      - name: Run integration tests # (windows)
+#        if: startsWith(runner.OS, 'windows')
+#        run: set DEBUG=testing:* & npm run test:integration
 
   # Deploys the final package to NPM
   deploy:
