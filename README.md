@@ -47,7 +47,7 @@ You might need to enable "NextDaysDetailed".
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### 2.5.8 (2024-01-12)
+### **WORK IN PROGRESS**
 * (René) dependencies update
 
 ### 2.5.6 (2022-08-18)
