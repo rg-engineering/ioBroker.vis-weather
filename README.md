@@ -34,7 +34,7 @@ In DasWetter.com you need one of four forecast data structures enabled. You can 
 ## compatibility with vis-2
 
 This widget is NOT compatible with vis-2.
-A new version under the name vis-2-weather is under preparation.
+A new version under the name [vis-2-widgets-weather](https://github.com/rg-engineering/ioBroker.vis-2-widgets-weather) is under preparation.
 
 
 ## Notes / wiki
