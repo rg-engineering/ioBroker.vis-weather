@@ -56,7 +56,7 @@ You might need to enable "NextDaysDetailed".
 -->
 
 ### **WORK IN PROGRESS**
-* (René) 
+* (René) suggested changes by adapter checker
 
 ### 2.5.9 (2024-01-13)
 * (René) dependencies update
