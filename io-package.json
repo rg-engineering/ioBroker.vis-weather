@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "vis-weather",
-    "version": "2.5.9",
+    "version": "2.5.10",
     "news": {
+      "2.5.10": {
+        "en": "(René) suggested changes by adapter checker",
+        "de": "(René) schlug Änderungen durch Adapter Checker vor",
+        "ru": "(René) предложил изменения с помощью адаптера",
+        "pt": "(René) sugeriu alterações pelo verificador do adaptador",
+        "nl": "(René) voorgestelde wijzigingen door adaptercontrole",
+        "fr": "(René) a suggéré des modifications par vérificateur d'adaptateur",
+        "it": "(René) le modifiche suggerite dall'adattatore checker",
+        "es": "(René) sugirió cambios mediante el control de adaptador",
+        "pl": "(René) sugerowane zmiany przez sprawdzacz adaptera",
+        "uk": "(René) запропоновано зміни адаптера",
+        "zh-cn": "(René)通过适配器检查器建议更改"
+      },
       "2.5.9": {
         "en": "(René) dependencies update",
         "de": "Aktualisierung der Abhängigkeiten",
