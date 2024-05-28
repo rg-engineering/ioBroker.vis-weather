@@ -105,7 +105,11 @@
     "adminUI": {
       "config": "none"
     },
-    "license": "MIT",
+    "tier": 3,
+    "licenseInformation": {
+      "license": "MIT",
+      "type": "free"
+    },
     "materialize": true,
     "onlyWWW": true,
     "noConfig": true,
