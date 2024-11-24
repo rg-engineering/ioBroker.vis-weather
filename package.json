@@ -54,5 +54,26 @@
     "lint": "eslint",
     "translate": "translate-adapter",
     "release": "release-script"
-  }
+  },
+  "files": [
+    "admin/",
+    "admin{,/!(i18n)/**}/flat.txt",
+    "lib/",
+    "!.vscode",
+    "!.github",
+    "!.git",
+    "!.gitignore",
+    "!.gitattributes",
+    "!node_modules",
+    "!tasks",
+    "!.idea",
+    "!test",
+    "!typings",
+    "www/",
+    "widgets/",
+    "io-package.json",
+    "LICENSE"
+    
+  ],
+  "readmeFilename": "README.md"
 }
