@@ -28,45 +28,6 @@
         "pl": "Aktualizacja zależności (René)",
         "uk": "(René) оновлення залежності",
         "zh-cn": "(René) 附属关系最新情况"
-      },
-      "2.5.8": {
-        "en": "(René) dependencies update",
-        "de": "Aktualisierung der Abhängigkeiten",
-        "ru": "(René)",
-        "pt": "(René) atualizações de dependências",
-        "nl": "(René) update afhankelijkheden",
-        "fr": "Mise à jour des dépendances (René)",
-        "it": "(René) aggiornamento delle dipendenze",
-        "es": "(René) dependencies update",
-        "pl": "Aktualizacja zależności (René)",
-        "uk": "(René) оновлення залежності",
-        "zh-cn": "(René) 附属关系最新情况"
-      },
-      "2.5.7": {
-        "en": "in progress",
-        "de": "in Bearbeitung",
-        "ru": "в ходе выполнения",
-        "pt": "em progresso",
-        "nl": "bezig",
-        "fr": "en cours",
-        "it": "in corso",
-        "es": "en curso",
-        "pl": "w trakcie",
-        "uk": "в процесі",
-        "zh-cn": "进行中"
-      },
-      "2.5.6": {
-        "en": "tooltip with value added",
-        "de": "Tooltip mit Mehrwert",
-        "ru": "всплывающая подсказка с добавленной стоимостью",
-        "pt": "dica de ferramenta com valor agregado",
-        "nl": "tooltip met toegevoegde waarde",
-        "fr": "info-bulle à valeur ajoutée",
-        "it": "tooltip con valore aggiunto",
-        "es": "información sobre herramientas con valor agregado",
-        "pl": "podpowiedź z wartością dodaną",
-        "zh-cn": "具有附加值的工具提示",
-        "uk": "підказка з доданою вартістю"
       }
     },
     "titleLang": {
@@ -115,6 +76,11 @@
     "localLinks": {
       "default": "%web_protocol%://%ip%:%web_port%/vis/edit.html"
     },
+    "globalDependencies": [
+      {
+        "admin": ">=7.4.10"
+      }
+    ],
     "adminUI": {
       "config": "none"
     },
