@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "vis-weather",
-    "version": "2.5.11",
+    "version": "2.5.12",
     "news": {
+      "2.5.12": {
+        "en": "bug fix: widget was not shown at all sometimes",
+        "de": "fehlerbehebung: widget wurde überhaupt nicht manchmal angezeigt",
+        "ru": "исправление ошибок: виджет иногда не отображается",
+        "pt": "correção de erro: widget não foi mostrado em tudo às vezes",
+        "nl": "bug fix: widget werd soms helemaal niet getoond",
+        "fr": "correction du bug : le widget n'a pas été montré du tout parfois",
+        "it": "correzione bug: widget non è stato mostrato a tutti a volte",
+        "es": "bug fix: widget no se mostró en absoluto a veces",
+        "pl": "błąd fix: widget nie był pokazywany w ogóle czasami",
+        "uk": "виправлення помилок: віджет не був показаний у всіх випадках",
+        "zh-cn": "错误修正: 部件有时根本不显示"
+      },
       "2.5.11": {
         "en": "changes requested by adapter checker\ndependencies updated",
         "de": "änderungen, die von adapter checker angefordert werden\naktualisierte abhängigkeiten",
