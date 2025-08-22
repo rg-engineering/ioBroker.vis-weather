@@ -24,7 +24,7 @@
     "@alcalzone/release-script-plugin-manual-review": "^3.7.0",
     "@iobroker/adapter-dev": "^1.4.0",
     "@iobroker/testing": "^5.0.4",
-    "chai": "^5.2.0",
+    "chai": "^6.0.1",
     "mocha": "^11.5.0"
   },
   "bugs": {
