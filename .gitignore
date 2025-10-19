@@ -12,3 +12,8 @@ lib/i18n/*/flat.txt
 /.settings/
 /typings/
 /readme.txt
+ .commitinfo
+/.vscode/extensions.json
+/bin/Microsoft.NodejsTools.WebRole.dll
+/obj/Debug/
+/package-lock.json.orig
