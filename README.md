@@ -54,7 +54,7 @@ You might need to enable "NextDaysDetailed".
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 2.5.13 (2025-10-22)
 * (René) changes based on adapter checker suggestions
 
 ### 2.5.12 (2025-06-02)

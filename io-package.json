@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "vis-weather",
-    "version": "2.5.12",
+    "version": "2.5.13",
     "news": {
+      "2.5.13": {
+        "en": "changes based on adapter checker suggestions",
+        "de": "änderungen basierend auf adapter checker vorschläge",
+        "ru": "изменения, основанные на предложениях по проверке адаптера",
+        "pt": "alterações baseadas nas sugestões do verificador de adaptadores",
+        "nl": "wijzigingen op basis van suggesties voor adaptercontrole",
+        "fr": "modifications basées sur des suggestions de contrôleurs d'adaptateurs",
+        "it": "modifiche in base ai suggerimenti dell'adattatore",
+        "es": "cambios basados en sugerencias de control de adaptador",
+        "pl": "zmiany oparte na sugestiach sprawdzania adaptera",
+        "uk": "зміни на основі пропозицій адаптера",
+        "zh-cn": "基于适配器检查器建议的变化"
+      },
       "2.5.12": {
         "en": "bug fix: widget was not shown at all sometimes",
         "de": "fehlerbehebung: widget wurde überhaupt nicht manchmal angezeigt",
