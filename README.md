@@ -54,6 +54,9 @@ You might need to enable "NextDaysDetailed".
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+* (René) changes based on adapter checker suggestions
+
 ### 2.5.12 (2025-06-02)
 * (René) bug fix: widget was not shown at all sometimes
 

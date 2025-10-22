@@ -59,11 +59,12 @@ jobs:
   deploy:
     needs: [check-and-lint, adapter-tests]
 
-    # Trigger this step only when a commit on master is tagged with a version number
+    # Trigger this step only when a commit on any branch is tagged with a version number
     if: |
       contains(github.event.head_commit.message, '[skip ci]') == false &&
       github.event_name == 'push' &&
-      startsWith(github.ref, 'refs/tags/')
+      startsWith(github.ref, 'refs/tags/v')
+
     runs-on: ubuntu-latest
 
     # Write permissions are required to create Github releases
@@ -72,49 +73,77 @@ jobs:
       id-token: write
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Use Node.js 22.x
-        uses: actions/setup-node@v4
+      - uses: ioBroker/testing-action-deploy@v1
         with:
-          node-version: 22.x
+          node-version: '22.x'
+          # Uncomment the following line if your adapter cannot be installed using 'npm ci'
+          # install-command: 'npm install'
+          #npm-token: ${{ secrets.NPM_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Extract the version and commit body from the tag
-        id: extract_release
-        # The body may be multiline, therefore we need to escape some characters
-        run: |
-          VERSION="${{ github.ref }}"
-          VERSION=${VERSION##*/}
-          VERSION=${VERSION##*v}
-          echo "::set-output name=VERSION::$VERSION"
-          BODY=$(git show -s --format=%b)
-          BODY="${BODY//'%'/'%25'}"
-          BODY="${BODY//$'\n'/'%0A'}"
-          BODY="${BODY//$'\r'/'%0D'}"
-          echo "::set-output name=BODY::$BODY"
+          
+          # When using Sentry for error reporting, Sentry can be informed about new releases
+          # To enable create a API-Token in Sentry (User settings, API keys)
+          # Enter this token as a GitHub secret (with name SENTRY_AUTH_TOKEN) in the repository options
+          # Then uncomment and customize the following block:
+        
+          sentry: true
+          sentry-token: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          sentry-org: "rg-engineering"
+          sentry-url: "https://sentry.io"
+          sentry-project: "iobroker_vis-weather"
+          sentry-version-prefix: "iobroker.vis-weather"
+          sentry-sourcemap-paths: "build/ admin/build/"
+          # If your sentry project is linked to a GitHub repository, you can enable the following option
+          sentry-github-integration: true
 
-      - name: Install Dependencies
-        run: npm install
-      #- name: Create a clean build
-      #  run: npm run build
-      - name: Publish package to npm
-        run: |
-          #npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
-          npm whoami
-          npm publish
 
-      - name: Create Github Release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release v${{ steps.extract_release.outputs.VERSION }}
-          draft: false
-          # Prerelease versions create pre-releases on GitHub
-          prerelease: ${{ contains(steps.extract_release.outputs.VERSION, '-') }}
-          body: ${{ steps.extract_release.outputs.BODY }}
+
+
+   # steps:
+   #   - name: Checkout code
+   #     uses: actions/checkout@v4
+
+   #   - name: Use Node.js 22.x
+   #     uses: actions/setup-node@v4
+   #     with:
+   #       node-version: 22.x
+
+    #  - name: Extract the version and commit body from the tag
+    #    id: extract_release
+    #    # The body may be multiline, therefore we need to escape some characters
+    #    run: |
+    #      VERSION="${{ github.ref }}"
+    #      VERSION=${VERSION##*/}
+    #      VERSION=${VERSION##*v}
+    #      echo "::set-output name=VERSION::$VERSION"
+    #      BODY=$(git show -s --format=%b)
+    #      BODY="${BODY//'%'/'%25'}"
+    #      BODY="${BODY//$'\n'/'%0A'}"
+    #      BODY="${BODY//$'\r'/'%0D'}"
+    #      echo "::set-output name=BODY::$BODY"
+
+    #  - name: Install Dependencies
+    #    run: npm install
+    #  #- name: Create a clean build
+    #  #  run: npm run build
+    #  - name: Publish package to npm
+    #    run: |
+    #      #npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
+    #      npm whoami
+    #      npm publish
+
+    #  - name: Create Github Release
+    #    uses: actions/create-release@v1
+    #    env:
+    #      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #    with:
+    #      tag_name: ${{ github.ref }}
+    #      release_name: Release v${{ steps.extract_release.outputs.VERSION }}
+    #      draft: false
+    #      # Prerelease versions create pre-releases on GitHub
+    #      prerelease: ${{ contains(steps.extract_release.outputs.VERSION, '-') }}
+    #      body: ${{ steps.extract_release.outputs.BODY }}
 
       #- name: Notify Sentry.io about the release
       #  run: |
@@ -128,10 +157,6 @@ jobs:
       #    sentry-cli releases set-commits $SENTRY_VERSION --auto
       #    sentry-cli releases finalize $SENTRY_VERSION
 
-        # Add the following line BEFORE finalize if sourcemap uploads are needed
-        # sentry-cli releases files $SENTRY_VERSION upload-sourcemaps build/    
-    
-        
         
         
         
