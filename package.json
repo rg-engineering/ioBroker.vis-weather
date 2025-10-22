@@ -9,7 +9,7 @@
   "homepage": "https://github.com/rg-engineering/ioBroker.vis-weather",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rg-engineering/ioBroker.vis-weather"
+    "url": "git+https://github.com/rg-engineering/ioBroker.vis-weather.git"
   },
   "license": "MIT",
   "keywords": [
