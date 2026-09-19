@@ -2,8 +2,9 @@
 name: Bug report
 about: Something is not working as it should
 title: ''
-labels: 'bug'
+labels: bug
 assignees: ''
+
 ---
 
 **!!! Before you start !!!**  
