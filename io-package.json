@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "vis-weather",
-    "version": "2.5.13",
+    "version": "2.5.14",
     "news": {
+      "2.5.14": {
+        "en": "This widget set becomes deprecated in the near future. Please use the new widget sets for vis-2 instead. \n* dependencies update",
+        "de": "Dieses Widget-Set wird bald veraltet sein. Bitte nutzen Sie die neuen Widget-Sets für Vis-2. \n* Update der Abhängigkeiten",
+        "ru": "В ближайшем будущем этот набор виджетов станет устаревшим. Вместо этого используйте новые наборы виджетов для vis-2. \n* обновление зависимостей",
+        "pt": "Esse widget será descontinuado em breve. Em vez disso, use os novos widgets para vis-2. \n* atualizar dependências",
+        "nl": "Deze widgetset wordt in de nabije toekomst verouderd. Gebruik in plaats daarvan de nieuwe widgetsets voor vis-2. \n* Bijgewerkte afhankelijkheden",
+        "fr": "Cet ensemble de widgets sera bientôt obsolète. Utilisez plutôt les nouveaux widgets pour vis-2. \n* mise à jour des dépendances",
+        "it": "Questo set di widget sarà obsoleto a breve. Usi invece i nuovi set di widget per vis-2. \n* update dipendenze",
+        "es": "Este set de widgets quedará obsoleto en un futuro próximo. En su lugar, utilice los nuevos sets de widgets para vis-2. \n* actualizar dependencias",
+        "pl": "Ten zestaw widżetów stanie się przestarzały w najbliższej przyszłości. Zamiast tego użyj nowych zestawów widżetów dla vis-2. \n* aktualizacja zależności",
+        "uk": "Цей набір віджетів буде застарілим найближчим часом. Будь ласка, використовуйте нові набори віджетів для vis-2 замість цього. \n* оновлення залежностей",
+        "zh-cn": "这个控件集在不久的将来会被弃用。请改用 vis-2 的新控件集。 \n* 依赖关系更新"
+      },
       "2.5.13": {
         "en": "changes based on adapter checker suggestions",
         "de": "änderungen basierend auf adapter checker vorschläge",
